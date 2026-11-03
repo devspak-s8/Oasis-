@@ -6,8 +6,9 @@ import { ToastProvider } from './components/Toast';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { LeadModal } from './components/LeadModal';
+import { FloatingHelp } from './components/FloatingHelp';
+import { ScrollBackground } from './components/ScrollBackground';
 
-// Pages
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
 import { DevelopmentsPage } from './pages/DevelopmentsPage';
@@ -17,8 +18,13 @@ import { InvestmentPage } from './pages/InvestmentPage';
 import { ContactPage } from './pages/ContactPage';
 import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { AdminPortal } from './pages/AdminPortal';
+import { AdvisoryPage } from './pages/AdvisoryPage';
 
-export default function App() {
+import { ThemeProvider, useTheme } from './context/ThemeContext';
+import { motion, AnimatePresence } from 'motion/react';
+
+function AppContent() {
+  const { theme } = useTheme();
   const [currentPath, setCurrentPath] = useState<string>(window.location.pathname || '/');
   const [developments, setDevelopments] = useState<Development[]>(INITIAL_DEVELOPMENTS);
   const [settings, setSettings] = useState<SiteSettings>(INITIAL_SETTINGS);
@@ -66,18 +72,31 @@ export default function App() {
       window.history.pushState({}, '', path);
     }
     setCurrentPath(path);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleOpenLeadModal = (initialDevId?: string, initialPlotSize?: string, initialEnquiryType?: string) => {
     setLeadInitialDevId(initialDevId);
     setLeadInitialPlotSize(initialPlotSize);
     setLeadInitialEnquiryType(initialEnquiryType);
-    setLeadModalOpen(true);
+    navigate('/advisory');
   };
 
   // Render correct route
   const renderCurrentPage = () => {
     if (!settings) return null;
+
+    if (currentPath === '/advisory') {
+      return (
+        <AdvisoryPage
+          developments={developments}
+          settings={settings}
+          onNavigate={navigate}
+          initialDevId={leadInitialDevId}
+          initialPlotSize={leadInitialPlotSize}
+        />
+      );
+    }
 
     if (currentPath === '/' || currentPath === '') {
       return (
@@ -126,7 +145,6 @@ export default function App() {
           />
         );
       }
-      // If project not found, redirect to directory
       return (
         <DevelopmentsPage
           developments={developments}
@@ -175,7 +193,6 @@ export default function App() {
       );
     }
 
-    // Default fallback
     return (
       <HomePage
         developments={developments}
@@ -207,35 +224,65 @@ export default function App() {
   const isAdminView = currentPath === '/admin';
 
   return (
-    <ToastProvider>
-      <div className="min-h-screen flex flex-col bg-[#0B1930] text-slate-100 selection:bg-[#C8A45D]/30 selection:text-[#C8A45D]">
-        {/* Navigation */}
-        <Navbar
-          currentPath={currentPath}
-          onNavigate={navigate}
-          onOpenLeadModal={() => handleOpenLeadModal()}
-          settings={settings}
-        />
+    <div className={`relative min-h-screen flex flex-col transition-colors duration-300 ${
+      theme === 'dark'
+        ? 'bg-[#0B1930] text-slate-100 selection:bg-[#C8A45D]/30 selection:text-[#C8A45D]'
+        : 'bg-slate-50 text-slate-900 selection:bg-[#C8A45D]/30 selection:text-[#0B1930]'
+    }`}>
+      {/* Full-Page Scroll-Driven Cinematic Background */}
+      {!isAdminView && <ScrollBackground />}
 
-        {/* Main Content */}
-        <main className="flex-1">
-          {renderCurrentPage()}
-        </main>
+      {/* Navigation */}
+      <Navbar
+        currentPath={currentPath}
+        onNavigate={navigate}
+        onOpenLeadModal={() => handleOpenLeadModal()}
+        settings={settings}
+      />
 
-        {/* Global Footer (hidden on admin view for distraction-free workspace) */}
-        {!isAdminView && <Footer onNavigate={navigate} settings={settings} />}
+      {/* Main Content with Animated Page Transitions */}
+      <main className="flex-1 relative z-10 overflow-hidden">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentPath}
+            initial={{ opacity: 0, y: 12, scale: 0.99 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -12, scale: 0.99 }}
+            transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {renderCurrentPage()}
+          </motion.div>
+        </AnimatePresence>
+      </main>
 
-        {/* Global Lead Capture Modal */}
-        <LeadModal
-          isOpen={leadModalOpen}
-          onClose={() => setLeadModalOpen(false)}
-          initialDevelopmentId={leadInitialDevId}
-          initialPlotSize={leadInitialPlotSize}
-          initialEnquiryType={leadInitialEnquiryType}
-          developments={developments}
-          settings={settings}
-        />
-      </div>
-    </ToastProvider>
+      {/* Global Footer (hidden on admin view for distraction-free workspace) */}
+      {!isAdminView && <Footer onNavigate={navigate} settings={settings} />}
+
+      {/* Global Lead Capture Modal */}
+      <LeadModal
+        isOpen={leadModalOpen}
+        onClose={() => setLeadModalOpen(false)}
+        initialDevelopmentId={leadInitialDevId}
+        initialPlotSize={leadInitialPlotSize}
+        initialEnquiryType={leadInitialEnquiryType}
+        developments={developments}
+        settings={settings}
+      />
+
+      {/* Persistent Floating Help & Advisory Desk */}
+      {!isAdminView && (
+        <FloatingHelp whatsappNumber={settings.whatsappNumber} />
+      )}
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <ThemeProvider>
+      <ToastProvider>
+        <AppContent />
+      </ToastProvider>
+    </ThemeProvider>
   );
 }

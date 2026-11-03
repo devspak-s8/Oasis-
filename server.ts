@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { GoogleGenAI } from '@google/genai';
 import { INITIAL_DEVELOPMENTS, INITIAL_SETTINGS, INITIAL_TESTIMONIALS } from './src/data/initialData';
 import { validateLeadForm } from './src/utils/realEstateCalculators';
 
@@ -13,7 +14,17 @@ const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3000;
 const DATA_DIR = path.join(__dirname, 'data');
 const DB_FILE = path.join(DATA_DIR, 'db.json');
 
-app.use(express.json({ limit: '10mb' }));
+app.use(express.json({ limit: '15mb' }));
+
+// Initialize GoogleGenAI server-side client
+const ai = new GoogleGenAI({
+  apiKey: process.env.GEMINI_API_KEY,
+  httpOptions: {
+    headers: {
+      'User-Agent': 'aistudio-build'
+    }
+  }
+});
 
 interface DatabaseSchema {
   developments: typeof INITIAL_DEVELOPMENTS;
@@ -97,6 +108,71 @@ let db = initDb();
 // API Endpoints
 app.get('/api/health', (_req: Request, res: Response) => {
   res.json({ status: 'healthy', timestamp: new Date().toISOString() });
+});
+
+// Gemini AI Advisory Assistant Chat Endpoint
+app.post('/api/gemini/chat', async (req: Request, res: Response) => {
+  try {
+    const { prompt, image, context } = req.body;
+
+    if (!prompt && !image) {
+      return res.status(400).json({ error: 'Prompt or image is required' });
+    }
+
+    const systemInstruction = `You are the official AI Senior Property Advisor for OASIS RAY DEVELOPMENTS LTD. (Founded by Oluwayemi James Damilare). 
+Tagline: "The Calm Side of Smart Investing".
+Head Office: KM 42 Lagos-Ibadan Expressway / Mowe-Ofada Strategic Hub, Ogun State, Nigeria.
+
+Company Developments in Portfolio:
+1. CHRISTOS GARDENS — Mowe-Ofada Corridor, Ogun State (Near Lagos-Ibadan Expressway). Residential & Commercial Plots (300 SQM, 500 SQM, 1,000 SQM). Starting price ₦3,500,000. Features perimeter fencing, razor wire, architectural gatehouse, paved roads, central drainage, borehole water. Title: Registered Survey & Deed of Assignment (C of O / Governor's Consent in processing).
+2. HAVILAH CITY — Ita Oshin, Abeokuta, Ogun State. Elevated hillside master-planned suburban estate (450 SQM, 600 SQM, 1,200 SQM). Starting price ₦2,200,000. Features grand gatehouse, survey beacons, graded internal boulevards, solar street lighting. Title: Registered Perimeter Survey lodged at Ogun State Bureau of Lands.
+
+Key Advisory Mandate:
+- Answer investor questions with institutional authority, clarity, and friendliness.
+- Detail payment plans (Outright 0% interest, 3-month, 6-month, 12-month spread options).
+- When a user uploads a land, layout, or survey document photo, analyze the visual details (boundaries, soil/terrain, beacons, road access, survey coordinates) and provide expert evaluation.
+- Suggest scheduling an on-site inspection or speaking directly with the Oasis Ray Advisory Desk via WhatsApp or Lead Enquiry form.
+- Keep answers formatted nicely with bullet points where appropriate. Avoid overly long preamble.`;
+
+    const parts: Array<any> = [];
+
+    if (image && typeof image === 'string') {
+      const base64Data = image.replace(/^data:image\/\w+;base64,/, '');
+      const mimeMatch = image.match(/^data:(image\/\w+);base64,/);
+      const mimeType = mimeMatch ? mimeMatch[1] : 'image/jpeg';
+
+      parts.push({
+        inlineData: {
+          mimeType,
+          data: base64Data
+        }
+      });
+    }
+
+    let userPromptText = prompt || 'Please analyze this land photo / survey document and advise me.';
+    if (context) {
+      userPromptText = `[Property Context: ${context}]\n\n${userPromptText}`;
+    }
+
+    parts.push({ text: userPromptText });
+
+    const response = await ai.models.generateContent({
+      model: 'gemini-3.8-flash',
+      contents: { parts },
+      config: {
+        systemInstruction
+      }
+    });
+
+    const reply = response.text || 'Thank you for reaching out to Oasis Ray Developments. How else may I assist your real estate investments today?';
+    res.json({ reply });
+  } catch (err: any) {
+    console.error('Gemini Chat API Error:', err);
+    res.status(500).json({ 
+      error: 'Unable to connect to AI Advisory Assistant. Please try again or reach out directly to our WhatsApp Desk.',
+      details: err?.message || 'Server error'
+    });
+  }
 });
 
 // Developments

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Development } from '../types';
 import { formatCurrencyNaira } from '../utils/realEstateCalculators';
-import { MapPin, ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { MapPin, ArrowUpRight } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 interface DevelopmentCardProps {
   development: Development;
@@ -14,105 +15,98 @@ export const DevelopmentCard: React.FC<DevelopmentCardProps> = ({
   onViewDetails,
   onQuickEnquire
 }) => {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+
   return (
-    <div className="group bg-[#102342] border border-[#1E3A6E] rounded-2xl overflow-hidden shadow-lg hover:border-[#C8A45D]/60 transition-all duration-300 flex flex-col">
+    <div className={`group rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col ${
+      isDark
+        ? 'bg-[#102342] border-[#1E3A6E] hover:border-[#C8A45D] text-white shadow-xl'
+        : 'bg-white border-slate-200/90 hover:border-[#B38E46] text-[#0B1930] shadow-sm hover:shadow-lg'
+    }`}>
       {/* Property Image with Measured Scrim */}
-      <div className="relative aspect-[16/10] overflow-hidden bg-[#060E1A]">
+      <div className="relative aspect-[16/10] overflow-hidden bg-slate-900">
         <img
           src={development.heroImage}
           alt={`${development.name} - ${development.location}`}
           referrerPolicy="no-referrer"
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#102342] via-transparent to-black/40 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-black/20 pointer-events-none" />
 
-        {/* Clean unboxed availability indicator (No pill box) */}
+        {/* Clean availability indicator */}
         <div className="absolute top-4 left-4">
-          <div className="text-xs font-mono font-bold uppercase tracking-wider text-white drop-shadow flex items-center gap-2">
-            <span
-              className={`w-2 h-2 ${
-                development.availability === 'Available'
-                  ? 'bg-emerald-400'
-                  : development.availability === 'Selling Fast'
-                  ? 'bg-amber-400'
-                  : 'bg-slate-400'
-              }`}
-            />
+          <div className="text-xs font-mono font-bold uppercase tracking-wider text-white drop-shadow">
             <span className={development.availability === 'Available' ? 'text-emerald-300' : 'text-amber-300'}>
               {development.availability}
             </span>
           </div>
         </div>
 
-        {/* Location line (No pill enclosures) */}
+        {/* Location line */}
         <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-xs text-white">
           <div className="flex items-center gap-1.5 drop-shadow">
             <MapPin className="w-3.5 h-3.5 text-[#C8A45D]" />
-            <span className="font-semibold text-slate-100">{development.location}</span>
+            <span className="font-semibold text-white">{development.location}</span>
           </div>
-          <span className="text-slate-300 text-xs drop-shadow font-medium">
+          <span className="text-slate-200 text-xs drop-shadow font-medium">
             {development.state}
           </span>
         </div>
       </div>
 
       {/* Card Content */}
-      <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+      <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
         <div>
-          {/* Metadata line without pill clutter */}
-          <div className="flex items-center gap-2 text-xs text-[#C8A45D] font-medium mb-1">
-            <span>{development.category}</span>
-            <span aria-hidden="true" className="text-slate-600">·</span>
-            <span>{development.plotSizes.length} Plot Sizes</span>
+          {/* Category line */}
+          <div className="text-xs text-[#C8A45D] font-semibold tracking-wide mb-1">
+            {development.category}
           </div>
 
-          <h3 className="text-xl font-bold text-white tracking-tight group-hover:text-[#C8A45D] transition-colors">
+          <h3 className={`text-xl font-bold tracking-tight transition-colors ${
+            isDark ? 'text-white group-hover:text-[#C8A45D]' : 'text-[#0B1930] group-hover:text-[#B38E46]'
+          }`}>
             {development.name}
           </h3>
 
-          <p className="text-xs text-slate-300 line-clamp-2 mt-2 leading-relaxed">
+          <p className={`text-xs line-clamp-2 mt-2 leading-relaxed ${
+            isDark ? 'text-slate-300' : 'text-slate-600'
+          }`}>
             {development.overview}
           </p>
-
-          {/* Key Infrastructure Preview */}
-          <div className="mt-4 pt-3 border-t border-[#1E3A6E]/50 space-y-1.5">
-            {development.infrastructure.slice(0, 3).map((item, idx) => (
-              <div key={idx} className="flex items-center gap-2 text-xs text-slate-300">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#C8A45D] shrink-0" />
-                <span className="truncate">{item}</span>
-              </div>
-            ))}
-          </div>
         </div>
 
-        {/* Pricing & CTA Zone */}
-        <div className="pt-4 border-t border-[#1E3A6E] flex items-center justify-between gap-4">
+        {/* Minimal Pricing & Action Row */}
+        <div className={`pt-4 border-t flex items-center justify-between gap-4 ${
+          isDark ? 'border-[#1E3A6E]' : 'border-slate-100'
+        }`}>
           <div>
-            <span className="text-[10px] text-slate-400 uppercase tracking-wider block">
+            <span className={`text-[10px] uppercase tracking-wider block font-medium ${
+              isDark ? 'text-slate-400' : 'text-slate-500'
+            }`}>
               Starting From
             </span>
-            <span className="text-base font-bold font-mono text-white">
+            <span className={`text-base font-bold font-mono ${
+              isDark ? 'text-white' : 'text-[#0B1930]'
+            }`}>
               {formatCurrencyNaira(development.startingPrice)}
             </span>
           </div>
 
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => onQuickEnquire(development.id, development.name)}
-              className="px-3.5 py-2 text-xs font-semibold rounded-lg bg-[#060E1A] hover:bg-[#142B52] border border-[#1E3A6E] text-slate-200 transition-colors"
-            >
-              Enquire
-            </button>
-            <button
-              onClick={() => onViewDetails(development.slug)}
-              className="px-4 py-2 text-xs font-semibold rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#0B1930] transition-colors flex items-center gap-1.5 shadow-sm"
-            >
-              <span>View Project</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
+          <button
+            onClick={() => onViewDetails(development.slug)}
+            className={`px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 active:scale-95 ${
+              isDark
+                ? 'bg-[#1A3868] hover:bg-[#C8A45D] text-white hover:text-[#0B1930] border border-[#C8A45D]/40'
+                : 'bg-[#0B1930] hover:bg-[#1A3868] text-white shadow-xs'
+            }`}
+          >
+            <span>View Project</span>
+            <ArrowUpRight className="w-3.5 h-3.5 text-[#C8A45D]" />
+          </button>
         </div>
       </div>
     </div>
   );
 };
+

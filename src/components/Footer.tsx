@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone, MapPin, MessageSquare, ShieldCheck, ArrowUpRight } from 'lucide-react';
+import { Mail, Phone, MapPin, ShieldCheck } from 'lucide-react';
 import { SiteSettings } from '../types';
 
 interface FooterProps {
@@ -13,167 +13,115 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, settings }) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const whatsappDeskUrl = `https://wa.me/${settings.whatsappNumber.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(
-    'Hello Oasis Ray Developments. I would like to enquire about your property investment opportunities.'
-  )}`;
-
   return (
-    <footer className="bg-[#060E1A] text-slate-300 border-t border-[#1E3A6E]/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 mb-12">
-          {/* Column 1 & 2: Brand & Positioning */}
-          <div className="lg:col-span-2 space-y-4">
+    <footer className="relative z-20 bg-[#0B1930] text-slate-200 border-t border-[#1E3A6E] shadow-2xl">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 mb-10">
+          {/* Column 1: Corporate Identity & Tagline Quote */}
+          <div className="lg:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-md bg-[#102342] border border-[#C8A45D]/60 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-lg bg-[#102342] border border-[#C8A45D] flex items-center justify-center shrink-0 shadow-md">
                 <span className="font-serif-title text-[#C8A45D] font-bold text-xl leading-none">O</span>
               </div>
               <div className="flex flex-col">
-                <span className="text-lg font-bold tracking-tight text-white">
+                <span className="text-lg font-extrabold tracking-tight text-white">
                   OASIS RAY <span className="text-[#C8A45D] font-normal">DEVELOPMENTS</span>
                 </span>
-                <span className="text-[10px] text-slate-400 font-semibold tracking-widest uppercase">
+                <span className="text-[11px] text-slate-300 font-semibold tracking-widest uppercase">
                   LTD.
                 </span>
               </div>
             </div>
 
-            <p className="text-sm text-[#C8A45D] font-medium italic">
+            <p className="text-sm text-[#C8A45D] font-serif italic tracking-wide font-medium pl-1 border-l-2 border-[#C8A45D]/60 py-1">
               "{settings.tagline}"
             </p>
-
-            <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
-              OASIS RAY DEVELOPMENTS LTD. is a corporate real estate development, investment, and property marketing firm. We structure high-integrity property opportunities across high-velocity growth corridors in Nigeria.
-            </p>
-
-            <div className="pt-2">
-              <a
-                href={whatsappDeskUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg bg-[#102342] text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/10 hover:border-emerald-400 transition-colors"
-              >
-                <MessageSquare className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Investor WhatsApp Desk</span>
-                <ArrowUpRight className="w-3 h-3 opacity-70" />
-              </a>
-            </div>
           </div>
 
-          {/* Column 3: Developments */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-semibold tracking-wider text-slate-200 uppercase">
-              Developments
+          {/* Column 2: Key Quick Links */}
+          <div className="lg:col-span-3 space-y-4">
+            <h4 className="text-xs font-bold tracking-widest text-[#C8A45D] uppercase">
+              Quick Links
             </h4>
-            <ul className="space-y-2 text-xs">
+            <ul className="space-y-2.5 text-xs sm:text-sm font-medium text-slate-200">
               <li>
-                <button
-                  onClick={() => handleNav('/developments/christos-gardens')}
-                  className="text-slate-400 hover:text-white transition-colors text-left"
-                >
-                  Christos Gardens <span className="text-slate-400 block text-[11px]">Mowe-Ofada, Ogun State</span>
+                <button onClick={() => handleNav('/advisory')} className="hover:text-[#C8A45D] transition-colors text-left flex items-center gap-1.5 group font-bold text-[#C8A45D]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C8A45D] group-hover:scale-125 transition-transform" />
+                  <span>Speak to an Advisor</span>
                 </button>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('/developments/havilah-city')}
-                  className="text-slate-400 hover:text-white transition-colors text-left mt-2"
-                >
-                  Havilah City <span className="text-slate-400 block text-[11px]">Ita Oshin, Abeokuta</span>
+                <button onClick={() => handleNav('/developments')} className="hover:text-[#C8A45D] transition-colors text-left flex items-center gap-1.5 group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C8A45D] group-hover:scale-125 transition-transform" />
+                  <span>Our Developments</span>
                 </button>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('/developments')}
-                  className="text-[#C8A45D] hover:text-[#DFC07C] transition-colors inline-flex items-center gap-1 mt-2 font-medium"
-                >
-                  All Developments →
+                <button onClick={() => handleNav('/about')} className="hover:text-[#C8A45D] transition-colors text-left flex items-center gap-1.5 group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C8A45D] group-hover:scale-125 transition-transform" />
+                  <span>About & Vision</span>
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNav('/investment')} className="hover:text-[#C8A45D] transition-colors text-left flex items-center gap-1.5 group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C8A45D] group-hover:scale-125 transition-transform" />
+                  <span>Investment Plans</span>
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleNav('/contact')} className="hover:text-[#C8A45D] transition-colors text-left flex items-center gap-1.5 group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C8A45D] group-hover:scale-125 transition-transform" />
+                  <span>Contact Advisory</span>
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Column 4: Quick Navigation */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-semibold tracking-wider text-slate-200 uppercase">
-              Company
+          {/* Column 3: Concise Address & Contact Desk */}
+          <div className="lg:col-span-4 space-y-4">
+            <h4 className="text-xs font-bold tracking-widest text-[#C8A45D] uppercase">
+              Corporate Desk
             </h4>
-            <ul className="space-y-2 text-xs text-slate-400">
-              <li>
-                <button onClick={() => handleNav('/about')} className="hover:text-white transition-colors">
-                  About Us & Leadership
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNav('/services')} className="hover:text-white transition-colors">
-                  Core Services
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNav('/investment')} className="hover:text-white transition-colors">
-                  Investment Opportunities
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNav('/contact')} className="hover:text-white transition-colors">
-                  Contact Advisory Team
-                </button>
-              </li>
-              <li>
-                <button onClick={() => handleNav('/privacy')} className="hover:text-white transition-colors">
-                  Privacy Policy & Compliance
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 5: Contact Info Placeholders */}
-          <div className="space-y-3">
-            <h4 className="text-xs font-semibold tracking-wider text-slate-200 uppercase">
-              Corporate Office
-            </h4>
-            <div className="space-y-2.5 text-xs text-slate-400">
-              <div className="flex items-start gap-2">
-                <MapPin className="w-3.5 h-3.5 text-[#C8A45D] shrink-0 mt-0.5" />
-                <span>{settings.officeAddress}</span>
+            <div className="space-y-3 text-xs sm:text-sm text-slate-200 font-medium">
+              <div className="flex items-start gap-2.5">
+                <MapPin className="w-4 h-4 text-[#C8A45D] shrink-0 mt-0.5" />
+                <span className="leading-snug text-white font-semibold">Mowe-Ofada Strategic Hub, Ogun State, Nigeria</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Phone className="w-3.5 h-3.5 text-[#C8A45D] shrink-0" />
-                <a href={`tel:${settings.phone.replace(/[^0-9+]/g, '')}`} className="hover:text-white transition-colors">
+              <div className="flex items-center gap-2.5">
+                <Phone className="w-4 h-4 text-[#C8A45D] shrink-0" />
+                <a href={`tel:${settings.phone.replace(/[^0-9+]/g, '')}`} className="hover:text-[#C8A45D] text-white font-semibold transition-colors">
                   {settings.phone}
                 </a>
               </div>
-              <div className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-[#C8A45D] shrink-0" />
-                <a href={`mailto:${settings.email}`} className="hover:text-white transition-colors">
+              <div className="flex items-center gap-2.5">
+                <Mail className="w-4 h-4 text-[#C8A45D] shrink-0" />
+                <a href={`mailto:${settings.email}`} className="hover:text-[#C8A45D] text-slate-200 transition-colors">
                   {settings.email}
                 </a>
-              </div>
-              <div className="pt-2 text-[11px] text-slate-400">
-                {settings.workingHours}
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 border-t border-[#1E3A6E]/40 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+        {/* Bottom Rights Bar */}
+        <div className="pt-8 border-t border-[#1E3A6E] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-medium text-slate-300">
           <div>
             © {new Date().getFullYear()} OASIS RAY DEVELOPMENTS LTD. All rights reserved.
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-5">
             <button
               onClick={() => handleNav('/privacy')}
-              className="hover:text-slate-300 transition-colors"
+              className="hover:text-white transition-colors"
             >
               Privacy Policy
             </button>
-            <span className="text-slate-700">·</span>
+            <span className="text-[#1E3A6E]">|</span>
             <button
               onClick={() => handleNav('/admin')}
-              className="inline-flex items-center gap-1.5 text-slate-400 hover:text-[#C8A45D] transition-colors"
+              className="inline-flex items-center gap-1.5 text-slate-300 hover:text-[#C8A45D] transition-colors"
             >
               <ShieldCheck className="w-3.5 h-3.5 text-[#C8A45D]" />
-              Staff CMS Portal
+              <span>Staff Portal</span>
             </button>
           </div>
         </div>

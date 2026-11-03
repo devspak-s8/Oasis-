@@ -1,7 +1,8 @@
 import React from 'react';
 import { SiteSettings } from '../types';
 import { ShieldCheck, Target, Eye, Compass, Award, ArrowRight, CheckCircle2 } from 'lucide-react';
-import { FadeIn, SlideInLeft, SlideInRight, StaggerContainer, StaggerItem } from '../components/ScrollAnimations';
+import { FadeIn, SlideInLeft, SlideInRight } from '../components/ScrollAnimations';
+import { FlungCard } from '../components/FlungCard';
 
 interface AboutPageProps {
   settings: SiteSettings;
@@ -98,6 +99,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onNavigate, onOp
               <p>
                 Oluwayemi James Damilare is the Founder and Lead Visionary of OASIS RAY DEVELOPMENTS LTD. Under his leadership, the firm has cultivated a distinct ethos centered around calm, disciplined, and verifiable property acquisitions in Nigeria's high-potential growth hubs.
               </p>
+              <div className="p-4 rounded-xl bg-[#102342] border border-[#1E3A6E] italic text-slate-200 text-xs sm:text-sm leading-relaxed my-2">
+                "At Oasis Ray Developments, we believe that real estate development is far more than building walls or surveying boundaries. It is the deliberate stewardship of spaces that become conduits of enduring prosperity, security, and influence for families and organizations across every market cycle."
+              </div>
               <p>
                 His strategic focus prioritizes structured land acquisition, physical estate execution, rigorous cadastral verification, and opening transparent channels for investors both within Nigeria and across the global diaspora.
               </p>
@@ -105,7 +109,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onNavigate, onOp
 
             <div className="pt-4 border-t border-[#1E3A6E]/50 flex flex-wrap gap-4 text-xs text-slate-400">
               <span className="flex items-center gap-1.5 text-[#C8A45D]">
-                <Award className="w-4 h-4" /> Stewardship & Value Creation
+                <Award className="w-4 h-4" /> Stewardship & Generational Value
               </span>
               <span className="flex items-center gap-1.5 text-slate-300">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Executive Leadership
@@ -133,40 +137,35 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onNavigate, onOp
           </div>
         </FadeIn>
 
-        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" staggerDelay={0.1}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
           {[
             {
               title: 'Integrity & Due Diligence',
-              desc: 'Every parcel is thoroughly charted, legally vetted, and physically demarcated prior to market offering.',
-              dir: 'left' as const
+              desc: 'Every parcel is thoroughly charted, legally vetted, and physically demarcated.'
             },
             {
               title: 'Strategic Foresight',
-              desc: 'Acquiring acreage strictly along verifiable civic and infrastructural expansion trajectories.',
-              dir: 'up' as const
+              desc: 'Acquiring acreage strictly along civic and infrastructural expansion corridors.'
             },
             {
               title: 'Capital Preservation',
-              desc: 'Structuring investment entry points that protect subscriber capital against market volatility and currency erosion.',
-              dir: 'up' as const
+              desc: 'Protecting subscriber capital against market volatility and currency erosion.'
             },
             {
               title: 'Transparent Execution',
-              desc: 'Open communication, realistic development milestones, and seamless documentation handover.',
-              dir: 'right' as const
+              desc: 'Open communication, realistic milestones, and seamless title handover.'
             }
           ].map((val, idx) => (
-            <StaggerItem
+            <FlungCard
               key={idx}
-              direction={val.dir}
-              className="bg-[#102342] border border-[#1E3A6E] rounded-xl p-6 space-y-2"
+              index={idx}
+              className="bg-[#102342] border border-[#1E3A6E] rounded-xl p-6 space-y-2 h-full shadow-lg"
             >
-              <div className="text-xs font-mono font-bold text-[#C8A45D]">0{idx + 1}.</div>
               <h3 className="text-base font-bold text-white">{val.title}</h3>
               <p className="text-xs text-slate-300 leading-relaxed">{val.desc}</p>
-            </StaggerItem>
+            </FlungCard>
           ))}
-        </StaggerContainer>
+        </div>
       </div>
 
       {/* Company Approach to Real Estate */}

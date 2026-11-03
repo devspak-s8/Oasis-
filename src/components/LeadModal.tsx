@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { X, CheckCircle2, MessageSquare, ArrowRight, Shield, Building } from 'lucide-react';
+import { X, CheckCircle2, MessageSquare, ArrowRight, ArrowLeft, Shield, Building, UserCheck } from 'lucide-react';
 import { api } from '../services/api';
 import { Development, SiteSettings } from '../types';
 import { generateWhatsAppLeadUrl, validateLeadForm } from '../utils/realEstateCalculators';
 import { useToast } from './Toast';
+import { CustomSelect } from './CustomSelect';
+import { useTheme } from '../context/ThemeContext';
+import { motion, AnimatePresence } from 'motion/react';
 
 interface LeadModalProps {
   isOpen: boolean;
@@ -24,7 +27,11 @@ export const LeadModal: React.FC<LeadModalProps> = ({
   developments,
   settings
 }) => {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
   const { showToast } = useToast();
+
+  const [currentStep, setCurrentStep] = useState<1 | 2 | 3>(1);
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -45,6 +52,7 @@ export const LeadModal: React.FC<LeadModalProps> = ({
       if (initialDevelopmentId) setSelectedDevId(initialDevelopmentId);
       if (initialPlotSize) setPlotSize(initialPlotSize);
       if (initialEnquiryType) setEnquiryType(initialEnquiryType);
+      setCurrentStep(1);
       setErrors({});
       setSubmittedLead(null);
     }
@@ -53,6 +61,47 @@ export const LeadModal: React.FC<LeadModalProps> = ({
   if (!isOpen) return null;
 
   const currentDev = developments.find((d) => d.id === selectedDevId);
+
+  // Dropdown options
+  const developmentOptions = [
+    { value: '', label: '-- General Property Enquiry --', sublabel: 'Explore all available locations' },
+    ...developments.map((d) => ({
+      value: d.id,
+      label: d.name,
+      sublabel: d.location
+    }))
+  ];
+
+  const plotOptions = currentDev
+    ? [
+        { value: '', label: 'Any Available Size' },
+        ...currentDev.plotSizes.map((p) => ({
+          value: p.size,
+          label: `${p.size} (${p.title})`
+        }))
+      ]
+    : [
+        { value: '', label: 'Any Available Size' },
+        { value: '300 SQM', label: '300 SQM (Half Plot)' },
+        { value: '450 SQM', label: '450 SQM (Suburban Villa)' },
+        { value: '500 SQM', label: '500 SQM (Standard Full Plot)' },
+        { value: '600 SQM', label: '600 SQM (Prime Plot)' },
+        { value: '1,000+ SQM', label: '1,000+ SQM (Commercial / Executive)' }
+      ];
+
+  const enquiryOptions = [
+    { value: 'Property Purchase', label: 'Property Purchase / Outright Acquisition' },
+    { value: 'Investment Opportunity', label: 'Investment Opportunity (Installment / Structured)' },
+    { value: 'Land Banking', label: 'Land Banking (Long-Term Capital Preservation)' },
+    { value: 'Site Inspection', label: 'Site Inspection Booking' },
+    { value: 'Partnership', label: 'Institutional Partnership' },
+    { value: 'Realtor Registration', label: 'Realtor / Broker Registration' },
+    { value: 'General Enquiry', label: 'General Corporate Enquiry' }
+  ];
+
+  const handleNextStep = () => {
+    setCurrentStep(2);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -70,7 +119,7 @@ export const LeadModal: React.FC<LeadModalProps> = ({
     const validation = validateLeadForm(payload);
     if (!validation.isValid) {
       setErrors(validation.errors);
-      showToast('Please correct the highlighted fields in the form.', 'error');
+      showToast('Please correct highlighted fields before submitting.', 'error');
       return;
     }
 
@@ -85,12 +134,13 @@ export const LeadModal: React.FC<LeadModalProps> = ({
           fullName: res.lead.fullName,
           developmentName: res.lead.interestedDevelopmentName
         });
-        showToast('Enquiry registered successfully. An advisor will contact you shortly.', 'success');
+        setCurrentStep(3);
+        showToast('Enquiry registered successfully!', 'success');
       } else {
         showToast(res.error || 'Failed to submit enquiry. Please try again.', 'error');
       }
     } catch {
-      showToast('An unexpected error occurred. Please contact us directly via WhatsApp.', 'error');
+      showToast('An unexpected error occurred. Please contact us on WhatsApp.', 'error');
     } finally {
       setSubmitting(false);
     }
@@ -111,244 +161,294 @@ export const LeadModal: React.FC<LeadModalProps> = ({
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in"
       role="dialog"
       aria-modal="true"
-      aria-labelledby="lead-modal-title"
     >
-      <div className="relative w-full max-w-xl bg-[#0B1930] border border-[#1E3A6E] rounded-2xl shadow-2xl overflow-hidden max-h-[92vh] flex flex-col">
-        {/* Header */}
-        <div className="px-6 py-4 border-b border-[#1E3A6E]/70 flex items-center justify-between bg-[#060E1A]">
+      <div className={`relative w-full max-w-xl border rounded-2xl shadow-2xl overflow-hidden max-h-[92vh] flex flex-col transition-colors ${
+        isDark ? 'bg-[#0B1930] border-[#1E3A6E] text-white' : 'bg-white border-slate-200 text-[#0B1930]'
+      }`}>
+        {/* Header Bar */}
+        <div className={`px-6 py-4 border-b flex items-center justify-between ${
+          isDark ? 'bg-[#060E1A] border-[#1E3A6E]' : 'bg-slate-50 border-slate-200'
+        }`}>
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded bg-[#102342] border border-[#C8A45D]/40 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-[#102342] border border-[#C8A45D]/40 flex items-center justify-center">
               <Building className="w-4 h-4 text-[#C8A45D]" />
             </div>
             <div>
-              <h3 id="lead-modal-title" className="text-base font-bold text-white tracking-tight">
-                {submittedLead ? 'Enquiry Confirmed' : 'Speak with an Investment Advisor'}
+              <h3 className={`text-base font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>
+                {currentStep === 3 ? 'Enquiry Confirmed' : 'Speak with an Investment Advisor'}
               </h3>
               <p className="text-xs text-[#C8A45D]">Oasis Ray Developments Advisory Desk</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors"
+            className={`p-1.5 rounded-lg transition-colors ${
+              isDark ? 'text-slate-400 hover:text-white hover:bg-slate-800' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+            }`}
             aria-label="Close dialogue"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Content */}
-        <div className="p-6 overflow-y-auto">
-          {submittedLead ? (
-            <div className="space-y-6 text-center py-4">
-              <div className="w-16 h-16 bg-emerald-500/10 border border-emerald-500/40 rounded-full flex items-center justify-center mx-auto text-emerald-400">
-                <CheckCircle2 className="w-8 h-8" />
-              </div>
-
-              <div className="space-y-2">
-                <h4 className="text-xl font-bold text-white">Thank You, {submittedLead.fullName}</h4>
-                <p className="text-sm text-slate-300 max-w-md mx-auto">
-                  Your enquiry has been formally registered with our property investment desk. A dedicated relationship manager will reach out within business hours.
-                </p>
-              </div>
-
-              <div className="p-4 rounded-xl bg-[#102342] border border-[#1E3A6E] max-w-sm mx-auto text-left">
-                <div className="text-[11px] text-slate-400 uppercase tracking-wider font-semibold">
-                  Official Reference ID
-                </div>
-                <div className="text-lg font-mono font-bold text-[#C8A45D] tracking-wider mt-0.5">
-                  {submittedLead.referenceCode}
-                </div>
-                {submittedLead.developmentName && (
-                  <div className="text-xs text-slate-300 mt-1">
-                    Development: <span className="text-white font-medium">{submittedLead.developmentName}</span>
-                  </div>
-                )}
-              </div>
-
-              <div className="pt-2 flex flex-col sm:flex-row gap-3 justify-center">
-                <a
-                  href={getWhatsAppLink()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-5 py-3 text-sm font-semibold rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white transition-colors"
-                >
-                  <MessageSquare className="w-4 h-4" />
-                  Continue on WhatsApp Instant Desk
-                </a>
-                <button
-                  onClick={onClose}
-                  className="px-5 py-3 text-sm font-medium rounded-lg bg-[#102342] hover:bg-[#142B52] text-slate-200 border border-[#1E3A6E] transition-colors"
-                >
-                  Close Window
-                </button>
-              </div>
+        {/* Step Progress Bar */}
+        {currentStep !== 3 && (
+          <div className={`px-6 py-2.5 border-b flex items-center justify-between text-xs font-semibold ${
+            isDark ? 'bg-[#102342]/50 border-[#1E3A6E]/50 text-slate-300' : 'bg-slate-100/70 border-slate-200 text-slate-600'
+          }`}>
+            <div className="flex items-center gap-2">
+              <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
+                currentStep === 1 ? 'bg-[#C8A45D] text-[#0B1930]' : 'bg-emerald-500 text-white'
+              }`}>
+                {currentStep > 1 ? '✓' : '1'}
+              </span>
+              <span>Step 1: Property Preferences</span>
             </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="lead-name" className="block text-xs font-semibold text-slate-300 mb-1">
-                    Full Name <span className="text-rose-400">*</span>
-                  </label>
-                  <input
-                    id="lead-name"
-                    type="text"
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                    placeholder="e.g. Babatunde Adeleke"
-                    className={`w-full px-3.5 py-2.5 rounded-lg bg-[#060E1A] border text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#C8A45D] ${
-                      errors.fullName ? 'border-rose-500' : 'border-[#1E3A6E]'
-                    }`}
-                  />
-                  {errors.fullName && <p className="text-[11px] text-rose-400 mt-1">{errors.fullName}</p>}
-                </div>
+            <div className="w-8 h-0.5 bg-slate-400/30" />
+            <div className="flex items-center gap-2">
+              <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
+                currentStep === 2 ? 'bg-[#C8A45D] text-[#0B1930]' : 'bg-slate-700 text-slate-300'
+              }`}>
+                2
+              </span>
+              <span>Step 2: Contact Details</span>
+            </div>
+          </div>
+        )}
 
-                <div>
-                  <label htmlFor="lead-phone" className="block text-xs font-semibold text-slate-300 mb-1">
-                    Phone Number <span className="text-rose-400">*</span>
-                  </label>
-                  <input
-                    id="lead-phone"
-                    type="tel"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    placeholder="+234 803 123 4567"
-                    className={`w-full px-3.5 py-2.5 rounded-lg bg-[#060E1A] border text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#C8A45D] ${
-                      errors.phone ? 'border-rose-500' : 'border-[#1E3A6E]'
-                    }`}
-                  />
-                  {errors.phone && <p className="text-[11px] text-rose-400 mt-1">{errors.phone}</p>}
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="lead-email" className="block text-xs font-semibold text-slate-300 mb-1">
-                  Email Address <span className="text-rose-400">*</span>
-                </label>
-                <input
-                  id="lead-email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="babatunde@example.com"
-                  className={`w-full px-3.5 py-2.5 rounded-lg bg-[#060E1A] border text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#C8A45D] ${
-                    errors.email ? 'border-rose-500' : 'border-[#1E3A6E]'
-                  }`}
+        {/* Form Body */}
+        <div className="p-6 overflow-y-auto">
+          <AnimatePresence mode="wait">
+            {currentStep === 1 && (
+              <motion.div
+                key="step-1"
+                initial={{ opacity: 0, x: -15 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 15 }}
+                transition={{ duration: 0.2 }}
+                className="space-y-5"
+              >
+                {/* Custom Select: Development */}
+                <CustomSelect
+                  label="Development of Interest"
+                  options={developmentOptions}
+                  value={selectedDevId}
+                  onChange={(val) => {
+                    setSelectedDevId(val);
+                    setPlotSize('');
+                  }}
+                  placeholder="Select estate location..."
                 />
-                {errors.email && <p className="text-[11px] text-rose-400 mt-1">{errors.email}</p>}
-              </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="lead-dev" className="block text-xs font-semibold text-slate-300 mb-1">
-                    Development of Interest
-                  </label>
-                  <select
-                    id="lead-dev"
-                    value={selectedDevId}
-                    onChange={(e) => {
-                      setSelectedDevId(e.target.value);
-                      setPlotSize('');
-                    }}
-                    className="w-full px-3.5 py-2.5 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-sm text-white focus:outline-none focus:ring-1 focus:ring-[#C8A45D]"
-                  >
-                    <option value="">-- General Property Enquiry --</option>
-                    {developments.map((d) => (
-                      <option key={d.id} value={d.id}>
-                        {d.name} ({d.location})
-                      </option>
-                    ))}
-                  </select>
-                </div>
+                {/* Custom Select: Plot Size */}
+                <CustomSelect
+                  label="Plot Size Preference"
+                  options={plotOptions}
+                  value={plotSize}
+                  onChange={(val) => setPlotSize(val)}
+                  placeholder="Select preferred land size..."
+                />
 
-                <div>
-                  <label htmlFor="lead-plotsize" className="block text-xs font-semibold text-slate-300 mb-1">
-                    Plot Size Preference
-                  </label>
-                  <select
-                    id="lead-plotsize"
-                    value={plotSize}
-                    onChange={(e) => setPlotSize(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-sm text-white focus:outline-none focus:ring-1 focus:ring-[#C8A45D]"
-                  >
-                    <option value="">Any Available Size</option>
-                    {currentDev ? (
-                      currentDev.plotSizes.map((p) => (
-                        <option key={p.id} value={p.size}>
-                          {p.size} ({p.title})
-                        </option>
-                      ))
-                    ) : (
-                      <>
-                        <option value="300 SQM">300 SQM (Half Plot)</option>
-                        <option value="450 SQM">450 SQM (Suburban Villa)</option>
-                        <option value="500 SQM">500 SQM (Standard Full Plot)</option>
-                        <option value="600 SQM">600 SQM (Prime Plot)</option>
-                        <option value="1,000+ SQM">1,000+ SQM (Commercial / Executive)</option>
-                      </>
-                    )}
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label htmlFor="lead-type" className="block text-xs font-semibold text-slate-300 mb-1">
-                  Enquiry Category <span className="text-rose-400">*</span>
-                </label>
-                <select
-                  id="lead-type"
+                {/* Custom Select: Enquiry Category */}
+                <CustomSelect
+                  label="Enquiry Category *"
+                  options={enquiryOptions}
                   value={enquiryType}
-                  onChange={(e) => setEnquiryType(e.target.value)}
-                  className={`w-full px-3.5 py-2.5 rounded-lg bg-[#060E1A] border text-sm text-white focus:outline-none focus:ring-1 focus:ring-[#C8A45D] ${
-                    errors.enquiryType ? 'border-rose-500' : 'border-[#1E3A6E]'
-                  }`}
-                >
-                  <option value="Property Purchase">Property Purchase / Outright Acquisition</option>
-                  <option value="Investment Opportunity">Investment Opportunity (Installment / Structured)</option>
-                  <option value="Land Banking">Land Banking (Long-Term Capital Preservation)</option>
-                  <option value="Site Inspection">Site Inspection Booking</option>
-                  <option value="Partnership">Institutional Partnership</option>
-                  <option value="Realtor Registration">Realtor / Broker Registration</option>
-                  <option value="General Enquiry">General Corporate Enquiry</option>
-                </select>
-                {errors.enquiryType && <p className="text-[11px] text-rose-400 mt-1">{errors.enquiryType}</p>}
-              </div>
-
-              <div>
-                <label htmlFor="lead-msg" className="block text-xs font-semibold text-slate-300 mb-1">
-                  Specific Requirements / Questions (Optional)
-                </label>
-                <textarea
-                  id="lead-msg"
-                  rows={3}
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  placeholder="Share details such as preferred inspection dates, number of plots, or payment timeline..."
-                  className="w-full px-3.5 py-2 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#C8A45D]"
+                  onChange={(val) => setEnquiryType(val)}
+                  placeholder="Select enquiry purpose..."
                 />
-              </div>
 
-              <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-[#1E3A6E]/50">
-                <div className="flex items-center gap-1.5 text-[11px] text-slate-400">
-                  <Shield className="w-3.5 h-3.5 text-[#C8A45D]" />
-                  <span>Strict investor confidentiality guaranteed.</span>
-                </div>
-
-                <div className="flex items-center gap-2 w-full sm:w-auto">
+                <div className="pt-3 flex justify-end">
                   <button
-                    type="submit"
-                    disabled={submitting}
-                    className="flex-1 sm:flex-initial px-6 py-2.5 text-xs font-semibold tracking-wide text-[#0B1930] bg-[#C8A45D] hover:bg-[#DFC07C] disabled:opacity-50 transition-colors rounded-lg flex items-center justify-center gap-1.5 shadow-sm"
+                    type="button"
+                    onClick={handleNextStep}
+                    className="px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-[#0B1930] bg-[#C8A45D] hover:bg-[#DFC07C] transition-colors rounded-xl shadow-md flex items-center gap-2"
                   >
-                    <span>{submitting ? 'Submitting...' : 'Submit Request'}</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <span>Next: Personal Details</span>
+                    <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
-              </div>
-            </form>
-          )}
+              </motion.div>
+            )}
+
+            {currentStep === 2 && (
+              <motion.div
+                key="step-2"
+                initial={{ opacity: 0, x: 15 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -15 }}
+                transition={{ duration: 0.2 }}
+              >
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="lead-name" className={`block text-xs font-semibold mb-1 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                        Full Name <span className="text-rose-400">*</span>
+                      </label>
+                      <input
+                        id="lead-name"
+                        type="text"
+                        value={fullName}
+                        onChange={(e) => setFullName(e.target.value)}
+                        placeholder="e.g. Babatunde Adeleke"
+                        className={`w-full px-3.5 py-2.5 rounded-xl border text-xs focus:outline-none focus:ring-1 focus:ring-[#C8A45D] ${
+                          errors.fullName
+                            ? 'border-rose-500'
+                            : isDark
+                            ? 'bg-[#060E1A] border-[#1E3A6E] text-white placeholder:text-slate-500'
+                            : 'bg-slate-50 border-slate-300 text-[#0B1930] placeholder:text-slate-400'
+                        }`}
+                      />
+                      {errors.fullName && <p className="text-[11px] text-rose-400 mt-1">{errors.fullName}</p>}
+                    </div>
+
+                    <div>
+                      <label htmlFor="lead-phone" className={`block text-xs font-semibold mb-1 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                        Phone Number <span className="text-rose-400">*</span>
+                      </label>
+                      <input
+                        id="lead-phone"
+                        type="tel"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        placeholder="+234 803 123 4567"
+                        className={`w-full px-3.5 py-2.5 rounded-xl border text-xs focus:outline-none focus:ring-1 focus:ring-[#C8A45D] ${
+                          errors.phone
+                            ? 'border-rose-500'
+                            : isDark
+                            ? 'bg-[#060E1A] border-[#1E3A6E] text-white placeholder:text-slate-500'
+                            : 'bg-slate-50 border-slate-300 text-[#0B1930] placeholder:text-slate-400'
+                        }`}
+                      />
+                      {errors.phone && <p className="text-[11px] text-rose-400 mt-1">{errors.phone}</p>}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="lead-email" className={`block text-xs font-semibold mb-1 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                      Email Address <span className="text-rose-400">*</span>
+                    </label>
+                    <input
+                      id="lead-email"
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="babatunde@example.com"
+                      className={`w-full px-3.5 py-2.5 rounded-xl border text-xs focus:outline-none focus:ring-1 focus:ring-[#C8A45D] ${
+                        errors.email
+                          ? 'border-rose-500'
+                          : isDark
+                          ? 'bg-[#060E1A] border-[#1E3A6E] text-white placeholder:text-slate-500'
+                          : 'bg-slate-50 border-slate-300 text-[#0B1930] placeholder:text-slate-400'
+                      }`}
+                    />
+                    {errors.email && <p className="text-[11px] text-rose-400 mt-1">{errors.email}</p>}
+                  </div>
+
+                  <div>
+                    <label htmlFor="lead-msg" className={`block text-xs font-semibold mb-1 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                      Specific Requirements / Inspection Notes (Optional)
+                    </label>
+                    <textarea
+                      id="lead-msg"
+                      rows={3}
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      placeholder="Preferred inspection date, number of plots, or payment timeline..."
+                      className={`w-full px-3.5 py-2.5 rounded-xl border text-xs focus:outline-none focus:ring-1 focus:ring-[#C8A45D] ${
+                        isDark
+                          ? 'bg-[#060E1A] border-[#1E3A6E] text-white placeholder:text-slate-500'
+                          : 'bg-slate-50 border-slate-300 text-[#0B1930] placeholder:text-slate-400'
+                      }`}
+                    />
+                  </div>
+
+                  <div className="pt-3 flex items-center justify-between gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setCurrentStep(1)}
+                      className={`px-4 py-2.5 text-xs font-semibold rounded-xl border transition-colors flex items-center gap-1.5 ${
+                        isDark ? 'bg-[#102342] border-[#1E3A6E] text-slate-300 hover:text-white' : 'bg-slate-100 border-slate-300 text-slate-700'
+                      }`}
+                    >
+                      <ArrowLeft className="w-3.5 h-3.5" />
+                      <span>Back</span>
+                    </button>
+
+                    <button
+                      type="submit"
+                      disabled={submitting}
+                      className="px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-[#0B1930] bg-[#C8A45D] hover:bg-[#DFC07C] disabled:opacity-50 transition-colors rounded-xl flex items-center justify-center gap-1.5 shadow-md"
+                    >
+                      <span>{submitting ? 'Submitting...' : 'Complete Registration'}</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </form>
+              </motion.div>
+            )}
+
+            {currentStep === 3 && submittedLead && (
+              <motion.div
+                key="step-3"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="space-y-6 text-center py-4"
+              >
+                <div className="w-16 h-16 bg-emerald-500/10 border border-emerald-500/40 rounded-full flex items-center justify-center mx-auto text-emerald-400">
+                  <CheckCircle2 className="w-8 h-8" />
+                </div>
+
+                <div className="space-y-2">
+                  <h4 className={`text-xl font-bold ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>
+                    Thank You, {submittedLead.fullName}
+                  </h4>
+                  <p className={`text-xs max-w-md mx-auto ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+                    Your enquiry has been registered with our property investment desk. A dedicated manager will connect with you shortly.
+                  </p>
+                </div>
+
+                <div className={`p-4 rounded-xl border max-w-sm mx-auto text-left ${
+                  isDark ? 'bg-[#102342] border-[#1E3A6E]' : 'bg-slate-50 border-slate-200'
+                }`}>
+                  <div className={`text-[11px] uppercase tracking-wider font-semibold ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                    Official Reference ID
+                  </div>
+                  <div className="text-lg font-mono font-bold text-[#C8A45D] tracking-wider mt-0.5">
+                    {submittedLead.referenceCode}
+                  </div>
+                  {submittedLead.developmentName && (
+                    <div className={`text-xs mt-1 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                      Development: <span className="font-bold">{submittedLead.developmentName}</span>
+                    </div>
+                  )}
+                </div>
+
+                <div className="pt-2 flex flex-col sm:flex-row gap-3 justify-center">
+                  <a
+                    href={getWhatsAppLink()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-5 py-3 text-xs font-bold uppercase tracking-wider rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white transition-colors shadow-md"
+                  >
+                    <MessageSquare className="w-4 h-4" />
+                    <span>Continue on WhatsApp Desk</span>
+                  </a>
+                  <button
+                    onClick={onClose}
+                    className={`px-5 py-3 text-xs font-semibold rounded-xl border transition-colors ${
+                      isDark ? 'bg-[#102342] border-[#1E3A6E] text-slate-200 hover:text-white' : 'bg-slate-100 border-slate-300 text-slate-700'
+                    }`}
+                  >
+                    Close
+                  </button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </div>
   );
 };
+

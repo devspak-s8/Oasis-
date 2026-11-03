@@ -360,19 +360,39 @@ export const INITIAL_TESTIMONIALS: Testimonial[] = [
     authorName: 'Engr. Folorunsho Alabi',
     authorRole: 'Infrastructure Consultant',
     authorLocation: 'Lagos & UK Diaspora',
-    propertyInvested: 'Christos Gardens (500 SQM Executive Plot)',
-    quote: 'Investing from abroad is often fraught with anxiety, but Oasis Ray Developments provided verified coordinate surveys, direct site inspection videos, and clear documentation. Their transparent communication sets an admirable standard.',
+    propertyInvested: 'Christos Gardens',
+    quote: 'Oasis Ray provided verified coordinate surveys and clear title documentation. Their transparent communication sets the gold standard.',
     isVerified: true,
     date: 'February 2026'
   },
   {
     id: 't2',
     authorName: 'Mrs. Titilayo Adebayo',
-    authorRole: 'Private Investor & Entrepreneur',
+    authorRole: 'Private Investor',
     authorLocation: 'Abeokuta, Ogun State',
-    propertyInvested: 'Havilah City (600 SQM Suburban Parcel)',
-    quote: 'The topographic elevation and strategic location of Havilah City made it an obvious choice for our family portfolio. The flexible milestone payment plan made acquisition seamless without disrupting business capital.',
+    propertyInvested: 'Havilah City',
+    quote: 'The strategic location of Havilah City and flexible payment spreads made property acquisition completely seamless for our family.',
     isVerified: true,
     date: 'January 2026'
+  },
+  {
+    id: 't3',
+    authorName: 'Dr. Babatunde Ogunleye',
+    authorRole: 'Medical Specialist',
+    authorLocation: 'Manchester, UK',
+    propertyInvested: 'Christos Gardens',
+    quote: 'The integrity of their cadastral surveys gave me total peace of mind. Zero bureaucracy, zero ambiguity—just pure institutional excellence.',
+    isVerified: true,
+    date: 'November 2025'
+  },
+  {
+    id: 't4',
+    authorName: 'Barrister Amina Danjuma',
+    authorRole: 'Legal Counsel',
+    authorLocation: 'Abuja, FCT',
+    propertyInvested: 'Havilah City',
+    quote: 'As a corporate attorney, title verification was key. Oasis Ray delivered unencumbered state title documents before any contract signing.',
+    isVerified: true,
+    date: 'October 2025'
   }
 ];

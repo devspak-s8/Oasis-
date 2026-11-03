@@ -65,9 +65,6 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ services, onOpenLead
                       <div className="w-12 h-12 rounded-xl bg-[#060E1A] border border-[#C8A45D]/40 flex items-center justify-center">
                         {serviceIcons[service.iconName] || <Building2 className="w-6 h-6 text-[#C8A45D]" />}
                       </div>
-                      <span className="text-sm font-mono font-bold text-[#C8A45D]">
-                        SERVICE {service.number}
-                      </span>
                     </div>
 
                     <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">

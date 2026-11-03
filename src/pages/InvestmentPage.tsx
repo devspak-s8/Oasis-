@@ -7,7 +7,8 @@ import {
   ChevronUp,
   Vault
 } from 'lucide-react';
-import { FadeIn, SlideInLeft, SlideInRight, StaggerContainer, StaggerItem } from '../components/ScrollAnimations';
+import { FadeIn, SlideInLeft, SlideInRight } from '../components/ScrollAnimations';
+import { FlungCard } from '../components/FlungCard';
 
 interface InvestmentPageProps {
   developments: Development[];
@@ -132,10 +133,10 @@ export const InvestmentPage: React.FC<InvestmentPageProps> = ({
           </div>
         </FadeIn>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
           {developments[0] && (
-            <SlideInLeft>
-              <div className="bg-[#102342] border border-[#1E3A6E] rounded-2xl p-6 sm:p-8 space-y-6 flex flex-col justify-between h-full">
+            <FlungCard index={0} className="md:col-span-7">
+              <div className="bg-[#102342] border border-[#1E3A6E] rounded-2xl p-6 sm:p-8 space-y-6 flex flex-col justify-between h-full shadow-xl">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-mono font-semibold text-[#C8A45D] uppercase">
@@ -180,12 +181,12 @@ export const InvestmentPage: React.FC<InvestmentPageProps> = ({
                   </button>
                 </div>
               </div>
-            </SlideInLeft>
+            </FlungCard>
           )}
 
           {developments[1] && (
-            <SlideInRight>
-              <div className="bg-[#102342] border border-[#1E3A6E] rounded-2xl p-6 sm:p-8 space-y-6 flex flex-col justify-between h-full">
+            <FlungCard index={1} className="md:col-span-5 md:mt-12">
+              <div className="bg-[#102342] border border-[#1E3A6E] rounded-2xl p-6 sm:p-8 space-y-6 flex flex-col justify-between h-full shadow-xl">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-mono font-semibold text-[#C8A45D] uppercase">
@@ -230,7 +231,7 @@ export const InvestmentPage: React.FC<InvestmentPageProps> = ({
                   </button>
                 </div>
               </div>
-            </SlideInRight>
+            </FlungCard>
           )}
         </div>
       </div>

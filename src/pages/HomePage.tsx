@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import { Development, ServiceItem, SiteSettings, Testimonial } from '../types';
 import { DevelopmentCard } from '../components/DevelopmentCard';
 import {
@@ -13,15 +14,24 @@ import {
   Megaphone,
   CheckCircle2,
   PhoneCall,
-  Quote
+  Quote,
+  Award,
+  MapPin,
+  Layers
 } from 'lucide-react';
 import {
   FadeIn,
   SlideInLeft,
   SlideInRight,
   StaggerContainer,
-  StaggerItem
+  StaggerItem,
+  DropLanding,
+  WakeUpCard,
+  TypewriterText
 } from '../components/ScrollAnimations';
+
+import { useTheme } from '../context/ThemeContext';
+import { FlungCard } from '../components/FlungCard';
 
 interface HomePageProps {
   developments: Development[];
@@ -51,31 +61,43 @@ export const HomePage: React.FC<HomePageProps> = ({
   onNavigate,
   onOpenLeadModal
 }) => {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
   const featuredDevelopments = developments.filter((d) => d.featured).slice(0, 2);
 
   return (
     <div className="space-y-24 md:space-y-32 pb-24 overflow-x-hidden">
       {/* 1. HERO SECTION */}
       <section className="relative min-h-[86vh] flex items-center justify-center overflow-hidden bg-[#0B1930] pt-6 pb-20">
-        {/* Background Image with Measured Scrim */}
-        <div className="absolute inset-0 z-0">
+        {/* Background Image with Drop Landing Physics and Measured Scrim */}
+        <DropLanding className="absolute inset-0 z-0">
           <img
             src="/src/assets/images/hero_oasis_development_1793643952183.jpg"
             alt="Oasis Ray Developments master planned community"
             referrerPolicy="no-referrer"
-            className="w-full h-full object-cover object-center scale-102"
+            className="w-full h-full object-cover object-center scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0B1930] via-[#0B1930]/85 to-[#0B1930]/65" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0B1930] via-transparent to-[#0B1930]/60" />
-        </div>
+        </DropLanding>
 
         {/* Hero Content with Slide-In Left */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-12 sm:pt-16">
           <div className="max-w-3xl space-y-6">
-            {/* Tagline kicker: Clean unboxed text, no pills, no sparkles */}
+            {/* Tagline kicker with dynamic typing animation: Clean unboxed text, no pills, no sparkles */}
             <SlideInLeft delay={0.1}>
-              <div className="text-xs font-semibold tracking-widest text-[#C8A45D] uppercase">
-                {settings.tagline}
+              <div className="min-h-[24px] flex items-center">
+                <TypewriterText
+                  phrases={[
+                    "THE CALM SIDE OF SMART INVESTING.",
+                    "STRATEGIC LAND ACQUISITION IN HIGH-GROWTH CORRIDORS.",
+                    "VESSELS OF ENDURING WEALTH ACROSS GENERATIONS.",
+                    "VERIFIED CADASTRAL TITLES & ABSOLUTE INTEGRITY."
+                  ]}
+                  typingSpeed={55}
+                  pauseDuration={2400}
+                  className="text-xs font-semibold tracking-widest text-[#C8A45D]"
+                />
               </div>
             </SlideInLeft>
 
@@ -99,7 +121,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
                 <button
                   onClick={() => onNavigate('/developments')}
-                  className="px-7 py-3.5 text-xs font-bold uppercase tracking-wider text-[#0B1930] bg-[#C8A45D] hover:bg-[#DFC07C] transition-all rounded-lg shadow-lg shadow-[#C8A45D]/20 flex items-center justify-center gap-2 group active:scale-[0.98]"
+                  className="px-7 py-3.5 text-xs font-bold uppercase tracking-wider text-[#0B1930] bg-[#C8A45D] hover:bg-[#DFC07C] transition-all rounded-lg shadow-lg flex items-center justify-center gap-2 group active:scale-[0.98]"
                 >
                   <span>Explore Our Developments</span>
                   <ArrowRight className="w-4 h-4 text-[#0B1930] group-hover:translate-x-1 transition-transform" />
@@ -107,7 +129,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
                 <button
                   onClick={() => onOpenLeadModal()}
-                  className="px-7 py-3.5 text-xs font-bold uppercase tracking-wider text-white bg-[#102342]/90 hover:bg-[#142B52] border border-[#1E3A6E] transition-all rounded-lg flex items-center justify-center gap-2 backdrop-blur-sm"
+                  className="px-7 py-3.5 text-xs font-bold uppercase tracking-wider text-white bg-[#102342] hover:bg-[#1A3868] border border-[#C8A45D]/50 transition-all rounded-lg flex items-center justify-center gap-2 shadow-sm"
                 >
                   <PhoneCall className="w-4 h-4 text-[#C8A45D]" />
                   <span>Speak to an Advisor</span>
@@ -117,7 +139,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
             {/* Trust Anchors */}
             <FadeIn delay={0.5}>
-              <div className="pt-8 border-t border-[#1E3A6E]/50 flex flex-wrap items-center gap-6 text-xs text-slate-300">
+              <div className="pt-8 border-t border-slate-700/80 flex flex-wrap items-center gap-6 text-xs text-slate-200 font-semibold">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-[#C8A45D]" />
                   <span>Zero-Encumbrance Guarantee</span>
@@ -140,14 +162,14 @@ export const HomePage: React.FC<HomePageProps> = ({
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <SlideInLeft className="lg:col-span-7 space-y-6">
-            <div className="text-xs font-semibold uppercase tracking-widest text-[#C8A45D]">
+            <div className="text-xs font-semibold uppercase tracking-widest text-[#B38E46]">
               Corporate Profile
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0B1930] tracking-tight leading-tight">
               Real Estate With Purpose.{' '}
-              <span className="text-[#C8A45D]">Investments With Perspective.</span>
+              <span className="text-[#B38E46]">Investments With Perspective.</span>
             </h2>
-            <div className="space-y-4 text-sm sm:text-base text-slate-300 leading-relaxed">
+            <div className="space-y-4 text-sm sm:text-base text-slate-700 leading-relaxed font-normal">
               <p>
                 Oasis Ray Developments Ltd. is an established real estate development, investment and property marketing company operating at the intersection of capital discipline and community foresight.
               </p>
@@ -158,406 +180,740 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div className="pt-2">
               <button
                 onClick={() => onNavigate('/about')}
-                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#C8A45D] hover:text-[#DFC07C] transition-colors"
+                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#0B1930] hover:text-[#B38E46] transition-colors"
               >
                 <span>Read Full Corporate Profile & Vision</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <ArrowRight className="w-3.5 h-3.5 text-[#B38E46]" />
               </button>
             </div>
           </SlideInLeft>
 
-          <SlideInRight className="lg:col-span-5 bg-[#102342] border border-[#1E3A6E] rounded-2xl p-8 space-y-6 shadow-xl relative overflow-hidden">
-            <div className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+          <SlideInRight className="lg:col-span-5 bg-[#0B1930] text-white border border-[#C8A45D]/40 rounded-2xl p-8 space-y-6 shadow-2xl relative overflow-hidden">
+            <div className="text-xs font-semibold uppercase tracking-wider text-slate-300">
               Corporate Vision Statement
             </div>
             <p className="font-serif-title text-lg sm:text-xl text-white italic leading-relaxed">
               "{settings.companyVision}"
             </p>
-            <div className="pt-4 border-t border-[#1E3A6E] flex items-center justify-between text-xs text-slate-400">
-              <span className="text-[#C8A45D] font-semibold">OASIS RAY DEVELOPMENTS LTD.</span>
+            <div className="pt-4 border-t border-[#1E3A6E] flex items-center justify-between text-xs text-slate-300">
+              <span className="text-[#C8A45D] font-bold">OASIS RAY DEVELOPMENTS LTD.</span>
               <span>RC Registered Entity</span>
             </div>
           </SlideInRight>
         </div>
       </section>
 
-      {/* 3. COMPANY STATISTICS (Editable Placeholders): Staggered Fade */}
-      <section className="bg-[#060E1A] border-y border-[#1E3A6E]/60 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-8" staggerDelay={0.15}>
-            <StaggerItem direction="left" className="space-y-1 border-l-2 border-[#C8A45D] pl-4">
-              <div className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight font-mono">
-                {settings.stats.developmentsCount}
-              </div>
-              <div className="text-xs text-slate-400">Flagship Developments</div>
-            </StaggerItem>
-
-            <StaggerItem direction="up" className="space-y-1 border-l-2 border-[#C8A45D] pl-4">
-              <div className="text-lg sm:text-xl font-bold text-white tracking-tight">
-                {settings.stats.locationsCovered}
-              </div>
-              <div className="text-xs text-slate-400">Strategic Development Axes</div>
-            </StaggerItem>
-
-            <StaggerItem direction="up" className="space-y-1 border-l-2 border-[#C8A45D] pl-4">
-              <div className="text-lg sm:text-xl font-bold text-white tracking-tight">
-                {settings.stats.opportunitiesCount}
-              </div>
-              <div className="text-xs text-slate-400">Active Investment Allocation</div>
-            </StaggerItem>
-
-            <StaggerItem direction="right" className="space-y-1 border-l-2 border-[#C8A45D] pl-4">
-              <div className="text-lg sm:text-xl font-bold text-white tracking-tight">
-                {settings.stats.experienceYears}
-              </div>
-              <div className="text-xs text-slate-400">Industry Leadership Benchmark</div>
-            </StaggerItem>
-          </StaggerContainer>
-        </div>
-      </section>
-
-      {/* 4. FEATURED DEVELOPMENTS: Left & Right Slide In */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-        <FadeIn>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-            <div className="space-y-2">
-              <div className="text-xs font-semibold uppercase tracking-widest text-[#C8A45D]">
-                Current Portfolio
-              </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
-                Featured Real Estate Developments
-              </h2>
-              <p className="text-sm text-slate-300 max-w-xl">
-                Explore our active gated communities and master developments situated in Ogun State's fastest growing residential and commercial corridors.
-              </p>
-            </div>
-            <button
-              onClick={() => onNavigate('/developments')}
-              className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#C8A45D] hover:text-[#DFC07C] transition-colors whitespace-nowrap self-start md:self-auto"
-            >
-              <span>View All Developments</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
-        </FadeIn>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {featuredDevelopments[0] && (
-            <SlideInLeft delay={0.1}>
-              <DevelopmentCard
-                development={featuredDevelopments[0]}
-                onViewDetails={(slug) => onNavigate(`/developments/${slug}`)}
-                onQuickEnquire={(id) => onOpenLeadModal(id)}
-              />
-            </SlideInLeft>
-          )}
-
-          {featuredDevelopments[1] && (
-            <SlideInRight delay={0.2}>
-              <DevelopmentCard
-                development={featuredDevelopments[1]}
-                onViewDetails={(slug) => onNavigate(`/developments/${slug}`)}
-                onQuickEnquire={(id) => onOpenLeadModal(id)}
-              />
-            </SlideInRight>
-          )}
-        </div>
-      </section>
-
-      {/* 5. CORE SERVICES: Staggered Fade & Slide In */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-        <FadeIn>
-          <div className="text-center max-w-2xl mx-auto space-y-3">
-            <div className="text-xs font-semibold uppercase tracking-widest text-[#C8A45D]">
-              Capabilities & Solutions
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
-              Our Core Real Estate Services
-            </h2>
-            <p className="text-sm text-slate-300">
-              A comprehensive, end-to-end suite of property development, advisory, and marketing services crafted to protect and grow investor capital.
-            </p>
-          </div>
-        </FadeIn>
-
-        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" staggerDelay={0.08}>
-          {services.map((service, idx) => (
-            <StaggerItem
-              key={service.id}
-              direction={idx % 2 === 0 ? 'left' : 'right'}
-              className="bg-[#102342] border border-[#1E3A6E] rounded-xl p-6 space-y-4 hover:border-[#C8A45D]/50 transition-colors flex flex-col justify-between"
-            >
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <div className="w-10 h-10 rounded-lg bg-[#060E1A] border border-[#1E3A6E] flex items-center justify-center">
-                    {serviceIcons[service.iconName] || <Building2 className="w-5 h-5 text-[#C8A45D]" />}
-                  </div>
-                  <span className="text-xs font-mono font-bold text-slate-400">
-                    {service.number}
-                  </span>
-                </div>
-                <h3 className="text-base font-bold text-white tracking-tight">
-                  {service.title}
-                </h3>
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  {service.shortDescription}
-                </p>
-              </div>
-
-              <div className="pt-2 border-t border-[#1E3A6E]/40">
-                <button
-                  onClick={() => onNavigate('/services')}
-                  className="text-xs font-medium text-[#C8A45D] hover:text-[#DFC07C] inline-flex items-center gap-1 transition-colors"
-                >
-                  Learn details →
-                </button>
-              </div>
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
-      </section>
-
-      {/* 6. WHY CHOOSE OASIS RAY: Left & Right Grid Stagger */}
-      <section className="bg-[#060E1A] border-y border-[#1E3A6E]/60 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      {/* 3. REDESIGNED STRATEGIC BENCHMARKS & METRICS */}
+      <section className={`border-y py-16 transition-colors ${
+        isDark ? 'bg-[#060E1A]/80 border-slate-800' : 'bg-slate-100/90 border-slate-200/80'
+      }`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           <FadeIn>
-            <div className="text-center max-w-2xl mx-auto space-y-3">
-              <div className="text-xs font-semibold uppercase tracking-widest text-[#C8A45D]">
-                Institutional Pillars
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+              <div className="space-y-2">
+                <div className={`text-xs font-semibold uppercase tracking-widest ${
+                  isDark ? 'text-[#C8A45D]' : 'text-[#B38E46]'
+                }`}>
+                  Portfolio & Institutional Benchmarks
+                </div>
+                <h2 className={`text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight ${
+                  isDark ? 'text-white' : 'text-[#0B1930]'
+                }`}>
+                  Measured Value. Structured Growth.
+                </h2>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
-                Why Discerning Investors Choose Oasis Ray
-              </h2>
-              <p className="text-sm text-slate-300">
-                Grounded in transparency, rigorous legal vetting, and long-term capital preservation across market cycles.
+              <p className={`text-xs font-mono ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                Asset Metrics · Oasis Ray Developments Ltd.
               </p>
             </div>
           </FadeIn>
 
-          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" staggerDelay={0.1}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
+            {/* Metric 1 */}
+            <FlungCard index={0} className="group h-full">
+              <div className={`rounded-2xl p-6 sm:p-7 space-y-4 border transition-all flex flex-col justify-between h-full relative overflow-hidden ${
+                isDark
+                  ? 'bg-[#102342] border-[#1E3A6E] text-white hover:border-[#C8A45D]'
+                  : 'bg-white border-slate-200/90 text-[#0B1930] hover:border-[#C8A45D] hover:shadow-lg'
+              }`}>
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className={`w-10 h-10 rounded-xl border flex items-center justify-center group-hover:scale-110 transition-transform ${
+                      isDark ? 'bg-[#060E1A] border-slate-700 text-[#C8A45D]' : 'bg-slate-50 border-slate-200 text-[#B38E46]'
+                    }`}>
+                      <Building2 className="w-5 h-5" />
+                    </div>
+                  </div>
+                  <div>
+                    <div className={`text-3xl sm:text-4xl font-black font-mono tracking-tight transition-colors ${
+                      isDark ? 'text-white group-hover:text-[#C8A45D]' : 'text-[#0B1930] group-hover:text-[#B38E46]'
+                    }`}>
+                      2 Major Estates
+                    </div>
+                    <div className={`text-sm font-bold mt-1 ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>
+                      Strategic Developments
+                    </div>
+                  </div>
+                </div>
+                <div className={`pt-3 border-t space-y-1 ${isDark ? 'border-[#1E3A6E]' : 'border-slate-100'}`}>
+                  <div className="text-xs font-bold text-[#C8A45D]">
+                    Flagship Estates
+                  </div>
+                  <div className={`text-[11px] ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+                    Christos Gardens (Mowe) & Havilah City (Abeokuta)
+                  </div>
+                </div>
+              </div>
+            </FlungCard>
+
+            {/* Metric 2 */}
+            <FlungCard index={1} className="group h-full">
+              <div className={`rounded-2xl p-6 sm:p-7 space-y-4 border transition-all flex flex-col justify-between h-full relative overflow-hidden ${
+                isDark
+                  ? 'bg-[#102342] border-[#1E3A6E] text-white hover:border-[#C8A45D]'
+                  : 'bg-white border-slate-200/90 text-[#0B1930] hover:border-[#C8A45D] hover:shadow-lg'
+              }`}>
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className={`w-10 h-10 rounded-xl border flex items-center justify-center group-hover:scale-110 transition-transform ${
+                      isDark ? 'bg-[#060E1A] border-slate-700 text-[#C8A45D]' : 'bg-slate-50 border-slate-200 text-[#B38E46]'
+                    }`}>
+                      <Compass className="w-5 h-5" />
+                    </div>
+                  </div>
+                  <div>
+                    <div className={`text-xl sm:text-2xl font-black tracking-tight transition-colors leading-tight ${
+                      isDark ? 'text-white group-hover:text-[#C8A45D]' : 'text-[#0B1930] group-hover:text-[#B38E46]'
+                    }`}>
+                      Ogun Growth Corridor
+                    </div>
+                    <div className={`text-sm font-bold mt-1 ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>
+                      (Mowe & Abeokuta)
+                    </div>
+                  </div>
+                </div>
+                <div className={`pt-3 border-t space-y-1 ${isDark ? 'border-[#1E3A6E]' : 'border-slate-100'}`}>
+                  <div className="text-xs font-bold text-[#C8A45D]">
+                    Development Axes
+                  </div>
+                  <div className={`text-[11px] ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+                    Anchored to Lagos-Ibadan economic belt
+                  </div>
+                </div>
+              </div>
+            </FlungCard>
+
+            {/* Metric 3 */}
+            <FlungCard index={2} className="group h-full">
+              <div className={`rounded-2xl p-6 sm:p-7 space-y-4 border transition-all flex flex-col justify-between h-full relative overflow-hidden ${
+                isDark
+                  ? 'bg-[#102342] border-[#1E3A6E] text-white hover:border-[#C8A45D]'
+                  : 'bg-white border-slate-200/90 text-[#0B1930] hover:border-[#C8A45D] hover:shadow-lg'
+              }`}>
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className={`w-10 h-10 rounded-xl border flex items-center justify-center group-hover:scale-110 transition-transform ${
+                      isDark ? 'bg-[#060E1A] border-slate-700 text-[#C8A45D]' : 'bg-slate-50 border-slate-200 text-[#B38E46]'
+                    }`}>
+                      <ShieldCheck className="w-5 h-5" />
+                    </div>
+                  </div>
+                  <div>
+                    <div className={`text-xl sm:text-2xl font-black tracking-tight transition-colors leading-tight ${
+                      isDark ? 'text-white group-hover:text-[#C8A45D]' : 'text-[#0B1930] group-hover:text-[#B38E46]'
+                    }`}>
+                      Freehold Land Parcels
+                    </div>
+                    <div className={`text-sm font-bold mt-1 ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>
+                      Zero-Encumbrance Guarantee
+                    </div>
+                  </div>
+                </div>
+                <div className={`pt-3 border-t space-y-1 ${isDark ? 'border-[#1E3A6E]' : 'border-slate-100'}`}>
+                  <div className="text-xs font-bold text-[#C8A45D]">
+                    Investment Allocation
+                  </div>
+                  <div className={`text-[11px] ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+                    Chartable survey beacons & deed drafting
+                  </div>
+                </div>
+              </div>
+            </FlungCard>
+
+            {/* Metric 4 */}
+            <FlungCard index={3} className="group h-full">
+              <div className={`rounded-2xl p-6 sm:p-7 space-y-4 border transition-all flex flex-col justify-between h-full relative overflow-hidden ${
+                isDark
+                  ? 'bg-[#102342] border-[#1E3A6E] text-white hover:border-[#C8A45D]'
+                  : 'bg-white border-slate-200/90 text-[#0B1930] hover:border-[#C8A45D] hover:shadow-lg'
+              }`}>
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className={`w-10 h-10 rounded-xl border flex items-center justify-center group-hover:scale-110 transition-transform ${
+                      isDark ? 'bg-[#060E1A] border-slate-700 text-[#C8A45D]' : 'bg-slate-50 border-slate-200 text-[#B38E46]'
+                    }`}>
+                      <Award className="w-5 h-5" />
+                    </div>
+                  </div>
+                  <div>
+                    <div className={`text-2xl sm:text-3xl font-extrabold tracking-tight transition-colors ${
+                      isDark ? 'text-white group-hover:text-[#C8A45D]' : 'text-[#0B1930] group-hover:text-[#B38E46]'
+                    }`}>
+                      10+ Years
+                    </div>
+                    <div className={`text-sm font-bold mt-1 ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>
+                      Combined Expertise
+                    </div>
+                  </div>
+                </div>
+                <div className={`pt-3 border-t space-y-1 ${isDark ? 'border-[#1E3A6E]' : 'border-slate-100'}`}>
+                  <div className="text-xs font-bold text-[#C8A45D]">
+                    Leadership Benchmark
+                  </div>
+                  <div className={`text-[11px] ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+                    Institutional governance across market cycles
+                  </div>
+                </div>
+              </div>
+            </FlungCard>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. FEATURED DEVELOPMENTS */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+        <FadeIn>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div className="space-y-2">
+              <div className={`text-xs font-semibold uppercase tracking-widest ${
+                isDark ? 'text-[#C8A45D]' : 'text-[#B38E46]'
+              }`}>
+                Current Portfolio
+              </div>
+              <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight ${
+                isDark ? 'text-white' : 'text-[#0B1930]'
+              }`}>
+                Featured Real Estate Developments
+              </h2>
+              <p className={`text-sm max-w-xl ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                Explore our active master-planned estates situated in Ogun State's highest-velocity growth corridors.
+              </p>
+            </div>
+            <button
+              onClick={() => onNavigate('/developments')}
+              className={`inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider transition-colors whitespace-nowrap self-start md:self-auto ${
+                isDark ? 'text-[#C8A45D] hover:text-white' : 'text-[#0B1930] hover:text-[#B38E46]'
+              }`}
+            >
+              <span>View All Developments ({developments.length})</span>
+              <ArrowRight className="w-3.5 h-3.5 text-[#C8A45D]" />
+            </button>
+          </div>
+        </FadeIn>
+
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+          {featuredDevelopments.slice(0, 4).map((dev, idx) => (
+            <FlungCard
+              key={dev.id}
+              index={idx}
+              className={idx % 2 === 0 ? 'md:col-span-7' : 'md:col-span-5 md:mt-10'}
+            >
+              <DevelopmentCard
+                development={dev}
+                onViewDetails={(slug) => onNavigate(`/developments/${slug}`)}
+                onQuickEnquire={(id) => onOpenLeadModal(id)}
+              />
+            </FlungCard>
+          ))}
+        </div>
+      </section>
+
+      {/* 4.5 ARCHITECTURAL RESIDENCES & HOUSING PROTOTYPES */}
+      <section className={`border-y py-16 transition-colors ${
+        isDark ? 'bg-[#060E1A]/80 border-slate-800' : 'bg-slate-100/90 border-slate-200/80'
+      }`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+          <FadeIn>
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+              <div className="space-y-2 max-w-2xl">
+                <div className={`text-xs font-semibold uppercase tracking-widest ${
+                  isDark ? 'text-[#C8A45D]' : 'text-[#B38E46]'
+                }`}>
+                  Turnkey Housing Prototypes
+                </div>
+                <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight ${
+                  isDark ? 'text-white' : 'text-[#0B1930]'
+                }`}>
+                  Architectural Residences & Estate Villas
+                </h2>
+                <p className={`text-sm ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                  Envision your dream home on our master-planned plots. Explore contemporary villa and duplex prototypes engineered for Oasis Ray communities.
+                </p>
+              </div>
+              <button
+                onClick={() => onOpenLeadModal(undefined, 'Housing Construction')}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#C8A45D] hover:bg-[#DFC07C] text-xs font-bold text-[#0B1930] transition-all whitespace-nowrap self-start md:self-auto shadow-md"
+              >
+                <span>Request Custom Floorplan Quote</span>
+                <ArrowRight className="w-3.5 h-3.5 text-[#0B1930]" />
+              </button>
+            </div>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+            {[
+              {
+                id: 'house-1',
+                title: 'The Grand Horizon Villa',
+                category: '4-Bedroom Detached Villa',
+                plotReq: 'Fits 500 SQM Plot (Christos Gardens)',
+                features: ['4 All-Ensuite Bedrooms', 'Private Infinity Pool Provision', 'Solar Inverter Canopy', '2-Car Covered Garage'],
+                image: '/src/assets/images/hero_oasis_development_1793643952183.jpg',
+                badge: 'Executive Residence'
+              },
+              {
+                id: 'house-2',
+                title: 'The Havilah Apex Terrace',
+                category: '3-Bedroom Contemporary Duplex',
+                plotReq: 'Fits 300 SQM / 450 SQM Plot (Havilah City)',
+                features: ['3 Bedrooms + Boy’s Quarters', 'Open-Plan Family Lounge', 'Smart Lighting Reticulation', 'Gated Boulevard Access'],
+                image: '/src/assets/images/havilah_city_abeokuta_1793643953227.jpg',
+                badge: 'Suburban Series'
+              },
+              {
+                id: 'house-3',
+                title: 'The Royal Boulevard Compound',
+                category: '5-Bedroom Smart Mansion',
+                plotReq: 'Fits 1,000 SQM Commercial Enclave',
+                features: ['5 Luxury Suites', 'Private Cinema & Study', 'Perimeter CCTV & Access Control', 'Spacious Landscaped Compound'],
+                image: '/src/assets/images/christos_gardens_mowe_1793643952097.jpg',
+                badge: 'Flagship Mansion'
+              }
+            ].map((house, idx) => {
+              const colSpans = ['md:col-span-4 md:mt-0', 'md:col-span-4 md:mt-8', 'md:col-span-4 md:-mt-4'];
+              return (
+                <FlungCard key={house.id} index={idx} className={colSpans[idx]}>
+                  <div className={`rounded-2xl overflow-hidden border transition-all group flex flex-col justify-between h-full ${
+                    isDark
+                      ? 'bg-[#102342] border-[#1E3A6E] text-white hover:border-[#C8A45D] shadow-xl'
+                      : 'bg-white border-slate-200/90 text-[#0B1930] hover:border-[#B38E46] shadow-sm hover:shadow-lg'
+                  }`}>
+                    <div>
+                      <div className="relative aspect-[16/10] overflow-hidden bg-slate-900">
+                        <img
+                          src={house.image}
+                          alt={house.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute top-3 left-3 px-3 py-1 bg-[#0B1930]/90 border border-[#C8A45D]/60 rounded-lg text-[10px] font-bold uppercase tracking-wider text-[#C8A45D] backdrop-blur-sm">
+                          {house.badge}
+                        </div>
+                      </div>
+
+                      <div className="p-6 space-y-4">
+                        <div>
+                          <div className="text-xs font-bold text-[#C8A45D] uppercase tracking-wide">
+                            {house.category}
+                          </div>
+                          <h3 className={`text-xl font-bold tracking-tight transition-colors mt-1 ${
+                            isDark ? 'text-white group-hover:text-[#C8A45D]' : 'text-[#0B1930] group-hover:text-[#B38E46]'
+                          }`}>
+                            {house.title}
+                          </h3>
+                          <div className={`text-xs mt-1 font-mono ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                            {house.plotReq}
+                          </div>
+                        </div>
+
+                        <div className={`pt-3 border-t space-y-2 ${isDark ? 'border-[#1E3A6E]' : 'border-slate-100'}`}>
+                          {house.features.map((feat, fIdx) => (
+                            <div key={fIdx} className={`flex items-center gap-2 text-xs font-medium ${
+                              isDark ? 'text-slate-200' : 'text-slate-700'
+                            }`}>
+                              <CheckCircle2 className="w-3.5 h-3.5 text-[#C8A45D] shrink-0" />
+                              <span>{feat}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="p-6 pt-0">
+                      <button
+                        onClick={() => onOpenLeadModal(undefined, `Housing Quote: ${house.title}`)}
+                        className={`w-full py-2.5 px-4 text-xs font-bold uppercase tracking-wider transition-colors rounded-xl flex items-center justify-center gap-2 ${
+                          isDark
+                            ? 'bg-[#1A3868] hover:bg-[#C8A45D] text-white hover:text-[#0B1930] border border-[#C8A45D]/40'
+                            : 'bg-[#0B1930] hover:bg-[#1A3868] text-white shadow-md'
+                        }`}
+                      >
+                        <Home className="w-3.5 h-3.5 text-[#C8A45D]" />
+                        <span>Request Floorplan & Build Quote</span>
+                      </button>
+                    </div>
+                  </div>
+                </FlungCard>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. CORE SERVICES */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+        <FadeIn>
+          <div className="text-center max-w-2xl mx-auto space-y-3">
+            <div className={`text-xs font-semibold uppercase tracking-widest ${
+              isDark ? 'text-[#C8A45D]' : 'text-[#B38E46]'
+            }`}>
+              Capabilities & Solutions
+            </div>
+            <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight ${
+              isDark ? 'text-white' : 'text-[#0B1930]'
+            }`}>
+              Our Core Real Estate Services
+            </h2>
+            <p className={`text-sm ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+              A comprehensive suite of property development, advisory, and marketing services crafted to protect and grow investor capital.
+            </p>
+          </div>
+        </FadeIn>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
+          {services.slice(0, 4).map((service, idx) => (
+            <FlungCard
+              key={service.id}
+              index={idx}
+              className="h-full"
+            >
+              <div className={`rounded-xl p-5 sm:p-6 space-y-4 border transition-all flex flex-col justify-between h-full group ${
+                isDark
+                  ? 'bg-[#102342] border-[#1E3A6E] text-white hover:border-[#C8A45D]'
+                  : 'bg-white border-slate-200/90 text-[#0B1930] hover:border-[#B38E46] shadow-sm hover:shadow-lg'
+              }`}>
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className={`w-10 h-10 rounded-lg border flex items-center justify-center group-hover:scale-105 transition-transform ${
+                      isDark ? 'bg-[#060E1A] border-slate-700 text-[#C8A45D]' : 'bg-slate-50 border-slate-200 text-[#B38E46]'
+                    }`}>
+                      {serviceIcons[service.iconName] || <Building2 className="w-5 h-5 text-[#C8A45D]" />}
+                    </div>
+                  </div>
+                  <h3 className={`text-base font-bold tracking-tight ${
+                    isDark ? 'text-white' : 'text-[#0B1930]'
+                  }`}>
+                    {service.title}
+                  </h3>
+                  <p className={`text-xs leading-relaxed line-clamp-3 ${
+                    isDark ? 'text-slate-300' : 'text-slate-600'
+                  }`}>
+                    {service.shortDescription}
+                  </p>
+                </div>
+
+                <div className={`pt-2 border-t ${isDark ? 'border-[#1E3A6E]' : 'border-slate-100'}`}>
+                  <button
+                    onClick={() => onNavigate('/services')}
+                    className="text-xs font-bold text-[#C8A45D] hover:underline inline-flex items-center gap-1 transition-colors"
+                  >
+                    Learn details →
+                  </button>
+                </div>
+              </div>
+            </FlungCard>
+          ))}
+        </div>
+
+        <div className="text-center pt-2">
+          <button
+            onClick={() => onNavigate('/services')}
+            className={`inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider transition-colors ${
+              isDark ? 'text-[#C8A45D] hover:text-white' : 'text-[#0B1930] hover:text-[#B38E46]'
+            }`}
+          >
+            <span>View All Specialized Advisory Disciplines</span>
+            <ArrowRight className="w-3.5 h-3.5 text-[#C8A45D]" />
+          </button>
+        </div>
+      </section>
+
+      {/* 6. WHY CHOOSE OASIS RAY */}
+      <section className={`relative border-y py-20 overflow-hidden transition-colors ${
+        isDark ? 'bg-[#060E1A]/90 border-slate-800' : 'bg-slate-100/80 border-slate-200'
+      }`}>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          <FadeIn>
+            <div className="text-center max-w-2xl mx-auto space-y-3">
+              <div className={`text-xs font-semibold uppercase tracking-widest ${
+                isDark ? 'text-[#C8A45D]' : 'text-[#B38E46]'
+              }`}>
+                Institutional Pillars
+              </div>
+              <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight ${
+                isDark ? 'text-white' : 'text-[#0B1930]'
+              }`}>
+                Why Discerning Investors Choose Oasis Ray
+              </h2>
+              <p className={`text-sm ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                Grounded in transparency, legal vetting, and long-term capital preservation.
+              </p>
+            </div>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
             {[
               {
                 title: 'Strategic Property Locations',
-                desc: 'All projects are situated along demonstrable civic infrastructure trajectories, including inter-state expressways and rail hubs.',
-                point: 'High capital velocity',
-                dir: 'left' as const
+                desc: 'Prime parcels positioned along inter-state expressways and growth corridors.',
+                point: 'High Capital Growth'
               },
               {
-                title: 'Structured Investment Opportunities',
-                desc: 'Clear, milestone-based payment schedules that enable transparent capital allocation without unbudgeted levies.',
-                point: 'Zero hidden charges',
-                dir: 'up' as const
+                title: 'Structured Investments',
+                desc: 'Clear milestone payment schedules without hidden charges or unbudgeted levies.',
+                point: 'Zero Hidden Levies'
               },
               {
-                title: 'Development-Focused Approach',
-                desc: 'We are active developers, not passive land merchants. We build gatehouses, paved boulevards, drainage, and utilities.',
-                point: 'Tangible infrastructure',
-                dir: 'right' as const
+                title: 'Development Focus',
+                desc: 'Active infrastructure delivery including gatehouses, paved boulevards, and utilities.',
+                point: 'Tangible Progress'
               },
               {
-                title: 'Long-Term Value Creation',
-                desc: 'Structured to preserve capital against currency devaluation and yield compounding generational appreciation.',
-                point: 'Inflation resilience',
-                dir: 'left' as const
+                title: 'Long-Term Value',
+                desc: 'Engineered to preserve capital against inflation and yield compounding returns.',
+                point: 'Wealth Preservation'
               },
               {
-                title: 'Professional Property Advisory',
-                desc: 'Dedicated investment advisors who listen, evaluate your financial objectives, and match you with suitable parcels.',
-                point: 'Personalized guidance',
-                dir: 'up' as const
+                title: 'Professional Advisory',
+                desc: 'Dedicated advisors aligning property portfolios with your financial goals.',
+                point: 'Tailored Guidance'
               },
               {
-                title: 'Transparent Communication',
-                desc: 'Full coordinate disclosure, chartable surveys, on-site live inspection tours, and transparent contractual terms.',
-                point: 'Absolute integrity',
-                dir: 'right' as const
+                title: 'Transparent Governance',
+                desc: 'Coordinate disclosures, chartable surveys, and open documentation.',
+                point: 'Clear State Titles'
               }
             ].map((pillar, idx) => (
-              <StaggerItem
+              <FlungCard
                 key={idx}
-                direction={pillar.dir}
-                className="bg-[#102342] border border-[#1E3A6E] rounded-xl p-6 space-y-3 hover:border-[#C8A45D]/50 transition-colors"
+                index={idx}
+                className="h-full"
               >
-                <div className="flex items-center justify-between text-xs text-[#C8A45D] font-mono font-semibold">
-                  <span>0{idx + 1}.</span>
-                  <span className="text-[11px] text-slate-400">{pillar.point}</span>
+                <div className={`border rounded-xl p-5 space-y-3 transition-all h-full flex flex-col justify-between ${
+                  isDark
+                    ? 'bg-[#102342] border-[#1E3A6E] text-white hover:border-[#C8A45D]'
+                    : 'bg-white border-slate-200/90 text-[#0B1930] hover:border-[#B38E46] shadow-xs'
+                }`}>
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between text-xs text-[#C8A45D] font-mono font-bold">
+                      <span className={`text-[11px] truncate ${
+                        isDark ? 'text-slate-400' : 'text-slate-500'
+                      }`}>{pillar.point}</span>
+                    </div>
+                    <h3 className={`text-base font-bold tracking-tight ${
+                      isDark ? 'text-white' : 'text-[#0B1930]'
+                    }`}>{pillar.title}</h3>
+                    <p className={`text-xs leading-relaxed ${
+                      isDark ? 'text-slate-300' : 'text-slate-600'
+                    }`}>{pillar.desc}</p>
+                  </div>
                 </div>
-                <h3 className="text-base font-bold text-white">{pillar.title}</h3>
-                <p className="text-xs text-slate-300 leading-relaxed">{pillar.desc}</p>
-              </StaggerItem>
+              </FlungCard>
             ))}
-          </StaggerContainer>
+          </div>
         </div>
       </section>
 
-      {/* 7. DEDICATED INVESTMENT PROMOTION: Left Text / Right Image */}
+      {/* 7. DEDICATED INVESTMENT PROMOTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-2xl overflow-hidden bg-[#102342] border border-[#1E3A6E] p-8 sm:p-12 lg:p-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <SlideInLeft className="lg:col-span-8 space-y-4">
-              <div className="text-xs font-semibold uppercase tracking-widest text-[#C8A45D]">
-                Strategic Wealth Preservation
-              </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
-                Your Next Investment Could Begin With The Right Location.
-              </h2>
-              <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl">
-                Land banking and structured property acquisitions remain the most resilient hedge against economic volatility in Nigeria. Speak with our advisory team to review verified title documents, site surveys, and structured installment options.
-              </p>
-              <div className="pt-2 flex flex-wrap gap-4">
-                <button
-                  onClick={() => onNavigate('/investment')}
-                  className="px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#0B1930] bg-[#C8A45D] hover:bg-[#DFC07C] transition-colors rounded-lg shadow-sm"
-                >
-                  Explore Investment Opportunities
-                </button>
-                <button
-                  onClick={() => onOpenLeadModal()}
-                  className="px-6 py-3 text-xs font-bold uppercase tracking-wider text-white bg-[#060E1A] hover:bg-[#142B52] border border-[#1E3A6E] transition-colors rounded-lg"
-                >
-                  Schedule Advisory Call
-                </button>
-              </div>
-            </SlideInLeft>
-
-            <SlideInRight className="lg:col-span-4 flex justify-center">
-              <div className="w-full max-w-xs aspect-square rounded-2xl overflow-hidden border border-[#C8A45D]/40 shadow-2xl relative">
-                <img
-                  src="/src/assets/images/land_banking_growth_1793643954174.jpg"
-                  alt="Land Banking and Real Estate Investment"
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0B1930] via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-3 left-3 right-3 text-center text-xs font-semibold text-white bg-[#0B1930]/90 py-1.5 px-2 rounded backdrop-blur-sm border border-[#1E3A6E]">
-                  Verified Cadastral Growth Corridors
+        <WakeUpCard delay={0.1}>
+          <div className="relative rounded-2xl overflow-hidden bg-[#0B1930] text-white border border-[#C8A45D]/40 p-8 sm:p-12 lg:p-16 shadow-2xl">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-8 space-y-4">
+                <div className="text-xs font-semibold uppercase tracking-widest text-[#C8A45D]">
+                  Strategic Wealth Preservation
+                </div>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
+                  Your Next Investment Could Begin With The Right Location.
+                </h2>
+                <p className="text-sm sm:text-base text-slate-200 leading-relaxed max-w-2xl font-normal">
+                  Land banking and structured property acquisitions remain the most resilient hedge against economic volatility in Nigeria. Speak with our advisory team to review verified title documents, site surveys, and structured installment options.
+                </p>
+                <div className="pt-2 flex flex-wrap gap-4">
+                  <button
+                    onClick={() => onNavigate('/investment')}
+                    className="px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#0B1930] bg-[#C8A45D] hover:bg-[#DFC07C] transition-colors rounded-lg shadow-sm"
+                  >
+                    Explore Investment Opportunities
+                  </button>
+                  <button
+                    onClick={() => onOpenLeadModal()}
+                    className="px-6 py-3 text-xs font-bold uppercase tracking-wider text-white bg-[#102342] hover:bg-[#1A3868] border border-[#1E3A6E] transition-colors rounded-lg"
+                  >
+                    Schedule Advisory Call
+                  </button>
                 </div>
               </div>
-            </SlideInRight>
+
+              <div className="lg:col-span-4 flex justify-center">
+                <div className="w-full max-w-xs aspect-square rounded-2xl overflow-hidden border border-[#C8A45D]/50 shadow-2xl relative">
+                  <img
+                    src="/src/assets/images/land_banking_growth_1793643954174.jpg"
+                    alt="Land Banking and Real Estate Investment"
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B1930] via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute bottom-3 left-3 right-3 text-center text-xs font-bold text-white bg-[#0B1930]/90 py-1.5 px-2 rounded backdrop-blur-sm border border-[#C8A45D]/40">
+                    Strategic Cadastral Growth Corridors
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        </WakeUpCard>
       </section>
 
-      {/* 8. FOUNDER SECTION: Left Portrait / Right Text */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-[#102342] border border-[#1E3A6E] rounded-2xl p-8 sm:p-12 overflow-hidden shadow-xl">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-            {/* Founder Portrait (Slide In from Left) */}
-            <SlideInLeft className="md:col-span-5 flex justify-center">
-              <div className="relative w-64 sm:w-72 aspect-square rounded-2xl overflow-hidden border-2 border-[#C8A45D]/60 shadow-2xl">
-                <img
-                  src="/src/assets/images/founder_oluwayemi_portrait_1793643953758.jpg"
-                  alt="Oluwayemi James Damilare - Founder & Lead Visionary"
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover object-top"
-                />
-              </div>
-            </SlideInLeft>
-
-            {/* Founder Message (Slide In from Right) */}
-            <SlideInRight className="md:col-span-7 space-y-4">
-              <div className="text-xs font-semibold uppercase tracking-widest text-[#C8A45D]">
-                Executive Leadership
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                {settings.founderName}
-              </h2>
-              <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
-                {settings.founderRole}
-              </div>
-
-              <div className="space-y-3 text-sm text-slate-300 leading-relaxed pt-2">
-                <p>
-                  "At Oasis Ray Developments, we believe that real estate development is far more than building walls or surveying boundaries. It is the deliberate stewardship of spaces that become conduits of enduring prosperity, security, and influence for families and organizations."
-                </p>
-                <p>
-                  "We have dedicated our enterprise to being the calm side of smart investing — a sanctuary where investors encounter clarity, transparent documentation, and genuine execution across every market cycle."
-                </p>
-              </div>
-
-              <div className="pt-4 border-t border-[#1E3A6E] flex items-center justify-between text-xs text-slate-400">
-                <span>Oasis Ray Developments Ltd.</span>
-                <button
-                  onClick={() => onNavigate('/about')}
-                  className="text-[#C8A45D] hover:text-[#DFC07C] font-semibold"
-                >
-                  Founder Profile →
-                </button>
-              </div>
-            </SlideInRight>
-          </div>
-        </div>
-      </section>
-
-      {/* 9. TESTIMONIALS: Slide In from Left and Right */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      {/* 8. TESTIMONIALS (CLIENT PERSPECTIVES - SCATTERED & FLUNG ANIMATIONS) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 py-10 overflow-hidden">
         <FadeIn>
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b pb-4 border-slate-700/30">
             <div className="space-y-1">
-              <div className="text-xs font-semibold uppercase tracking-widest text-[#C8A45D]">
+              <div className={`text-xs font-semibold uppercase tracking-widest ${
+                isDark ? 'text-[#C8A45D]' : 'text-[#B38E46]'
+              }`}>
                 Client Perspectives
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              <h2 className={`text-2xl sm:text-3xl font-bold tracking-tight ${
+                isDark ? 'text-white' : 'text-[#0B1930]'
+              }`}>
                 Verified Investor Experiences
               </h2>
             </div>
-            <div className="text-xs text-slate-400 italic">
-              * All reviews are verified by Oasis Ray investor relations.
+            <div className={`text-xs italic ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+              * Verified by Oasis Ray investor relations desk.
             </div>
           </div>
         </FadeIn>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {testimonials[0] && (
-            <SlideInLeft delay={0.1}>
-              <div className="bg-[#102342] border border-[#1E3A6E] rounded-xl p-6 sm:p-8 space-y-4 relative flex flex-col justify-between h-full">
-                <Quote className="w-8 h-8 text-[#C8A45D]/30" />
-                <p className="text-sm text-slate-200 leading-relaxed italic">
-                  "{testimonials[0].quote}"
-                </p>
-                <div className="pt-4 border-t border-[#1E3A6E]/50 flex items-center justify-between">
-                  <div>
-                    <div className="text-sm font-bold text-white">{testimonials[0].authorName}</div>
-                    <div className="text-xs text-slate-400">{testimonials[0].authorRole} · {testimonials[0].authorLocation}</div>
-                  </div>
-                  <div className="text-[11px] text-[#C8A45D] font-mono font-medium">
-                    {testimonials[0].propertyInvested}
-                  </div>
-                </div>
-              </div>
-            </SlideInLeft>
-          )}
+        {/* Scattered Dynamic Flung Cards Asymmetrical Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-10 pt-4 pb-8 items-start">
+          {testimonials.slice(0, 4).map((item, idx) => {
+            // Alternating flung direction initial positions & rotations
+            const initialVariants = [
+              { x: -160, y: -70, rotate: -18, opacity: 0, scale: 0.8 },
+              { x: 160, y: -90, rotate: 22, opacity: 0, scale: 0.8 },
+              { x: -150, y: 90, rotate: -22, opacity: 0, scale: 0.8 },
+              { x: 150, y: 70, rotate: 18, opacity: 0, scale: 0.8 }
+            ];
 
-          {testimonials[1] && (
-            <SlideInRight delay={0.2}>
-              <div className="bg-[#102342] border border-[#1E3A6E] rounded-xl p-6 sm:p-8 space-y-4 relative flex flex-col justify-between h-full">
-                <Quote className="w-8 h-8 text-[#C8A45D]/30" />
-                <p className="text-sm text-slate-200 leading-relaxed italic">
-                  "{testimonials[1].quote}"
-                </p>
-                <div className="pt-4 border-t border-[#1E3A6E]/50 flex items-center justify-between">
-                  <div>
-                    <div className="text-sm font-bold text-white">{testimonials[1].authorName}</div>
-                    <div className="text-xs text-slate-400">{testimonials[1].authorRole} · {testimonials[1].authorLocation}</div>
+            const settledRotations = [-2, 3, -3, 2];
+            const colSpans = [
+              'md:col-span-7 md:mt-0',
+              'md:col-span-5 md:mt-14',
+              'md:col-span-5 md:-mt-6',
+              'md:col-span-7 md:mt-4'
+            ];
+
+            const currentInitial = initialVariants[idx % initialVariants.length];
+            const currentRotation = settledRotations[idx % settledRotations.length];
+            const currentColSpan = colSpans[idx % colSpans.length];
+
+            return (
+              <motion.div
+                key={item.id}
+                initial={currentInitial}
+                whileInView={{
+                  x: 0,
+                  y: 0,
+                  rotate: currentRotation,
+                  opacity: 1,
+                  scale: 1
+                }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{
+                  type: 'spring',
+                  stiffness: 130,
+                  damping: 14,
+                  mass: 0.85,
+                  delay: idx * 0.12
+                }}
+                whileHover={{
+                  scale: 1.03,
+                  rotate: 0,
+                  zIndex: 30,
+                  transition: { duration: 0.2 }
+                }}
+                className={`transform transition-all duration-300 ${currentColSpan}`}
+              >
+                <div
+                  className={`border rounded-2xl p-6 sm:p-7 space-y-4 shadow-xl group relative flex flex-col justify-between h-full backdrop-blur-sm ${
+                    isDark
+                      ? 'bg-[#102342]/95 border-[#1E3A6E] text-white hover:border-[#C8A45D]'
+                      : 'bg-white/95 border-slate-200/90 text-[#0B1930] hover:border-[#B38E46] hover:shadow-2xl'
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-2.5">
+                      <div className={`w-8 h-8 rounded-lg border flex items-center justify-center shrink-0 ${
+                        isDark ? 'bg-[#060E1A] border-slate-700 text-[#C8A45D]' : 'bg-slate-50 border-slate-200 text-[#B38E46]'
+                      }`}>
+                        <Quote className="w-4 h-4" />
+                      </div>
+                      <span className="text-xs font-bold text-[#C8A45D] uppercase tracking-wider">
+                        {item.propertyInvested}
+                      </span>
+                    </div>
+
+                    <span className="text-[10px] font-mono font-bold text-emerald-400 bg-emerald-950/60 border border-emerald-500/40 px-2 py-0.5 rounded-full shrink-0">
+                      VERIFIED
+                    </span>
                   </div>
-                  <div className="text-[11px] text-[#C8A45D] font-mono font-medium">
-                    {testimonials[1].propertyInvested}
+
+                  {/* Shortened Quote */}
+                  <p className={`text-sm sm:text-base leading-relaxed italic font-medium ${
+                    isDark ? 'text-slate-100' : 'text-slate-800'
+                  }`}>
+                    "{item.quote}"
+                  </p>
+
+                  <div className={`pt-3 border-t flex items-center justify-between ${
+                    isDark ? 'border-[#1E3A6E]' : 'border-slate-100'
+                  }`}>
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-[#0B1930] border border-[#C8A45D]/60 flex items-center justify-center text-[#C8A45D] text-xs font-bold">
+                        {item.authorName.charAt(0)}
+                      </div>
+                      <div>
+                        <div className={`text-xs sm:text-sm font-bold transition-colors ${
+                          isDark ? 'text-white group-hover:text-[#C8A45D]' : 'text-[#0B1930] group-hover:text-[#B38E46]'
+                        }`}>
+                          {item.authorName}
+                        </div>
+                        <div className={`text-[11px] ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                          {item.authorRole} · {item.authorLocation}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className={`text-[10px] font-mono ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                      {item.date}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </SlideInRight>
-          )}
+              </motion.div>
+            );
+          })}
         </div>
       </section>
 
-      {/* 10. FINAL CTA: Fade and Lift */}
+      {/* 10. FINAL CTA */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <FadeIn>
-          <div className="rounded-2xl bg-gradient-to-br from-[#102342] to-[#060E1A] border border-[#C8A45D]/40 p-8 sm:p-12 text-center space-y-6 shadow-2xl">
+          <div className="rounded-2xl bg-[#0B1930] text-white border border-[#C8A45D]/40 p-8 sm:p-12 text-center space-y-6 shadow-2xl">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
               Let's Build Your Next Chapter in Real Estate.
             </h2>
-            <p className="text-sm sm:text-base text-slate-300 max-w-xl mx-auto">
+            <p className="text-sm sm:text-base text-slate-200 max-w-xl mx-auto font-normal">
               Discover opportunities, explore our developments and connect with the Oasis Ray team.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2">
@@ -569,7 +925,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               </button>
               <button
                 onClick={() => onNavigate('/contact')}
-                className="w-full sm:w-auto px-8 py-3.5 text-xs font-bold uppercase tracking-wider text-white bg-[#0B1930] hover:bg-[#142B52] border border-[#1E3A6E] transition-all rounded-lg"
+                className="w-full sm:w-auto px-8 py-3.5 text-xs font-bold uppercase tracking-wider text-white bg-[#102342] hover:bg-[#1A3868] border border-[#1E3A6E] transition-all rounded-lg"
               >
                 Contact Our Team
               </button>
