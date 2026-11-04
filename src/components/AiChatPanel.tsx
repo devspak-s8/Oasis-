@@ -1,6 +1,27 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Image as ImageIcon, X, Maximize2, Minimize2, BotMessageSquare, Bot, User, Loader2, Phone, PhoneCall, MessageSquare } from 'lucide-react';
+import {
+  Send,
+  Image as ImageIcon,
+  X,
+  Maximize2,
+  Minimize2,
+  BotMessageSquare,
+  Bot,
+  User,
+  Loader2,
+  Phone,
+  MessageSquare,
+  Copy,
+  Check,
+  Calendar,
+  MapPin,
+  Building,
+  ShieldCheck,
+  ArrowRight,
+  ExternalLink
+} from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { generateLocalAdvisorResponse } from '../utils/aiAdvisorEngine';
 
 interface ChatMessage {
   id: string;
@@ -24,11 +45,12 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
   whatsappNumber
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [copiedBank, setCopiedBank] = useState<string | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: 'welcome-1',
       sender: 'ai',
-      text: 'Welcome to OASIS RAY DEVELOPMENTS LTD.\n\nI am your official AI Senior Property Advisor. I have complete, verified records for **Christos Gardens** (Mowe-Ofada) and **Havilah City** (Abeokuta), including C of O titles, plot prices (300 SQM, 500 SQM, 1 Acre deals), statutory fees, corner piece premiums, and official corporate bank accounts.\n\nHow can I assist your real estate investments today? You can also upload a land photo or survey document for instant evaluation.',
+      text: '### Welcome to OASIS RAY DEVELOPMENTS LTD.\n\nI am your official **Senior AI Property Advisor**. I have complete, verified records for **Christos Gardens** (Mowe-Ofada) and **Havilah City** (Abeokuta), including:\n\n• **Title Status:** Verifiable C of O & Registered State Surveys\n• **Plot Sizes & Outright Pricing:** 300 SQM, 500 SQM, 1 Acre Deals\n• **Verified Corporate Accounts:** FCMB (2008892202) & WEMA (0128047846)\n• **Site Inspections:** Scheduled every Tuesday & Saturday (Complimentary transport provided)\n\nHow may I guide your property investment today?',
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
   ]);
@@ -44,7 +66,7 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
       const systemContextMsg: ChatMessage = {
         id: `ctx-${Date.now()}`,
         sender: 'ai',
-        text: `I noticed you are currently reviewing **${initialContext}**. Feel free to ask me about exact plot pricing, C of O title status, landmarks, cornerpiece fees, or inspection schedules for this property!`,
+        text: `### Active Project Focus: ${initialContext}\n\nI am tracking your interest in **${initialContext}**. Ask me about exact plot pricing, C of O title verification, surrounding landmarks, corner piece fees, or reserving a seat for Tuesday/Saturday site tours!`,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
       setMessages((prev) => [...prev, systemContextMsg]);
@@ -54,6 +76,12 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, loading]);
+
+  const handleCopyText = (text: string, label: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedBank(label);
+    setTimeout(() => setCopiedBank(null), 2500);
+  };
 
   const handleImageSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -94,6 +122,8 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
     setSelectedImage(null);
     setLoading(true);
 
+    let replyText = '';
+
     try {
       const response = await fetch('/api/gemini/chat', {
         method: 'POST',
@@ -106,31 +136,29 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
         })
       });
 
-      const data = await response.json();
-
-      if (!response.ok || data.error) {
-        throw new Error(data.error || 'Failed to get response');
+      if (response.ok) {
+        const data = await response.json();
+        replyText = data.reply || '';
       }
-
-      const aiReply: ChatMessage = {
-        id: `ai-${Date.now()}`,
-        sender: 'ai',
-        text: data.reply,
-        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-      };
-
-      setMessages((prev) => [...prev, aiReply]);
-    } catch (err: any) {
-      const errorMsg: ChatMessage = {
-        id: `err-${Date.now()}`,
-        sender: 'ai',
-        text: 'I apologize, but our advisory server experienced a momentary hiccup. For urgent assistance or unlisted information, please contact our Customer Care Desk directly:\n\n📞 **Phone:** +234 (0) 803 000 0000\n💬 **WhatsApp Desk:** +2348030000000\n📧 **Email:** info@oasisraydevelopments.com',
-        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-      };
-      setMessages((prev) => [...prev, errorMsg]);
-    } finally {
-      setLoading(false);
+    } catch {
+      // Offline or network error - fallback gracefully
     }
+
+    // Zero-failure fallback guarantee
+    if (!replyText) {
+      const local = generateLocalAdvisorResponse(text, initialContext);
+      replyText = local.text;
+    }
+
+    const aiReply: ChatMessage = {
+      id: `ai-${Date.now()}`,
+      sender: 'ai',
+      text: replyText,
+      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    };
+
+    setMessages((prev) => [...prev, aiReply]);
+    setLoading(false);
   };
 
   if (!isOpen) return null;
@@ -147,6 +175,289 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
     'Hello Oasis Ray Advisory Desk. I was chatting with your AI Advisor and would like to speak directly with an advisor.'
   )}`;
 
+  // Helper to parse inline markdown (bolding, codes)
+  const parseInline = (content: string) => {
+    const parts = content.split(/(\*\*.*?\*\*)/g);
+    return parts.map((part, i) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return (
+          <strong key={i} className="text-white font-bold tracking-tight">
+            {part.slice(2, -2)}
+          </strong>
+        );
+      }
+      return part;
+    });
+  };
+
+  // Render text blocks cleanly with formatting
+  const renderFormattedMessageText = (raw: string) => {
+    const lines = raw.split('\n');
+    return (
+      <div className="space-y-2 text-xs sm:text-sm leading-relaxed text-slate-200">
+        {lines.map((line, idx) => {
+          const trimmed = line.trim();
+          if (!trimmed) {
+            return <div key={idx} className="h-1" />;
+          }
+
+          if (trimmed.startsWith('###')) {
+            const heading = trimmed.replace(/^###\s*/, '');
+            return (
+              <div
+                key={idx}
+                className="pt-2 pb-1.5 border-b border-[#1E3A6E]/70 text-sm font-extrabold text-[#C8A45D] flex items-center gap-2"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-[#C8A45D]" />
+                <span>{heading}</span>
+              </div>
+            );
+          }
+
+          if (trimmed.startsWith('•') || trimmed.startsWith('- ') || trimmed.startsWith('* ')) {
+            const bullet = trimmed.replace(/^[•\-\*]\s*/, '');
+            return (
+              <div key={idx} className="flex items-start gap-2 pl-1.5 my-1">
+                <span className="text-[#C8A45D] font-bold text-xs mt-0.5">•</span>
+                <div className="flex-1 text-slate-200">{parseInline(bullet)}</div>
+              </div>
+            );
+          }
+
+          return (
+            <div key={idx} className="text-slate-200">
+              {parseInline(trimmed)}
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
+
+  // Detect which interactive action cards to show alongside the AI message
+  const renderInteractiveWidgets = (text: string) => {
+    const t = text.toLowerCase();
+    const hasChristos = t.includes('christos') || t.includes('mowe') || t.includes('itakana');
+    const hasHavilah = t.includes('havilah') || t.includes('ita oshin') || t.includes('ibara orile') || t.includes('3,000 sqms') || t.includes('1 acre');
+    const hasBanks = t.includes('2008892202') || t.includes('0128047846') || t.includes('fcmb') || t.includes('wema');
+    const hasInspection = t.includes('tuesdays') || t.includes('saturdays') || t.includes('inspection');
+    const hasCustomerCare = t.includes('customer care') || t.includes('+234 (0) 803 000 0000') || t.includes('info@oasisraydevelopments.com');
+
+    return (
+      <div className="pt-3 space-y-2.5">
+        {/* 1. BANK ACCOUNTS WIDGET */}
+        {hasBanks && (
+          <div className="rounded-xl p-3.5 bg-[#060E1A] border border-[#C8A45D]/40 space-y-3 shadow-md">
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-bold text-[#C8A45D] uppercase tracking-wider flex items-center gap-1.5">
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                <span>Verified Corporate Accounts</span>
+              </span>
+              <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/30">
+                Zero Personal Accounts
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {/* FCMB */}
+              <div className="p-2.5 rounded-lg bg-[#102342] border border-[#1E3A6E] flex items-center justify-between">
+                <div>
+                  <div className="text-[10px] text-slate-400 font-bold uppercase">FCMB</div>
+                  <div className="text-xs font-mono font-black text-[#C8A45D] tracking-wider">2008892202</div>
+                </div>
+                <button
+                  onClick={() => handleCopyText('2008892202', 'fcmb')}
+                  className="px-2 py-1 rounded bg-[#060E1A] hover:bg-[#C8A45D] text-white hover:text-[#0B1930] text-[10px] font-semibold border border-[#1E3A6E] flex items-center gap-1 transition-colors cursor-pointer"
+                >
+                  {copiedBank === 'fcmb' ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                  <span>{copiedBank === 'fcmb' ? 'Copied' : 'Copy'}</span>
+                </button>
+              </div>
+
+              {/* WEMA */}
+              <div className="p-2.5 rounded-lg bg-[#102342] border border-[#1E3A6E] flex items-center justify-between">
+                <div>
+                  <div className="text-[10px] text-slate-400 font-bold uppercase">WEMA BANK</div>
+                  <div className="text-xs font-mono font-black text-[#C8A45D] tracking-wider">0128047846</div>
+                </div>
+                <button
+                  onClick={() => handleCopyText('0128047846', 'wema')}
+                  className="px-2 py-1 rounded bg-[#060E1A] hover:bg-[#C8A45D] text-white hover:text-[#0B1930] text-[10px] font-semibold border border-[#1E3A6E] flex items-center gap-1 transition-colors cursor-pointer"
+                >
+                  {copiedBank === 'wema' ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                  <span>{copiedBank === 'wema' ? 'Copied' : 'Copy'}</span>
+                </button>
+              </div>
+            </div>
+
+            <div className="text-[10px] text-slate-400 text-center">
+              Account Name: <strong className="text-white">OASIS RAY DEVELOPMENTS LTD</strong>
+            </div>
+          </div>
+        )}
+
+        {/* 2. CHRISTOS GARDENS ACTION CARD */}
+        {hasChristos && !hasBanks && (
+          <div className="rounded-xl p-3.5 bg-[#060E1A] border border-[#1E3A6E] space-y-2.5 shadow-md">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold text-white flex items-center gap-1.5">
+                <Building className="w-3.5 h-3.5 text-[#C8A45D]" />
+                <span>Christos Gardens (Mowe-Ofada)</span>
+              </span>
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#C8A45D]/10 text-[#C8A45D] border border-[#C8A45D]/30 font-bold">
+                Verifiable C of O
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2 text-center">
+              <div className="p-2 rounded-lg bg-[#102342] border border-[#1E3A6E]">
+                <div className="text-[10px] text-slate-400 font-bold">300 SQM Outright</div>
+                <div className="text-xs font-black font-mono text-[#C8A45D]">₦4,500,000</div>
+              </div>
+              <div className="p-2 rounded-lg bg-[#102342] border border-[#1E3A6E]">
+                <div className="text-[10px] text-slate-400 font-bold">500 SQM Outright</div>
+                <div className="text-xs font-black font-mono text-[#C8A45D]">₦7,000,000</div>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 pt-1">
+              <button
+                onClick={() => handleSendMessage('I would like to reserve a plot at Christos Gardens')}
+                className="flex-1 py-1.5 px-3 rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#0B1930] text-[11px] font-bold uppercase transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
+              >
+                <span>Reserve Plot</span>
+                <ArrowRight className="w-3 h-3" />
+              </button>
+              <a
+                href={`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(
+                  'Hello Oasis Ray, I am inquiring for a plot allocation at Christos Gardens (Mowe-Ofada).'
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="py-1.5 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-semibold transition-colors flex items-center gap-1"
+              >
+                <MessageSquare className="w-3 h-3" />
+                <span>WhatsApp</span>
+              </a>
+            </div>
+          </div>
+        )}
+
+        {/* 3. HAVILAH CITY ACTION CARD */}
+        {hasHavilah && !hasBanks && (
+          <div className="rounded-xl p-3.5 bg-[#060E1A] border border-[#1E3A6E] space-y-2.5 shadow-md">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold text-white flex items-center gap-1.5">
+                <MapPin className="w-3.5 h-3.5 text-[#C8A45D]" />
+                <span>Havilah City (Ita Oshin, Abeokuta)</span>
+              </span>
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-bold">
+                Registered Survey
+              </span>
+            </div>
+
+            <div className="grid grid-cols-3 gap-1.5 text-center">
+              <div className="p-2 rounded-lg bg-[#102342] border border-[#1E3A6E]">
+                <div className="text-[9px] text-slate-400 font-bold">300 SQM</div>
+                <div className="text-xs font-black font-mono text-[#C8A45D]">₦900K</div>
+              </div>
+              <div className="p-2 rounded-lg bg-[#102342] border border-[#1E3A6E]">
+                <div className="text-[9px] text-slate-400 font-bold">500 SQM</div>
+                <div className="text-xs font-black font-mono text-[#C8A45D]">₦1.5M</div>
+              </div>
+              <div className="p-2 rounded-lg bg-[#102342] border border-[#1E3A6E]">
+                <div className="text-[9px] text-slate-400 font-bold">1 Acre Deal</div>
+                <div className="text-xs font-black font-mono text-[#C8A45D]">₦8.7M</div>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 pt-1">
+              <button
+                onClick={() => handleSendMessage('I would like to enquire on Havilah City plots')}
+                className="flex-1 py-1.5 px-3 rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#0B1930] text-[11px] font-bold uppercase transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
+              >
+                <span>Reserve Plot</span>
+                <ArrowRight className="w-3 h-3" />
+              </button>
+              <a
+                href={`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(
+                  'Hello Oasis Ray, I am inquiring for plot prices and allocation at Havilah City (Abeokuta).'
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="py-1.5 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-semibold transition-colors flex items-center gap-1"
+              >
+                <MessageSquare className="w-3 h-3" />
+                <span>WhatsApp</span>
+              </a>
+            </div>
+          </div>
+        )}
+
+        {/* 4. INSPECTION BOOKING CARD */}
+        {hasInspection && (
+          <div className="rounded-xl p-3.5 bg-[#060E1A] border border-[#C8A45D]/40 space-y-2.5 shadow-md">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold text-white flex items-center gap-1.5">
+                <Calendar className="w-3.5 h-3.5 text-[#C8A45D]" />
+                <span>On-Site Inspection Schedule</span>
+              </span>
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                Tuesdays & Saturdays
+              </span>
+            </div>
+
+            <p className="text-[11px] text-slate-300">
+              Complimentary inspection transit provided from our coordination center in Ogun State. Walk the dry table land, inspect survey beacons, and verify titles in person.
+            </p>
+
+            <button
+              onClick={() => handleSendMessage('Please schedule an on-site inspection for me this week')}
+              className="w-full py-2 px-3 rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#0B1930] text-xs font-bold uppercase transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
+            >
+              <Calendar className="w-3.5 h-3.5" />
+              <span>Book My Free Inspection Tour</span>
+            </button>
+          </div>
+        )}
+
+        {/* 5. CUSTOMER CARE DESK CARD */}
+        {hasCustomerCare && (
+          <div className="rounded-xl p-3.5 bg-[#060E1A] border border-[#1E3A6E] space-y-2.5 shadow-md">
+            <div className="text-xs font-bold text-[#C8A45D] flex items-center gap-1.5">
+              <Phone className="w-3.5 h-3.5 text-[#C8A45D]" />
+              <span>Direct Customer Care Channels</span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+              <a
+                href="tel:+2348030000000"
+                className="py-2 px-3 rounded-lg bg-[#102342] hover:bg-[#1A3868] text-white text-xs font-semibold flex items-center justify-center gap-1.5 border border-[#1E3A6E] transition-colors"
+              >
+                <Phone className="w-3.5 h-3.5 text-[#C8A45D]" />
+                <span>Call: +234 (0) 803 000 0000</span>
+              </a>
+
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="py-2 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors shadow-xs"
+              >
+                <MessageSquare className="w-3.5 h-3.5" />
+                <span>Live WhatsApp Chat</span>
+              </a>
+            </div>
+
+            <div className="text-[10px] text-slate-400 pt-1 border-t border-[#1E3A6E]/50">
+              Corporate Desk: 3rd Floor, Goldcrest Plaza, Ikota, Lekki, Lagos State, Nigeria.
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  };
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -157,21 +468,22 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
             exit={{ y: '100%', opacity: 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 220 }}
             className={`w-full bg-[#0B1930] rounded-t-3xl sm:rounded-2xl shadow-2xl flex flex-col transition-all duration-300 overflow-hidden ${
-              isExpanded ? 'h-full sm:h-[95vh] max-w-5xl' : 'h-[85vh] sm:h-[620px] max-w-2xl'
+              isExpanded ? 'h-full sm:h-[95vh] max-w-5xl' : 'h-[85vh] sm:h-[640px] max-w-2xl'
             }`}
           >
-            {/* Panel Top Header Bar - Clean & Borderless */}
-            <div className="p-4 bg-[#060E1A] flex items-center justify-between shrink-0">
+            {/* Panel Top Header Bar */}
+            <div className="p-4 bg-[#060E1A] flex items-center justify-between shrink-0 border-b border-[#1E3A6E]/50">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-[#102342] flex items-center justify-center text-[#C8A45D]">
+                <div className="w-10 h-10 rounded-xl bg-[#102342] border border-[#C8A45D]/50 flex items-center justify-center text-[#C8A45D] shadow-sm">
                   <BotMessageSquare className="w-5 h-5 text-[#C8A45D]" />
                 </div>
                 <div>
-                  <div className="text-sm font-bold text-white flex items-center gap-2">
-                    <span>Oasis Ray AI Advisor</span>
+                  <div className="text-sm font-extrabold text-white flex items-center gap-2">
+                    <span>Oasis Ray Senior AI Advisor</span>
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                   </div>
-                  <div className="text-[11px] text-slate-400">
-                    Smart Property & Visual Land Analysis
+                  <div className="text-[11px] text-slate-400 font-medium">
+                    Verified Titles, Pricing & Cadastral Evaluation
                   </div>
                 </div>
               </div>
@@ -217,34 +529,34 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
             </div>
 
             {/* Chat Conversation Scroll View */}
-            <div className="flex-1 p-4 sm:p-6 overflow-y-auto space-y-4 bg-[#0B1930]">
+            <div className="flex-1 p-4 sm:p-6 overflow-y-auto space-y-5 bg-[#0B1930]">
               {messages.map((msg) => (
                 <div
                   key={msg.id}
-                  className={`flex gap-3 max-w-[88%] sm:max-w-[80%] ${
+                  className={`flex gap-3 max-w-[92%] sm:max-w-[85%] ${
                     msg.sender === 'user' ? 'ml-auto flex-row-reverse' : 'mr-auto'
                   }`}
                 >
                   <div
-                    className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 text-xs font-bold ${
+                    className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 text-xs font-bold shadow-md ${
                       msg.sender === 'user'
                         ? 'bg-[#C8A45D] text-[#0B1930]'
-                        : 'bg-[#102342] text-[#C8A45D]'
+                        : 'bg-[#102342] border border-[#C8A45D]/40 text-[#C8A45D]'
                     }`}
                   >
                     {msg.sender === 'user' ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
                   </div>
 
-                  <div className="space-y-1">
+                  <div className="space-y-1.5 flex-1">
                     <div
-                      className={`p-3.5 rounded-2xl text-xs sm:text-sm leading-relaxed ${
+                      className={`p-4 rounded-2xl shadow-md ${
                         msg.sender === 'user'
                           ? 'bg-[#C8A45D] text-[#0B1930] font-medium rounded-tr-none'
-                          : 'bg-[#102342] text-slate-100 rounded-tl-none whitespace-pre-wrap'
+                          : 'bg-[#102342] border border-[#1E3A6E] rounded-tl-none'
                       }`}
                     >
                       {msg.imagePreview && (
-                        <div className="mb-2.5 rounded-lg overflow-hidden max-w-xs">
+                        <div className="mb-3 rounded-lg overflow-hidden max-w-xs border border-[#C8A45D]">
                           <img
                             src={msg.imagePreview}
                             alt="Uploaded property visual"
@@ -252,10 +564,19 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
                           />
                         </div>
                       )}
-                      <div>{msg.text}</div>
+
+                      {msg.sender === 'user' ? (
+                        <div className="text-xs sm:text-sm font-semibold">{msg.text}</div>
+                      ) : (
+                        <div>
+                          {renderFormattedMessageText(msg.text)}
+                          {renderInteractiveWidgets(msg.text)}
+                        </div>
+                      )}
                     </div>
+
                     <div
-                      className={`text-[10px] text-slate-500 px-1 ${
+                      className={`text-[10px] text-slate-400 px-1 ${
                         msg.sender === 'user' ? 'text-right' : 'text-left'
                       }`}
                     >
@@ -267,12 +588,12 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
 
               {loading && (
                 <div className="flex items-center gap-3 text-xs text-slate-400">
-                  <div className="w-7 h-7 rounded-full bg-[#102342] flex items-center justify-center text-[#C8A45D]">
+                  <div className="w-8 h-8 rounded-xl bg-[#102342] border border-[#C8A45D]/40 flex items-center justify-center text-[#C8A45D]">
                     <Bot className="w-4 h-4" />
                   </div>
-                  <div className="p-3 bg-[#102342] rounded-2xl rounded-tl-none flex items-center gap-2">
-                    <Loader2 className="w-3.5 h-3.5 text-[#C8A45D] animate-spin" />
-                    <span>Analyzing real estate documents & specs...</span>
+                  <div className="p-3.5 bg-[#102342] border border-[#1E3A6E] rounded-2xl rounded-tl-none flex items-center gap-2.5">
+                    <Loader2 className="w-4 h-4 text-[#C8A45D] animate-spin" />
+                    <span className="font-medium text-slate-300">Retrieving verified property dossier & prices...</span>
                   </div>
                 </div>
               )}
@@ -280,14 +601,14 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
             </div>
 
             {/* Quick Prompt Suggestions */}
-            {messages.length < 5 && (
-              <div className="px-4 py-2 bg-[#060E1A]/40 flex items-center gap-2 overflow-x-auto shrink-0 scrollbar-none">
-                <span className="text-[10px] uppercase font-bold text-slate-400 shrink-0">Quick:</span>
+            {messages.length < 8 && (
+              <div className="px-4 py-2.5 bg-[#060E1A]/80 border-t border-[#1E3A6E]/50 flex items-center gap-2 overflow-x-auto shrink-0 scrollbar-none">
+                <span className="text-[10px] uppercase font-bold text-slate-400 shrink-0">Prompts:</span>
                 {quickPrompts.map((prompt, idx) => (
                   <button
                     key={idx}
                     onClick={() => handleSendMessage(prompt)}
-                    className="px-3 py-1.5 text-[11px] bg-[#102342] hover:bg-[#1A3868] text-slate-300 hover:text-white rounded-xl transition-colors whitespace-nowrap shrink-0"
+                    className="px-3 py-1.5 text-xs bg-[#102342] hover:bg-[#1A3868] text-slate-200 hover:text-white rounded-xl border border-[#1E3A6E] transition-all whitespace-nowrap shrink-0 cursor-pointer active:scale-95 shadow-2xs"
                   >
                     {prompt}
                   </button>
@@ -297,7 +618,7 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
 
             {/* Selected Image Preview Box */}
             {selectedImage && (
-              <div className="px-4 py-2 bg-[#060E1A] flex items-center justify-between">
+              <div className="px-4 py-2 bg-[#060E1A] flex items-center justify-between border-t border-[#1E3A6E]">
                 <div className="flex items-center gap-2 text-xs text-slate-300">
                   <img
                     src={selectedImage}
@@ -308,7 +629,7 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
                 </div>
                 <button
                   onClick={() => setSelectedImage(null)}
-                  className="p-1 text-slate-400 hover:text-white"
+                  className="p-1 text-slate-400 hover:text-white cursor-pointer"
                   title="Remove image"
                 >
                   <X className="w-4 h-4" />
@@ -316,8 +637,8 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
               </div>
             )}
 
-            {/* Floating Input Controls - Borderless */}
-            <div className="p-3 sm:p-4 bg-transparent flex items-center gap-2 shrink-0">
+            {/* Input Controls */}
+            <div className="p-3 sm:p-4 bg-[#060E1A] border-t border-[#1E3A6E] flex items-center gap-2.5 shrink-0">
               <input
                 type="file"
                 ref={fileInputRef}
@@ -328,7 +649,7 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
               <button
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
-                className="p-2.5 text-slate-300 hover:text-[#C8A45D] bg-[#102342] hover:bg-[#1A3868] rounded-xl transition-colors shrink-0"
+                className="p-2.5 text-slate-300 hover:text-[#C8A45D] bg-[#102342] hover:bg-[#1A3868] border border-[#1E3A6E] rounded-xl transition-colors shrink-0 cursor-pointer"
                 title="Attach land photo or survey document"
                 aria-label="Attach photo"
               >
@@ -340,15 +661,15 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && handleSendMessage()}
-                placeholder="Ask about properties, pricing, or land surveys..."
-                className="flex-1 px-4 py-2.5 bg-[#102342] rounded-xl text-xs sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-[#C8A45D]"
+                placeholder="Ask about Christos Gardens, Havilah City, pricing, bank accounts..."
+                className="flex-1 px-4 py-2.5 bg-[#102342] border border-[#1E3A6E] rounded-xl text-xs sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#C8A45D]"
               />
 
               <button
                 type="button"
                 onClick={() => handleSendMessage()}
                 disabled={loading || (!inputText.trim() && !selectedImage)}
-                className="p-2.5 bg-[#C8A45D] hover:bg-[#DFC07C] text-[#0B1930] rounded-xl font-bold transition-all disabled:opacity-50 shrink-0 flex items-center justify-center shadow-md active:scale-95"
+                className="p-2.5 bg-[#C8A45D] hover:bg-[#DFC07C] text-[#0B1930] rounded-xl font-bold transition-all disabled:opacity-50 shrink-0 flex items-center justify-center shadow-md active:scale-95 cursor-pointer"
                 aria-label="Send message"
               >
                 <Send className="w-4 h-4" />

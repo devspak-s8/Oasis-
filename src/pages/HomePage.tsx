@@ -32,6 +32,7 @@ import {
 
 import { useTheme } from '../context/ThemeContext';
 import { FlungCard } from '../components/FlungCard';
+import { SEOHead } from '../components/SEOHead';
 
 interface HomePageProps {
   developments: Development[];
@@ -67,6 +68,11 @@ export const HomePage: React.FC<HomePageProps> = ({
 
   return (
     <div className="space-y-24 md:space-y-32 pb-24 overflow-x-hidden">
+      <SEOHead
+        title="OASIS RAY DEVELOPMENTS LTD. | The Calm Side of Smart Investing"
+        description="Oasis Ray Developments creates structured real estate opportunities through strategic land acquisition, property development and intelligent investment solutions in Nigeria, featuring Christos Gardens in Mowe-Ofada and Havilah City in Abeokuta."
+        canonicalPath="/"
+      />
       {/* 1. HERO SECTION */}
       <section className="relative min-h-[86vh] flex items-center justify-center overflow-hidden bg-[#0B1930] pt-6 pb-20">
         {/* Background Image with Drop Landing Physics and Measured Scrim */}

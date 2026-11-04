@@ -6,6 +6,7 @@ import { FadeIn, SlideInLeft, WakeUpCard } from '../components/ScrollAnimations'
 import { useTheme } from '../context/ThemeContext';
 import { CustomSelect } from '../components/CustomSelect';
 import { FlungCard } from '../components/FlungCard';
+import { SEOHead } from '../components/SEOHead';
 
 interface DevelopmentsPageProps {
   developments: Development[];
@@ -53,6 +54,11 @@ export const DevelopmentsPage: React.FC<DevelopmentsPageProps> = ({
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 space-y-12 overflow-x-hidden">
+      <SEOHead
+        title="Verified Real Estate Developments & Estates | Oasis Ray Developments"
+        description="Explore verified residential and commercial developments by Oasis Ray Developments Ltd., featuring Christos Gardens in Mowe-Ofada and Havilah City in Abeokuta, Ogun State."
+        canonicalPath="/developments"
+      />
       {/* Header */}
       <SlideInLeft className="space-y-4 max-w-3xl">
         <div className="text-xs font-semibold uppercase tracking-widest text-[#C8A45D]">

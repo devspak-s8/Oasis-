@@ -5,6 +5,7 @@ import { fileURLToPath } from 'url';
 import { GoogleGenAI } from '@google/genai';
 import { INITIAL_DEVELOPMENTS, INITIAL_SETTINGS, INITIAL_TESTIMONIALS } from './src/data/initialData';
 import { validateLeadForm } from './src/utils/realEstateCalculators';
+import { generateLocalAdvisorResponse } from './src/utils/aiAdvisorEngine';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -108,6 +109,68 @@ let db = initDb();
 // API Endpoints
 app.get('/api/health', (_req: Request, res: Response) => {
   res.json({ status: 'healthy', timestamp: new Date().toISOString() });
+});
+
+// Dynamic XML Sitemap
+app.get('/sitemap.xml', (req: Request, res: Response) => {
+  const protocol = req.headers['x-forwarded-proto'] || 'https';
+  const host = req.headers.host || 'localhost:3000';
+  const baseUrl = `${protocol}://${host}`;
+
+  const staticPages = [
+    { url: '/', changefreq: 'daily', priority: '1.0' },
+    { url: '/developments', changefreq: 'daily', priority: '0.9' },
+    { url: '/investment', changefreq: 'weekly', priority: '0.8' },
+    { url: '/services', changefreq: 'weekly', priority: '0.8' },
+    { url: '/about', changefreq: 'monthly', priority: '0.7' },
+    { url: '/advisory', changefreq: 'weekly', priority: '0.8' },
+    { url: '/contact', changefreq: 'monthly', priority: '0.7' },
+    { url: '/privacy', changefreq: 'yearly', priority: '0.3' }
+  ];
+
+  const developmentUrls = db.developments.map((d) => ({
+    url: `/developments/${d.slug || d.id}`,
+    changefreq: 'weekly',
+    priority: '0.9',
+    lastmod: d.updatedAt ? d.updatedAt.split('T')[0] : new Date().toISOString().split('T')[0]
+  }));
+
+  const allPages = [...staticPages, ...developmentUrls];
+
+  const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${allPages
+  .map(
+    (p: any) => `  <url>
+    <loc>${baseUrl}${p.url}</loc>
+    <lastmod>${p.lastmod || new Date().toISOString().split('T')[0]}</lastmod>
+    <changefreq>${p.changefreq}</changefreq>
+    <priority>${p.priority}</priority>
+  </url>`
+  )
+  .join('\n')}
+</urlset>`;
+
+  res.header('Content-Type', 'application/xml');
+  res.send(sitemapXml);
+});
+
+// Robots.txt
+app.get('/robots.txt', (req: Request, res: Response) => {
+  const protocol = req.headers['x-forwarded-proto'] || 'https';
+  const host = req.headers.host || 'localhost:3000';
+  const baseUrl = `${protocol}://${host}`;
+
+  const robotsTxt = `User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+Sitemap: ${baseUrl}/sitemap.xml
+`;
+
+  res.header('Content-Type', 'text/plain');
+  res.send(robotsTxt);
 });
 
 // Gemini AI Advisory Assistant Chat Endpoint
@@ -357,22 +420,33 @@ CRITICAL FRAUD-PREVENTION PROTOCOL:
       }
     }
 
-    const response = await ai.models.generateContent({
-      model: 'gemini-3.8-flash',
-      contents,
-      config: {
-        systemInstruction
-      }
-    });
+    let reply = '';
 
-    const reply = response.text || 'Thank you for contacting Oasis Ray Developments Ltd. How else may our advisory desk assist you with our Mowe-Ofada and Abeokuta projects today?';
+    if (process.env.GEMINI_API_KEY) {
+      try {
+        const response = await ai.models.generateContent({
+          model: 'gemini-3.8-flash',
+          contents,
+          config: {
+            systemInstruction
+          }
+        });
+        reply = response.text || '';
+      } catch (geminiError) {
+        console.warn('Gemini generateContent error; falling back to verified advisor engine:', geminiError);
+      }
+    }
+
+    if (!reply) {
+      const localAdvice = generateLocalAdvisorResponse(userPromptText, context);
+      reply = localAdvice.text;
+    }
+
     res.json({ reply });
   } catch (err: any) {
     console.error('Gemini Chat API Error:', err);
-    res.status(500).json({ 
-      error: 'Unable to connect to AI Advisory Assistant. Please try again or reach out directly to our WhatsApp Desk.',
-      details: err?.message || 'Server error'
-    });
+    const localAdvice = generateLocalAdvisorResponse(req.body?.prompt || '', req.body?.context);
+    res.json({ reply: localAdvice.text });
   }
 });
 

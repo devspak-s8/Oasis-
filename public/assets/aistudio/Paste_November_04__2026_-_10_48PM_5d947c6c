@@ -1,0 +1,1184 @@
+# MASTER IMPLEMENTATION PROMPT: ADVANCED SEO, AEO, GEO & ORGANIC GROWTH SYSTEM
+## OASIS RAY DEVELOPMENTS LTD.
+
+You are acting as a senior Technical SEO Engineer, Search Strategist, AEO Specialist, GEO Specialist, Content Architect and Full-Stack Engineer.
+
+Your responsibility is to implement a comprehensive, production-ready search visibility and organic growth system into the existing OASIS RAY DEVELOPMENTS LTD. website.
+
+This is not a request to install a basic SEO plugin or add a few meta tags. Build a complete search optimisation architecture that makes the website technically accessible to search engines, semantically understandable to search systems, locally discoverable, eligible for relevant search features and structured for AI-powered discovery.
+
+Do not simply describe recommendations. Inspect the existing codebase, implement the necessary changes, test them and document what has been completed.
+
+---
+
+# 1. BUSINESS CONTEXT
+
+Company: OASIS RAY DEVELOPMENTS LTD.
+
+Tagline: The Calm Side of Smart Investing.
+
+Industry:
+- Real Estate Development.
+- Land Acquisition and Sales.
+- Property Investment.
+- Land Banking.
+- Residential Property Development.
+- Real Estate Consultancy.
+- Property Marketing and Brokerage.
+- Real Estate Investment Advisory.
+
+Current developments:
+
+1. CHRISTOS GARDENS
+   Location: Mowe-Ofada, Ogun State, Nigeria.
+
+2. HAVILAH CITY
+   Location: Ita Oshin, Abeokuta, Ogun State, Nigeria.
+
+Primary market: Nigeria.
+
+Primary geographic focus:
+- Ogun State.
+- Mowe.
+- Ofada.
+- Abeokuta.
+- Ita Oshin.
+- Other verified locations where the company operates.
+
+Primary audiences:
+- Individuals looking to purchase land.
+- Residential property buyers.
+- Real estate investors.
+- Nigerians living in the diaspora.
+- Property developers.
+- Realtors and real estate partners.
+
+Business objectives:
+- Increase qualified organic traffic.
+- Improve visibility for relevant real estate searches.
+- Generate property enquiries.
+- Establish corporate credibility.
+- Increase visibility in local search.
+- Make company and development information easier for AI search systems to understand.
+- Build sustainable organic search authority.
+
+Do not fabricate company information, property prices, plot sizes, title documents, customer testimonials, company statistics or investment returns.
+
+---
+
+# 2. SEO MASTER ARCHITECTURE
+
+Implement a comprehensive SEO system covering:
+
+1. Technical SEO.
+2. On-page SEO.
+3. Semantic SEO.
+4. Local SEO.
+5. International and diaspora search considerations.
+6. Programmatic SEO.
+7. Content SEO.
+8. Image SEO.
+9. Video SEO.
+10. Internal linking.
+11. Structured data and Schema.org.
+12. AEO — Answer Engine Optimization.
+13. GEO — Generative Engine Optimization.
+14. Search engine indexing.
+15. Conversion-focused SEO.
+16. SEO analytics and reporting.
+
+All these systems must work together rather than exist as disconnected features.
+
+# 3. TECHNICAL SEO
+
+Audit and implement the technical foundation.
+
+## 3.1 Search engine accessibility
+
+Ensure:
+- Search engines can access important public pages.
+- Important content is available in crawlable HTML.
+- Server-side rendering or static generation is used appropriately.
+- JavaScript does not unnecessarily hide important content from crawlers.
+- Internal links use crawlable anchor elements.
+- Important pages do not accidentally contain noindex directives.
+- Canonical URLs are correctly configured.
+- Redirects are handled correctly.
+- Broken internal links are identified and fixed.
+
+For Next.js, use the appropriate metadata API and rendering strategies.
+
+## 3.2 URL architecture
+
+Use clean, descriptive URLs.
+
+Examples:
+
+/ 
+/about
+/services
+/developments
+/developments/christos-gardens
+/developments/havilah-city
+/investment-opportunities
+/contact
+/blog
+/blog/land-investment-in-ogun-state
+
+Avoid:
+- Random identifiers in public URLs.
+- Unnecessary query parameters.
+- Duplicate URL variations.
+- Excessively deep URL structures.
+- Keyword stuffing in URLs.
+
+Implement permanent redirects when URLs change.
+
+## 3.3 XML sitemaps
+
+Build dynamic XML sitemaps.
+
+Include:
+- Homepage.
+- About page.
+- Services pages.
+- Development directory.
+- Individual development pages.
+- Published blog articles.
+- Other important public landing pages.
+
+Requirements:
+- Automatically include newly published public content.
+- Exclude admin routes.
+- Exclude draft content.
+- Exclude private or authenticated pages.
+- Exclude noindex pages.
+- Use canonical URLs.
+- Update when content changes.
+
+Implement a sitemap index if the content grows sufficiently large.
+
+Do not use arbitrary lastmod values. Use actual content modification timestamps.
+
+## 3.4 Robots.txt
+
+Generate a valid robots.txt.
+
+Allow crawling of public pages and assets.
+
+Disallow sensitive administrative areas, authentication pages and internal application routes where appropriate.
+
+Reference the XML sitemap.
+
+Do not accidentally block CSS, JavaScript or essential assets needed for rendering.
+
+Robots.txt must not be treated as a security mechanism.
+
+## 3.5 Canonicalisation
+
+Every indexable page must have a correct canonical URL.
+
+Handle:
+- Trailing slashes consistently.
+- HTTP to HTTPS.
+- WWW versus non-WWW.
+- Duplicate parameters.
+- Pagination.
+- Filtered property pages.
+- Duplicate content.
+
+Canonical URLs must point to the preferred public version.
+
+## 3.6 Performance and Core Web Vitals
+
+Optimise:
+- Largest Contentful Paint (LCP).
+- Interaction to Next Paint (INP).
+- Cumulative Layout Shift (CLS).
+
+Target Google's recommended thresholds:
+
+- LCP: 2.5 seconds or less.
+- INP: 200 milliseconds or less.
+- CLS: 0.1 or less.
+
+Implement:
+- Image optimisation.
+- Responsive image sizes.
+- Lazy loading below the fold.
+- Priority loading for the main hero image.
+- Font optimisation.
+- Code splitting.
+- Reduced unnecessary JavaScript.
+- Caching.
+- Compression.
+- Efficient database queries.
+- Appropriate server-side rendering.
+- Minimal layout shifts.
+
+Do not lazy-load the primary above-the-fold hero image.
+
+Do not sacrifice accessibility or functionality for performance scores.
+
+---
+
+# 4. ADVANCED ON-PAGE SEO
+
+Every important page must have its own search optimisation configuration.
+
+Implement dynamic metadata management through the CMS.
+
+For each page support:
+
+- SEO title.
+- Meta description.
+- Canonical URL.
+- Open Graph title.
+- Open Graph description.
+- Open Graph image.
+- Twitter/X card metadata.
+- Robots directives.
+- Focus keyword or primary search topic.
+- Secondary search topics.
+- Image alt text.
+- Structured data configuration where appropriate.
+
+Create sensible automatic defaults, but allow authorised administrators to override them.
+
+## 4.1 Title tag strategy
+
+Titles should be:
+- Unique.
+- Descriptive.
+- Relevant to page intent.
+- Natural.
+- Written for humans.
+
+Suggested examples:
+
+Homepage:
+Oasis Ray Developments | Real Estate & Property Investment in Nigeria
+
+Christos Gardens:
+Christos Gardens, Mowe-Ofada | Oasis Ray Developments
+
+Havilah City:
+Havilah City, Ita Oshin Abeokuta | Oasis Ray
+
+Services:
+Real Estate Development & Investment Services | Oasis Ray
+
+Avoid repeating the same title across multiple pages.
+
+## 4.2 Meta descriptions
+
+Write unique descriptions that explain what visitors can find on each page.
+
+Use natural language and a relevant call to action.
+
+Do not stuff keywords or claim that a property is available unless its availability has been verified.
+
+## 4.3 Heading hierarchy
+
+Implement logical heading structures.
+
+Each page should have one clear primary H1.
+
+Use H2 and H3 headings to organise supporting content.
+
+Do not select headings based only on visual size.
+
+## 4.4 Search intent
+
+Map content to user intent:
+
+Informational:
+- What is land banking?
+- How does land acquisition work?
+- What should buyers check before purchasing land in Nigeria?
+
+Commercial investigation:
+- Best locations for property investment in Ogun State.
+- Factors to consider when choosing land in Mowe.
+- Comparing property development opportunities in Ogun State.
+
+Transactional:
+- Land for sale in Mowe-Ofada.
+- Enquire about Christos Gardens.
+- Property investment opportunities in Abeokuta.
+
+Navigational:
+- Oasis Ray Developments.
+- Christos Gardens Oasis Ray.
+- Havilah City Oasis Ray.
+
+Only publish claims and property information that have been verified.
+
+---
+
+# 5. LOCAL SEO — PRIORITY IMPLEMENTATION
+
+Local search is particularly important because the company's developments are tied to specific geographic locations.
+
+Build a strong local SEO architecture.
+
+## 5.1 Geographic relevance
+
+Create meaningful location signals throughout the website.
+
+Optimise relevant pages for:
+- Real estate in Ogun State.
+- Land investment in Ogun State.
+- Land for sale in Mowe.
+- Property opportunities in Mowe-Ofada.
+- Real estate development in Abeokuta.
+- Property opportunities in Ita Oshin.
+- Residential developments in Ogun State.
+
+Use location references naturally in:
+- Page titles.
+- Headings.
+- Descriptions.
+- Body content.
+- Image alt text.
+- Structured data.
+- Internal links.
+- Project descriptions.
+
+Do not create doorway pages that simply replace one town name with another.
+
+## 5.2 Google Business Profile
+
+Prepare the website and business information for Google Business Profile integration.
+
+Provide documentation for:
+- Consistent company name.
+- Verified business address.
+- Verified phone number.
+- Official website.
+- Business category.
+- Business description.
+- Service areas.
+- Company images.
+- Business hours.
+
+Do not create a fake address or pretend that a development location is the company's registered office.
+
+Do not automatically create or claim a Google Business Profile. The company must verify its eligibility and ownership.
+
+## 5.3 NAP consistency
+
+Maintain consistent:
+
+Name.
+Address.
+Phone number.
+
+Use the verified company information across:
+- Website footer.
+- Contact page.
+- Local business structured data.
+- Google Business Profile.
+- Approved directories.
+
+Where information is unavailable, use placeholders and flag it for the administrator.
+
+## 5.4 Google Maps
+
+Integrate verified map locations for Christos Gardens and Havilah City.
+
+Include:
+- Embedded map.
+- Directions link.
+- Location description.
+- Relevant project page links.
+
+Use accurate coordinates supplied by the client.
+
+---
+
+# 6. SCHEMA MARKUP AND STRUCTURED DATA
+
+Implement structured data using valid JSON-LD.
+
+Use Schema.org types that accurately represent the content.
+
+Potential schemas include:
+
+- Organization.
+- RealEstateAgent, only if the business genuinely qualifies for this representation.
+- WebSite.
+- WebPage.
+- BreadcrumbList.
+- Article.
+- BlogPosting.
+- Person.
+- Service.
+- ImageObject.
+- VideoObject.
+- Place.
+- FAQPage only where the content and current search feature guidelines support its use.
+
+For the company, use Organization as the primary entity where appropriate.
+
+For the founder, use Person and connect the person to the company.
+
+For developments, select the most accurate available schema representation. Do not invent unsupported property details or misuse Product, Offer or RealEstateListing markup.
+
+Requirements:
+- Valid JSON-LD.
+- No fabricated ratings.
+- No fabricated reviews.
+- No hidden structured data.
+- No misleading availability.
+- No unverified prices.
+- No fake addresses.
+- No unsupported claims.
+
+Connect entities using stable @id references.
+
+Validate structured data with Google's Rich Results Test where applicable and Schema.org Validator.
+
+Remember that valid structured data does not guarantee rich results.
+
+---
+
+# 7. AEO — ANSWER ENGINE OPTIMIZATION
+
+Optimise the website to answer questions clearly and make important information easy for answer engines to retrieve.
+
+The objective is to make Oasis Ray's content useful to:
+- Google AI Overviews.
+- ChatGPT search.
+- Gemini.
+- Perplexity.
+- Other AI-powered discovery systems.
+
+## 7.1 Direct-answer architecture
+
+Important informational pages should begin with a concise answer to the page's primary question.
+
+For example:
+
+Question:
+What is land banking?
+
+Answer:
+Land banking is a property investment approach in which individuals acquire land and hold it for potential future use or resale. Its outcome depends on factors such as location, infrastructure, legal documentation and market conditions.
+
+Follow the direct answer with:
+- Detailed explanation.
+- Supporting context.
+- Practical considerations.
+- Relevant examples.
+- Links to related resources.
+- Relevant enquiry CTA.
+
+Do not make every page read like an FAQ.
+
+## 7.2 Question-based content
+
+Build content around real questions prospective buyers and investors ask.
+
+Examples:
+
+- What should I check before buying land in Ogun State?
+- What documents should I verify before buying land in Nigeria?
+- What is land banking and how does it work?
+- What factors affect land value?
+- What is the difference between buying land and investing in a developed property?
+- What should I know before investing in Mowe?
+- Where is Christos Gardens located?
+- Where is Havilah City located?
+- How can I enquire about available plots?
+- How do real estate payment plans work?
+
+Provide accurate, concise answers followed by detailed explanations.
+
+## 7.3 Answer formatting
+
+Where useful, structure content using:
+- Definitions.
+- Short paragraphs.
+- Numbered steps.
+- Comparison tables.
+- Bullet lists.
+- Clearly labelled sections.
+- Practical examples.
+- Source references.
+
+Make the information genuinely useful rather than writing solely for search engines.
+
+## 7.4 FAQ architecture
+
+Create a reusable FAQ component.
+
+Each project page should support project-specific FAQs.
+
+Examples:
+- Where is the development located?
+- What plot sizes are available?
+- What is the current price?
+- Are payment plans available?
+- What infrastructure is provided?
+- What documentation is available?
+- How do I arrange an inspection?
+
+Only display answers supported by verified client information.
+
+Use FAQ structured data only where appropriate. Do not assume that FAQ markup guarantees a Google FAQ rich result.
+
+---
+
+# 8. GEO — GENERATIVE ENGINE OPTIMIZATION
+
+Build content that is clear, trustworthy, structured and easy for AI systems to interpret and reference.
+
+This is not about attempting to manipulate language models. It is about creating useful, verifiable and well-organised information.
+
+## 8.1 Entity clarity
+
+Establish consistent entity information for:
+
+OASIS RAY DEVELOPMENTS LTD.
+CHRISTOS GARDENS.
+HAVILAH CITY.
+Oluwayemi James Damilare.
+
+Ensure names, descriptions, locations and relationships are consistent across relevant pages.
+
+Clearly communicate:
+- What the company does.
+- Where it operates.
+- What developments it has.
+- What services it offers.
+- How prospective clients can contact it.
+
+## 8.2 Citation-worthy content
+
+Develop original, useful content that provides genuine information.
+
+Potential content:
+- A practical guide to land acquisition in Ogun State.
+- A guide to property documentation in Nigeria.
+- Factors to consider when investing in Mowe-Ofada.
+- A guide to evaluating residential developments.
+- A guide to understanding land banking.
+- An overview of property investment considerations in Abeokuta.
+
+Where the company has genuine original data, publish:
+- Verified development updates.
+- Infrastructure progress reports.
+- Project photographs.
+- Location research.
+- Documented development milestones.
+- Original market observations.
+
+Attribute research appropriately.
+
+Clearly distinguish company statements, independently sourced facts and general educational information.
+
+Do not invent statistics to make articles appear authoritative.
+
+## 8.3 AI-readable content architecture
+
+Use:
+- Descriptive page titles.
+- Clear entity names.
+- Meaningful headings.
+- Semantic HTML.
+- Contextual internal links.
+- Structured data.
+- Descriptive image captions.
+- Consistent terminology.
+- Concise definitions.
+- Verifiable supporting information.
+
+## 8.4 AI crawler accessibility
+
+Audit the website's robots.txt and server configuration for relevant AI crawlers.
+
+Do not block legitimate search crawlers accidentally.
+
+Where appropriate, support the robots directives of crawlers such as:
+- Googlebot.
+- Bingbot.
+- OAI-SearchBot.
+- ChatGPT-User.
+- PerplexityBot.
+
+Understand that search crawlers, training crawlers and user-triggered fetchers can serve different purposes.
+
+Do not assume that allowing a crawler guarantees citations or inclusion in AI answers.
+
+Respect robots directives and applicable website policies.
+
+---
+
+# 9. LLMS.TXT AND AI DISCOVERY FILES
+
+Optionally create a maintained /llms.txt file as a supplementary discovery document.
+
+It should contain:
+- Company name.
+- Company description.
+- Official website.
+- Core services.
+- Current developments.
+- Verified development locations.
+- Important public pages.
+- Contact information where approved.
+- Links to useful educational resources.
+
+Keep it concise and accurate.
+
+Do not treat llms.txt as a recognised Google ranking factor or guaranteed AI indexing mechanism.
+
+Do not expose private information, unpublished prices or administrative content.
+
+---
+
+# 10. CONTENT MARKETING AND TOPICAL AUTHORITY
+
+Build a content management system for publishing SEO-focused educational resources.
+
+Create a blog with categories such as:
+
+1. Real Estate Investment.
+2. Land Acquisition.
+3. Land Banking.
+4. Property Development.
+5. Ogun State Real Estate.
+6. Property Documentation.
+7. Investment Education.
+8. Company and Development Updates.
+
+Every article must support:
+- Title.
+- Slug.
+- Excerpt.
+- Main content.
+- Author.
+- Publication date.
+- Updated date.
+- Featured image.
+- Image alt text.
+- Category.
+- Tags.
+- SEO title.
+- Meta description.
+- Canonical URL.
+- Related articles.
+- Relevant internal links.
+- Draft/published status.
+
+## 10.1 Initial content roadmap
+
+Create an initial editorial roadmap:
+
+1. Understanding Land Banking in Nigeria.
+2. What to Consider Before Buying Land in Ogun State.
+3. A Practical Guide to Land Acquisition in Nigeria.
+4. Factors That Influence Property Value.
+5. Understanding Property Documentation Before Purchase.
+6. Why Location Matters in Real Estate Investment.
+7. What to Know About Investing in Mowe-Ofada.
+8. Exploring Property Development Opportunities in Abeokuta.
+9. Questions to Ask Before Purchasing a Plot of Land.
+10. Understanding Real Estate Payment Plans.
+11. How to Evaluate a Residential Development.
+12. Common Mistakes First-Time Land Buyers Should Avoid.
+
+These are proposed topics, not claims about the company's specific developments.
+
+Do not automatically generate and publish hundreds of thin AI articles.
+
+Prioritise original information, accuracy, editorial review and usefulness.
+
+---
+
+# 11. PROGRAMMATIC SEO
+
+Build the technical capability to generate landing pages from structured data where those pages provide genuine independent value.
+
+Potential page structures:
+
+/locations/ogun-state
+/locations/mowe
+/locations/mowe-ofada
+/locations/abeokuta
+/developments/christos-gardens
+/developments/havilah-city
+/services/land-acquisition
+/services/land-banking
+/services/property-investment
+
+Each page must have:
+- Unique content.
+- Clear search intent.
+- Useful local information.
+- Relevant internal links.
+- Accurate location information.
+- Appropriate metadata.
+- Correct canonicalisation.
+
+Do not generate hundreds of pages with the same paragraph and different location names.
+
+Only index pages that contain sufficient useful, differentiated information.
+
+---
+
+# 12. INTERNAL LINKING ARCHITECTURE
+
+Create a deliberate hub-and-spoke internal linking structure.
+
+Example:
+
+Real Estate Investment Guide
+  → Land Banking Guide
+  → Land Acquisition Guide
+  → Ogun State Investment Guide
+  → Christos Gardens
+  → Havilah City
+
+Development pages should link to:
+- Their relevant location pages.
+- Relevant services.
+- Investment resources.
+- Related developments.
+- Enquiry pages.
+
+Blog articles should link naturally to relevant service and development pages.
+
+Implement breadcrumbs on relevant pages.
+
+Avoid excessive exact-match anchor text.
+
+---
+
+# 13. IMAGE AND VIDEO SEO
+
+Real estate websites depend heavily on visual content.
+
+Optimise every property image.
+
+Implement:
+- Descriptive filenames.
+- Descriptive alt attributes.
+- Responsive image delivery.
+- Appropriate image dimensions.
+- WebP or AVIF where supported.
+- Lazy loading.
+- Image compression.
+- Proper width and height attributes.
+- Image sitemaps where useful.
+
+Example filenames:
+
+christos-gardens-mowe-ofada-estate.jpg
+
+havilah-city-ita-oshin-abeokuta-development.jpg
+
+Alt text should accurately describe the image.
+
+Do not stuff location keywords into every image description.
+
+For videos:
+- Add descriptive titles.
+- Provide useful descriptions.
+- Add transcripts or captions where possible.
+- Use VideoObject markup when appropriate.
+- Create video thumbnails.
+- Ensure the video content is accessible.
+
+---
+
+# 14. CONVERSION-FOCUSED SEO
+
+Organic traffic is only valuable if it can lead to meaningful business enquiries.
+
+Implement conversion points across the website.
+
+Include:
+- Request Property Information.
+- Enquire About This Development.
+- Schedule a Property Inspection.
+- Speak to an Investment Advisor.
+- WhatsApp Enquiry.
+- Download Project Brochure, if one exists.
+
+Every project enquiry should retain context about the property being viewed.
+
+Track:
+- Form submissions.
+- WhatsApp clicks.
+- Phone clicks.
+- Email clicks.
+- Brochure downloads.
+- Inspection requests.
+- Development page engagement.
+
+Use appropriate consent and privacy practices.
+
+Do not transmit sensitive form information to analytics platforms.
+
+---
+
+# 15. SEO ADMINISTRATION DASHBOARD
+
+Extend the existing CMS with a dedicated SEO management area.
+
+Create these sections:
+
+## 15.1 SEO Overview
+
+Display:
+- Total indexable pages.
+- Published pages.
+- Pages missing SEO titles.
+- Pages missing meta descriptions.
+- Pages missing alt text.
+- Pages with broken links.
+- Pages with missing canonical URLs.
+- Sitemap status.
+- Robots.txt status.
+- Structured data validation status where available.
+
+Clearly distinguish locally calculated website checks from actual search performance data.
+
+## 15.2 Page SEO Editor
+
+Allow administrators to:
+- Edit SEO titles.
+- Edit meta descriptions.
+- Configure canonical URLs.
+- Edit social sharing metadata.
+- Set index/noindex.
+- Edit image alt text.
+- Preview search snippets.
+- Review headings.
+- View internal linking suggestions.
+
+## 15.3 Content SEO Assistant
+
+Provide:
+- Primary topic suggestions.
+- Related keyword suggestions.
+- Search intent classification.
+- Heading recommendations.
+- Content completeness checks.
+- Internal linking suggestions.
+- Duplicate content warnings.
+
+These should be advisory, not automatic replacements for editorial judgement.
+
+## 15.4 Technical SEO Monitor
+
+Monitor:
+- Broken links.
+- Redirect chains.
+- Missing metadata.
+- Missing images.
+- Invalid structured data.
+- Sitemap errors.
+- Indexability problems.
+- Page performance where measurement data is available.
+
+Provide a clear severity classification and actionable recommendations.
+
+## 15.5 SEO Audit Reports
+
+Generate a report showing:
+- Issues detected.
+- Affected URLs.
+- Severity.
+- Recommended fix.
+- Current status.
+- Date last checked.
+
+---
+
+# 16. SEARCH CONSOLE AND ANALYTICS INTEGRATION
+
+Prepare integrations for:
+
+Google Search Console.
+Google Analytics 4.
+Google Tag Manager.
+Bing Webmaster Tools.
+Google PageSpeed Insights API, where configured.
+
+Use secure environment variables and server-side integration where necessary.
+
+Google Search Console should provide:
+- Search clicks.
+- Impressions.
+- Average position.
+- Click-through rate.
+- Top search queries.
+- Top landing pages.
+- Indexing issues.
+- Sitemap submission status.
+
+GA4 should track:
+- Organic sessions.
+- Engaged sessions.
+- Enquiry conversions.
+- WhatsApp interactions.
+- Property interest.
+- Form submissions.
+
+Bing Webmaster Tools should support additional search performance monitoring.
+
+Do not fabricate search performance metrics.
+
+If the company has not connected its accounts, display a clear connection state and setup instructions.
+
+Do not claim that the site is indexed simply because a sitemap exists.
+
+---
+
+# 17. BACKLINKS AND DIGITAL AUTHORITY
+
+Create a legitimate authority-building strategy.
+
+Potential activities:
+
+- Publish original research.
+- Build useful property investment resources.
+- Earn mentions from reputable real estate publications.
+- Collaborate with credible local business organisations.
+- Publish verified company announcements.
+- Participate in relevant industry events.
+- Create genuinely useful downloadable resources.
+
+Do not:
+- Buy spam backlinks.
+- Use private blog networks.
+- Generate fake business listings.
+- Use automated comment spam.
+- Create misleading press releases.
+- Exchange irrelevant links at scale.
+
+The goal is to earn relevant, trustworthy references over time.
+
+---
+
+# 18. TRUST, TRANSPARENCY AND E-E-A-T
+
+Strengthen the website's Experience, Expertise, Authoritativeness and Trustworthiness signals.
+
+Implement:
+
+- Genuine company information.
+- Founder profile.
+- Verified contact details.
+- Clear business descriptions.
+- Accurate development information.
+- Editorial author information.
+- Article publication and update dates.
+- Transparent investment disclaimers.
+- Privacy policy.
+- Terms of use.
+- Verified testimonials when available.
+- Genuine project photography.
+- Documentation information only when approved for publication.
+
+For property-related content, encourage independent verification of ownership, title and legal documentation.
+
+Do not present educational information as legal or financial advice.
+
+Do not imply guaranteed property appreciation or investment returns.
+
+---
+
+# 19. SECURITY AND PRIVACY
+
+SEO features must not compromise website security.
+
+Ensure:
+- Admin routes are protected.
+- SEO metadata inputs are sanitised.
+- Structured data is safely generated.
+- User-generated content is validated.
+- Forms have spam protection.
+- API keys remain server-side.
+- Analytics respects applicable consent requirements.
+- Private pages are not exposed in public sitemaps.
+- Draft content is not publicly indexed.
+
+Do not rely on robots.txt to protect confidential content.
+
+---
+
+# 20. IMPLEMENTATION AND TESTING
+
+Work in the existing codebase.
+
+First inspect:
+- Framework.
+- Routing architecture.
+- Database.
+- CMS.
+- Existing metadata.
+- Existing sitemap.
+- Existing robots.txt.
+- Existing structured data.
+- Deployment configuration.
+
+Preserve existing design and functionality.
+
+Do not rebuild unrelated components unnecessarily.
+
+Implement the system in logical stages.
+
+### Stage 1 — Technical Foundation
+- Metadata architecture.
+- Canonical URLs.
+- Sitemap.
+- Robots.txt.
+- Redirects.
+- Crawlability.
+- Performance.
+
+### Stage 2 — On-Page and Local SEO
+- Metadata for every public page.
+- Location optimisation.
+- Image optimisation.
+- Internal links.
+- Breadcrumbs.
+- Business information consistency.
+
+### Stage 3 — Structured Data and AEO
+- JSON-LD.
+- Entity architecture.
+- Direct answers.
+- FAQ components.
+- Question-led content.
+
+### Stage 4 — GEO
+- AI-readable content structure.
+- Consistent entities.
+- Original content architecture.
+- AI crawler policy audit.
+- Optional llms.txt.
+
+### Stage 5 — Content and Programmatic SEO
+- Blog CMS.
+- Location landing pages.
+- Service landing pages.
+- Editorial roadmap.
+- Internal linking.
+
+### Stage 6 — SEO Dashboard and Analytics
+- SEO management interface.
+- Technical audit.
+- Search Console connection.
+- GA4 connection.
+- Conversion tracking.
+
+### Stage 7 — Quality Assurance
+- Validate metadata.
+- Validate canonical URLs.
+- Test sitemap.
+- Test robots.txt.
+- Validate JSON-LD.
+- Check mobile performance.
+- Check crawlability.
+- Test forms.
+- Test internal links.
+- Check indexability.
+- Verify no private content is exposed.
+
+---
+
+# 21. ACCEPTANCE CRITERIA
+
+The implementation is not complete until:
+
+1. Every important public page has unique metadata.
+2. Canonical URLs are correct.
+3. XML sitemaps are generated dynamically.
+4. Robots.txt is valid.
+5. Important content is crawlable.
+6. No unintended noindex directives exist.
+7. Structured data is valid and accurate.
+8. Location information is consistent.
+9. Development pages have unique, useful content.
+10. Images have meaningful alt text.
+11. Internal links work correctly.
+12. Blog content can be managed through the CMS.
+13. SEO metadata can be managed through the CMS.
+14. Enquiry conversions can be measured.
+15. Search Console and analytics integrations are documented.
+16. AI-readable content architecture is implemented.
+17. No fabricated company or property information is published.
+18. All major functionality works on mobile and desktop.
+
+Provide a final implementation report showing:
+- Files created.
+- Files modified.
+- Features implemented.
+- Integrations configured.
+- Tests performed.
+- Remaining configuration requirements.
+- Client information still required.
+- Outstanding technical issues.
+
+Do not mark an item as complete if it has only been planned.
+
+---
+
+# 22. EXPECTED LONG-TERM ORGANIC GROWTH STRATEGY
+
+Build the system to support a sustainable organic growth programme.
+
+First 30 days:
+- Establish technical SEO.
+- Configure metadata.
+- Connect Search Console.
+- Submit sitemap.
+- Optimise core company pages.
+- Verify local business information.
+- Publish foundational educational content.
+
+Days 31–60:
+- Expand location-focused content.
+- Publish educational guides.
+- Improve internal linking.
+- Monitor search queries.
+- Improve pages receiving impressions.
+- Strengthen project pages.
+
+Days 61–90:
+- Expand successful content clusters.
+- Publish original project updates.
+- Improve underperforming pages.
+- Develop legitimate industry relationships.
+- Analyse conversion performance.
+- Refine content based on actual search data.
+
+Beyond 90 days:
+- Continuously publish useful content.
+- Expand relevant location coverage.
+- Improve existing pages.
+- Earn credible references.
+- Monitor search performance.
+- Improve conversion rates.
+- Maintain technical health.
+
+Do not promise 100,000 clicks, millions of impressions, first-page rankings or AI citations within a specific timeframe.
+
+Measure progress using actual Search Console, analytics and conversion data.
+
+# FINAL DIRECTIVE
+
+Treat this as a serious production-grade search visibility implementation for a real estate development and investment company.
+
+Do not implement superficial SEO.
+
+Build the technical foundation, content architecture, structured data, local search signals, AEO, GEO, analytics and CMS tooling as one integrated system.
+
+Prioritise accuracy, genuine usefulness, crawlability, performance, trust and qualified enquiries.
+
+The ultimate objective is to make OASIS RAY DEVELOPMENTS LTD. easier to discover, understand, evaluate and contact through traditional search engines and emerging AI-powered search experiences.

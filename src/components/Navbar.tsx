@@ -72,13 +72,28 @@ export const Navbar: React.FC<NavbarProps> = ({
   )}`;
 
   const isDark = theme === 'dark';
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 15) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <>
-      <header className={`sticky top-0 z-40 w-full backdrop-blur-md border-b transition-colors shadow-xs ${
-        isDark
-          ? 'bg-[#060E1A]/90 border-slate-800/80 text-white'
-          : 'bg-white/95 border-slate-200/80 text-slate-900'
+      <header className={`sticky top-0 z-40 w-full transition-all duration-300 ${
+        scrolled
+          ? isDark
+            ? 'bg-[#060E1A]/95 backdrop-blur-md border-b border-slate-800/80 shadow-lg text-white'
+            : 'bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-md text-slate-900'
+          : 'bg-transparent border-transparent text-white'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between gap-8 h-20">

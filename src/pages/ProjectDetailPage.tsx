@@ -39,6 +39,7 @@ import {
 
 import { useTheme } from '../context/ThemeContext';
 import { FlungCard } from '../components/FlungCard';
+import { SEOHead } from '../components/SEOHead';
 
 interface ProjectDetailPageProps {
   development: Development;
@@ -139,6 +140,12 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
       transition={{ duration: 0.4 }}
       className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 space-y-16 overflow-x-hidden"
     >
+      <SEOHead
+        title={`${development.name} (${development.location}) | Oasis Ray Developments`}
+        description={`${development.tagline}. Located in ${development.location}. Featuring verifiable title, structured payment plans and verified infrastructure.`}
+        canonicalPath={`/developments/${development.slug || development.id}`}
+        ogImage={development.heroImage}
+      />
       {/* 1. PROJECT HERO SECTION */}
       <div className="space-y-6">
         {/* Hero Title & Actions: Slide In Left & Right */}
