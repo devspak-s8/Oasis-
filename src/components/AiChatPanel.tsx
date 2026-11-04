@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Image as ImageIcon, X, Maximize2, Minimize2, BotMessageSquare, Bot, User, Loader2 } from 'lucide-react';
+import { Send, Image as ImageIcon, X, Maximize2, Minimize2, BotMessageSquare, Bot, User, Loader2, Phone, PhoneCall, MessageSquare } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 interface ChatMessage {
@@ -28,7 +28,7 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
     {
       id: 'welcome-1',
       sender: 'ai',
-      text: 'Welcome to OASIS RAY DEVELOPMENTS LTD. I am your AI Property Advisor. How can I assist you with land acquisitions, payment spreads, or survey title verification today? You can also upload a land or survey photo for instant visual evaluation!',
+      text: 'Welcome to OASIS RAY DEVELOPMENTS LTD.\n\nI am your official AI Senior Property Advisor. I have complete, verified records for **Christos Gardens** (Mowe-Ofada) and **Havilah City** (Abeokuta), including C of O titles, plot prices (300 SQM, 500 SQM, 1 Acre deals), statutory fees, corner piece premiums, and official corporate bank accounts.\n\nHow can I assist your real estate investments today? You can also upload a land photo or survey document for instant evaluation.',
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
   ]);
@@ -44,7 +44,7 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
       const systemContextMsg: ChatMessage = {
         id: `ctx-${Date.now()}`,
         sender: 'ai',
-        text: `I noticed you're reviewing: **${initialContext}**. Ask me any specific questions about available plot sizes, title documents, or installment calculators for this project!`,
+        text: `I noticed you are currently reviewing **${initialContext}**. Feel free to ask me about exact plot pricing, C of O title status, landmarks, cornerpiece fees, or inspection schedules for this property!`,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
       setMessages((prev) => [...prev, systemContextMsg]);
@@ -83,6 +83,11 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     };
 
+    const previousHistory = messages.slice(-10).map((m) => ({
+      role: m.sender === 'user' ? 'user' : 'model',
+      text: m.text
+    }));
+
     setMessages((prev) => [...prev, userMsg]);
     setInputText('');
     const currentImg = selectedImage;
@@ -96,7 +101,8 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
         body: JSON.stringify({
           prompt: text,
           image: currentImg || undefined,
-          context: initialContext
+          context: initialContext,
+          history: previousHistory
         })
       });
 
@@ -118,7 +124,7 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
       const errorMsg: ChatMessage = {
         id: `err-${Date.now()}`,
         sender: 'ai',
-        text: 'I apologize, but I experienced a brief connectivity interruption. You can also connect directly with our live advisors on WhatsApp for immediate support.',
+        text: 'I apologize, but our advisory server experienced a momentary hiccup. For urgent assistance or unlisted information, please contact our Customer Care Desk directly:\n\n📞 **Phone:** +234 (0) 803 000 0000\n💬 **WhatsApp Desk:** +2348030000000\n📧 **Email:** info@oasisraydevelopments.com',
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
       setMessages((prev) => [...prev, errorMsg]);
@@ -130,14 +136,15 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
   if (!isOpen) return null;
 
   const quickPrompts = [
-    'Christos Gardens vs Havilah City comparison',
-    'What are the 12-month payment options?',
-    'Explain C of O vs Registered Survey title',
-    'How do I schedule an on-site inspection?'
+    'Christos Gardens: 300 & 500 SQM pricing',
+    'Havilah City: 1 Acre deal & residential plots',
+    'Official corporate bank accounts',
+    'Book site inspection (Tuesdays & Saturdays)',
+    'Speak to Customer Care desk'
   ];
 
   const whatsappUrl = `https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(
-    'Hello Oasis Ray Advisory Desk. I was chatting with your AI Advisor and would like to speak to a human representative.'
+    'Hello Oasis Ray Advisory Desk. I was chatting with your AI Advisor and would like to speak directly with an advisor.'
   )}`;
 
   return (
@@ -171,6 +178,26 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
 
               {/* Header Action Controls */}
               <div className="flex items-center gap-2">
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1.5 rounded-lg bg-emerald-600/90 hover:bg-emerald-500 text-white flex items-center gap-1.5 text-xs font-semibold transition-colors shadow-xs"
+                  title="Chat directly with Customer Care Desk on WhatsApp"
+                >
+                  <MessageSquare className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">Customer Care</span>
+                </a>
+
+                <a
+                  href="tel:+2348030000000"
+                  className="p-2 text-slate-300 hover:text-white rounded-lg bg-[#102342] hover:bg-[#1A3868] transition-colors"
+                  title="Call Customer Care: +234 (0) 803 000 0000"
+                  aria-label="Call Customer Care"
+                >
+                  <Phone className="w-4 h-4 text-[#C8A45D]" />
+                </a>
+
                 <button
                   onClick={() => setIsExpanded(!isExpanded)}
                   className="p-2 text-slate-400 hover:text-white rounded-lg bg-[#102342] transition-colors"

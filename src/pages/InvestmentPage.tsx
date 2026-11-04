@@ -106,8 +106,8 @@ export const InvestmentPage: React.FC<InvestmentPageProps> = ({
           <SlideInRight className="lg:col-span-5 flex justify-center">
             <div className="w-full max-w-sm rounded-xl overflow-hidden border border-[#1E3A6E] shadow-2xl">
               <img
-                src="/src/assets/images/land_banking_growth_1793643954174.jpg"
-                alt="Land banking aerial survey layout"
+                src="/assets/aistudio/IMG-20261104-WA0026_8615404d.jpg"
+                alt="Havilah City and Mowe land banking corridor acreage"
                 referrerPolicy="no-referrer"
                 className="w-full h-auto object-cover"
               />

@@ -9,7 +9,7 @@ export const INITIAL_SETTINGS: SiteSettings = {
     'To establish a real estate company whose developments become vessels through which wealth, influence and opportunity flow across every market, every cycle and every generation.',
   companyMission:
     '[Mission Statement Pending Final Client Ratification] Delivering structured, high-integrity property assets that protect capital and yield generational value through transparent development and disciplined acquisition.',
-  officeAddress: 'KM 42 Lagos-Ibadan Expressway / Mowe-Ofada Strategic Hub, Ogun State, Nigeria (Head Office)',
+  officeAddress: '3rd Floor, Goldcrest Plaza, Ikota, Lekki, Lagos State, Nigeria (Head Office)',
   phone: '+234 (0) 803 000 0000',
   whatsappNumber: '+2348030000000',
   email: 'info@oasisraydevelopments.com',
@@ -25,7 +25,19 @@ export const INITIAL_SETTINGS: SiteSettings = {
     linkedin: 'https://linkedin.com/company/oasis-ray-developments',
     facebook: 'https://facebook.com/oasisraydevelopments',
     twitter: 'https://twitter.com/oasisraydev'
-  }
+  },
+  bankAccounts: [
+    {
+      bankName: 'FCMB',
+      accountName: 'OASIS RAY DEVELOPMENTS LTD',
+      accountNumber: '2008892202'
+    },
+    {
+      bankName: 'WEMA BANK',
+      accountName: 'OASIS RAY DEVELOPMENTS LTD',
+      accountNumber: '0128047846'
+    }
+  ]
 };
 
 export const INITIAL_SERVICES: ServiceItem[] = [
@@ -116,108 +128,214 @@ export const INITIAL_DEVELOPMENTS: Development[] = [
     id: 'christos-gardens',
     slug: 'christos-gardens',
     name: 'CHRISTOS GARDENS',
-    tagline: 'Refined Living in the High-Growth Mowe-Ofada Axis',
-    location: 'Mowe-Ofada, Ogun State',
+    tagline: 'Refined Living & Smart Investment in Mowe-Ofada',
+    location: 'Itakana Village, Mowe Ofada, Ogun State',
     state: 'Ogun State',
     category: 'Residential Master-Planned Estate',
-    startingPrice: 3500000,
+    startingPrice: 4500000,
     availability: 'Selling Fast',
-    heroImage: '/src/assets/images/christos_gardens_mowe_1793643952097.jpg',
+    subscriptionFormPdfUrl: '/assets/aistudio/de3f881c-25fa-4b80-aa4d-62a7ea48895f_6bec1654.PDF',
+    cornerPieceFee: 1000000,
+    heroImage: '/assets/aistudio/IMG-20261104-WA0020_35405fe2.jpg',
     galleryImages: [
-      '/src/assets/images/christos_gardens_mowe_1793643952097.jpg',
-      '/src/assets/images/hero_oasis_development_1793643952183.jpg',
-      '/src/assets/images/land_banking_growth_1793643954174.jpg'
+      '/assets/aistudio/IMG-20261104-WA0020_35405fe2.jpg',
+      '/assets/aistudio/IMG-20261104-WA0018_f94f4d70.jpg',
+      '/assets/aistudio/IMG-20261104-WA0028_3559ca9a.jpg',
+      '/assets/aistudio/IMG-20261104-WA0025_37b8c650.jpg',
+      '/assets/aistudio/IMG-20261104-WA0017_f3eb4dd9.jpg',
+      '/assets/aistudio/IMG-20261104-WA0003_c9fda3d4.jpg',
+      '/assets/aistudio/IMG-20261104-WA0002_b45eed29.jpg',
+      '/assets/aistudio/IMG-20261104-WA0004_3f87f0e1.jpg',
+      '/assets/aistudio/IMG-20261104-WA0005_86f8e81d.jpg'
+    ],
+    officialFlyers: [
+      '/assets/aistudio/IMG-20261104-WA0002_b45eed29.jpg',
+      '/assets/aistudio/IMG-20261104-WA0004_3f87f0e1.jpg',
+      '/assets/aistudio/IMG-20261104-WA0005_86f8e81d.jpg',
+      '/assets/aistudio/IMG-20261104-WA0003_c9fda3d4.jpg'
+    ],
+    videos: [
+      {
+        id: 'cg-vid-presenter',
+        title: 'Full Site Presentation & Title Briefing',
+        description: 'Comprehensive guided presentation at Christos Gardens detailing C of O title, topography, and pre-launch pricing.',
+        url: '/assets/aistudio/VID-20261104-WA0032_a98697f9.mp4',
+        type: 'presentation'
+      },
+      {
+        id: 'cg-vid-drone',
+        title: 'Aerial Drone Survey & Entrance Boulevard',
+        description: 'High-altitude drone sweep capturing the main billboard, motorable road network, and verdant layout.',
+        url: '/assets/aistudio/VID-20261104-WA0030_a9348488.mp4',
+        type: 'aerial'
+      },
+      {
+        id: 'cg-vid-inspection',
+        title: 'Physical Ground Tour & Client Inspection',
+        description: 'On-the-ground inspection walkthrough showcasing dry table land, access paths, and beacon demarcations.',
+        url: '/assets/aistudio/VID-20261104-WA0031_89e7e5d6.mp4',
+        type: 'tour'
+      },
+      {
+        id: 'cg-vid-flyover',
+        title: 'Mowe-Ofada Growth Corridor Flyover',
+        description: 'Landscape perspective showing proximity to key transit routes and thriving neighboring settlements.',
+        url: '/assets/aistudio/VID-20261104-WA0029_41e6b938.mp4',
+        type: 'aerial'
+      }
     ],
     overview:
-      'Christos Gardens is an intentionally designed master-planned residential community positioned in the peaceful yet rapid-growth Mowe-Ofada development corridor of Ogun State. Located just off the bustling Lagos-Ibadan economic corridor, it provides discerning investors and families with an ideal sanctuary combining urban accessibility with peaceful suburban living.',
+      'Christos Gardens is an intentionally designed master-planned residential community positioned in Itakana Village along the rapid-growth Mowe-Ofada corridor of Ogun State. Covered with a verifiable Certificate of Occupancy (C of O), it provides discerning investors and families with an ideal sanctuary combining direct accessibility to the Lagos-Ibadan economic artery with serene suburban living.',
     locationDetails:
-      'Mowe-Ofada Corridor, Obafemi Owode Local Government Area, Ogun State. Within 25 minutes of Berger/Lagos boundary, easily accessed via the newly dualized interchange roads, and proximate to established educational institutions and corporate developments.',
+      'Itakana Village, Mowe-Ofada Axis, Obafemi Owode Local Government Area, Ogun State. Within close proximity to major industrial, academic, and municipal institutions.',
+    landmarksList: [
+      'Royal Garden City',
+      'Nestle Foods Plc',
+      'Chrisland Millennium University',
+      'Obafemi Owode Local Government',
+      'Olam Oil'
+    ],
     plotSizes: [
       {
         id: 'cg-300',
         size: '300 SQM',
         title: 'Starter Residential Plot',
-        price: 2500000,
-        promoPrice: 2200000,
-        description: 'Ideal for contemporary 3-bedroom semi-detached or bungalow designs with private compound space.',
+        price: 5000000,
+        promoPrice: 4500000,
+        description: '0-3 Months Outright: ₦4.5M | 3-6 Months: ₦5M | 6-9 Months: ₦5.5M. Initial Deposit: ₦1 Million. 5% discount on one-off payment! Suitable for 3-bedroom bungalow or semi-detached villa.',
         isAvailable: true
       },
       {
         id: 'cg-500',
         size: '500 SQM',
         title: 'Standard Residential Plot',
-        price: 3500000,
-        promoPrice: 3200000,
-        description: 'Standard full plot perfect for a 4-5 bedroom detached duplex with dedicated parking and lush garden.',
-        isAvailable: true
-      },
-      {
-        id: 'cg-1000',
-        size: '1,000 SQM',
-        title: 'Commercial & Executive Enclave',
-        price: 6800000,
-        promoPrice: 6500000,
-        description: 'Prime boulevard plot suited for executive twin duplexes, clinic, or private family compound.',
+        price: 8000000,
+        promoPrice: 7000000,
+        description: '0-3 Months Outright: ₦7.0M | 3-6 Months: ₦7.5M | 6-9 Months: ₦8M. Initial Deposit: ₦2 Million. 5% discount on one-off payment! Full plot ideal for detached luxury duplex and compound.',
         isAvailable: true
       }
     ],
     paymentPlans: [
       {
-        durationMonths: 0,
-        title: 'Outright Payment (0% Interest)',
-        description: '100% payment within 30 days. Grants immediate physical allocation and deed issuance.',
-        initialDepositPercent: 100
-      },
-      {
         durationMonths: 3,
-        title: '3-Month Standard Milestone',
-        description: '30% initial commitment with the balance split across 2 equal monthly tranches without interest.',
-        initialDepositPercent: 30
-      },
-      {
-        durationMonths: 6,
-        title: '6-Month Structured Installment',
-        description: '25% down payment with structured monthly disbursements over 180 days.',
+        title: '0 – 3 Months (Outright / Interest Free)',
+        description: '300 SQM: ₦4,500,000 | 500 SQM: ₦7,000,000. 5% discount on one-off payment! Instant physical allocation upon full settlement.',
         initialDepositPercent: 25
       },
       {
-        durationMonths: 12,
-        title: '12-Month Flexible Investor Plan',
-        description: '20% down payment with comfortable monthly payments tailored to cash-flow cycles.',
+        durationMonths: 6,
+        title: '3 – 6 Months Structured Spread',
+        description: '300 SQM: ₦5,000,000 (Initial Deposit: ₦1M) | 500 SQM: ₦7,500,000 (Initial Deposit: ₦2M). Monthly balanced installments.',
+        initialDepositPercent: 20
+      },
+      {
+        durationMonths: 9,
+        title: '6 – 9 Months Extended Plan',
+        description: '300 SQM: ₦5,500,000 (Initial Deposit: ₦1M) | 500 SQM: ₦8,000,000 (Initial Deposit: ₦2M). Flexible spread tailored to cash cycles.',
         initialDepositPercent: 20
       }
     ],
+    statutoryFees: [
+      { label: 'Survey Plan', amount: '₦500,000', description: 'Coordinated registered survey lodged at Ogun State Bureau of Lands' },
+      { label: 'Legal Documentation (Deed of Assignment)', amount: '₦200,000', description: 'Formal conveyance and statutory contract of sale execution' },
+      { label: 'Developmental Fee (300 SQM)', amount: '₦600,000', description: 'Covers street lights, drainage system, security, estate gate house, tarred road' },
+      { label: 'Developmental Fee (500 SQM)', amount: '₦1,000,000', description: 'Covers street lights, drainage system, security, estate gate house, tarred road' }
+    ],
     infrastructure: [
-      'Engineered Perimeter Fencing with Razor Wire Protection',
-      'Architectural Security Gatehouse & 24/7 Monitored Access Control',
-      'Paved Internal Estate Road Network with Interlocking Pavers',
-      'Covered Drainage Channels with Natural Runoff Grates',
-      'Dedicated Transformer and Central Electricity Reticulation',
-      'Clean Central Water Distribution and Borehole Supply',
-      'Designated Family Recreational Park and Green Belt',
-      'Commercial Precinct Buffer for Essential Daily Retail'
+      'Perimeter Fencing with Boundary Beacons',
+      'Beautification of the Estate',
+      'Estate Gate House',
+      'Motorable & Highly Accessible Road',
+      'Street Lights along Internal Corridors',
+      'Engineered Drainage System',
+      '24/7 Security Patrols',
+      'Tarred Road Network'
     ],
     titleDocuments: [
       {
+        title: 'Verifiable Certificate of Occupancy (C of O)',
+        status: 'Verifiable Title',
+        description: 'Statutory government freehold title guaranteeing peace of mind.'
+      },
+      {
         title: 'Registered Survey Plan',
-        status: 'Verified & Chartable',
-        description: 'Coordinated boundary pillars lodged at the Ogun State Bureau of Lands and Survey.'
+        status: 'Lodged and Chartable',
+        description: 'Certified cadastral boundary survey charted with Ogun State Bureau of Lands.'
       },
       {
-        title: 'Deed of Assignment',
-        status: 'Contractual Guarantee',
-        description: 'Legally executed transfer of freehold title from the registered developer to the subscriber.'
+        title: 'Deed of Assignment & Contract of Sale',
+        status: 'Executed on Handover',
+        description: 'Binding legal documentation transferring title and ownership interest.'
+      }
+    ],
+    buildingGuidelines: [
+      'Residential houses must be built in designated residential areas.',
+      'Shops are not allowed within residential houses.',
+      'Tenement buildings ("Face Me I Face You") are strictly not permitted in the estate.',
+      'Subscribers who have been allocated their plots may commence construction, provided the applicable Development Levy has been fully paid.'
+    ],
+    bankAccounts: [
+      { bankName: 'FCMB', accountName: 'OASIS RAY DEVELOPMENTS LTD', accountNumber: '2008892202' },
+      { bankName: 'WEMA BANK', accountName: 'OASIS RAY DEVELOPMENTS LTD', accountNumber: '0128047846' }
+    ],
+    faqList: [
+      {
+        question: 'Where is Christos Gardens located?',
+        answer: 'Christos Gardens is located at ITAKANA VILLAGE, Mowe Ofada, Ogun State.'
       },
       {
-        title: 'Governor’s Consent / C of O',
-        status: 'In Processing / Pending Final Approval',
-        description: 'Statutory government gazetting and perfection submitted under Ogun State Ministry of Physical Planning.'
+        question: 'Who are the developers of Christos Gardens?',
+        answer: 'OASIS RAY DEVELOPMENTS LTD.'
+      },
+      {
+        question: 'What type of infrastructure will the developer provide?',
+        answer: 'Perimeter fencing, Beautification of the Estate, Estate Gate House, Motorable and Accessible Road, Street light, Drainage System, Security, and Tarred Road.'
+      },
+      {
+        question: 'What other estates and/or institutions are within 3km radius of the Estate?',
+        answer: 'Royal Garden City, Nestle Foods Plc, Chrisland Millennium University, Obafemi Owode Local Government, and Olam Oil.'
+      },
+      {
+        question: 'Is there any document/title on the land?',
+        answer: 'The title on the land is A Verifiable C of O (Certificate of Occupancy).'
+      },
+      {
+        question: 'What is the price for a cornerpiece plot?',
+        answer: 'A Corner piece land attracts an additional ₦1,000,000 premium.'
+      },
+      {
+        question: 'What is the price per plot and affordable payment plan?',
+        answer: '300 SQMS: 0-3 Months Outright: ₦4.5M | 3-6 Months: ₦5M | 6-9 Months: ₦5.5M (Initial Deposit: ₦1 Million). 500 SQMS: 0-3 Months Outright: ₦7M | 3-6 Months: ₦7.5M | 6-9 Months: ₦8M (Initial Deposit: ₦2 Million). 5% discount applies on one-off payment!'
+      },
+      {
+        question: 'What other payments do I make apart from the payment for the land?',
+        answer: 'Survey plan: ₦500,000. Legal documentation: ₦200,000. Developmental Fee: ₦600,000 for 300 SQM, and ₦1,000,000 for 500 SQM.'
+      },
+      {
+        question: 'What will the development levy be used for?',
+        answer: 'Street light, Drainage System, Security, Gate House, and Tarred Road.'
+      },
+      {
+        question: 'What do I get after completion of payments for the land?',
+        answer: 'A duly executed receipt of purchase, Contract of Sale, Copy of Survey plan, and Deed of Assignment.'
+      },
+      {
+        question: 'Can I pay a deposit and pay the balance any time within the tenure chosen?',
+        answer: 'After payment of the initial deposit, you are expected to pay the balance monthly. Non-payment as and when due will be treated as a breach of contract which can either result to termination or revocation of the contract.'
+      },
+      {
+        question: 'Is there any restriction as to the type of building I can erect on the land?',
+        answer: 'Yes. Residential houses must be built in designated residential areas. Shops are not allowed within residential houses. Tenement buildings ("Face Me I Face You") are strictly not permitted in the estate.'
+      },
+      {
+        question: 'Where do I make payments?',
+        answer: 'Payments should be deposited into either of our official corporate accounts: FCMB (2008892202) or WEMA BANK (0128047846) in favour of OASIS RAY DEVELOPMENTS LTD. We accept no liability for cash payment to any person.'
       }
     ],
     mapCoordinates: {
       lat: 6.8123,
       lng: 3.4412,
-      label: 'Christos Gardens, Mowe-Ofada Corridor, Ogun State'
+      label: 'Christos Gardens, Itakana Village, Mowe-Ofada, Ogun State'
     },
     plots: [
       { id: 'p1', plotNumber: 'Plot 01', size: '500 SQM', status: 'available', category: 'Executive Residential', x: 14, y: 24, dimensions: '18m × 28m' },
@@ -241,102 +359,234 @@ export const INITIAL_DEVELOPMENTS: Development[] = [
     id: 'havilah-city',
     slug: 'havilah-city',
     name: 'HAVILAH CITY',
-    tagline: 'Strategic Hillside Master-Planned Development in Abeokuta',
-    location: 'Ita Oshin, Abeokuta, Ogun State',
+    tagline: 'Strategic Master-Planned Development along Tarred Expressroad in Abeokuta',
+    location: 'Ibara Orile, Ita Oshin Axis, Abeokuta, Ogun State',
     state: 'Ogun State',
     category: 'Strategic Mixed-Use & Suburban Development',
-    startingPrice: 2200000,
+    startingPrice: 900000,
     availability: 'Available',
-    heroImage: '/src/assets/images/havilah_city_abeokuta_1793643953227.jpg',
+    subscriptionFormPdfUrl: '/assets/aistudio/3dc04db0-9829-4962-9e39-cb47b3cb866c_7183dd3c.PDF',
+    cornerPieceFee: 400000,
+    heroImage: '/assets/aistudio/IMG-20261104-WA0019_8697be16.jpg',
     galleryImages: [
-      '/src/assets/images/havilah_city_abeokuta_1793643953227.jpg',
-      '/src/assets/images/land_banking_growth_1793643954174.jpg',
-      '/src/assets/images/hero_oasis_development_1793643952183.jpg'
+      '/assets/aistudio/IMG-20261104-WA0019_8697be16.jpg',
+      '/assets/aistudio/IMG-20261104-WA0012_6e249195.jpg',
+      '/assets/aistudio/IMG-20261104-WA0014_3013d77c.jpg',
+      '/assets/aistudio/IMG-20261104-WA0026_8615404d.jpg',
+      '/assets/aistudio/IMG-20261104-WA0015_6878fb98.jpg',
+      '/assets/aistudio/IMG-20261104-WA0016_9d09e626.jpg',
+      '/assets/aistudio/IMG-20261104-WA0027_8e524f7c.jpg',
+      '/assets/aistudio/IMG-20261104-WA0024_6407fbff.jpg',
+      '/assets/aistudio/IMG-20261104-WA0021_7aa786a8.jpg',
+      '/assets/aistudio/IMG-20261104-WA0022_0b74a954.jpg',
+      '/assets/aistudio/IMG-20261104-WA0023_80e56988.jpg',
+      '/assets/aistudio/IMG-20261104-WA0007_4c8d0946.jpg',
+      '/assets/aistudio/IMG-20261104-WA0011_335cee98.jpg',
+      '/assets/aistudio/IMG-20261104-WA0008_3c6477ec.jpg',
+      '/assets/aistudio/IMG-20261104-WA0009_842667a4.jpg',
+      '/assets/aistudio/IMG-20261104-WA0006_2d6e4917.jpg',
+      '/assets/aistudio/IMG-20261104-WA0010_e9809bb6.jpg'
+    ],
+    officialFlyers: [
+      '/assets/aistudio/IMG-20261104-WA0007_4c8d0946.jpg',
+      '/assets/aistudio/IMG-20261104-WA0011_335cee98.jpg',
+      '/assets/aistudio/IMG-20261104-WA0008_3c6477ec.jpg',
+      '/assets/aistudio/IMG-20261104-WA0009_842667a4.jpg',
+      '/assets/aistudio/IMG-20261104-WA0006_2d6e4917.jpg',
+      '/assets/aistudio/IMG-20261104-WA0010_e9809bb6.jpg'
     ],
     overview:
-      'Havilah City is an expansive master development situated in Ita Oshin, the gateway corridor of historic Abeokuta, Ogun State. Combining breathtaking elevated topography with deliberate infrastructural planning, Havilah City is envisioned as a flagship estate for forward-thinking property owners, land banking strategists, and executive homebuilders.',
+      'Havilah City is an expansive master development situated directly along the tarred expressroad in Ibara Orile, Ita Oshin Axis, Abeokuta. Combining elevated topography with strategic regional connectivity, Havilah City provides forward-thinking land bankers and homeowners with dispute-free parcels with a Registered Survey and C of O in view.',
     locationDetails:
-      'Ita Oshin Urban Hub, Abeokuta North Local Government Area, Ogun State. Strategically connected to the Lagos-Abeokuta Expressway and the Abeokuta-Lagos Railway corridor (Prof. Wole Soyinka Train Station at Laderin), providing rapid regional connectivity.',
+      'Located along the Tarred Expressroad in Ibara Orile, Ita Oshin Axis, Abeokuta, Ogun State. Highly accessible and proximate to major commercial hubs and transport networks.',
+    landmarksList: [
+      'Ita Oshin Motor Parks',
+      'Oke Ata Housing Estate',
+      'Federal Neuropsychiatric Hospital Aro',
+      'Lafenwa Market',
+      'Old Brewery Abeokuta',
+      'Olumo Rock',
+      'Crescent University'
+    ],
     plotSizes: [
       {
-        id: 'hc-450',
-        size: '450 SQM',
-        title: 'Suburban Villa Parcel',
-        price: 2200000,
-        promoPrice: 1950000,
-        description: 'Elevated parcel overlooking green valleys, perfectly proportioned for modern residential detached homes.',
+        id: 'hc-300',
+        size: '300 SQM (Residential)',
+        title: 'Starter Residential Plot',
+        price: 1200000,
+        promoPrice: 900000,
+        description: '0-6 Months (Interest Free): ₦900,000 | 6-9 Months: ₦1,200,000 | 9-12 Months: ₦1,500,000. Initial Deposit: ₦300,000. 5% discount on one-off payment!',
         isAvailable: true
       },
       {
-        id: 'hc-600',
-        size: '600 SQM',
-        title: 'Prime Full Residential Plot',
-        price: 2800000,
+        id: 'hc-500',
+        size: '500 SQM (Residential)',
+        title: 'Standard Residential Plot',
+        price: 2000000,
+        promoPrice: 1500000,
+        description: '0-6 Months (Interest Free): ₦1,500,000 | 6-9 Months: ₦2,000,000 | 9-12 Months: ₦2,300,000. Initial Deposit: ₦300,000. 5% discount on one-off payment!',
+        isAvailable: true
+      },
+      {
+        id: 'hc-acre',
+        size: '1 Acre / 3,000 SQMS (Acre Deal)',
+        title: 'Prime Land Banking Acre Deal',
+        price: 9700000,
+        promoPrice: 8700000,
+        description: '0-6 Months (Interest Free): ₦8,700,000 | 6-9 Months: ₦9,300,000 | 9-12 Months: ₦9,700,000. Initial Deposit: ₦1,000,000. 5% discount on one-off payment!',
+        isAvailable: true
+      },
+      {
+        id: 'hc-comm-500',
+        size: '500 SQMS (Commercial)',
+        title: 'Commercial Frontage Plot',
+        price: 2500000,
         promoPrice: 2500000,
-        description: 'Expansive estate plot with wide street frontage, ideal for luxury family villa with outhouse.',
+        description: '0-3 Months: ₦2,500,000 | 3-6 Months: ₦3,000,000 | 6-9 Months: ₦3,300,000 | 9-12 Months: ₦3,600,000. Initial Deposit: ₦500,000.',
         isAvailable: true
       },
       {
-        id: 'hc-1200',
-        size: '1,200 SQM',
-        title: 'Commercial / Institutional Parcel',
-        price: 5400000,
-        promoPrice: 4900000,
-        description: 'Strategic corner piece on the main entry boulevard for community retail, nursery, or hospitality.',
+        id: 'hc-comm-1000',
+        size: '1,000 SQMS (Commercial)',
+        title: 'Commercial Boulevard Parcel',
+        price: 4500000,
+        promoPrice: 4500000,
+        description: '0-3 Months: ₦4,500,000 | 3-6 Months: ₦5,000,000 | 6-9 Months: ₦5,500,000 | 9-12 Months: ₦6,000,000. Initial Deposit: ₦1,000,000.',
         isAvailable: true
       }
     ],
     paymentPlans: [
       {
-        durationMonths: 0,
-        title: 'Outright Plan (Discounted)',
-        description: 'Full payment within 30 days inclusive of instant documentation drafting.',
-        initialDepositPercent: 100
+        durationMonths: 6,
+        title: '0 – 6 Months (Interest Free / Pre-Launch)',
+        description: '300 SQM: ₦900,000 | 500 SQM: ₦1,500,000 | 1 Acre (3,000 SQM): ₦8,700,000. 5% discount on one-off payment! Initial deposit from ₦300K.',
+        initialDepositPercent: 20
       },
       {
-        durationMonths: 6,
-        title: '6-Month Balanced Spread',
-        description: '30% initial deposit with equal remaining payments spaced over six months.',
-        initialDepositPercent: 30
+        durationMonths: 9,
+        title: '6 – 9 Months Structured Spread',
+        description: '300 SQM: ₦1,200,000 | 500 SQM: ₦2,000,000 | 1 Acre: ₦9,300,000. Balanced milestone distributions spaced over 270 days.',
+        initialDepositPercent: 20
       },
       {
         durationMonths: 12,
-        title: '12-Month Land Banking Spread',
-        description: '20% commitment down payment for investors banking land as long-term wealth assets.',
+        title: '9 – 12 Months Land Banking Spread',
+        description: '300 SQM: ₦1,500,000 | 500 SQM: ₦2,300,000 | 1 Acre: ₦9,700,000. Tailored spread for long-term wealth builders banking acreage.',
         initialDepositPercent: 20
       }
     ],
+    statutoryFees: [
+      {
+        label: 'Statutory Charges (300 SQM)',
+        amount: '₦600,000',
+        description: 'Includes Development Levy, Provisional Survey, and Legal Documentation'
+      },
+      {
+        label: 'Statutory Charges (500 SQM)',
+        amount: '₦800,000',
+        description: 'Includes Development Levy, Provisional Survey, and Legal Documentation'
+      },
+      {
+        label: 'Statutory Charges (1 Acre / 3,000 SQMS)',
+        amount: '₦4,000,000',
+        description: 'Includes Development Levy, Provisional Survey, and Legal Documentation'
+      }
+    ],
     infrastructure: [
-      'Grand Architectural Gatehouse and Estate Security Post',
-      'Clearly Demarcated Survey Beacons for Every Individual Parcel',
-      'Graded and Stabilized Internal Boulevard Roadways',
-      'Perimeter Concrete Boundary Demarcation',
-      'High-Clearance Electrical Poles and Substation Reservation',
-      'Eco-Conscious Topographical Runoff and Storm Drainage System',
-      'Solar-Powered Main Entrance and Boulevard Lighting',
-      'Estate Facility Office for On-Site Support'
+      'Estate Gate House',
+      'Perimeter Fencing',
+      'Motorable and Accessible Road',
+      'Beautification of Estate',
+      'Clearly Demarcated Survey Beacons for Every Parcel',
+      'Eco-Conscious Topographical Runoff & Storm Drainage System'
     ],
     titleDocuments: [
       {
-        title: 'Registered Perimeter Survey',
-        status: 'Lodged and Chartable',
-        description: 'Boundary survey coordinates certified by registered surveyor and charted at Ogun State Survey Office.'
+        title: 'Registered Survey / C of O in view',
+        status: 'Lodged & In View',
+        description: 'Cadastral boundary survey registered at Ogun State Bureau of Lands with C of O in view.'
       },
       {
         title: 'Contract of Sale & Deed of Assignment',
         status: 'Fully Executable',
-        description: 'Binding legal documentation transferring interest and rights to each property investor.'
+        description: 'Binding legal documentation transferring interest and unencumbered rights to each buyer.'
+      }
+    ],
+    buildingGuidelines: [
+      'Residential houses must be built in designated residential areas, and Commercial buildings in designated commercial areas.',
+      'Shops are not allowed within residential houses.',
+      'Tenement buildings ("Face Me I Face You") are strictly not permitted in the estate.',
+      'Subscribers who have been allocated their plots may commence construction, provided the applicable Development Levy has been fully paid.'
+    ],
+    bankAccounts: [
+      { bankName: 'FCMB', accountName: 'OASIS RAY DEVELOPMENTS LTD', accountNumber: '2008892202' }
+    ],
+    faqList: [
+      {
+        question: 'Where is Havilah City located?',
+        answer: 'Havilah City is located along the Tarred Expressroad in Ibara Orile, Ita Oshin Axis, Abeokuta.'
       },
       {
-        title: 'Excision in Progress',
-        status: 'Government Gazette Pipeline',
-        description: 'Official land title perfection underway in coordination with relevant state ministry authorities.'
+        question: 'Who are the developers?',
+        answer: 'OASIS RAY DEVELOPMENTS LTD.'
+      },
+      {
+        question: 'What major Landmarks are in close proximity to Havilah City?',
+        answer: 'Ita Oshin Motor Parks, Oke Ata Housing Estate, Federal Neuropsychiatric Hospital Aro, Lafenwa Market, Old Brewery Abeokuta, Olumo Rock, Crescent University.'
+      },
+      {
+        question: 'Is there any document/title on the land?',
+        answer: 'The title on the land is Registered Survey / C of O in view.'
+      },
+      {
+        question: 'What is the price for cornerpiece?',
+        answer: 'A Corner piece land attracts ₦400,000.'
+      },
+      {
+        question: 'What are the residential prices & payment plans?',
+        answer: '300 SQMS: 0-6 Months (Interest Free) ₦900,000 | 6-9 Months ₦1,200,000 | 9-12 Months ₦1,500,000 (Initial Deposit: ₦300,000). 500 SQMS: 0-6 Months (Interest Free) ₦1,500,000 | 6-9 Months ₦2,000,000 | 9-12 Months ₦2,300,000 (Initial Deposit: ₦300,000). 1 Acre (3,000 SQMS): 0-6 Months ₦8,700,000 | 6-9 Months ₦9,300,000 | 9-12 Months ₦9,700,000 (Initial Deposit: ₦1,000,000). 5% discount on one-off payment!'
+      },
+      {
+        question: 'What are the commercial plot sizes & affordable payment plans?',
+        answer: '500 SQMS Commercial: 0-3 Months ₦2,500,000 | 3-6 Months ₦3,000,000 | 6-9 Months ₦3,300,000 | 9-12 Months ₦3,600,000 (Initial Deposit: ₦500,000). 1000 SQMS Commercial: 0-3 Months ₦4,500,000 | 3-6 Months ₦5,000,000 | 6-9 Months ₦5,500,000 | 9-12 Months ₦6,000,000 (Initial Deposit: ₦1,000,000).'
+      },
+      {
+        question: 'What other payments do I make apart from the payment for the land?',
+        answer: 'Statutory Charges (Includes Development Levy, Provisional Survey, and legal documentation): ₦600,000 (300 SQM), ₦800,000 (500 SQM), ₦4,000,000 (1 Acre).'
+      },
+      {
+        question: 'What will the development levy be used for?',
+        answer: 'Motorable and Accessible Road, Beautification of Estate, Estate Gate House, and Perimeter Fencing.'
+      },
+      {
+        question: 'What do I get after completion of payments for the land?',
+        answer: 'A duly executed receipt of purchase, Contract of Sale, Copy of Survey plan, Deed of Assignment.'
+      },
+      {
+        question: 'Can I pay a deposit and pay the balance any time within the duration of the tenure chosen?',
+        answer: 'After payment of the initial deposit, you are expected to pay the balance monthly as nonpayment as at when due will be treated as a breach of contract which can either result to termination or revocation of the contract.'
+      },
+      {
+        question: 'What are the Statutory Fee Undertakings?',
+        answer: 'Development Fee: In the event of default, the development fee shall be charged at the prevailing market value or cost. Payment of Statutory Fees: All statutory fees must be paid within three (3) months after the completion of your payment plan. Failure to comply may result in forfeiture.'
+      },
+      {
+        question: 'Reselling or change of ownership policy?',
+        answer: 'A subscriber who has fully paid for their plot(s) and wishes to resell or transfer ownership must notify the company and pay a change-of-ownership fee of ₦100,000. The subscriber must submit the original copies of relevant documents; the new subscriber will be responsible for the cost of processing the Deed of Assignment and Survey Plan required for transfer.'
+      },
+      {
+        question: 'When is physical allocation and construction commencement?',
+        answer: 'Physical allocation communicated upon full payment of plot(s) of land, Deed of Assignment, Survey Plan, and Development Levy. Construction may commence provided applicable Development Levy has been fully paid.'
+      },
+      {
+        question: 'Where do I make payments?',
+        answer: 'Cash payments/transfers should be deposited into our official account: FCMB (Account Name: OASIS RAY DEVELOPMENTS LTD, Account Number: 2008892202). We accept no liability for cash payment to any person or group of persons.'
       }
     ],
     mapCoordinates: {
       lat: 7.1852,
       lng: 3.3150,
-      label: 'Havilah City, Ita Oshin, Abeokuta, Ogun State'
+      label: 'Havilah City, Ibara Orile, Ita Oshin Axis, Abeokuta, Ogun State'
     },
     plots: [
       { id: 'hc-p1', plotNumber: 'Parcel 01', size: '600 SQM', status: 'available', category: 'Executive Residential', x: 20, y: 28, dimensions: '20m × 30m' },

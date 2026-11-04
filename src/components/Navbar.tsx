@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, PhoneCall, MessageSquare, Phone, ArrowRight, Sun, Moon } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Menu, X, PhoneCall, MessageSquare, Phone, ArrowRight, Sun, Moon, ChevronDown, Building, Compass, Users, Layers, ShieldCheck, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { SiteSettings } from '../types';
 import { useTheme } from '../context/ThemeContext';
@@ -19,6 +19,19 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const { theme, toggleTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   // Prevent background scrolling when mobile sidebar is open
   useEffect(() => {
@@ -32,18 +45,25 @@ export const Navbar: React.FC<NavbarProps> = ({
     };
   }, [mobileMenuOpen]);
 
-  const navLinks = [
-    { label: 'Developments', path: '/developments', desc: 'Christos Gardens & Havilah City' },
-    { label: 'Advisory Desk', path: '/advisory', desc: 'Speak to an Investment Advisor' },
-    { label: 'About', path: '/about', desc: 'Vision, Mission & Leadership' },
-    { label: 'Services', path: '/services', desc: '8 Core Advisory Disciplines' },
-    { label: 'Investment', path: '/investment', desc: 'Land Banking & Structured Capital' },
-    { label: 'Contact', path: '/contact', desc: 'General Inquiries & Office' }
+  const primaryNavLinks = [
+    { label: 'Developments', path: '/developments', desc: 'Christos Gardens & Havilah City' }
+  ];
+
+  const exploreDropdownLinks = [
+    { label: 'Advisory Desk', path: '/advisory', desc: 'Speak to an Investment Advisor', icon: PhoneCall },
+    { label: 'Investment Plans', path: '/investment', desc: 'Land Banking & Structured Capital', icon: Compass },
+    { label: 'Core Services', path: '/services', desc: '8 Specialized Advisory Disciplines', icon: Layers }
+  ];
+
+  const companyDropdownLinks = [
+    { label: 'About & Vision', path: '/about', desc: 'Vision, Mission & Leadership', icon: Users },
+    { label: 'Contact Us', path: '/contact', desc: 'General Inquiries & Office', icon: Mail }
   ];
 
   const handleLinkClick = (path: string) => {
     onNavigate(path);
     setMobileMenuOpen(false);
+    setDropdownOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -85,9 +105,9 @@ export const Navbar: React.FC<NavbarProps> = ({
               </div>
             </button>
 
-            {/* Zone 2: Desktop navigation links */}
-            <nav className="hidden md:flex items-center gap-7 text-sm font-medium">
-              {navLinks.map((link) => {
+            {/* Zone 2: Desktop navigation links with multiple clean dropdowns */}
+            <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
+              {primaryNavLinks.map((link) => {
                 const isActive = currentPath === link.path;
                 return (
                   <button
@@ -108,6 +128,102 @@ export const Navbar: React.FC<NavbarProps> = ({
                   </button>
                 );
               })}
+
+              {/* Explore Dropdown */}
+              <div className="relative group">
+                <button
+                  className={`flex items-center gap-1.5 py-1 whitespace-nowrap shrink-0 transition-colors ${
+                    ['/advisory', '/investment', '/services'].includes(currentPath)
+                      ? 'text-[#C8A45D] font-bold'
+                      : isDark
+                      ? 'text-slate-300 hover:text-white'
+                      : 'text-slate-700 hover:text-[#0B1930]'
+                  }`}
+                >
+                  <span>Explore</span>
+                  <ChevronDown className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" />
+                </button>
+
+                <div className={`absolute left-0 mt-1.5 w-64 rounded-xl border shadow-2xl p-2 z-50 backdrop-blur-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ${
+                  isDark ? 'bg-[#0B1930] border-[#1E3A6E] text-white' : 'bg-white border-slate-200 text-[#0B1930]'
+                }`}>
+                  {exploreDropdownLinks.map((item) => {
+                    const IconComponent = item.icon;
+                    const isItemActive = currentPath === item.path;
+                    return (
+                      <button
+                        key={item.path}
+                        onClick={() => handleLinkClick(item.path)}
+                        className={`w-full text-left p-2.5 rounded-lg transition-colors flex items-start gap-3 group/item ${
+                          isItemActive
+                            ? 'bg-[#C8A45D]/15 text-[#C8A45D] font-bold'
+                            : isDark
+                            ? 'hover:bg-[#102342] text-slate-200'
+                            : 'hover:bg-slate-50 text-slate-800'
+                        }`}
+                      >
+                        <div className={`w-8 h-8 rounded-lg border flex items-center justify-center shrink-0 mt-0.5 ${
+                          isDark ? 'bg-[#060E1A] border-[#1E3A6E] text-[#C8A45D]' : 'bg-slate-100 border-slate-200 text-[#B38E46]'
+                        }`}>
+                          <IconComponent className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <div className="text-xs font-bold leading-tight">{item.label}</div>
+                          <div className={`text-[10px] mt-0.5 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{item.desc}</div>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Company Dropdown */}
+              <div className="relative group">
+                <button
+                  className={`flex items-center gap-1.5 py-1 whitespace-nowrap shrink-0 transition-colors ${
+                    ['/about', '/contact'].includes(currentPath)
+                      ? 'text-[#C8A45D] font-bold'
+                      : isDark
+                      ? 'text-slate-300 hover:text-white'
+                      : 'text-slate-700 hover:text-[#0B1930]'
+                  }`}
+                >
+                  <span>Company</span>
+                  <ChevronDown className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" />
+                </button>
+
+                <div className={`absolute left-0 mt-1.5 w-60 rounded-xl border shadow-2xl p-2 z-50 backdrop-blur-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ${
+                  isDark ? 'bg-[#0B1930] border-[#1E3A6E] text-white' : 'bg-white border-slate-200 text-[#0B1930]'
+                }`}>
+                  {companyDropdownLinks.map((item) => {
+                    const IconComponent = item.icon;
+                    const isItemActive = currentPath === item.path;
+                    return (
+                      <button
+                        key={item.path}
+                        onClick={() => handleLinkClick(item.path)}
+                        className={`w-full text-left p-2.5 rounded-lg transition-colors flex items-start gap-3 group/item ${
+                          isItemActive
+                            ? 'bg-[#C8A45D]/15 text-[#C8A45D] font-bold'
+                            : isDark
+                            ? 'hover:bg-[#102342] text-slate-200'
+                            : 'hover:bg-slate-50 text-slate-800'
+                        }`}
+                      >
+                        <div className={`w-8 h-8 rounded-lg border flex items-center justify-center shrink-0 mt-0.5 ${
+                          isDark ? 'bg-[#060E1A] border-[#1E3A6E] text-[#C8A45D]' : 'bg-slate-100 border-slate-200 text-[#B38E46]'
+                        }`}>
+                          <IconComponent className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <div className="text-xs font-bold leading-tight">{item.label}</div>
+                          <div className={`text-[10px] mt-0.5 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{item.desc}</div>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
             </nav>
 
             {/* Zone 3: Primary action + Theme switch toggle */}
@@ -246,32 +362,59 @@ export const Navbar: React.FC<NavbarProps> = ({
 
               {/* Drawer Navigation Links */}
               <div className="px-4 py-6 flex-1 space-y-1.5 overflow-y-auto">
-                {navLinks.map((link, idx) => {
-                  const isActive = currentPath === link.path;
-                  return (
-                    <motion.button
-                      key={link.path}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.04 * (idx + 1), duration: 0.25 }}
-                      onClick={() => handleLinkClick(link.path)}
-                      className={`w-full text-left px-4 py-3 rounded-xl transition-all flex items-center justify-between group ${
-                        isActive
-                          ? isDark
-                            ? 'bg-[#102342] border border-[#C8A45D]/60 text-[#C8A45D] font-bold'
-                            : 'bg-slate-100 border border-[#C8A45D]/50 text-[#0B1930] font-bold'
-                          : isDark
-                          ? 'hover:bg-[#102342]/60 text-slate-300 hover:text-white font-medium'
-                          : 'hover:bg-slate-50 text-slate-700 hover:text-slate-900 font-medium'
-                      }`}
-                    >
-                      <span className="text-sm tracking-tight">{link.label}</span>
-                      <ArrowRight className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${
-                        isActive ? 'text-[#C8A45D]' : isDark ? 'text-slate-500' : 'text-slate-400'
-                      }`} />
-                    </motion.button>
-                  );
-                })}
+                <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#C8A45D] px-4 pb-1">
+                  Main
+                </div>
+                {primaryNavLinks.map((link) => (
+                  <button
+                    key={link.path}
+                    onClick={() => handleLinkClick(link.path)}
+                    className={`w-full text-left px-4 py-2.5 rounded-xl transition-all flex items-center justify-between ${
+                      currentPath === link.path
+                        ? 'bg-[#C8A45D]/20 text-[#C8A45D] font-bold'
+                        : isDark ? 'text-slate-300 hover:bg-[#102342]' : 'text-slate-700 hover:bg-slate-100'
+                    }`}
+                  >
+                    <span className="text-sm">{link.label}</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-[#C8A45D]" />
+                  </button>
+                ))}
+
+                <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#C8A45D] px-4 pt-4 pb-1">
+                  Explore
+                </div>
+                {exploreDropdownLinks.map((link) => (
+                  <button
+                    key={link.path}
+                    onClick={() => handleLinkClick(link.path)}
+                    className={`w-full text-left px-4 py-2.5 rounded-xl transition-all flex items-center justify-between ${
+                      currentPath === link.path
+                        ? 'bg-[#C8A45D]/20 text-[#C8A45D] font-bold'
+                        : isDark ? 'text-slate-300 hover:bg-[#102342]' : 'text-slate-700 hover:bg-slate-100'
+                    }`}
+                  >
+                    <span className="text-sm">{link.label}</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-[#C8A45D]" />
+                  </button>
+                ))}
+
+                <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#C8A45D] px-4 pt-4 pb-1">
+                  Company
+                </div>
+                {companyDropdownLinks.map((link) => (
+                  <button
+                    key={link.path}
+                    onClick={() => handleLinkClick(link.path)}
+                    className={`w-full text-left px-4 py-2.5 rounded-xl transition-all flex items-center justify-between ${
+                      currentPath === link.path
+                        ? 'bg-[#C8A45D]/20 text-[#C8A45D] font-bold'
+                        : isDark ? 'text-slate-300 hover:bg-[#102342]' : 'text-slate-700 hover:bg-slate-100'
+                    }`}
+                  >
+                    <span className="text-sm">{link.label}</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-[#C8A45D]" />
+                  </button>
+                ))}
               </div>
 
               {/* Drawer Footer */}
@@ -304,4 +447,3 @@ export const Navbar: React.FC<NavbarProps> = ({
     </>
   );
 };
-

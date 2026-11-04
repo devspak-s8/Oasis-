@@ -19,10 +19,10 @@ export const DevelopmentCard: React.FC<DevelopmentCardProps> = ({
   const isDark = theme === 'dark';
 
   return (
-    <div className={`group rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col ${
+    <div className={`group rounded-2xl overflow-hidden transition-all duration-300 flex flex-col ${
       isDark
-        ? 'bg-[#102342] border-[#1E3A6E] hover:border-[#C8A45D] text-white shadow-xl'
-        : 'bg-white border-slate-200/90 hover:border-[#B38E46] text-[#0B1930] shadow-sm hover:shadow-lg'
+        ? 'bg-[#102342] text-white shadow-xl'
+        : 'bg-white text-[#0B1930] shadow-sm hover:shadow-lg'
     }`}>
       {/* Property Image with Measured Scrim */}
       <div className="relative aspect-[16/10] overflow-hidden bg-slate-900">

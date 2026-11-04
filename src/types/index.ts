@@ -53,10 +53,38 @@ export interface Development {
     lng: number;
     label: string;
   };
+  videos?: {
+    id: string;
+    title: string;
+    description: string;
+    url: string;
+    type: 'aerial' | 'tour' | 'presentation';
+  }[];
+  officialFlyers?: string[];
+  subscriptionFormPdfUrl?: string;
+  cornerPieceFee?: number;
+  landmarksList?: string[];
+  statutoryFees?: {
+    label: string;
+    amount: string;
+    description?: string;
+  }[];
+  buildingGuidelines?: string[];
+  bankAccounts?: BankAccountDetails[];
+  faqList?: {
+    question: string;
+    answer: string;
+  }[];
   plots: PlotMapItem[];
   featured: boolean;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface BankAccountDetails {
+  bankName: string;
+  accountName: string;
+  accountNumber: string;
 }
 
 export interface ServiceItem {
@@ -121,4 +149,5 @@ export interface SiteSettings {
     facebook: string;
     twitter: string;
   };
+  bankAccounts?: BankAccountDetails[];
 }

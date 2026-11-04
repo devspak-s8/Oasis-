@@ -16,16 +16,14 @@ export const FlungCard: React.FC<FlungCardProps> = ({
 }) => {
   // Alternating initial flung direction variants
   const initialVariants = [
-    { x: -140, y: -60, rotate: -16, opacity: 0, scale: 0.82 },
-    { x: 140, y: -80, rotate: 18, opacity: 0, scale: 0.82 },
-    { x: -130, y: 80, rotate: -18, opacity: 0, scale: 0.82 },
-    { x: 140, y: 70, rotate: 16, opacity: 0, scale: 0.82 }
+    { x: -100, y: -40, rotate: -8, opacity: 0, scale: 0.9 },
+    { x: 100, y: -50, rotate: 10, opacity: 0, scale: 0.9 },
+    { x: -90, y: 50, rotate: -10, opacity: 0, scale: 0.9 },
+    { x: 100, y: 40, rotate: 8, opacity: 0, scale: 0.9 }
   ];
 
-  const settledRotations = [-2, 2.5, -2.5, 2];
   const idx = index % 4;
   const currentInitial = initialVariants[idx];
-  const currentRotation = settledRotations[idx];
 
   return (
     <motion.div
@@ -33,20 +31,20 @@ export const FlungCard: React.FC<FlungCardProps> = ({
       whileInView={{
         x: 0,
         y: 0,
-        rotate: currentRotation,
+        rotate: 0, // settles completely straight
         opacity: 1,
         scale: 1
       }}
-      viewport={{ once: false, amount: 0.15 }}
+      viewport={{ once: true, amount: 0.1 }} // triggers once cleanly without re-triggering blinking on scroll up/down
       transition={{
         type: 'spring',
-        stiffness: 130,
-        damping: 14,
-        mass: 0.85,
-        delay: (index % 4) * 0.11
+        stiffness: 110,
+        damping: 18,
+        mass: 0.9,
+        delay: (index % 4) * 0.08
       }}
       whileHover={{
-        scale: 1.03,
+        scale: 1.02,
         rotate: 0,
         zIndex: 25,
         transition: { duration: 0.2 }

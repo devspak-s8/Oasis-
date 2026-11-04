@@ -85,7 +85,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, settings }) => {
             <div className="space-y-3 text-xs sm:text-sm text-slate-200 font-medium">
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-[#C8A45D] shrink-0 mt-0.5" />
-                <span className="leading-snug text-white font-semibold">Mowe-Ofada Strategic Hub, Ogun State, Nigeria</span>
+                <div className="space-y-1">
+                  <div className="leading-snug text-white font-semibold">{settings.officeAddress}</div>
+                  <div className="text-[11px] text-slate-300">Project Sites: Mowe-Ofada & Abeokuta Axes, Ogun State</div>
+                </div>
               </div>
               <div className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-[#C8A45D] shrink-0" />

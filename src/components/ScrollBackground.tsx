@@ -5,19 +5,19 @@ import { useTheme } from '../context/ThemeContext';
 const BACKGROUND_SCENES = [
   {
     id: 'hero',
-    image: '/src/assets/images/hero_oasis_development_1793643952183.jpg'
+    image: '/assets/aistudio/IMG-20261104-WA0020_35405fe2.jpg'
   },
   {
     id: 'christos',
-    image: '/src/assets/images/christos_gardens_mowe_1793643952097.jpg'
+    image: '/assets/aistudio/IMG-20261104-WA0018_f94f4d70.jpg'
   },
   {
     id: 'havilah',
-    image: '/src/assets/images/havilah_city_abeokuta_1793643953227.jpg'
+    image: '/assets/aistudio/IMG-20261104-WA0019_8697be16.jpg'
   },
   {
     id: 'landbanking',
-    image: '/src/assets/images/land_banking_growth_1793643954174.jpg'
+    image: '/assets/aistudio/IMG-20261104-WA0026_8615404d.jpg'
   }
 ];
 

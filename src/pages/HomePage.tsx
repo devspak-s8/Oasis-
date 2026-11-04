@@ -72,8 +72,8 @@ export const HomePage: React.FC<HomePageProps> = ({
         {/* Background Image with Drop Landing Physics and Measured Scrim */}
         <DropLanding className="absolute inset-0 z-0">
           <img
-            src="/src/assets/images/hero_oasis_development_1793643952183.jpg"
-            alt="Oasis Ray Developments master planned community"
+            src="/assets/aistudio/IMG-20261104-WA0020_35405fe2.jpg"
+            alt="Oasis Ray Developments - Christos Gardens Mowe entrance and estate landscape"
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover object-center scale-105"
           />
@@ -162,14 +162,20 @@ export const HomePage: React.FC<HomePageProps> = ({
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <SlideInLeft className="lg:col-span-7 space-y-6">
-            <div className="text-xs font-semibold uppercase tracking-widest text-[#B38E46]">
+            <div className={`text-xs font-semibold uppercase tracking-widest ${
+              isDark ? 'text-[#C8A45D]' : 'text-[#B38E46]'
+            }`}>
               Corporate Profile
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0B1930] tracking-tight leading-tight">
+            <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight leading-tight ${
+              isDark ? 'text-white' : 'text-[#0B1930]'
+            }`}>
               Real Estate With Purpose.{' '}
-              <span className="text-[#B38E46]">Investments With Perspective.</span>
+              <span className={isDark ? 'text-[#C8A45D]' : 'text-[#B38E46]'}>Investments With Perspective.</span>
             </h2>
-            <div className="space-y-4 text-sm sm:text-base text-slate-700 leading-relaxed font-normal">
+            <div className={`space-y-4 text-sm sm:text-base leading-relaxed font-normal ${
+              isDark ? 'text-slate-200' : 'text-slate-700'
+            }`}>
               <p>
                 Oasis Ray Developments Ltd. is an established real estate development, investment and property marketing company operating at the intersection of capital discipline and community foresight.
               </p>
@@ -180,15 +186,19 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div className="pt-2">
               <button
                 onClick={() => onNavigate('/about')}
-                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#0B1930] hover:text-[#B38E46] transition-colors"
+                className={`inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider transition-colors ${
+                  isDark ? 'text-[#C8A45D] hover:text-white' : 'text-[#0B1930] hover:text-[#B38E46]'
+                }`}
               >
                 <span>Read Full Corporate Profile & Vision</span>
-                <ArrowRight className="w-3.5 h-3.5 text-[#B38E46]" />
+                <ArrowRight className={`w-3.5 h-3.5 ${isDark ? 'text-[#C8A45D]' : 'text-[#B38E46]'}`} />
               </button>
             </div>
           </SlideInLeft>
 
-          <SlideInRight className="lg:col-span-5 bg-[#0B1930] text-white border border-[#C8A45D]/40 rounded-2xl p-8 space-y-6 shadow-2xl relative overflow-hidden">
+          <SlideInRight className={`lg:col-span-5 rounded-2xl p-8 space-y-6 shadow-2xl relative overflow-hidden ${
+            isDark ? 'bg-[#102342] text-white border border-[#1E3A6E]' : 'bg-[#0B1930] text-white border border-[#C8A45D]/40'
+          }`}>
             <div className="text-xs font-semibold uppercase tracking-wider text-slate-300">
               Corporate Vision Statement
             </div>
@@ -468,7 +478,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 category: '4-Bedroom Detached Villa',
                 plotReq: 'Fits 500 SQM Plot (Christos Gardens)',
                 features: ['4 All-Ensuite Bedrooms', 'Private Infinity Pool Provision', 'Solar Inverter Canopy', '2-Car Covered Garage'],
-                image: '/src/assets/images/hero_oasis_development_1793643952183.jpg',
+                image: '/assets/aistudio/IMG-20261104-WA0028_3559ca9a.jpg',
                 badge: 'Executive Residence'
               },
               {
@@ -477,7 +487,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 category: '3-Bedroom Contemporary Duplex',
                 plotReq: 'Fits 300 SQM / 450 SQM Plot (Havilah City)',
                 features: ['3 Bedrooms + Boy’s Quarters', 'Open-Plan Family Lounge', 'Smart Lighting Reticulation', 'Gated Boulevard Access'],
-                image: '/src/assets/images/havilah_city_abeokuta_1793643953227.jpg',
+                image: '/assets/aistudio/IMG-20261104-WA0019_8697be16.jpg',
                 badge: 'Suburban Series'
               },
               {
@@ -486,7 +496,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 category: '5-Bedroom Smart Mansion',
                 plotReq: 'Fits 1,000 SQM Commercial Enclave',
                 features: ['5 Luxury Suites', 'Private Cinema & Study', 'Perimeter CCTV & Access Control', 'Spacious Landscaped Compound'],
-                image: '/src/assets/images/christos_gardens_mowe_1793643952097.jpg',
+                image: '/assets/aistudio/IMG-20261104-WA0014_3013d77c.jpg',
                 badge: 'Flagship Mansion'
               }
             ].map((house, idx) => {
@@ -757,8 +767,8 @@ export const HomePage: React.FC<HomePageProps> = ({
               <div className="lg:col-span-4 flex justify-center">
                 <div className="w-full max-w-xs aspect-square rounded-2xl overflow-hidden border border-[#C8A45D]/50 shadow-2xl relative">
                   <img
-                    src="/src/assets/images/land_banking_growth_1793643954174.jpg"
-                    alt="Land Banking and Real Estate Investment"
+                    src="/assets/aistudio/IMG-20261104-WA0026_8615404d.jpg"
+                    alt="Land Banking and Real Estate Investment - Ogun State Corridor"
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover"
                   />
@@ -786,11 +796,11 @@ export const HomePage: React.FC<HomePageProps> = ({
               <h2 className={`text-2xl sm:text-3xl font-bold tracking-tight ${
                 isDark ? 'text-white' : 'text-[#0B1930]'
               }`}>
-                Verified Investor Experiences
+                Investor Perspectives & Experiences
               </h2>
             </div>
             <div className={`text-xs italic ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-              * Verified by Oasis Ray investor relations desk.
+              * Real feedback from Oasis Ray property subscribers.
             </div>
           </div>
         </FadeIn>
@@ -863,10 +873,6 @@ export const HomePage: React.FC<HomePageProps> = ({
                         {item.propertyInvested}
                       </span>
                     </div>
-
-                    <span className="text-[10px] font-mono font-bold text-emerald-400 bg-emerald-950/60 border border-emerald-500/40 px-2 py-0.5 rounded-full shrink-0">
-                      VERIFIED
-                    </span>
                   </div>
 
                   {/* Shortened Quote */}

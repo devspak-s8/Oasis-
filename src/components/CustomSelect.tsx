@@ -62,12 +62,12 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
         aria-expanded={isOpen}
         aria-labelledby={label && id ? `${id}-label` : undefined}
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full px-3.5 py-2.5 rounded-xl border text-xs text-left flex items-center justify-between transition-all focus:outline-none focus:ring-2 focus:ring-[#C8A45D]/50 ${
+        className={`w-full px-3.5 py-2.5 rounded-xl text-xs text-left flex items-center justify-between transition-all focus:outline-none focus:ring-2 focus:ring-[#C8A45D]/50 ${
           error
-            ? 'border-rose-500'
+            ? 'border border-rose-500'
             : isDark
-            ? 'bg-[#060E1A] border-[#1E3A6E] text-white hover:border-[#C8A45D]/60'
-            : 'bg-slate-50 border-slate-300 text-[#0B1930] hover:border-slate-400'
+            ? 'bg-[#060E1A] text-white'
+            : 'bg-slate-100 text-[#0B1930]'
         }`}
       >
         <span className="truncate">

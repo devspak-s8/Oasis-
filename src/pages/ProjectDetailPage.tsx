@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Development, SiteSettings } from '../types';
 import { formatCurrencyNaira, generateWhatsAppLeadUrl } from '../utils/realEstateCalculators';
-import { InteractivePlotMap } from '../components/InteractivePlotMap';
 import { PaymentCalculator } from '../components/PaymentCalculator';
 import {
   MapPin,
@@ -12,10 +11,21 @@ import {
   Share2,
   Calendar,
   ExternalLink,
-  Sparkles,
   Loader2,
   Send,
-  Building
+  Building,
+  Play,
+  Video,
+  Maximize2,
+  Copy,
+  Check,
+  CreditCard,
+  X,
+  Download,
+  ChevronDown,
+  ChevronUp,
+  AlertTriangle,
+  FileText
 } from 'lucide-react';
 import { useToast } from '../components/Toast';
 import { motion, AnimatePresence } from 'motion/react';
@@ -49,6 +59,10 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
   const isDark = theme === 'dark';
   const { showToast } = useToast();
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [activeVideoIndex, setActiveVideoIndex] = useState(0);
+  const [selectedLightboxImage, setSelectedLightboxImage] = useState<string | null>(null);
+  const [copiedBankIndex, setCopiedBankIndex] = useState<number | null>(null);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
   const [pageLoading, setPageLoading] = useState(true);
 
   // Smooth page loading transition effect on route load
@@ -89,27 +103,29 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
     return `https://wa.me/${settings.whatsappNumber.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(text)}`;
   };
 
+  const handleCopyBank = (accountNumber: string, bankName: string, index: number) => {
+    navigator.clipboard.writeText(accountNumber);
+    setCopiedBankIndex(index);
+    showToast(`${bankName} account number (${accountNumber}) copied to clipboard.`, 'success');
+    setTimeout(() => setCopiedBankIndex(null), 2500);
+  };
+
   if (pageLoading) {
     return (
       <div className={`min-h-[70vh] flex flex-col items-center justify-center space-y-4 p-8 ${
-        isDark ? 'bg-[#0B1930] text-slate-100' : 'bg-slate-50 text-slate-900'
+        isDark ? 'bg-[#060E1A] text-slate-100' : 'bg-slate-50 text-slate-900'
       }`}>
-        <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ repeat: Infinity, repeatType: 'reverse', duration: 0.8 }}
-          className="w-14 h-14 rounded-2xl bg-[#102342] border border-[#C8A45D] flex items-center justify-center text-[#C8A45D] shadow-2xl"
-        >
-          <Building className="w-7 h-7" />
-        </motion.div>
+        <div className="relative w-12 h-12 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-full border-4 border-[#1E3A6E]/30 border-t-[#C8A45D] animate-spin" />
+        </div>
         <div className="text-center space-y-1">
-          <div className={`text-sm font-bold tracking-tight uppercase ${
+          <div className={`text-sm font-bold tracking-wider uppercase ${
             isDark ? 'text-white' : 'text-[#0B1930]'
           }`}>
-            Loading {development.name}
+            Loading Property Details
           </div>
           <div className="text-xs text-[#C8A45D] font-mono">
-            Retrieving Cadastral Coordinates & Title Records...
+            Retrieving Verifiable Title & Cadastral Records...
           </div>
         </div>
       </div>
@@ -125,33 +141,9 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
     >
       {/* 1. PROJECT HERO SECTION */}
       <div className="space-y-6">
-        {/* Navigation Breadcrumb */}
-        <div className={`flex items-center gap-2 text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-          <button onClick={() => onNavigate('/')} className="hover:text-[#C8A45D] transition-colors">
-            Home
-          </button>
-          <span>/</span>
-          <button onClick={() => onNavigate('/developments')} className="hover:text-[#C8A45D] transition-colors">
-            Developments
-          </button>
-          <span>/</span>
-          <span className="text-[#C8A45D] font-semibold">{development.name}</span>
-        </div>
-
         {/* Hero Title & Actions: Slide In Left & Right */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-2">
           <SlideInLeft className="space-y-2">
-            {/* Clean unboxed availability line */}
-            <div className={`flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider ${
-              isDark ? 'text-slate-300' : 'text-slate-600'
-            }`}>
-              <span className={development.availability === 'Available' ? 'text-emerald-500 font-bold' : 'text-amber-500 font-bold'}>
-                {development.availability}
-              </span>
-              <span>·</span>
-              <span className="text-[#C8A45D]">{development.category}</span>
-            </div>
-
             <h1 className={`text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight ${
               isDark ? 'text-white' : 'text-[#0B1930]'
             }`}>
@@ -165,6 +157,20 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
           </SlideInLeft>
 
           <SlideInRight className="flex flex-wrap items-center gap-3">
+            {development.subscriptionFormPdfUrl && (
+              <a
+                href={development.subscriptionFormPdfUrl}
+                download
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2.5 text-xs font-bold uppercase tracking-wider rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#0B1930] transition-colors flex items-center gap-2 shadow-md cursor-pointer"
+                title="Download Official Subscription Form & FAQ Document (PDF)"
+              >
+                <Download className="w-4 h-4 text-[#0B1930]" />
+                <span>Download Form & FAQ (PDF)</span>
+              </a>
+            )}
+
             <button
               onClick={handleShare}
               className={`px-4 py-2.5 text-xs font-semibold rounded-lg border transition-colors flex items-center gap-2 ${
@@ -186,29 +192,44 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               title="Open WhatsApp with full property details pre-filled"
             >
               <MessageSquare className="w-4 h-4" />
-              <span>Go to WhatsApp with Full Specs</span>
+              <span>WhatsApp Inquiry</span>
             </a>
 
             <button
               onClick={() => onOpenLeadModal(development.id, undefined, 'Detailed Land Inquiry')}
-              className="px-5 py-2.5 text-xs font-bold uppercase tracking-wider rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#0B1930] transition-colors shadow-md flex items-center gap-1.5"
+              className={`px-4 py-2.5 text-xs font-bold uppercase tracking-wider rounded-lg border transition-colors shadow-sm flex items-center gap-1.5 ${
+                isDark
+                  ? 'bg-[#1A3868] hover:bg-[#234B8C] border-[#C8A45D]/40 text-white'
+                  : 'bg-[#0B1930] hover:bg-[#1A3868] text-white'
+              }`}
             >
-              <Send className="w-3.5 h-3.5 text-[#0B1930]" />
-              <span>Inquire About Land</span>
+              <Send className="w-3.5 h-3.5 text-[#C8A45D]" />
+              <span>Inquire Now</span>
             </button>
           </SlideInRight>
         </div>
 
         {/* Hero Image Showcase */}
         <FadeIn>
-          <div className="relative aspect-[16/9] md:aspect-[21/9] rounded-2xl overflow-hidden border border-[#1E3A6E] bg-slate-950 shadow-2xl">
+          <div
+            onClick={() => setSelectedLightboxImage(development.galleryImages[activeImageIndex] || development.heroImage)}
+            className="relative aspect-[16/9] md:aspect-[21/9] rounded-2xl overflow-hidden border border-[#1E3A6E] bg-slate-950 shadow-2xl cursor-pointer group"
+          >
             <img
               src={development.galleryImages[activeImageIndex] || development.heroImage}
               alt={development.name}
               referrerPolicy="no-referrer"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80 pointer-events-none" />
+
+            {/* Click to enlarge pill button */}
+            <div className="absolute top-4 right-4 z-10">
+              <span className="px-3 py-1.5 rounded-lg bg-[#060E1A]/85 hover:bg-[#C8A45D] text-white hover:text-[#0B1930] border border-[#1E3A6E] transition-all flex items-center gap-1.5 text-xs font-semibold backdrop-blur-sm shadow-md">
+                <Maximize2 className="w-3.5 h-3.5" />
+                <span>View Full Size</span>
+              </span>
+            </div>
 
             {/* Tagline overlay */}
             <div className="absolute bottom-4 left-6 right-6 flex items-center justify-between text-xs text-white">
@@ -264,58 +285,279 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                 {development.locationDetails}
               </p>
             </div>
+
+            {/* Landmarks List from Official Documents */}
+            {development.landmarksList && development.landmarksList.length > 0 && (
+              <div className={`pt-4 border-t ${isDark ? 'border-[#1E3A6E]/50' : 'border-slate-100'}`}>
+                <h4 className={`text-xs font-semibold uppercase tracking-wider mb-3 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                  Nearby Key Landmarks & Institutions (Within Proximity)
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {development.landmarksList.map((landmark, lIdx) => (
+                    <span
+                      key={lIdx}
+                      className={`text-xs font-medium px-3 py-1.5 rounded-lg border flex items-center gap-1.5 ${
+                        isDark
+                          ? 'bg-[#060E1A] border-[#1E3A6E] text-slate-200'
+                          : 'bg-slate-50 border-slate-200 text-slate-700'
+                      }`}
+                    >
+                      <MapPin className="w-3 h-3 text-[#C8A45D] shrink-0" />
+                      <span>{landmark}</span>
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* 3. AVAILABLE PLOT SIZES & PRICING */}
-          <div className="space-y-4">
-            <div>
-              <h3 className={`text-xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>Available Plot Sizes & Pricing</h3>
-              <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>All prices are verified and reflect current investment allocations.</p>
+          <div className="space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+              <div>
+                <div className="text-xs font-semibold uppercase tracking-wider text-[#C8A45D]">
+                  Cadastral Plot Offerings
+                </div>
+                <h3 className={`text-2xl font-extrabold tracking-tight mt-0.5 ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>
+                  Available Plot Sizes & Pricing Tiers
+                </h3>
+                <p className={`text-xs mt-1 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                  Select your preferred parcel size to view structured tenures, upfront discounts, and physical demarcation specifications.
+                </p>
+              </div>
+
+              {/* Special Promotion & Corner Piece Notice */}
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="px-3 py-1.5 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-xs font-bold font-mono">
+                  5% Discount on One-Off Payment
+                </span>
+                {development.cornerPieceFee && (
+                  <span className={`px-3 py-1.5 rounded-lg text-xs font-mono border ${
+                    isDark ? 'bg-[#060E1A] border-[#1E3A6E] text-[#C8A45D]' : 'bg-slate-50 border-slate-200 text-[#0B1930]'
+                  }`}>
+                    Corner Piece: +{formatCurrencyNaira(development.cornerPieceFee)}
+                  </span>
+                )}
+              </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              {development.plotSizes.map((plot) => (
-                <div
-                  key={plot.id}
-                  className={`rounded-xl p-5 space-y-3 flex flex-col justify-between border ${
-                    isDark ? 'bg-[#102342] border-[#1E3A6E] text-white' : 'bg-white border-slate-200 text-[#0B1930] shadow-xs'
-                  }`}
-                >
-                  <div className="space-y-1">
-                    <div className="flex items-center justify-between">
-                      <span className={`text-base font-extrabold ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>{plot.size}</span>
-                      <span className="text-xs font-mono font-medium text-emerald-500">
-                        Available
-                      </span>
-                    </div>
-                    <div className="text-xs text-[#C8A45D] font-semibold">{plot.title}</div>
-                    <p className={`text-xs leading-relaxed mt-2 ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>{plot.description}</p>
-                  </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {development.plotSizes.map((plot) => {
+                const whatsappPlotUrl = getFullLandWhatsAppUrl(plot.size);
+                return (
+                  <div
+                    key={plot.id}
+                    className={`rounded-2xl border p-6 sm:p-7 space-y-6 flex flex-col justify-between transition-all duration-300 hover:shadow-2xl relative overflow-hidden group ${
+                      isDark
+                        ? 'bg-[#0B1930] border-[#1E3A6E] hover:border-[#C8A45D]/80'
+                        : 'bg-white border-slate-200 hover:border-[#C8A45D] shadow-sm'
+                    }`}
+                  >
+                    {/* Top ambient gold accent */}
+                    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#C8A45D]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 
-                  <div className={`pt-3 border-t space-y-3 ${isDark ? 'border-[#1E3A6E]' : 'border-slate-100'}`}>
-                    <div>
-                      <div className={`text-[10px] uppercase tracking-wider ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Outright Price</div>
-                      <div className={`text-lg font-bold font-mono ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>
-                        {formatCurrencyNaira(plot.promoPrice || plot.price)}
+                    <div className="space-y-5">
+                      {/* Badge Row */}
+                      <div className="flex items-center justify-between gap-3">
+                        <span className={`px-3.5 py-1.5 rounded-lg font-mono font-black text-sm tracking-wide border shadow-xs ${
+                          isDark
+                            ? 'bg-[#102342] border-[#C8A45D]/50 text-[#C8A45D]'
+                            : 'bg-amber-50 border-[#C8A45D] text-[#0B1930]'
+                        }`}>
+                          {plot.size}
+                        </span>
+                      </div>
+
+                      {/* Title & Plot Purpose */}
+                      <div className="space-y-1.5">
+                        <h4 className={`text-lg font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>
+                          {plot.title}
+                        </h4>
+                        <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+                          {plot.description}
+                        </p>
+                      </div>
+
+                      {/* Main Outright Price Hero */}
+                      <div className={`p-4 rounded-xl border space-y-1.5 ${
+                        isDark ? 'bg-[#060E1A]/80 border-[#1E3A6E]/80' : 'bg-slate-50 border-slate-200'
+                      }`}>
+                        <div className="flex items-center justify-between text-[11px] uppercase tracking-wider font-semibold">
+                          <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>Outright Benchmark Price</span>
+                          {plot.promoPrice && plot.promoPrice < plot.price && (
+                            <span className="text-emerald-400 font-mono font-bold">5% Off Rate</span>
+                          )}
+                        </div>
+                        <div className="flex items-baseline gap-3">
+                          <span className="text-2xl sm:text-3xl font-black font-mono text-[#C8A45D] tracking-tight">
+                            {formatCurrencyNaira(plot.promoPrice || plot.price)}
+                          </span>
+                          {plot.promoPrice && plot.promoPrice < plot.price && (
+                            <span className="text-xs text-slate-500 line-through font-mono">
+                              {formatCurrencyNaira(plot.price)}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Plot Key Specifications Checklist */}
+                      <div className="space-y-2 text-xs">
+                        <div className={`flex items-center gap-2.5 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#C8A45D] shrink-0" />
+                          <span>Survey beacon demarcation & clear plot coordinate boundaries</span>
+                        </div>
+                        <div className={`flex items-center gap-2.5 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#C8A45D] shrink-0" />
+                          <span>Direct motorable estate road access with drainage integration</span>
+                        </div>
+                        <div className={`flex items-center gap-2.5 ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[#C8A45D] shrink-0" />
+                          <span>Verifiable title documentation (Deed of Assignment & Survey Plan)</span>
+                        </div>
                       </div>
                     </div>
 
-                    <button
-                      onClick={() => onOpenLeadModal(development.id, plot.size)}
-                      className={`w-full py-2 px-3 text-xs font-semibold rounded-lg transition-colors flex items-center justify-center gap-1.5 ${
-                        isDark
-                          ? 'bg-[#060E1A] hover:bg-[#C8A45D] hover:text-[#0B1930] border border-[#1E3A6E] text-slate-200'
-                          : 'bg-[#0B1930] hover:bg-[#1A3868] text-white'
-                      }`}
-                    >
-                      <span>Enquire on this Plot</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-[#C8A45D]" />
-                    </button>
+                    {/* Card Actions */}
+                    <div className={`pt-4 border-t space-y-2.5 ${isDark ? 'border-[#1E3A6E]/60' : 'border-slate-100'}`}>
+                      <button
+                        onClick={() => onOpenLeadModal(development.id, plot.size, 'Plot Reservation Enquiry')}
+                        className="w-full py-3 px-4 text-xs font-bold uppercase tracking-wider rounded-xl bg-[#C8A45D] hover:bg-[#DFC07C] text-[#0B1930] transition-all flex items-center justify-center gap-2 shadow-sm cursor-pointer active:scale-[0.99]"
+                      >
+                        <Calendar className="w-4 h-4 text-[#0B1930]" />
+                        <span>Reserve Plot & Schedule Inspection</span>
+                      </button>
+
+                      <a
+                        href={whatsappPlotUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`w-full py-2.5 px-4 text-xs font-semibold rounded-xl border transition-colors flex items-center justify-center gap-2 ${
+                          isDark
+                            ? 'bg-[#060E1A] hover:bg-emerald-600 hover:text-white border-[#1E3A6E] text-slate-300 hover:border-emerald-600'
+                            : 'bg-white hover:bg-emerald-600 hover:text-white border-slate-300 text-slate-700 hover:border-emerald-600 shadow-2xs'
+                        }`}
+                      >
+                        <MessageSquare className="w-3.5 h-3.5 text-emerald-400 group-hover:text-white" />
+                        <span>Enquire on {plot.size} via WhatsApp</span>
+                      </a>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
+
+          {/* 3.5 OFFICIAL PRE-LAUNCH FLYERS & VERIFIED BROCHURES */}
+          {development.officialFlyers && development.officialFlyers.length > 0 && (
+            <div className={`rounded-2xl p-6 sm:p-8 space-y-6 border shadow-sm ${
+              isDark ? 'bg-[#102342] border-[#1E3A6E] text-white' : 'bg-white border-slate-200 text-[#0B1930]'
+            }`}>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                  <div className="text-xs font-semibold uppercase tracking-wider text-[#C8A45D]">
+                    Official Documentation
+                  </div>
+                  <h3 className={`text-xl font-bold tracking-tight mt-0.5 ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>
+                    Pre-Launch Flyers & Verified Brochures
+                  </h3>
+                  <p className={`text-xs mt-0.5 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                    Click any official brochure below to inspect full pricing tables, registered landmarks, and bank verification.
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                {development.officialFlyers.map((flyerUrl, fIdx) => (
+                  <div
+                    key={fIdx}
+                    onClick={() => setSelectedLightboxImage(flyerUrl)}
+                    className={`group relative rounded-xl overflow-hidden border cursor-pointer transition-all aspect-[3/4] bg-slate-950 ${
+                      isDark ? 'border-[#1E3A6E] hover:border-[#C8A45D]' : 'border-slate-300 hover:border-[#C8A45D] shadow-xs'
+                    }`}
+                  >
+                    <img
+                      src={flyerUrl}
+                      alt={`${development.name} official brochure ${fIdx + 1}`}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent opacity-60 group-hover:opacity-90 transition-opacity flex items-end p-3">
+                      <div className="flex items-center justify-between w-full text-white text-[11px] font-semibold">
+                        <span>Click to Enlarge</span>
+                        <Maximize2 className="w-3.5 h-3.5 text-[#C8A45D]" />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* 3.8 LIVE VIDEO SITE INSPECTION & DRONE WALKTHROUGH */}
+          {development.videos && development.videos.length > 0 && (
+            <div className={`rounded-2xl p-6 sm:p-8 space-y-6 border shadow-sm ${
+              isDark ? 'bg-[#060E1A] border-[#1E3A6E] text-white' : 'bg-slate-50 border-slate-200 text-[#0B1930]'
+            }`}>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#C8A45D]">
+                    <Video className="w-4 h-4" />
+                    <span>Ground Reality & Verification</span>
+                  </div>
+                  <h3 className={`text-xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>
+                    Drone Survey & On-Site Video Tours
+                  </h3>
+                  <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                    Real unedited footage filmed directly at {development.name}. Inspect access roads, topography, and active site markers.
+                  </p>
+                </div>
+              </div>
+
+              {/* Video Player Box */}
+              <div className="relative rounded-xl overflow-hidden bg-black border border-[#1E3A6E] shadow-2xl aspect-video max-w-4xl mx-auto">
+                <video
+                  key={development.videos[activeVideoIndex]?.url}
+                  controls
+                  playsInline
+                  preload="metadata"
+                  className="w-full h-full object-contain bg-black"
+                >
+                  <source src={development.videos[activeVideoIndex]?.url} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+
+              {/* Video Clip Selector Buttons */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-2">
+                {development.videos.map((vid, vIdx) => (
+                  <button
+                    key={vid.id}
+                    onClick={() => setActiveVideoIndex(vIdx)}
+                    className={`p-3.5 rounded-xl border text-left transition-all flex flex-col justify-between ${
+                      activeVideoIndex === vIdx
+                        ? 'border-[#C8A45D] bg-[#102342] text-white shadow-md ring-1 ring-[#C8A45D]/40'
+                        : isDark
+                        ? 'border-[#1E3A6E]/70 bg-[#060E1A] text-slate-300 hover:border-[#C8A45D]/60'
+                        : 'border-slate-200 bg-white text-slate-700 hover:border-[#C8A45D]'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between w-full mb-1">
+                      <div className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-[#C8A45D]">
+                        <Play className="w-3 h-3 fill-[#C8A45D]" />
+                        <span>{vid.type}</span>
+                      </div>
+                      {activeVideoIndex === vIdx && (
+                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                      )}
+                    </div>
+                    <div className="text-xs font-bold line-clamp-1">{vid.title}</div>
+                    <div className={`text-[10px] mt-1 line-clamp-2 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                      {vid.description}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* 4. INFRASTRUCTURE & AMENITIES */}
           <div className={`rounded-2xl p-6 sm:p-8 space-y-6 border shadow-sm ${
@@ -376,10 +618,281 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               ))}
             </div>
           </div>
+
+          {/* 5.1 STATUTORY FEES & ANCILLARY SCHEDULE */}
+          {development.statutoryFees && development.statutoryFees.length > 0 && (
+            <div className={`rounded-2xl p-6 sm:p-8 space-y-6 border shadow-sm ${
+              isDark ? 'bg-[#102342] border-[#1E3A6E] text-white' : 'bg-white border-slate-200 text-[#0B1930]'
+            }`}>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                  <div className="text-xs font-semibold uppercase tracking-wider text-[#C8A45D]">
+                    Official Fee Schedule
+                  </div>
+                  <h3 className={`text-xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>
+                    Statutory Fees & Ancillary Charges
+                  </h3>
+                </div>
+                <div className="text-xs font-mono px-3 py-1.5 rounded-lg bg-[#C8A45D]/10 border border-[#C8A45D]/30 text-[#C8A45D] font-medium">
+                  Payable within 3 months post-tenure
+                </div>
+              </div>
+
+              <p className={`text-xs ${isDark ? 'text-slate-300' : 'text-slate-600'} leading-relaxed`}>
+                In strict compliance with Ogun State physical planning and land administration protocols, the following mandatory statutory fees apply upon full settlement of land purchase:
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {development.statutoryFees.map((fee, fIdx) => (
+                  <div
+                    key={fIdx}
+                    className={`p-4 rounded-xl border flex flex-col justify-between space-y-2 ${
+                      isDark ? 'bg-[#060E1A]/80 border-[#1E3A6E]' : 'bg-slate-50 border-slate-200'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-300">{fee.label}</span>
+                      <span className="text-sm font-mono font-black text-[#C8A45D]">{fee.amount}</span>
+                    </div>
+                    {fee.description && (
+                      <p className={`text-[11px] leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                        {fee.description}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              {development.cornerPieceFee && (
+                <div className={`p-4 rounded-xl border flex items-center justify-between gap-4 text-xs ${
+                  isDark ? 'bg-[#0B1930] border-[#C8A45D]/30 text-slate-200' : 'bg-amber-50/60 border-amber-200 text-slate-800'
+                }`}>
+                  <div className="flex items-center gap-2.5">
+                    <AlertTriangle className="w-4 h-4 text-[#C8A45D] shrink-0" />
+                    <span><strong>Corner Piece Plots:</strong> Attract an additional statutory premium of <strong>{formatCurrencyNaira(development.cornerPieceFee)}</strong>.</span>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* 5.2 BUILDING RESTRICTIONS & ARCHITECTURAL GUIDELINES */}
+          {development.buildingGuidelines && development.buildingGuidelines.length > 0 && (
+            <div className={`rounded-2xl p-6 sm:p-8 space-y-5 border shadow-sm ${
+              isDark ? 'bg-[#060E1A] border-[#1E3A6E] text-white' : 'bg-slate-50 border-slate-200 text-[#0B1930]'
+            }`}>
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-lg bg-[#102342] border border-[#C8A45D]/40 flex items-center justify-center text-[#C8A45D] shrink-0">
+                  <Building className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className={`text-xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>
+                    Building Restrictions & Guidelines
+                  </h3>
+                  <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                    Strict estate covenants preserving property values, aesthetic harmony, and security.
+                  </p>
+                </div>
+              </div>
+
+              <div className="space-y-2.5 pt-2">
+                {development.buildingGuidelines.map((guide, gIdx) => (
+                  <div
+                    key={gIdx}
+                    className={`flex items-start gap-3 p-3.5 rounded-xl border ${
+                      isDark ? 'bg-[#102342]/60 border-[#1E3A6E]/60 text-slate-200' : 'bg-white border-slate-200 text-slate-700'
+                    }`}
+                  >
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                    <span className="text-xs leading-relaxed font-medium">{guide}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* 5.3 OFFICIAL FAQ ACCORDION */}
+          {development.faqList && development.faqList.length > 0 && (
+            <div className={`rounded-2xl p-6 sm:p-8 space-y-6 border shadow-sm ${
+              isDark ? 'bg-[#102342] border-[#1E3A6E] text-white' : 'bg-white border-slate-200 text-[#0B1930]'
+            }`}>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                  <div className="text-xs font-semibold uppercase tracking-wider text-[#C8A45D]">
+                    Investor Frequently Asked Questions
+                  </div>
+                  <h3 className={`text-xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>
+                    Official FAQs & Terms of Subscription
+                  </h3>
+                </div>
+                <div className="text-xs text-slate-400">
+                  {development.faqList.length} Verified Answers
+                </div>
+              </div>
+
+              <div className="space-y-3 pt-1">
+                {development.faqList.map((faq, fIdx) => {
+                  const isOpen = openFaqIndex === fIdx;
+                  return (
+                    <div
+                      key={fIdx}
+                      className={`rounded-xl border transition-all ${
+                        isOpen
+                          ? 'border-[#C8A45D] bg-[#060E1A]/80 shadow-md'
+                          : isDark
+                          ? 'border-[#1E3A6E]/60 bg-[#060E1A]/40 hover:border-[#1E3A6E]'
+                          : 'border-slate-200 bg-slate-50/80 hover:border-slate-300'
+                      }`}
+                    >
+                      <button
+                        onClick={() => setOpenFaqIndex(isOpen ? null : fIdx)}
+                        className="w-full p-4 flex items-center justify-between text-left gap-4 cursor-pointer"
+                      >
+                        <span className={`text-xs sm:text-sm font-bold ${isOpen ? 'text-[#C8A45D]' : isDark ? 'text-white' : 'text-[#0B1930]'}`}>
+                          {faq.question}
+                        </span>
+                        <div className={`w-6 h-6 rounded-lg flex items-center justify-center shrink-0 border ${
+                          isOpen ? 'bg-[#C8A45D] text-[#0B1930] border-[#C8A45D]' : isDark ? 'bg-[#102342] text-slate-400 border-[#1E3A6E]' : 'bg-white text-slate-500 border-slate-200'
+                        }`}>
+                          {isOpen ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                        </div>
+                      </button>
+
+                      <AnimatePresence>
+                        {isOpen && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="overflow-hidden"
+                          >
+                            <div className={`px-4 pb-4 pt-1 text-xs sm:text-sm leading-relaxed border-t ${
+                              isDark ? 'border-[#1E3A6E]/50 text-slate-300' : 'border-slate-200 text-slate-600'
+                            }`}>
+                              {faq.answer}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* 5.4 OFFICIAL SUBSCRIPTION FORM & FAQ PDF DOWNLOAD BANNER */}
+          {development.subscriptionFormPdfUrl && (
+            <div className={`rounded-2xl p-6 sm:p-8 border shadow-lg flex flex-col md:flex-row items-center justify-between gap-6 ${
+              isDark ? 'bg-gradient-to-r from-[#102342] to-[#060E1A] border-[#C8A45D]/40 text-white' : 'bg-gradient-to-r from-slate-50 to-amber-50/40 border-[#C8A45D]/50 text-[#0B1930]'
+            }`}>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-[#C8A45D] text-[#0B1930] flex items-center justify-center shrink-0 shadow-md">
+                  <FileText className="w-6 h-6" />
+                </div>
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#C8A45D]">Official Legal Document</span>
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">Verified PDF</span>
+                  </div>
+                  <h4 className="text-base sm:text-lg font-bold">
+                    Official Subscription Form & FAQ ({development.name})
+                  </h4>
+                  <p className={`text-xs ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+                    Download the complete subscription dossier, subscriber undertakings, statutory fee breakdown, and cadastral survey notes.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3 shrink-0 w-full md:w-auto">
+                <a
+                  href={development.subscriptionFormPdfUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full md:w-auto py-3 px-5 rounded-xl bg-[#C8A45D] hover:bg-[#DFC07C] text-[#0B1930] text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md cursor-pointer"
+                >
+                  <Download className="w-4 h-4" />
+                  <span>Download Form PDF</span>
+                </a>
+              </div>
+            </div>
+          )}
         </SlideInLeft>
 
         {/* SIDEBAR: Booking & Quick Reservation Desk */}
         <SlideInRight className="lg:col-span-4 space-y-6 sticky top-28">
+          {/* VERIFIED BANK ACCOUNT DETAILS CARD */}
+          <div className={`rounded-2xl p-6 space-y-4 border shadow-xl ${
+            isDark ? 'bg-[#060E1A] border-[#C8A45D]/40 text-white' : 'bg-white border-[#C8A45D]/50 text-[#0B1930] shadow-md'
+          }`}>
+            <div className="flex items-center justify-between">
+              <div>
+                <div className="text-xs font-bold uppercase tracking-wider text-[#C8A45D]">
+                  Verified Corporate Bank
+                </div>
+                <div className="text-[11px] font-medium text-slate-400">
+                  OASIS RAY DEVELOPMENTS LTD
+                </div>
+              </div>
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                Official Corporate
+              </span>
+            </div>
+
+            <div className="space-y-3">
+              {(development.bankAccounts || settings.bankAccounts || []).map((bank, bIdx) => {
+                const isCopied = copiedBankIndex === bIdx;
+                return (
+                  <div
+                    key={bIdx}
+                    className={`p-4 rounded-xl border space-y-2.5 ${
+                      isDark ? 'bg-[#102342] border-[#1E3A6E]' : 'bg-slate-50 border-slate-200'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-[#C8A45D] tracking-wide">{bank.bankName}</span>
+                      <span className="text-[10px] font-mono text-slate-400">Oasis Ray Corporate</span>
+                    </div>
+
+                    <div>
+                      <span className={`text-[10px] uppercase tracking-wider block ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                        Account Name
+                      </span>
+                      <span className={`text-xs font-bold ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>
+                        {bank.accountName}
+                      </span>
+                    </div>
+
+                    <div>
+                      <span className={`text-[10px] uppercase tracking-wider block ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                        Account Number
+                      </span>
+                      <div className="flex items-center justify-between mt-0.5">
+                        <span className="text-lg font-mono font-black text-[#C8A45D] tracking-wider">
+                          {bank.accountNumber}
+                        </span>
+                        <button
+                          onClick={() => handleCopyBank(bank.accountNumber, bank.bankName, bIdx)}
+                          className="p-1.5 px-2.5 rounded-lg bg-[#060E1A] hover:bg-[#C8A45D] text-white hover:text-[#0B1930] border border-[#1E3A6E] transition-colors flex items-center gap-1.5 text-xs font-semibold cursor-pointer active:scale-95"
+                          title="Copy Account Number"
+                        >
+                          {isCopied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                          <span>{isCopied ? 'Copied' : 'Copy'}</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="pt-2 border-t border-[#1E3A6E]/50 text-[10px] text-slate-400 flex items-center justify-between">
+              <span className="text-slate-300">Zero personal accounts</span>
+              <span className="text-[#C8A45D]">Never pay cash</span>
+            </div>
+          </div>
+
           <div className={`rounded-2xl p-6 space-y-5 border shadow-xl ${
             isDark ? 'bg-[#102342] border-[#1E3A6E] text-white' : 'bg-white border-slate-200 text-[#0B1930]'
           }`}>
@@ -431,6 +944,22 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                 <MessageSquare className="w-4 h-4" />
                 <span>Enquire via WhatsApp</span>
               </a>
+
+              {development.subscriptionFormPdfUrl && (
+                <a
+                  href={development.subscriptionFormPdfUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`w-full py-2.5 px-4 text-xs font-semibold rounded-lg border transition-colors flex items-center justify-center gap-2 ${
+                    isDark
+                      ? 'border-[#C8A45D]/40 bg-[#060E1A] text-[#C8A45D] hover:bg-[#C8A45D] hover:text-[#0B1930]'
+                      : 'border-[#C8A45D] bg-amber-50/50 text-[#0B1930] hover:bg-[#C8A45D] hover:text-[#0B1930]'
+                  }`}
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  <span>Download Subscription Form (PDF)</span>
+                </a>
+              )}
             </div>
 
             <div className={`text-[11px] text-center pt-2 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
@@ -464,19 +993,6 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
           </div>
         </SlideInRight>
       </div>
-
-      {/* 6. INTERACTIVE ESTATE PLOT MAP */}
-      <FadeIn>
-        <div className="space-y-4">
-          <InteractivePlotMap
-            developmentName={development.name}
-            plots={development.plots}
-            onSelectPlotForEnquiry={(plotNum, size) => {
-              onOpenLeadModal(development.id, `${size} (${plotNum})`);
-            }}
-          />
-        </div>
-      </FadeIn>
 
       {/* 7. PAYMENT CALCULATOR */}
       <FadeIn>
@@ -545,6 +1061,37 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
           </div>
         </FadeIn>
       )}
+
+      {/* 9. HIGH-RESOLUTION LIGHTBOX MODAL */}
+      <AnimatePresence>
+        {selectedLightboxImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedLightboxImage(null)}
+            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-8"
+          >
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-5xl max-h-[92vh] w-full flex flex-col items-center"
+            >
+              <button
+                onClick={() => setSelectedLightboxImage(null)}
+                className="absolute -top-12 right-0 p-2 text-white hover:text-[#C8A45D] transition-colors rounded-full bg-slate-900/80 border border-slate-700 cursor-pointer shadow-lg"
+                aria-label="Close image preview"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              <img
+                src={selectedLightboxImage}
+                alt="Enlarged property asset"
+                className="max-h-[85vh] max-w-full rounded-xl object-contain shadow-2xl border border-[#1E3A6E]"
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };
