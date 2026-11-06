@@ -87,7 +87,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       founder: {
         '@type': 'Person',
         name: 'Oluwayemi James Damilare',
-        jobTitle: 'Manager & Chief Executive Officer',
+        jobTitle: 'Managing Director & Chief Executive Officer',
         image: `${domain}/assets/aistudio/IMG_0554_7a96fa6d.JPG`
       },
       address: {

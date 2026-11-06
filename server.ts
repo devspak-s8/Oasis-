@@ -186,14 +186,14 @@ app.post('/api/gemini/chat', async (req: Request, res: Response) => {
 
 ### CORPORATE IDENTITY & LEADERSHIP
 - Company Name: OASIS RAY DEVELOPMENTS LTD.
-- Founder & Lead Visionary: Oluwayemi James Damilare
+- Managing Director & Chief Executive Officer (Founder): Oluwayemi James Damilare
 - Tagline: "The Calm Side of Smart Investing."
 - Head Office: 3rd Floor, Goldcrest Plaza, Ikota, Lekki, Lagos State, Nigeria.
 - Regional Growth Corridors / Project Sites:
   • Mowe-Ofada Strategic Hub (Itakana Village, Obafemi Owode LGA, Ogun State)
   • Abeokuta Expressroad Axis (Ibara Orile, Ita Oshin, Abeokuta, Ogun State)
 - Company Vision: "To establish a benchmark real estate institution whose master-planned developments become enduring vessels through which wealth, influence, and generational opportunity flow across every economic cycle."
-- Company Mission: "To deliver secure, high-integrity land assets and master-planned communities through rigorous legal verification, transparent infrastructure milestones, and disciplined advisory that preserves investor capital and creates compounding generational value."
+- Company Mission: "To identify strategic opportunities, acquire and develop well positioned real estate assets, and create thoughtfully designed environments that connect people and capital to places with enduring potential."
 - Site Inspection Days: Tuesdays and Saturdays (Complimentary inspection transport provided from coordination points in Ogun State).
 - Official Advisory & Office Hours: Monday – Friday: 8:30 AM – 5:30 PM | Saturday (Inspections by Appointment): 10:00 AM – 3:00 PM.
 

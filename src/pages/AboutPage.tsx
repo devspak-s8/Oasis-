@@ -75,7 +75,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onNavigate, onOp
             <div className="relative w-72 sm:w-80 aspect-[4/5] rounded-2xl overflow-hidden border-2 border-[#C8A45D]/60 shadow-2xl bg-[#000538] group">
               <img
                 src="/assets/aistudio/IMG_0554_7a96fa6d.JPG"
-                alt={`${settings.founderName} - Manager & CEO`}
+                alt={`${settings.founderName} - Managing Director & CEO`}
                 className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#000538]/80 via-transparent to-transparent pointer-events-none" />
@@ -84,7 +84,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onNavigate, onOp
                   {settings.founderName}
                 </span>
                 <span className="text-[11px] text-white/90 font-medium">
-                  Manager & Chief Executive Officer
+                  {settings.founderRole || 'Managing Director & Chief Executive Officer'}
                 </span>
               </div>
             </div>
@@ -98,7 +98,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onNavigate, onOp
               {settings.founderName}
             </h2>
             <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
-              Manager & Chief Executive Officer
+              {settings.founderRole || 'Managing Director & Chief Executive Officer'}
             </div>
 
             <div className="space-y-3 text-sm text-slate-300 leading-relaxed pt-2">

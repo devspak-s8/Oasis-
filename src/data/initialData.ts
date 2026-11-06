@@ -4,11 +4,11 @@ export const INITIAL_SETTINGS: SiteSettings = {
   companyName: 'OASIS RAY DEVELOPMENTS LTD.',
   tagline: 'The Calm Side of Smart Investing.',
   founderName: 'Oluwayemi James Damilare',
-  founderRole: 'Manager & Chief Executive Officer',
+  founderRole: 'Managing Director & Chief Executive Officer',
   companyVision:
     'To establish a benchmark real estate institution whose master-planned developments become enduring vessels through which wealth, influence, and generational opportunity flow across every economic cycle.',
   companyMission:
-    'To deliver secure, high-integrity land assets and master-planned communities through rigorous legal verification, transparent infrastructure milestones, and disciplined advisory that preserves investor capital and creates compounding generational value.',
+    'To identify strategic opportunities, acquire and develop well positioned real estate assets, and create thoughtfully designed environments that connect people and capital to places with enduring potential.',
   officeAddress: '3rd Floor, Goldcrest Plaza, Ikota, Lekki, Lagos State, Nigeria (Head Office)',
   phone: '+234 817 173 1525',
   whatsappNumber: '+2348171731525',

@@ -29,14 +29,15 @@ function setLocal<T>(key: string, value: T): void {
   }
 }
 
-// Initial seed verification & cache migration for official contact info
+// Initial seed verification & cache migration for official contact info, leadership title, and mission
 const cachedSettings = getLocal<SiteSettings | null>(STORAGE_KEYS.SETTINGS, null);
 if (
   !cachedSettings ||
   cachedSettings.phone?.includes('803') ||
   cachedSettings.email?.includes('info@') ||
-  cachedSettings.companyMission?.includes('Pending') ||
-  cachedSettings.companyMission?.includes('Ratification')
+  cachedSettings.founderRole?.includes('Manager &') ||
+  !cachedSettings.founderRole?.includes('Managing Director') ||
+  !cachedSettings.companyMission?.includes('To identify strategic opportunities')
 ) {
   setLocal(STORAGE_KEYS.SETTINGS, INITIAL_SETTINGS);
 }
