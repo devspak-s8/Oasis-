@@ -20,7 +20,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, settings }) => {
           {/* Column 1: Corporate Identity & Tagline Quote */}
           <div className="lg:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-[#102342] border border-[#C8A45D] flex items-center justify-center shrink-0 shadow-md">
+              <div className="w-10 h-10 rounded-lg bg-[#00097C] border border-[#C8A45D] flex items-center justify-center shrink-0 shadow-md">
                 <span className="font-serif-title text-[#C8A45D] font-bold text-xl leading-none">O</span>
               </div>
               <div className="flex flex-col">

@@ -71,7 +71,7 @@ export function generateLocalAdvisorResponse(query: string, context?: string): F
   // 6. Customer Care & Office Address
   if (q.includes('contact') || q.includes('customer care') || q.includes('phone') || q.includes('call') || q.includes('number') || q.includes('office') || q.includes('address')) {
     return {
-      text: `### Official Customer Care & Corporate Desk\n\nOur client advisory desk is at your service for site inspections, title verifications, and tailored payment terms:\n\n• **Direct Investor & Customer Care Line:** +234 (0) 803 000 0000\n• **WhatsApp Advisory Desk:** +2348030000000\n• **Official Correspondence Email:** info@oasisraydevelopments.com\n• **Head Office:** 3rd Floor, Goldcrest Plaza, Ikota, Lekki, Lagos State, Nigeria\n• **Advisory Hours:** Monday – Friday: 8:30 AM – 5:30 PM | Saturday: 10:00 AM – 3:00 PM`,
+      text: `### Official Customer Care & Corporate Desk\n\nOur client advisory desk is at your service for site inspections, title verifications, and tailored payment terms:\n\n• **Direct Investor & Customer Care Line:** +234 817 173 1525\n• **WhatsApp Advisory Desk:** +2348171731525\n• **Official Correspondence Email:** hello@oasisraydevelopments.com\n• **Head Office:** 3rd Floor, Goldcrest Plaza, Ikota, Lekki, Lagos State, Nigeria\n• **Advisory Hours:** Monday – Friday: 8:30 AM – 5:30 PM | Saturday: 10:00 AM – 3:00 PM`,
       cardType: 'customercare'
     };
   }

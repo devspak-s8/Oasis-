@@ -103,7 +103,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="group text-left flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8A45D]"
               aria-label="Oasis Ray Developments Home"
             >
-              <div className="w-9 h-9 rounded-md bg-[#0B1930] border border-[#C8A45D]/70 flex items-center justify-center shrink-0 group-hover:bg-[#102342] transition-colors shadow-sm">
+              <div className="w-9 h-9 rounded-md bg-[#00097C] border border-[#C8A45D]/80 flex items-center justify-center shrink-0 group-hover:bg-[#00097C]/90 transition-colors shadow-sm">
                 <span className="font-serif-title text-[#C8A45D] font-bold text-lg leading-none">O</span>
               </div>
               <div className="flex flex-col">

@@ -792,7 +792,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                 type="text"
                 value={editingSettings.whatsappNumber}
                 onChange={(e) => setEditingSettings({ ...editingSettings, whatsappNumber: e.target.value })}
-                placeholder="+2348030000000"
+                placeholder="+2348171731525"
                 className="w-full px-3.5 py-2 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-white text-xs font-mono"
               />
             </div>

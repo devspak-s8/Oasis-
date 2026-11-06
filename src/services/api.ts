@@ -29,12 +29,13 @@ function setLocal<T>(key: string, value: T): void {
   }
 }
 
-// Initial seed verification
+// Initial seed verification & cache migration for official contact info
+const cachedSettings = getLocal<SiteSettings | null>(STORAGE_KEYS.SETTINGS, null);
+if (!cachedSettings || cachedSettings.phone?.includes('803') || cachedSettings.email?.includes('info@')) {
+  setLocal(STORAGE_KEYS.SETTINGS, INITIAL_SETTINGS);
+}
 if (!localStorage.getItem(STORAGE_KEYS.DEVELOPMENTS)) {
   setLocal(STORAGE_KEYS.DEVELOPMENTS, INITIAL_DEVELOPMENTS);
-}
-if (!localStorage.getItem(STORAGE_KEYS.SETTINGS)) {
-  setLocal(STORAGE_KEYS.SETTINGS, INITIAL_SETTINGS);
 }
 if (!localStorage.getItem(STORAGE_KEYS.TESTIMONIALS)) {
   setLocal(STORAGE_KEYS.TESTIMONIALS, INITIAL_TESTIMONIALS);

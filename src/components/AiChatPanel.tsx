@@ -50,7 +50,7 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
     {
       id: 'welcome-1',
       sender: 'ai',
-      text: '### Welcome to OASIS RAY DEVELOPMENTS LTD.\n\nI am your official **Senior AI Property Advisor**. I have complete, verified records for **Christos Gardens** (Mowe-Ofada) and **Havilah City** (Abeokuta), including:\n\n• **Title Status:** Verifiable C of O & Registered State Surveys\n• **Plot Sizes & Outright Pricing:** 300 SQM, 500 SQM, 1 Acre Deals\n• **Verified Corporate Accounts:** FCMB (2008892202) & WEMA (0128047846)\n• **Site Inspections:** Scheduled every Tuesday & Saturday (Complimentary transport provided)\n\nHow may I guide your property investment today?',
+      text: 'Welcome to OASIS RAY DEVELOPMENTS LTD.\n\nHow can I assist you with Christos Gardens (Mowe-Ofada) or Havilah City (Abeokuta) today?',
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
   ]);
@@ -241,7 +241,7 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
     const hasHavilah = t.includes('havilah') || t.includes('ita oshin') || t.includes('ibara orile') || t.includes('3,000 sqms') || t.includes('1 acre');
     const hasBanks = t.includes('2008892202') || t.includes('0128047846') || t.includes('fcmb') || t.includes('wema');
     const hasInspection = t.includes('tuesdays') || t.includes('saturdays') || t.includes('inspection');
-    const hasCustomerCare = t.includes('customer care') || t.includes('+234 (0) 803 000 0000') || t.includes('info@oasisraydevelopments.com');
+    const hasCustomerCare = t.includes('customer care') || t.includes('+234 817 173 1525') || t.includes('hello@oasisraydevelopments.com');
 
     return (
       <div className="pt-3 space-y-2.5">
@@ -431,11 +431,11 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
               <a
-                href="tel:+2348030000000"
+                href="tel:+2348171731525"
                 className="py-2 px-3 rounded-lg bg-[#102342] hover:bg-[#1A3868] text-white text-xs font-semibold flex items-center justify-center gap-1.5 border border-[#1E3A6E] transition-colors"
               >
                 <Phone className="w-3.5 h-3.5 text-[#C8A45D]" />
-                <span>Call: +234 (0) 803 000 0000</span>
+                <span>Call: +234 817 173 1525</span>
               </a>
 
               <a
@@ -502,9 +502,9 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
                 </a>
 
                 <a
-                  href="tel:+2348030000000"
+                  href="tel:+2348171731525"
                   className="p-2 text-slate-300 hover:text-white rounded-lg bg-[#102342] hover:bg-[#1A3868] transition-colors"
-                  title="Call Customer Care: +234 (0) 803 000 0000"
+                  title="Call Customer Care: +234 817 173 1525"
                   aria-label="Call Customer Care"
                 >
                   <Phone className="w-4 h-4 text-[#C8A45D]" />

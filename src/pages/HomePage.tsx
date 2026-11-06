@@ -444,7 +444,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
       </section>
 
-      {/* 4.5 ARCHITECTURAL RESIDENCES & HOUSING PROTOTYPES */}
+      {/* 4.5 VERIFIED ESTATE LAND PARCELS & PLOT ALLOCATION TIERS */}
       <section className={`border-y py-16 transition-colors ${
         isDark ? 'bg-[#060E1A]/80 border-slate-800' : 'bg-slate-100/90 border-slate-200/80'
       }`}>
@@ -455,22 +455,22 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <div className={`text-xs font-semibold uppercase tracking-widest ${
                   isDark ? 'text-[#C8A45D]' : 'text-[#B38E46]'
                 }`}>
-                  Turnkey Housing Prototypes
+                  Verified Land Parcels & Estate Plots
                 </div>
                 <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight ${
                   isDark ? 'text-white' : 'text-[#0B1930]'
                 }`}>
-                  Architectural Residences & Estate Villas
+                  Master-Planned Land Parcellation & Plot Allocation
                 </h2>
                 <p className={`text-sm ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
-                  Envision your dream home on our master-planned plots. Explore contemporary villa and duplex prototypes engineered for Oasis Ray communities.
+                  Acquire legally vetted, beacon-demarcated residential and commercial land plots across our Ogun State master developments with verified coordinate survey documentation.
                 </p>
               </div>
               <button
-                onClick={() => onOpenLeadModal(undefined, 'Housing Construction')}
+                onClick={() => onOpenLeadModal(undefined, 'Land Allocation Schedule')}
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#C8A45D] hover:bg-[#DFC07C] text-xs font-bold text-[#0B1930] transition-all whitespace-nowrap self-start md:self-auto shadow-md"
               >
-                <span>Request Custom Floorplan Quote</span>
+                <span>Request Plot Allocation Schedule</span>
                 <ArrowRight className="w-3.5 h-3.5 text-[#0B1930]" />
               </button>
             </div>
@@ -479,36 +479,36 @@ export const HomePage: React.FC<HomePageProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
             {[
               {
-                id: 'house-1',
-                title: 'The Grand Horizon Villa',
-                category: '4-Bedroom Detached Villa',
-                plotReq: 'Fits 500 SQM Plot (Christos Gardens)',
-                features: ['4 All-Ensuite Bedrooms', 'Private Infinity Pool Provision', 'Solar Inverter Canopy', '2-Car Covered Garage'],
-                image: '/assets/aistudio/IMG-20261104-WA0028_3559ca9a.jpg',
-                badge: 'Executive Residence'
-              },
-              {
-                id: 'house-2',
-                title: 'The Havilah Apex Terrace',
-                category: '3-Bedroom Contemporary Duplex',
-                plotReq: 'Fits 300 SQM / 450 SQM Plot (Havilah City)',
-                features: ['3 Bedrooms + Boy’s Quarters', 'Open-Plan Family Lounge', 'Smart Lighting Reticulation', 'Gated Boulevard Access'],
+                id: 'plot-tier-1',
+                title: '300 SQM Starter Residential Land Plot',
+                category: 'Starter Residential Land Parcel',
+                plotReq: 'Christos Gardens (Mowe-Ofada) & Havilah City (Abeokuta)',
+                features: ['Coordinated Survey Beaconing', '100% Dry Table Topography', 'Engineered Estate Drainage Access', 'Instant Contract of Sale Execution'],
                 image: '/assets/aistudio/IMG-20261104-WA0019_8697be16.jpg',
-                badge: 'Suburban Series'
+                badge: '300 SQM Surveyed Plot'
               },
               {
-                id: 'house-3',
-                title: 'The Royal Boulevard Compound',
-                category: '5-Bedroom Smart Mansion',
-                plotReq: 'Fits 1,000 SQM Commercial Enclave',
-                features: ['5 Luxury Suites', 'Private Cinema & Study', 'Perimeter CCTV & Access Control', 'Spacious Landscaped Compound'],
+                id: 'plot-tier-2',
+                title: '500 SQM Standard Executive Land Plot',
+                category: 'Full Standard Residential Land Parcel',
+                plotReq: 'Christos Gardens (Mowe-Ofada) & Havilah City (Abeokuta)',
+                features: ['Verifiable C of O & Registered Survey', 'Tarred Boulevard & Gatehouse Security', 'Immediate Physical Beacon Demarcation', '5% Outright Settlement Discount'],
+                image: '/assets/aistudio/IMG-20261104-WA0028_3559ca9a.jpg',
+                badge: '500 SQM Standard Plot'
+              },
+              {
+                id: 'plot-tier-3',
+                title: '1 Acre Strategic Land Banking Deal (3,000 SQMS)',
+                category: 'High-Growth Acreage Parcel',
+                plotReq: 'Havilah City (Directly Along Tarred Expressroad, Abeokuta)',
+                features: ['3,000 SQM Strategic Acreage Enclave', 'Direct Inter-State Highway Frontage', 'Accelerated Capital Appreciation Hedge', 'Chartable at Ogun State Bureau of Lands'],
                 image: '/assets/aistudio/IMG-20261104-WA0014_3013d77c.jpg',
-                badge: 'Flagship Mansion'
+                badge: '1 Acre Deal (3,000 SQMS)'
               }
-            ].map((house, idx) => {
+            ].map((plotTier, idx) => {
               const colSpans = ['md:col-span-4 md:mt-0', 'md:col-span-4 md:mt-8', 'md:col-span-4 md:-mt-4'];
               return (
-                <FlungCard key={house.id} index={idx} className={colSpans[idx]}>
+                <FlungCard key={plotTier.id} index={idx} className={colSpans[idx]}>
                   <div className={`rounded-2xl overflow-hidden border transition-all group flex flex-col justify-between h-full ${
                     isDark
                       ? 'bg-[#102342] border-[#1E3A6E] text-white hover:border-[#C8A45D] shadow-xl'
@@ -517,32 +517,32 @@ export const HomePage: React.FC<HomePageProps> = ({
                     <div>
                       <div className="relative aspect-[16/10] overflow-hidden bg-slate-900">
                         <img
-                          src={house.image}
-                          alt={house.title}
+                          src={plotTier.image}
+                          alt={plotTier.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />
-                        <div className="absolute top-3 left-3 px-3 py-1 bg-[#0B1930]/90 border border-[#C8A45D]/60 rounded-lg text-[10px] font-bold uppercase tracking-wider text-[#C8A45D] backdrop-blur-sm">
-                          {house.badge}
+                        <div className="absolute top-3 left-3 px-3 py-1 bg-[#00097C]/95 border border-[#C8A45D]/60 rounded-lg text-[10px] font-bold uppercase tracking-wider text-[#C8A45D] backdrop-blur-sm shadow-md">
+                          {plotTier.badge}
                         </div>
                       </div>
 
                       <div className="p-6 space-y-4">
                         <div>
                           <div className="text-xs font-bold text-[#C8A45D] uppercase tracking-wide">
-                            {house.category}
+                            {plotTier.category}
                           </div>
                           <h3 className={`text-xl font-bold tracking-tight transition-colors mt-1 ${
                             isDark ? 'text-white group-hover:text-[#C8A45D]' : 'text-[#0B1930] group-hover:text-[#B38E46]'
                           }`}>
-                            {house.title}
+                            {plotTier.title}
                           </h3>
                           <div className={`text-xs mt-1 font-mono ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-                            {house.plotReq}
+                            {plotTier.plotReq}
                           </div>
                         </div>
 
                         <div className={`pt-3 border-t space-y-2 ${isDark ? 'border-[#1E3A6E]' : 'border-slate-100'}`}>
-                          {house.features.map((feat, fIdx) => (
+                          {plotTier.features.map((feat, fIdx) => (
                             <div key={fIdx} className={`flex items-center gap-2 text-xs font-medium ${
                               isDark ? 'text-slate-200' : 'text-slate-700'
                             }`}>
@@ -556,15 +556,15 @@ export const HomePage: React.FC<HomePageProps> = ({
 
                     <div className="p-6 pt-0">
                       <button
-                        onClick={() => onOpenLeadModal(undefined, `Housing Quote: ${house.title}`)}
+                        onClick={() => onOpenLeadModal(undefined, `Land Plot Inquiry: ${plotTier.title}`)}
                         className={`w-full py-2.5 px-4 text-xs font-bold uppercase tracking-wider transition-colors rounded-xl flex items-center justify-center gap-2 ${
                           isDark
-                            ? 'bg-[#1A3868] hover:bg-[#C8A45D] text-white hover:text-[#0B1930] border border-[#C8A45D]/40'
-                            : 'bg-[#0B1930] hover:bg-[#1A3868] text-white shadow-md'
+                            ? 'bg-[#00097C] hover:bg-[#C8A45D] text-white hover:text-[#0B1930] border border-[#C8A45D]/40'
+                            : 'bg-[#00097C] hover:bg-[#1A3868] text-white shadow-md'
                         }`}
                       >
-                        <Home className="w-3.5 h-3.5 text-[#C8A45D]" />
-                        <span>Request Floorplan & Build Quote</span>
+                        <Landmark className="w-3.5 h-3.5 text-[#C8A45D]" />
+                        <span>Enquire on Land Plot Allocation</span>
                       </button>
                     </div>
                   </div>

@@ -10,9 +10,9 @@ export const INITIAL_SETTINGS: SiteSettings = {
   companyMission:
     '[Mission Statement Pending Final Client Ratification] Delivering structured, high-integrity property assets that protect capital and yield generational value through transparent development and disciplined acquisition.',
   officeAddress: '3rd Floor, Goldcrest Plaza, Ikota, Lekki, Lagos State, Nigeria (Head Office)',
-  phone: '+234 (0) 803 000 0000',
-  whatsappNumber: '+2348030000000',
-  email: 'info@oasisraydevelopments.com',
+  phone: '+234 817 173 1525',
+  whatsappNumber: '+2348171731525',
+  email: 'hello@oasisraydevelopments.com',
   workingHours: 'Monday – Friday: 8:30 AM – 5:30 PM | Saturday (Inspections by Appointment): 10:00 AM – 3:00 PM',
   stats: {
     developmentsCount: '02 Strategic Developments',
@@ -84,12 +84,12 @@ export const INITIAL_SERVICES: ServiceItem[] = [
   {
     id: 's5',
     number: '05',
-    title: 'Residential Property Development',
-    shortDescription: 'Turnkey residential homes, contemporary duplexes, and gated estate units characterized by functional aesthetics.',
-    fullDescription: 'We design living environments that prioritize natural airflow, spatial efficiency, privacy, and community safety. Each home is built to harmonise with its natural landscape while integrating modern utilities.',
-    benefits: ['Modern architectural blueprints', 'Energy-conscious layouts', 'Quality building materials'],
-    targetAudience: 'Aspiring homeowners, executives, diaspora returnees',
-    iconName: 'Home'
+    title: 'Master-Planned Land Parcellation',
+    shortDescription: 'Precision coordinate-demarcated residential estate plots with verified survey beacons and perimeter fencing.',
+    fullDescription: 'We deliver fully serviced estate layouts ready for immediate subscriber possession. Each plot features verified boundary markers, engineered access corridors, integrated drainage reticulation, and clear estate guidelines that ensure orderly, prestigious community development without tenement structures.',
+    benefits: ['Verified boundary beacons', 'Engineered access corridors', 'Pre-allocated residential zones'],
+    targetAudience: 'Private land buyers, prospective homeowners, generational investors',
+    iconName: 'Landmark'
   },
   {
     id: 's6',
@@ -202,7 +202,7 @@ export const INITIAL_DEVELOPMENTS: Development[] = [
         title: 'Starter Residential Plot',
         price: 5000000,
         promoPrice: 4500000,
-        description: '0-3 Months Outright: ₦4.5M | 3-6 Months: ₦5M | 6-9 Months: ₦5.5M. Initial Deposit: ₦1 Million. 5% discount on one-off payment! Suitable for 3-bedroom bungalow or semi-detached villa.',
+        description: '0-3 Months Outright: ₦4.5M | 3-6 Months: ₦5M | 6-9 Months: ₦5.5M. Initial Deposit: ₦1 Million. 5% discount on one-off payment! Starter residential estate land plot with clear coordinate beacons and immediate layout allocation.',
         isAvailable: true
       },
       {
@@ -211,7 +211,7 @@ export const INITIAL_DEVELOPMENTS: Development[] = [
         title: 'Standard Residential Plot',
         price: 8000000,
         promoPrice: 7000000,
-        description: '0-3 Months Outright: ₦7.0M | 3-6 Months: ₦7.5M | 6-9 Months: ₦8M. Initial Deposit: ₦2 Million. 5% discount on one-off payment! Full plot ideal for detached luxury duplex and compound.',
+        description: '0-3 Months Outright: ₦7.0M | 3-6 Months: ₦7.5M | 6-9 Months: ₦8M. Initial Deposit: ₦2 Million. 5% discount on one-off payment! Full standard residential estate land plot with registered survey and verifiable C of O.',
         isAvailable: true
       }
     ],

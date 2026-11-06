@@ -42,7 +42,7 @@ export const InvestmentPage: React.FC<InvestmentPageProps> = ({
     },
     {
       q: 'Can I purchase commercial or multi-plot parcels for development?',
-      a: 'Yes. Both Christos Gardens and Havilah City have designated commercial and executive boulevards suitable for institutional facilities, residential duplexes, or clinic/commercial development.'
+      a: 'Yes. Both Christos Gardens and Havilah City have designated commercial and executive boulevards suitable for institutional facilities, residential estate development, or commercial facilities.'
     }
   ];
 

@@ -198,10 +198,15 @@ app.post('/api/gemini/chat', async (req: Request, res: Response) => {
 - Official Advisory & Office Hours: Monday – Friday: 8:30 AM – 5:30 PM | Saturday (Inspections by Appointment): 10:00 AM – 3:00 PM.
 
 ### OFFICIAL CUSTOMER CARE & CONTACT CHANNELS
-- Direct Investor & Customer Care Line: +234 (0) 803 000 0000
-- Official WhatsApp Customer Care Desk: +2348030000000 (Direct WhatsApp link: https://wa.me/2348030000000)
-- Official Correspondence Email: info@oasisraydevelopments.com
+- Direct Investor & Customer Care Line: +234 817 173 1525
+- Official WhatsApp Customer Care Desk: +2348171731525 (Direct WhatsApp link: https://wa.me/2348171731525)
+- Official Correspondence Email: hello@oasisraydevelopments.com
 - Head Office Address: 3rd Floor, Goldcrest Plaza, Ikota, Lekki, Lagos State, Nigeria.
+
+### STRICT PORTFOLIO RULE: LAND ONLY (NO HOUSING PACKAGES)
+- Oasis Ray Developments Ltd. sells VERIFIED ESTATE LAND PLOTS AND STRATEGIC LAND BANKING ACREAGE ONLY (300 SQM, 500 SQM, 1 Acre deals, and commercial frontage plots).
+- The company does NOT sell pre-built turnkey housing, duplexes, or building construction packages.
+- Subscribers acquire demarcated land plots with clear registered titles/surveys and build their own homes in accordance with the estate master-planning guidelines.
 
 ### VERIFIED CORPORATE BANK ACCOUNTS
 CRITICAL FRAUD-PREVENTION PROTOCOL:
@@ -216,7 +221,7 @@ CRITICAL FRAUD-PREVENTION PROTOCOL:
 2. Land Acquisition and Sales (Zero-encumbrance greenfield/brownfield vetted parcels with registered surveys).
 3. Property Investment Opportunities (High-yield entry points with predictable capital appreciation horizons).
 4. Land Banking (Strategic acreage acquisition ahead of civic master plans).
-5. Residential Property Development (Turnkey duplexes, contemporary bungalows, family living).
+5. Master-Planned Land Parcellation & Plot Allocation (Survey-demarcated residential & commercial estate plots with boundary beacons).
 6. Real Estate Consultancy (Cadastral zoning audits, title regularization, Ogun State land registry guidance).
 7. Property Marketing and Brokerage (Transparent representation for verified institutional lands).
 8. Real Estate Investment Advisory (Portfolio balancing, inflation-hedging property strategies, diaspora coordination).
@@ -241,7 +246,7 @@ CRITICAL FRAUD-PREVENTION PROTOCOL:
     - 3–6 Months: ₦7,500,000 (Initial deposit: ₦2,000,000)
     - 6–9 Months: ₦8,000,000 (Initial deposit: ₦2,000,000)
     - 5% discount applies on one-off payment.
-    - Suitable for: Full detached executive duplex and private compound.
+    - Suitable for: Full standard residential estate land plot with registered survey and verifiable C of O.
 - Key Landmarks (Within 3km Radius):
   • Royal Garden City
   • Nestle Foods Plc
@@ -343,9 +348,9 @@ CRITICAL FRAUD-PREVENTION PROTOCOL:
    - Explicitly inform the user:
      "This specific request requires direct verification by our Senior Investment Management & Customer Care Desk.
       You can contact our Customer Care Desk directly via:
-      📞 Direct Phone / Customer Care: +234 (0) 803 000 0000
-      💬 WhatsApp Advisory Desk: +2348030000000
-      📧 Official Email: info@oasisraydevelopments.com
+      📞 Direct Phone / Customer Care: +234 817 173 1525
+      💬 WhatsApp Advisory Desk: +2348171731525
+      📧 Official Email: hello@oasisraydevelopments.com
       🏢 Corporate Head Office: 3rd Floor, Goldcrest Plaza, Ikota, Lekki, Lagos State, Nigeria"
    - And invite them: "If you share your Name, Phone Number, and Email here, I will immediately log your inquiry with our customer care team so an advisor can reach out to you within our advisory hours."
 

@@ -2,14 +2,27 @@
 
 @layer base {
   :root {
-    --brand-navy: #0B1930;
-    --brand-navy-dark: #060E1A;
-    --brand-navy-surface: #102342;
-    --brand-navy-card: #142B52;
-    --brand-navy-border: #1E3A6E;
+    --brand-royal-blue: #00097C; /* Primary Corporate Brand Color RGB(0, 9, 124) */
+    --brand-primary: #00097C;
+    --brand-navy: #00097C;
+    --brand-navy-dark: #00053D;
+    --brand-navy-surface: #041047;
+    --brand-navy-card: #08165E;
+    --brand-navy-border: #142B7A;
     --brand-gold: #C8A45D;
     --brand-gold-light: #DFC07C;
     --brand-gold-dark: #A6833D;
+  }
+
+  /* Utility classes for #00097C */
+  .bg-oasis-blue {
+    background-color: #00097C;
+  }
+  .text-oasis-blue {
+    color: #00097C;
+  }
+  .border-oasis-blue {
+    border-color: #00097C;
   }
 
   body {
