@@ -838,6 +838,28 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
             />
           </div>
 
+          {/* Corporate Vision & Mission */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+            <div>
+              <label className="block text-xs font-semibold text-slate-300 mb-1">Corporate Vision</label>
+              <textarea
+                rows={3}
+                value={editingSettings.companyVision}
+                onChange={(e) => setEditingSettings({ ...editingSettings, companyVision: e.target.value })}
+                className="w-full px-3.5 py-2 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-white text-xs leading-relaxed resize-none"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-semibold text-slate-300 mb-1">Company Mission</label>
+              <textarea
+                rows={3}
+                value={editingSettings.companyMission}
+                onChange={(e) => setEditingSettings({ ...editingSettings, companyMission: e.target.value })}
+                className="w-full px-3.5 py-2 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-white text-xs leading-relaxed resize-none"
+              />
+            </div>
+          </div>
+
           {/* Company Statistics Placeholders */}
           <div className="space-y-3 pt-4 border-t border-[#1E3A6E]">
             <h4 className="text-sm font-bold text-white">Company Statistics (Placeholders until Verified)</h4>

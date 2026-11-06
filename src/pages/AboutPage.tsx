@@ -46,25 +46,23 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onNavigate, onOp
           </div>
         </SlideInLeft>
 
-        {/* Mission (No pill enclosure) */}
+        {/* Mission */}
         <SlideInRight>
-          <div className="bg-[#102342] border border-[#1E3A6E] rounded-2xl p-8 space-y-4 shadow-xl h-full">
-            <div className="w-10 h-10 rounded-lg bg-[#060E1A] border border-[#C8A45D]/40 flex items-center justify-center text-[#C8A45D]">
-              <Target className="w-5 h-5" />
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+          <div className="bg-[#102342] border border-[#1E3A6E] rounded-2xl p-8 space-y-4 shadow-xl h-full flex flex-col justify-between">
+            <div className="space-y-4">
+              <div className="w-10 h-10 rounded-lg bg-[#060E1A] border border-[#C8A45D]/40 flex items-center justify-center text-[#C8A45D]">
+                <Target className="w-5 h-5" />
+              </div>
+              <div className="text-xs font-semibold uppercase tracking-wider text-slate-400">
                 Company Mission
-              </span>
-              <span className="text-xs text-amber-400 font-mono font-medium">
-                [Pending Client Approval]
-              </span>
+              </div>
+              <p className="text-base text-slate-200 leading-relaxed font-medium">
+                {settings.companyMission}
+              </p>
             </div>
-            <p className="text-sm text-slate-200 leading-relaxed">
-              {settings.companyMission}
-            </p>
-            <div className="text-xs text-slate-400 pt-2 border-t border-[#1E3A6E]">
-              To be ratified by executive resolution.
+            <div className="text-xs text-slate-400 pt-3 border-t border-[#1E3A6E] flex items-center justify-between">
+              <span>Operational Blueprint</span>
+              <span className="text-[#C8A45D] font-semibold">Capital Preservation Charter</span>
             </div>
           </div>
         </SlideInRight>
@@ -73,26 +71,34 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onNavigate, onOp
       {/* Founder Profile: Left Portrait / Right Bio */}
       <div className="bg-[#060E1A] border border-[#1E3A6E] rounded-2xl p-8 sm:p-12 shadow-2xl">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          <SlideInLeft className="lg:col-span-4 flex justify-center">
-            <div className="relative w-64 sm:w-72 aspect-square rounded-2xl overflow-hidden border-2 border-[#C8A45D]/60 shadow-xl">
+          <SlideInLeft className="lg:col-span-5 flex justify-center">
+            <div className="relative w-72 sm:w-80 aspect-[4/5] rounded-2xl overflow-hidden border-2 border-[#C8A45D]/60 shadow-2xl bg-[#0B1930] group">
               <img
-                src="/src/assets/images/founder_oluwayemi_portrait_1793643953758.jpg"
-                alt="Oluwayemi James Damilare"
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover object-top"
+                src="/assets/aistudio/IMG_0554_7a96fa6d.JPG"
+                alt={`${settings.founderName} - Manager & CEO`}
+                className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#060E1A]/80 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-3 left-3 right-3 p-2.5 rounded-xl bg-[#00097C]/90 backdrop-blur-sm border border-[#C8A45D]/40 text-center shadow-lg">
+                <span className="text-xs font-bold text-[#C8A45D] uppercase tracking-wider block">
+                  {settings.founderName}
+                </span>
+                <span className="text-[11px] text-white/90 font-medium">
+                  Manager & Chief Executive Officer
+                </span>
+              </div>
             </div>
           </SlideInLeft>
 
-          <SlideInRight className="lg:col-span-8 space-y-4">
+          <SlideInRight className="lg:col-span-7 space-y-4">
             <div className="text-xs font-semibold uppercase tracking-widest text-[#C8A45D]">
-              Founder & Lead Visionary
+              Executive Leadership
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
               {settings.founderName}
             </h2>
             <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
-              {settings.founderRole}
+              Manager & Chief Executive Officer
             </div>
 
             <div className="space-y-3 text-sm text-slate-300 leading-relaxed pt-2">

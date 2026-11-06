@@ -31,7 +31,13 @@ function setLocal<T>(key: string, value: T): void {
 
 // Initial seed verification & cache migration for official contact info
 const cachedSettings = getLocal<SiteSettings | null>(STORAGE_KEYS.SETTINGS, null);
-if (!cachedSettings || cachedSettings.phone?.includes('803') || cachedSettings.email?.includes('info@')) {
+if (
+  !cachedSettings ||
+  cachedSettings.phone?.includes('803') ||
+  cachedSettings.email?.includes('info@') ||
+  cachedSettings.companyMission?.includes('Pending') ||
+  cachedSettings.companyMission?.includes('Ratification')
+) {
   setLocal(STORAGE_KEYS.SETTINGS, INITIAL_SETTINGS);
 }
 if (!localStorage.getItem(STORAGE_KEYS.DEVELOPMENTS)) {

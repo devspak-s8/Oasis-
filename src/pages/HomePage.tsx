@@ -205,13 +205,25 @@ export const HomePage: React.FC<HomePageProps> = ({
           <SlideInRight className={`lg:col-span-5 rounded-2xl p-8 space-y-6 shadow-2xl relative overflow-hidden ${
             isDark ? 'bg-[#102342] text-white border border-[#1E3A6E]' : 'bg-[#0B1930] text-white border border-[#C8A45D]/40'
           }`}>
-            <div className="text-xs font-semibold uppercase tracking-wider text-slate-300">
-              Corporate Vision Statement
+            <div className="space-y-3">
+              <div className="text-xs font-semibold uppercase tracking-wider text-[#C8A45D]">
+                Corporate Vision
+              </div>
+              <p className="font-serif-title text-base sm:text-lg text-white italic leading-relaxed">
+                "{settings.companyVision}"
+              </p>
             </div>
-            <p className="font-serif-title text-lg sm:text-xl text-white italic leading-relaxed">
-              "{settings.companyVision}"
-            </p>
-            <div className="pt-4 border-t border-[#1E3A6E] flex items-center justify-between text-xs text-slate-300">
+
+            <div className="pt-4 border-t border-[#1E3A6E]/80 space-y-2">
+              <div className="text-xs font-semibold uppercase tracking-wider text-slate-300">
+                Company Mission
+              </div>
+              <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-medium">
+                {settings.companyMission}
+              </p>
+            </div>
+
+            <div className="pt-3 border-t border-[#1E3A6E] flex items-center justify-between text-xs text-slate-300">
               <span className="text-[#C8A45D] font-bold">OASIS RAY DEVELOPMENTS LTD.</span>
               <span>RC Registered Entity</span>
             </div>
