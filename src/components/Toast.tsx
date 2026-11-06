@@ -42,10 +42,10 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
             key={toast.id}
             className={`pointer-events-auto flex items-start gap-3 p-4 rounded-xl shadow-2xl border text-sm transition-all duration-300 animate-in slide-in-from-bottom-2 ${
               toast.type === 'success'
-                ? 'bg-[#0B1930] text-emerald-200 border-emerald-500/40 shadow-emerald-950/30'
+                ? 'bg-[#000538] text-emerald-200 border-emerald-500/40 shadow-emerald-950/30'
                 : toast.type === 'error'
-                ? 'bg-[#0B1930] text-rose-200 border-rose-500/40 shadow-rose-950/30'
-                : 'bg-[#0B1930] text-amber-100 border-[#C8A45D]/40 shadow-amber-950/30'
+                ? 'bg-[#000538] text-rose-200 border-rose-500/40 shadow-rose-950/30'
+                : 'bg-[#000538] text-amber-100 border-[#C8A45D]/40 shadow-amber-950/30'
             }`}
           >
             {toast.type === 'success' && <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />}

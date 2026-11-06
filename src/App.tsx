@@ -207,9 +207,9 @@ function AppContent() {
 
   if (loading || !settings) {
     return (
-      <div className="min-h-screen bg-[#0B1930] flex items-center justify-center">
+      <div className="min-h-screen bg-[#000538] flex items-center justify-center">
         <div className="text-center space-y-4">
-          <div className="w-12 h-12 rounded-xl bg-[#102342] border border-[#C8A45D]/60 flex items-center justify-center mx-auto animate-pulse">
+          <div className="w-12 h-12 rounded-xl bg-[#00097C] border border-[#C8A45D]/60 flex items-center justify-center mx-auto animate-pulse shadow-xl">
             <span className="font-serif-title text-[#C8A45D] font-bold text-2xl">O</span>
           </div>
           <div className="text-sm font-bold tracking-tight text-white uppercase">
@@ -226,8 +226,8 @@ function AppContent() {
   return (
     <div className={`relative min-h-screen flex flex-col transition-colors duration-300 ${
       theme === 'dark'
-        ? 'bg-[#0B1930] text-slate-100 selection:bg-[#C8A45D]/30 selection:text-[#C8A45D]'
-        : 'bg-slate-50 text-slate-900 selection:bg-[#C8A45D]/30 selection:text-[#0B1930]'
+        ? 'bg-[#000538] text-slate-100 selection:bg-[#C8A45D]/30 selection:text-[#C8A45D]'
+        : 'bg-slate-50 text-slate-900 selection:bg-[#C8A45D]/30 selection:text-[#00097C]'
     }`}>
       {/* Full-Page Scroll-Driven Cinematic Background */}
       {!isAdminView && <ScrollBackground />}

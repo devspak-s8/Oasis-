@@ -101,14 +101,14 @@ export const ScrollBackground: React.FC = () => {
 
       {/* Adaptive Luxury Overlay Gradient */}
       {theme === 'dark' ? (
-        <div className="absolute inset-0 bg-gradient-to-b from-[#060E1A]/80 via-[#0B1930]/75 to-[#060E1A]/90 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#000538]/85 via-[#00097C]/65 to-[#000538]/95 pointer-events-none" />
       ) : (
         <div className="absolute inset-0 bg-gradient-to-b from-slate-50/90 via-white/85 to-slate-100/95 pointer-events-none" />
       )}
 
       {/* Adaptive Vignette */}
       {theme === 'dark' ? (
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(11,25,48,0.2)_0%,rgba(6,14,26,0.85)_100%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,9,124,0.3)_0%,rgba(0,5,56,0.85)_100%)] pointer-events-none" />
       ) : (
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.2)_0%,rgba(241,245,249,0.9)_100%)] pointer-events-none" />
       )}

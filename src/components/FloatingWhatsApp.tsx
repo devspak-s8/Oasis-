@@ -24,7 +24,7 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ whatsappNumb
             animate={{ opacity: 1, x: 0, scale: 1 }}
             exit={{ opacity: 0, x: 10, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="hidden sm:flex items-center gap-2 bg-[#060E1A] text-white text-xs px-3.5 py-2 rounded-xl border border-[#1E3A6E] shadow-2xl backdrop-blur-md"
+            className="hidden sm:flex items-center gap-2 bg-[#000538] text-white text-xs px-3.5 py-2 rounded-xl border border-[#14288F] shadow-2xl backdrop-blur-md"
           >
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             <span className="font-medium">Direct Advisory Desk</span>

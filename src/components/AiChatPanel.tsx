@@ -206,7 +206,7 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
             return (
               <div
                 key={idx}
-                className="pt-2 pb-1.5 border-b border-[#1E3A6E]/70 text-sm font-extrabold text-[#C8A45D] flex items-center gap-2"
+                className="pt-2 pb-1.5 border-b border-[#14288F]/70 text-sm font-extrabold text-[#C8A45D] flex items-center gap-2"
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-[#C8A45D]" />
                 <span>{heading}</span>
@@ -247,7 +247,7 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
       <div className="pt-3 space-y-2.5">
         {/* 1. BANK ACCOUNTS WIDGET */}
         {hasBanks && (
-          <div className="rounded-xl p-3.5 bg-[#060E1A] border border-[#C8A45D]/40 space-y-3 shadow-md">
+          <div className="rounded-xl p-3.5 bg-[#000538] border border-[#C8A45D]/40 space-y-3 shadow-md">
             <div className="flex items-center justify-between">
               <span className="text-[11px] font-bold text-[#C8A45D] uppercase tracking-wider flex items-center gap-1.5">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
@@ -260,14 +260,14 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {/* FCMB */}
-              <div className="p-2.5 rounded-lg bg-[#102342] border border-[#1E3A6E] flex items-center justify-between">
+              <div className="p-2.5 rounded-lg bg-[#00097C] border border-[#14288F] flex items-center justify-between">
                 <div>
                   <div className="text-[10px] text-slate-400 font-bold uppercase">FCMB</div>
                   <div className="text-xs font-mono font-black text-[#C8A45D] tracking-wider">2008892202</div>
                 </div>
                 <button
                   onClick={() => handleCopyText('2008892202', 'fcmb')}
-                  className="px-2 py-1 rounded bg-[#060E1A] hover:bg-[#C8A45D] text-white hover:text-[#0B1930] text-[10px] font-semibold border border-[#1E3A6E] flex items-center gap-1 transition-colors cursor-pointer"
+                  className="px-2 py-1 rounded bg-[#000538] hover:bg-[#C8A45D] text-white hover:text-[#00097C] text-[10px] font-semibold border border-[#14288F] flex items-center gap-1 transition-colors cursor-pointer"
                 >
                   {copiedBank === 'fcmb' ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
                   <span>{copiedBank === 'fcmb' ? 'Copied' : 'Copy'}</span>
@@ -275,14 +275,14 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
               </div>
 
               {/* WEMA */}
-              <div className="p-2.5 rounded-lg bg-[#102342] border border-[#1E3A6E] flex items-center justify-between">
+              <div className="p-2.5 rounded-lg bg-[#00097C] border border-[#14288F] flex items-center justify-between">
                 <div>
                   <div className="text-[10px] text-slate-400 font-bold uppercase">WEMA BANK</div>
                   <div className="text-xs font-mono font-black text-[#C8A45D] tracking-wider">0128047846</div>
                 </div>
                 <button
                   onClick={() => handleCopyText('0128047846', 'wema')}
-                  className="px-2 py-1 rounded bg-[#060E1A] hover:bg-[#C8A45D] text-white hover:text-[#0B1930] text-[10px] font-semibold border border-[#1E3A6E] flex items-center gap-1 transition-colors cursor-pointer"
+                  className="px-2 py-1 rounded bg-[#000538] hover:bg-[#C8A45D] text-white hover:text-[#00097C] text-[10px] font-semibold border border-[#14288F] flex items-center gap-1 transition-colors cursor-pointer"
                 >
                   {copiedBank === 'wema' ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
                   <span>{copiedBank === 'wema' ? 'Copied' : 'Copy'}</span>
@@ -298,7 +298,7 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
 
         {/* 2. CHRISTOS GARDENS ACTION CARD */}
         {hasChristos && !hasBanks && (
-          <div className="rounded-xl p-3.5 bg-[#060E1A] border border-[#1E3A6E] space-y-2.5 shadow-md">
+          <div className="rounded-xl p-3.5 bg-[#000538] border border-[#14288F] space-y-2.5 shadow-md">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-white flex items-center gap-1.5">
                 <Building className="w-3.5 h-3.5 text-[#C8A45D]" />
@@ -310,11 +310,11 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
             </div>
 
             <div className="grid grid-cols-2 gap-2 text-center">
-              <div className="p-2 rounded-lg bg-[#102342] border border-[#1E3A6E]">
+              <div className="p-2 rounded-lg bg-[#00097C] border border-[#14288F]">
                 <div className="text-[10px] text-slate-400 font-bold">300 SQM Outright</div>
                 <div className="text-xs font-black font-mono text-[#C8A45D]">₦4,500,000</div>
               </div>
-              <div className="p-2 rounded-lg bg-[#102342] border border-[#1E3A6E]">
+              <div className="p-2 rounded-lg bg-[#00097C] border border-[#14288F]">
                 <div className="text-[10px] text-slate-400 font-bold">500 SQM Outright</div>
                 <div className="text-xs font-black font-mono text-[#C8A45D]">₦7,000,000</div>
               </div>
@@ -323,7 +323,7 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
             <div className="flex items-center gap-2 pt-1">
               <button
                 onClick={() => handleSendMessage('I would like to reserve a plot at Christos Gardens')}
-                className="flex-1 py-1.5 px-3 rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#0B1930] text-[11px] font-bold uppercase transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
+                className="flex-1 py-1.5 px-3 rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#00097C] text-[11px] font-bold uppercase transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
               >
                 <span>Reserve Plot</span>
                 <ArrowRight className="w-3 h-3" />
@@ -345,7 +345,7 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
 
         {/* 3. HAVILAH CITY ACTION CARD */}
         {hasHavilah && !hasBanks && (
-          <div className="rounded-xl p-3.5 bg-[#060E1A] border border-[#1E3A6E] space-y-2.5 shadow-md">
+          <div className="rounded-xl p-3.5 bg-[#000538] border border-[#14288F] space-y-2.5 shadow-md">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-white flex items-center gap-1.5">
                 <MapPin className="w-3.5 h-3.5 text-[#C8A45D]" />
@@ -357,15 +357,15 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
             </div>
 
             <div className="grid grid-cols-3 gap-1.5 text-center">
-              <div className="p-2 rounded-lg bg-[#102342] border border-[#1E3A6E]">
+              <div className="p-2 rounded-lg bg-[#00097C] border border-[#14288F]">
                 <div className="text-[9px] text-slate-400 font-bold">300 SQM</div>
                 <div className="text-xs font-black font-mono text-[#C8A45D]">₦900K</div>
               </div>
-              <div className="p-2 rounded-lg bg-[#102342] border border-[#1E3A6E]">
+              <div className="p-2 rounded-lg bg-[#00097C] border border-[#14288F]">
                 <div className="text-[9px] text-slate-400 font-bold">500 SQM</div>
                 <div className="text-xs font-black font-mono text-[#C8A45D]">₦1.5M</div>
               </div>
-              <div className="p-2 rounded-lg bg-[#102342] border border-[#1E3A6E]">
+              <div className="p-2 rounded-lg bg-[#00097C] border border-[#14288F]">
                 <div className="text-[9px] text-slate-400 font-bold">1 Acre Deal</div>
                 <div className="text-xs font-black font-mono text-[#C8A45D]">₦8.7M</div>
               </div>
@@ -374,7 +374,7 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
             <div className="flex items-center gap-2 pt-1">
               <button
                 onClick={() => handleSendMessage('I would like to enquire on Havilah City plots')}
-                className="flex-1 py-1.5 px-3 rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#0B1930] text-[11px] font-bold uppercase transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
+                className="flex-1 py-1.5 px-3 rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#00097C] text-[11px] font-bold uppercase transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
               >
                 <span>Reserve Plot</span>
                 <ArrowRight className="w-3 h-3" />
@@ -396,7 +396,7 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
 
         {/* 4. INSPECTION BOOKING CARD */}
         {hasInspection && (
-          <div className="rounded-xl p-3.5 bg-[#060E1A] border border-[#C8A45D]/40 space-y-2.5 shadow-md">
+          <div className="rounded-xl p-3.5 bg-[#000538] border border-[#C8A45D]/40 space-y-2.5 shadow-md">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-white flex items-center gap-1.5">
                 <Calendar className="w-3.5 h-3.5 text-[#C8A45D]" />
@@ -413,7 +413,7 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
 
             <button
               onClick={() => handleSendMessage('Please schedule an on-site inspection for me this week')}
-              className="w-full py-2 px-3 rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#0B1930] text-xs font-bold uppercase transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
+              className="w-full py-2 px-3 rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#00097C] text-xs font-bold uppercase transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
             >
               <Calendar className="w-3.5 h-3.5" />
               <span>Book My Free Inspection Tour</span>
@@ -423,7 +423,7 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
 
         {/* 5. CUSTOMER CARE DESK CARD */}
         {hasCustomerCare && (
-          <div className="rounded-xl p-3.5 bg-[#060E1A] border border-[#1E3A6E] space-y-2.5 shadow-md">
+          <div className="rounded-xl p-3.5 bg-[#000538] border border-[#14288F] space-y-2.5 shadow-md">
             <div className="text-xs font-bold text-[#C8A45D] flex items-center gap-1.5">
               <Phone className="w-3.5 h-3.5 text-[#C8A45D]" />
               <span>Direct Customer Care Channels</span>
@@ -432,7 +432,7 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
               <a
                 href="tel:+2348171731525"
-                className="py-2 px-3 rounded-lg bg-[#102342] hover:bg-[#1A3868] text-white text-xs font-semibold flex items-center justify-center gap-1.5 border border-[#1E3A6E] transition-colors"
+                className="py-2 px-3 rounded-lg bg-[#00097C] hover:bg-[#1A3868] text-white text-xs font-semibold flex items-center justify-center gap-1.5 border border-[#14288F] transition-colors"
               >
                 <Phone className="w-3.5 h-3.5 text-[#C8A45D]" />
                 <span>Call: +234 817 173 1525</span>
@@ -449,7 +449,7 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
               </a>
             </div>
 
-            <div className="text-[10px] text-slate-400 pt-1 border-t border-[#1E3A6E]/50">
+            <div className="text-[10px] text-slate-400 pt-1 border-t border-[#14288F]/50">
               Corporate Desk: 3rd Floor, Goldcrest Plaza, Ikota, Lekki, Lagos State, Nigeria.
             </div>
           </div>
@@ -467,14 +467,14 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: '100%', opacity: 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 220 }}
-            className={`w-full bg-[#0B1930] rounded-t-3xl sm:rounded-2xl shadow-2xl flex flex-col transition-all duration-300 overflow-hidden ${
+            className={`w-full bg-[#000538] rounded-t-3xl sm:rounded-2xl shadow-2xl flex flex-col transition-all duration-300 overflow-hidden ${
               isExpanded ? 'h-full sm:h-[95vh] max-w-5xl' : 'h-[85vh] sm:h-[640px] max-w-2xl'
             }`}
           >
             {/* Panel Top Header Bar */}
-            <div className="p-4 bg-[#060E1A] flex items-center justify-between shrink-0 border-b border-[#1E3A6E]/50">
+            <div className="p-4 bg-[#000538] flex items-center justify-between shrink-0 border-b border-[#14288F]/50">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-[#102342] border border-[#C8A45D]/50 flex items-center justify-center text-[#C8A45D] shadow-sm">
+                <div className="w-10 h-10 rounded-xl bg-[#00097C] border border-[#C8A45D]/50 flex items-center justify-center text-[#C8A45D] shadow-sm">
                   <BotMessageSquare className="w-5 h-5 text-[#C8A45D]" />
                 </div>
                 <div>
@@ -503,7 +503,7 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
 
                 <a
                   href="tel:+2348171731525"
-                  className="p-2 text-slate-300 hover:text-white rounded-lg bg-[#102342] hover:bg-[#1A3868] transition-colors"
+                  className="p-2 text-slate-300 hover:text-white rounded-lg bg-[#00097C] hover:bg-[#1A3868] transition-colors"
                   title="Call Customer Care: +234 817 173 1525"
                   aria-label="Call Customer Care"
                 >
@@ -512,7 +512,7 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
 
                 <button
                   onClick={() => setIsExpanded(!isExpanded)}
-                  className="p-2 text-slate-400 hover:text-white rounded-lg bg-[#102342] transition-colors"
+                  className="p-2 text-slate-400 hover:text-white rounded-lg bg-[#00097C] transition-colors"
                   title={isExpanded ? 'Collapse panel' : 'Expand full page'}
                   aria-label={isExpanded ? 'Collapse panel' : 'Expand full page'}
                 >
@@ -520,7 +520,7 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
                 </button>
                 <button
                   onClick={onClose}
-                  className="p-2 text-slate-400 hover:text-white rounded-lg bg-[#102342] transition-colors"
+                  className="p-2 text-slate-400 hover:text-white rounded-lg bg-[#00097C] transition-colors"
                   aria-label="Close AI panel"
                 >
                   <X className="w-4 h-4" />
@@ -529,7 +529,7 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
             </div>
 
             {/* Chat Conversation Scroll View */}
-            <div className="flex-1 p-4 sm:p-6 overflow-y-auto space-y-5 bg-[#0B1930]">
+            <div className="flex-1 p-4 sm:p-6 overflow-y-auto space-y-5 bg-[#000538]">
               {messages.map((msg) => (
                 <div
                   key={msg.id}
@@ -540,8 +540,8 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
                   <div
                     className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 text-xs font-bold shadow-md ${
                       msg.sender === 'user'
-                        ? 'bg-[#C8A45D] text-[#0B1930]'
-                        : 'bg-[#102342] border border-[#C8A45D]/40 text-[#C8A45D]'
+                        ? 'bg-[#C8A45D] text-[#00097C]'
+                        : 'bg-[#00097C] border border-[#C8A45D]/40 text-[#C8A45D]'
                     }`}
                   >
                     {msg.sender === 'user' ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
@@ -551,8 +551,8 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
                     <div
                       className={`p-4 rounded-2xl shadow-md ${
                         msg.sender === 'user'
-                          ? 'bg-[#C8A45D] text-[#0B1930] font-medium rounded-tr-none'
-                          : 'bg-[#102342] border border-[#1E3A6E] rounded-tl-none'
+                          ? 'bg-[#C8A45D] text-[#00097C] font-medium rounded-tr-none'
+                          : 'bg-[#00097C] border border-[#14288F] rounded-tl-none'
                       }`}
                     >
                       {msg.imagePreview && (
@@ -588,10 +588,10 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
 
               {loading && (
                 <div className="flex items-center gap-3 text-xs text-slate-400">
-                  <div className="w-8 h-8 rounded-xl bg-[#102342] border border-[#C8A45D]/40 flex items-center justify-center text-[#C8A45D]">
+                  <div className="w-8 h-8 rounded-xl bg-[#00097C] border border-[#C8A45D]/40 flex items-center justify-center text-[#C8A45D]">
                     <Bot className="w-4 h-4" />
                   </div>
-                  <div className="p-3.5 bg-[#102342] border border-[#1E3A6E] rounded-2xl rounded-tl-none flex items-center gap-2.5">
+                  <div className="p-3.5 bg-[#00097C] border border-[#14288F] rounded-2xl rounded-tl-none flex items-center gap-2.5">
                     <Loader2 className="w-4 h-4 text-[#C8A45D] animate-spin" />
                     <span className="font-medium text-slate-300">Retrieving verified property dossier & prices...</span>
                   </div>
@@ -602,13 +602,13 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
 
             {/* Quick Prompt Suggestions */}
             {messages.length < 8 && (
-              <div className="px-4 py-2.5 bg-[#060E1A]/80 border-t border-[#1E3A6E]/50 flex items-center gap-2 overflow-x-auto shrink-0 scrollbar-none">
+              <div className="px-4 py-2.5 bg-[#000538]/80 border-t border-[#14288F]/50 flex items-center gap-2 overflow-x-auto shrink-0 scrollbar-none">
                 <span className="text-[10px] uppercase font-bold text-slate-400 shrink-0">Prompts:</span>
                 {quickPrompts.map((prompt, idx) => (
                   <button
                     key={idx}
                     onClick={() => handleSendMessage(prompt)}
-                    className="px-3 py-1.5 text-xs bg-[#102342] hover:bg-[#1A3868] text-slate-200 hover:text-white rounded-xl border border-[#1E3A6E] transition-all whitespace-nowrap shrink-0 cursor-pointer active:scale-95 shadow-2xs"
+                    className="px-3 py-1.5 text-xs bg-[#00097C] hover:bg-[#1A3868] text-slate-200 hover:text-white rounded-xl border border-[#14288F] transition-all whitespace-nowrap shrink-0 cursor-pointer active:scale-95 shadow-2xs"
                   >
                     {prompt}
                   </button>
@@ -618,7 +618,7 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
 
             {/* Selected Image Preview Box */}
             {selectedImage && (
-              <div className="px-4 py-2 bg-[#060E1A] flex items-center justify-between border-t border-[#1E3A6E]">
+              <div className="px-4 py-2 bg-[#000538] flex items-center justify-between border-t border-[#14288F]">
                 <div className="flex items-center gap-2 text-xs text-slate-300">
                   <img
                     src={selectedImage}
@@ -638,7 +638,7 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
             )}
 
             {/* Input Controls */}
-            <div className="p-3 sm:p-4 bg-[#060E1A] border-t border-[#1E3A6E] flex items-center gap-2.5 shrink-0">
+            <div className="p-3 sm:p-4 bg-[#000538] border-t border-[#14288F] flex items-center gap-2.5 shrink-0">
               <input
                 type="file"
                 ref={fileInputRef}
@@ -649,7 +649,7 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
               <button
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
-                className="p-2.5 text-slate-300 hover:text-[#C8A45D] bg-[#102342] hover:bg-[#1A3868] border border-[#1E3A6E] rounded-xl transition-colors shrink-0 cursor-pointer"
+                className="p-2.5 text-slate-300 hover:text-[#C8A45D] bg-[#00097C] hover:bg-[#1A3868] border border-[#14288F] rounded-xl transition-colors shrink-0 cursor-pointer"
                 title="Attach land photo or survey document"
                 aria-label="Attach photo"
               >
@@ -662,14 +662,14 @@ export const AiChatPanel: React.FC<AiChatPanelProps> = ({
                 onChange={(e) => setInputText(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && handleSendMessage()}
                 placeholder="Ask about Christos Gardens, Havilah City, pricing, bank accounts..."
-                className="flex-1 px-4 py-2.5 bg-[#102342] border border-[#1E3A6E] rounded-xl text-xs sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#C8A45D]"
+                className="flex-1 px-4 py-2.5 bg-[#00097C] border border-[#14288F] rounded-xl text-xs sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#C8A45D]"
               />
 
               <button
                 type="button"
                 onClick={() => handleSendMessage()}
                 disabled={loading || (!inputText.trim() && !selectedImage)}
-                className="p-2.5 bg-[#C8A45D] hover:bg-[#DFC07C] text-[#0B1930] rounded-xl font-bold transition-all disabled:opacity-50 shrink-0 flex items-center justify-center shadow-md active:scale-95 cursor-pointer"
+                className="p-2.5 bg-[#C8A45D] hover:bg-[#DFC07C] text-[#00097C] rounded-xl font-bold transition-all disabled:opacity-50 shrink-0 flex items-center justify-center shadow-md active:scale-95 cursor-pointer"
                 aria-label="Send message"
               >
                 <Send className="w-4 h-4" />

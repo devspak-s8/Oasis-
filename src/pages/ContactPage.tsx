@@ -97,14 +97,14 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
         {/* Contact Info & Details */}
         <SlideInLeft className="lg:col-span-5 space-y-8">
-          <div className="bg-[#102342] border border-[#1E3A6E] rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl">
+          <div className="bg-[#00097C] border border-[#14288F] rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl">
             <h3 className="text-lg font-bold text-white tracking-tight">
               Corporate Headquarters
             </h3>
 
             <div className="space-y-4 text-xs text-slate-300">
               <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-lg bg-[#060E1A] border border-[#1E3A6E] flex items-center justify-center shrink-0 mt-0.5">
+                <div className="w-8 h-8 rounded-lg bg-[#000538] border border-[#14288F] flex items-center justify-center shrink-0 mt-0.5">
                   <MapPin className="w-4 h-4 text-[#C8A45D]" />
                 </div>
                 <div>
@@ -114,7 +114,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
               </div>
 
               <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-lg bg-[#060E1A] border border-[#1E3A6E] flex items-center justify-center shrink-0 mt-0.5">
+                <div className="w-8 h-8 rounded-lg bg-[#000538] border border-[#14288F] flex items-center justify-center shrink-0 mt-0.5">
                   <Phone className="w-4 h-4 text-[#C8A45D]" />
                 </div>
                 <div>
@@ -126,7 +126,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
               </div>
 
               <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-lg bg-[#060E1A] border border-[#1E3A6E] flex items-center justify-center shrink-0 mt-0.5">
+                <div className="w-8 h-8 rounded-lg bg-[#000538] border border-[#14288F] flex items-center justify-center shrink-0 mt-0.5">
                   <Mail className="w-4 h-4 text-[#C8A45D]" />
                 </div>
                 <div>
@@ -138,7 +138,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
               </div>
 
               <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded-lg bg-[#060E1A] border border-[#1E3A6E] flex items-center justify-center shrink-0 mt-0.5">
+                <div className="w-8 h-8 rounded-lg bg-[#000538] border border-[#14288F] flex items-center justify-center shrink-0 mt-0.5">
                   <Clock className="w-4 h-4 text-[#C8A45D]" />
                 </div>
                 <div>
@@ -149,7 +149,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
             </div>
 
             {/* Direct WhatsApp Action */}
-            <div className="pt-4 border-t border-[#1E3A6E]/60">
+            <div className="pt-4 border-t border-[#14288F]/60">
               <a
                 href={whatsappUrl}
                 target="_blank"
@@ -163,14 +163,14 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
           </div>
 
           {/* Location Map Preview Card */}
-          <div className="bg-[#060E1A] border border-[#1E3A6E] rounded-2xl p-6 space-y-4">
+          <div className="bg-[#000538] border border-[#14288F] rounded-2xl p-6 space-y-4">
             <div className="flex items-center justify-between">
               <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-300">
                 Site Coordinates & Regional Hub
               </h4>
               <span className="text-[10px] text-[#C8A45D] font-mono">Ogun State, NG</span>
             </div>
-            <div className="aspect-[16/9] rounded-xl overflow-hidden border border-[#1E3A6E] relative bg-[#102342] flex items-center justify-center">
+            <div className="aspect-[16/9] rounded-xl overflow-hidden border border-[#14288F] relative bg-[#00097C] flex items-center justify-center">
               <div className="text-center p-4 space-y-2">
                 <MapPin className="w-6 h-6 text-[#C8A45D]" />
                 <div className="text-xs font-bold text-white">Mowe-Ofada & Abeokuta Corridors</div>
@@ -183,7 +183,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
         </SlideInLeft>
 
         {/* Contact Form */}
-        <SlideInRight className="lg:col-span-7 bg-[#102342] border border-[#1E3A6E] rounded-2xl p-6 sm:p-10 shadow-xl">
+        <SlideInRight className="lg:col-span-7 bg-[#00097C] border border-[#14288F] rounded-2xl p-6 sm:p-10 shadow-xl">
           <div className="space-y-2 mb-6">
             <h3 className="text-xl font-bold text-white tracking-tight">
               Submit an Official Enquiry
@@ -215,8 +215,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   placeholder="e.g. Oluwaseun Adeleke"
-                  className={`w-full px-3.5 py-2.5 rounded-lg bg-[#060E1A] border text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#C8A45D] ${
-                    errors.fullName ? 'border-rose-500' : 'border-[#1E3A6E]'
+                  className={`w-full px-3.5 py-2.5 rounded-lg bg-[#000538] border text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#C8A45D] ${
+                    errors.fullName ? 'border-rose-500' : 'border-[#14288F]'
                   }`}
                 />
                 {errors.fullName && <p className="text-[11px] text-rose-400 mt-1">{errors.fullName}</p>}
@@ -232,8 +232,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="+234 803 123 4567"
-                  className={`w-full px-3.5 py-2.5 rounded-lg bg-[#060E1A] border text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#C8A45D] ${
-                    errors.phone ? 'border-rose-500' : 'border-[#1E3A6E]'
+                  className={`w-full px-3.5 py-2.5 rounded-lg bg-[#000538] border text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#C8A45D] ${
+                    errors.phone ? 'border-rose-500' : 'border-[#14288F]'
                   }`}
                 />
                 {errors.phone && <p className="text-[11px] text-rose-400 mt-1">{errors.phone}</p>}
@@ -251,8 +251,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="seun@example.com"
-                  className={`w-full px-3.5 py-2.5 rounded-lg bg-[#060E1A] border text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#C8A45D] ${
-                    errors.email ? 'border-rose-500' : 'border-[#1E3A6E]'
+                  className={`w-full px-3.5 py-2.5 rounded-lg bg-[#000538] border text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#C8A45D] ${
+                    errors.email ? 'border-rose-500' : 'border-[#14288F]'
                   }`}
                 />
                 {errors.email && <p className="text-[11px] text-rose-400 mt-1">{errors.email}</p>}
@@ -266,7 +266,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
                   id="contact-category"
                   value={enquiryType}
                   onChange={(e) => setEnquiryType(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-sm text-white focus:outline-none focus:ring-1 focus:ring-[#C8A45D]"
+                  className="w-full px-3.5 py-2.5 rounded-lg bg-[#000538] border border-[#14288F] text-sm text-white focus:outline-none focus:ring-1 focus:ring-[#C8A45D]"
                 >
                   <option value="General Enquiry">General Enquiry</option>
                   <option value="Property Purchase">Property Purchase (Outright)</option>
@@ -290,7 +290,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
                 placeholder="e.g. Booking Inspection for Christos Gardens this Saturday"
-                className="w-full px-3.5 py-2.5 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#C8A45D]"
+                className="w-full px-3.5 py-2.5 rounded-lg bg-[#000538] border border-[#14288F] text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#C8A45D]"
               />
             </div>
 
@@ -304,11 +304,11 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="Kindly include any specific questions regarding plot dimensions, payment timelines, or inspection logistics..."
-                className="w-full px-3.5 py-2 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#C8A45D]"
+                className="w-full px-3.5 py-2 rounded-lg bg-[#000538] border border-[#14288F] text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#C8A45D]"
               />
             </div>
 
-            <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-[#1E3A6E]/50">
+            <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-[#14288F]/50">
               <div className="flex items-center gap-1.5 text-[11px] text-slate-400">
                 <ShieldCheck className="w-4 h-4 text-[#C8A45D]" />
                 <span>Encrypted and strictly confidential submission.</span>
@@ -317,7 +317,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ settings }) => {
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full sm:w-auto px-7 py-3 text-xs font-bold uppercase tracking-wider text-[#0B1930] bg-[#C8A45D] hover:bg-[#DFC07C] disabled:opacity-50 transition-colors rounded-lg flex items-center justify-center gap-2 shadow-sm"
+                className="w-full sm:w-auto px-7 py-3 text-xs font-bold uppercase tracking-wider text-[#00097C] bg-[#C8A45D] hover:bg-[#DFC07C] disabled:opacity-50 transition-colors rounded-lg flex items-center justify-center gap-2 shadow-sm"
               >
                 <span>{submitting ? 'Transmitting...' : 'Send Message'}</span>
                 <Send className="w-3.5 h-3.5" />

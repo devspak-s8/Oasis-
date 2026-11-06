@@ -37,7 +37,7 @@ export const FloatingHelp: React.FC<FloatingHelpProps> = ({ whatsappNumber, init
                 transition={{ duration: 0.18, delay: 0.05 }}
                 className="flex items-center gap-2.5 group"
               >
-                <span className="text-[11px] font-bold text-white bg-[#060E1A]/95 border border-[#1E3A6E] px-3 py-1.5 rounded-xl shadow-xl backdrop-blur-md whitespace-nowrap">
+                <span className="text-[11px] font-bold text-white bg-[#000538]/95 border border-[#14288F] px-3 py-1.5 rounded-xl shadow-xl backdrop-blur-md whitespace-nowrap">
                   AI Property Advisor
                 </span>
                 <button
@@ -46,7 +46,7 @@ export const FloatingHelp: React.FC<FloatingHelpProps> = ({ whatsappNumber, init
                     setIsOpenMenu(false);
                     setIsAiOpen(true);
                   }}
-                  className="w-12 h-12 rounded-full bg-[#102342] hover:bg-[#1A3868] text-[#C8A45D] border border-[#C8A45D]/80 shadow-2xl flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 focus:outline-none"
+                  className="w-12 h-12 rounded-full bg-[#00097C] hover:bg-[#1A3868] text-[#C8A45D] border border-[#C8A45D]/80 shadow-2xl flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 focus:outline-none"
                   aria-label="AI Chat Assistant"
                 >
                   <BotMessageSquare className="w-5 h-5 text-[#C8A45D]" />
@@ -61,7 +61,7 @@ export const FloatingHelp: React.FC<FloatingHelpProps> = ({ whatsappNumber, init
                 transition={{ duration: 0.18 }}
                 className="flex items-center gap-2.5 group"
               >
-                <span className="text-[11px] font-bold text-white bg-[#060E1A]/90 border border-[#1E3A6E] px-2.5 py-1 rounded-lg shadow-lg backdrop-blur-md opacity-90 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                <span className="text-[11px] font-bold text-white bg-[#000538]/90 border border-[#14288F] px-2.5 py-1 rounded-lg shadow-lg backdrop-blur-md opacity-90 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                   WhatsApp Advisory
                 </span>
                 <a
@@ -89,7 +89,7 @@ export const FloatingHelp: React.FC<FloatingHelpProps> = ({ whatsappNumber, init
         <button
           type="button"
           onClick={() => setIsOpenMenu(!isOpenMenu)}
-          className="relative group w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#102342] hover:bg-[#1A3868] border border-[#C8A45D]/80 text-[#C8A45D] shadow-[0_8px_25px_rgba(200,164,93,0.35)] transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center focus:outline-none shrink-0"
+          className="relative group w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#00097C] hover:bg-[#1A3868] border border-[#C8A45D]/80 text-[#C8A45D] shadow-[0_8px_25px_rgba(200,164,93,0.35)] transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center focus:outline-none shrink-0"
           aria-label="Help and Advisory Desk"
         >
           <span className="absolute inset-0 rounded-full bg-[#C8A45D] opacity-20 animate-ping pointer-events-none group-hover:opacity-40" />

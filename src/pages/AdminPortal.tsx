@@ -191,9 +191,9 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
   if (!isAuthenticated) {
     return (
       <div className="min-h-[70vh] flex items-center justify-center px-4 py-16">
-        <div className="w-full max-w-md bg-[#102342] border border-[#1E3A6E] rounded-2xl p-8 shadow-2xl space-y-6">
+        <div className="w-full max-w-md bg-[#00097C] border border-[#14288F] rounded-2xl p-8 shadow-2xl space-y-6">
           <div className="text-center space-y-2">
-            <div className="w-12 h-12 rounded-xl bg-[#060E1A] border border-[#C8A45D]/40 flex items-center justify-center mx-auto text-[#C8A45D]">
+            <div className="w-12 h-12 rounded-xl bg-[#000538] border border-[#C8A45D]/40 flex items-center justify-center mx-auto text-[#C8A45D]">
               <Lock className="w-6 h-6" />
             </div>
             <h1 className="text-2xl font-bold text-white tracking-tight">Staff CMS Access</h1>
@@ -213,14 +213,14 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                 value={passcode}
                 onChange={(e) => setPasscode(e.target.value)}
                 placeholder="Enter passcode..."
-                className="w-full px-4 py-3 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-white text-sm placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#C8A45D]"
+                className="w-full px-4 py-3 rounded-lg bg-[#000538] border border-[#14288F] text-white text-sm placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#C8A45D]"
               />
               {authError && <p className="text-xs text-rose-400 mt-1">{authError}</p>}
             </div>
 
             <button
               type="submit"
-              className="w-full py-3 px-4 rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#0B1930] font-bold text-xs uppercase tracking-wider transition-colors shadow-md"
+              className="w-full py-3 px-4 rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#00097C] font-bold text-xs uppercase tracking-wider transition-colors shadow-md"
             >
               Sign In to Management Console
             </button>
@@ -254,7 +254,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
       {/* Top Console Bar */}
-      <div className="bg-[#060E1A] border border-[#1E3A6E] rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-[#000538] border border-[#14288F] rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
             <ShieldCheck className="w-5 h-5 text-[#C8A45D]" />
@@ -270,7 +270,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
         <div className="flex items-center gap-3">
           <button
             onClick={() => onNavigatePublic('/')}
-            className="px-4 py-2 text-xs font-semibold rounded-lg bg-[#102342] hover:bg-[#142B52] border border-[#1E3A6E] text-slate-200 transition-colors flex items-center gap-1.5"
+            className="px-4 py-2 text-xs font-semibold rounded-lg bg-[#00097C] hover:bg-[#142B52] border border-[#14288F] text-slate-200 transition-colors flex items-center gap-1.5"
           >
             <Eye className="w-3.5 h-3.5" />
             <span>View Public Site</span>
@@ -287,12 +287,12 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
       </div>
 
       {/* Tabs Navigation */}
-      <div className="flex border-b border-[#1E3A6E] gap-2 overflow-x-auto pb-1 text-xs font-semibold">
+      <div className="flex border-b border-[#14288F] gap-2 overflow-x-auto pb-1 text-xs font-semibold">
         <button
           onClick={() => setActiveTab('leads')}
           className={`px-5 py-3 rounded-t-lg transition-colors flex items-center gap-2 whitespace-nowrap ${
             activeTab === 'leads'
-              ? 'bg-[#102342] text-[#C8A45D] border-t-2 border-[#C8A45D]'
+              ? 'bg-[#00097C] text-[#C8A45D] border-t-2 border-[#C8A45D]'
               : 'text-slate-400 hover:text-white'
           }`}
         >
@@ -304,7 +304,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
           onClick={() => setActiveTab('developments')}
           className={`px-5 py-3 rounded-t-lg transition-colors flex items-center gap-2 whitespace-nowrap ${
             activeTab === 'developments'
-              ? 'bg-[#102342] text-[#C8A45D] border-t-2 border-[#C8A45D]'
+              ? 'bg-[#00097C] text-[#C8A45D] border-t-2 border-[#C8A45D]'
               : 'text-slate-400 hover:text-white'
           }`}
         >
@@ -316,7 +316,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
           onClick={() => setActiveTab('settings')}
           className={`px-5 py-3 rounded-t-lg transition-colors flex items-center gap-2 whitespace-nowrap ${
             activeTab === 'settings'
-              ? 'bg-[#102342] text-[#C8A45D] border-t-2 border-[#C8A45D]'
+              ? 'bg-[#00097C] text-[#C8A45D] border-t-2 border-[#C8A45D]'
               : 'text-slate-400 hover:text-white'
           }`}
         >
@@ -328,7 +328,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
           onClick={() => setActiveTab('testimonials')}
           className={`px-5 py-3 rounded-t-lg transition-colors flex items-center gap-2 whitespace-nowrap ${
             activeTab === 'testimonials'
-              ? 'bg-[#102342] text-[#C8A45D] border-t-2 border-[#C8A45D]'
+              ? 'bg-[#00097C] text-[#C8A45D] border-t-2 border-[#C8A45D]'
               : 'text-slate-400 hover:text-white'
           }`}
         >
@@ -340,7 +340,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
           onClick={() => setActiveTab('seo')}
           className={`px-5 py-3 rounded-t-lg transition-colors flex items-center gap-2 whitespace-nowrap ${
             activeTab === 'seo'
-              ? 'bg-[#102342] text-[#C8A45D] border-t-2 border-[#C8A45D]'
+              ? 'bg-[#00097C] text-[#C8A45D] border-t-2 border-[#C8A45D]'
               : 'text-slate-400 hover:text-white'
           }`}
         >
@@ -352,7 +352,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
       {/* TAB 1: LEADS & ENQUIRIES */}
       {activeTab === 'leads' && (
         <div className="space-y-6">
-          <div className="bg-[#102342] border border-[#1E3A6E] rounded-2xl p-4 sm:p-6 shadow-md flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+          <div className="bg-[#00097C] border border-[#14288F] rounded-2xl p-4 sm:p-6 shadow-md flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
             {/* Search */}
             <div className="relative flex-1">
               <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -361,7 +361,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                 value={leadSearch}
                 onChange={(e) => setLeadSearch(e.target.value)}
                 placeholder="Search leads by name, phone, email, or Ref ID..."
-                className="w-full pl-10 pr-4 py-2.5 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-xs text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#C8A45D]"
+                className="w-full pl-10 pr-4 py-2.5 rounded-lg bg-[#000538] border border-[#14288F] text-xs text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#C8A45D]"
               />
             </div>
 
@@ -370,7 +370,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
               <select
                 value={leadStatusFilter}
                 onChange={(e) => setLeadStatusFilter(e.target.value)}
-                className="bg-[#060E1A] border border-[#1E3A6E] text-xs text-white rounded-lg px-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-[#C8A45D]"
+                className="bg-[#000538] border border-[#14288F] text-xs text-white rounded-lg px-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-[#C8A45D]"
               >
                 <option value="all">All Pipeline Stages</option>
                 <option value="New">New</option>
@@ -382,7 +382,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
 
               <button
                 onClick={loadEnquiries}
-                className="p-2.5 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-slate-300 hover:text-white"
+                className="p-2.5 rounded-lg bg-[#000538] border border-[#14288F] text-slate-300 hover:text-white"
                 title="Refresh leads"
               >
                 <RefreshCw className={`w-4 h-4 ${loadingLeads ? 'animate-spin' : ''}`} />
@@ -390,7 +390,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
 
               <button
                 onClick={exportLeadsCSV}
-                className="px-4 py-2.5 text-xs font-semibold rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#0B1930] flex items-center gap-1.5 shadow-sm whitespace-nowrap"
+                className="px-4 py-2.5 text-xs font-semibold rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#00097C] flex items-center gap-1.5 shadow-sm whitespace-nowrap"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>Export CSV</span>
@@ -399,10 +399,10 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
           </div>
 
           {/* Leads Table */}
-          <div className="bg-[#102342] border border-[#1E3A6E] rounded-2xl overflow-hidden shadow-xl">
+          <div className="bg-[#00097C] border border-[#14288F] rounded-2xl overflow-hidden shadow-xl">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs text-slate-300">
-                <thead className="bg-[#060E1A] text-slate-400 uppercase font-mono tracking-wider text-[11px] border-b border-[#1E3A6E]">
+                <thead className="bg-[#000538] text-slate-400 uppercase font-mono tracking-wider text-[11px] border-b border-[#14288F]">
                   <tr>
                     <th className="py-3.5 px-4">Ref ID / Date</th>
                     <th className="py-3.5 px-4">Investor Contact</th>
@@ -411,7 +411,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                     <th className="py-3.5 px-4 text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#1E3A6E]/50">
+                <tbody className="divide-y divide-[#14288F]/50">
                   {filteredEnquiries.map((lead) => {
                     const clientWhatsApp = `https://wa.me/${lead.phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(
                       `Hello ${lead.fullName}, thank you for enquiring with OASIS RAY DEVELOPMENTS LTD. regarding ${
@@ -475,7 +475,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                           </select>
 
                           {lead.notes && (
-                            <div className="text-[11px] text-slate-400 bg-[#060E1A]/80 p-1.5 rounded border border-[#1E3A6E]/40">
+                            <div className="text-[11px] text-slate-400 bg-[#000538]/80 p-1.5 rounded border border-[#14288F]/40">
                               Note: {lead.notes}
                             </div>
                           )}
@@ -513,8 +513,8 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
       {activeTab === 'developments' && (
         <div className="space-y-6">
           {editingDev ? (
-            <div className="bg-[#102342] border border-[#1E3A6E] rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl">
-              <div className="flex items-center justify-between pb-4 border-b border-[#1E3A6E]">
+            <div className="bg-[#00097C] border border-[#14288F] rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl">
+              <div className="flex items-center justify-between pb-4 border-b border-[#14288F]">
                 <div>
                   <h3 className="text-xl font-bold text-white tracking-tight">
                     Editing: {editingDev.name}
@@ -524,13 +524,13 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => setEditingDev(null)}
-                    className="px-4 py-2 text-xs font-semibold rounded-lg bg-[#060E1A] text-slate-300 hover:text-white border border-[#1E3A6E]"
+                    className="px-4 py-2 text-xs font-semibold rounded-lg bg-[#000538] text-slate-300 hover:text-white border border-[#14288F]"
                   >
                     Cancel
                   </button>
                   <button
                     onClick={handleSaveDevelopment}
-                    className="px-5 py-2 text-xs font-bold rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#0B1930] flex items-center gap-1.5 shadow-sm"
+                    className="px-5 py-2 text-xs font-bold rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#00097C] flex items-center gap-1.5 shadow-sm"
                   >
                     <Save className="w-4 h-4" />
                     <span>Save Changes</span>
@@ -545,7 +545,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                     type="text"
                     value={editingDev.name}
                     onChange={(e) => setEditingDev({ ...editingDev, name: e.target.value })}
-                    className="w-full px-3.5 py-2 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-white text-xs"
+                    className="w-full px-3.5 py-2 rounded-lg bg-[#000538] border border-[#14288F] text-white text-xs"
                   />
                 </div>
                 <div>
@@ -554,7 +554,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                     type="text"
                     value={editingDev.tagline}
                     onChange={(e) => setEditingDev({ ...editingDev, tagline: e.target.value })}
-                    className="w-full px-3.5 py-2 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-white text-xs"
+                    className="w-full px-3.5 py-2 rounded-lg bg-[#000538] border border-[#14288F] text-white text-xs"
                   />
                 </div>
                 <div>
@@ -563,7 +563,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                     type="text"
                     value={editingDev.location}
                     onChange={(e) => setEditingDev({ ...editingDev, location: e.target.value })}
-                    className="w-full px-3.5 py-2 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-white text-xs"
+                    className="w-full px-3.5 py-2 rounded-lg bg-[#000538] border border-[#14288F] text-white text-xs"
                   />
                 </div>
                 <div>
@@ -572,7 +572,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                     type="number"
                     value={editingDev.startingPrice}
                     onChange={(e) => setEditingDev({ ...editingDev, startingPrice: parseInt(e.target.value) || 0 })}
-                    className="w-full px-3.5 py-2 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-white text-xs font-mono"
+                    className="w-full px-3.5 py-2 rounded-lg bg-[#000538] border border-[#14288F] text-white text-xs font-mono"
                   />
                 </div>
                 <div>
@@ -580,7 +580,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                   <select
                     value={editingDev.availability}
                     onChange={(e) => setEditingDev({ ...editingDev, availability: e.target.value as any })}
-                    className="w-full px-3.5 py-2 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-white text-xs"
+                    className="w-full px-3.5 py-2 rounded-lg bg-[#000538] border border-[#14288F] text-white text-xs"
                   >
                     <option value="Available">Available</option>
                     <option value="Selling Fast">Selling Fast</option>
@@ -594,7 +594,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                     type="text"
                     value={editingDev.category}
                     onChange={(e) => setEditingDev({ ...editingDev, category: e.target.value })}
-                    className="w-full px-3.5 py-2 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-white text-xs"
+                    className="w-full px-3.5 py-2 rounded-lg bg-[#000538] border border-[#14288F] text-white text-xs"
                   />
                 </div>
               </div>
@@ -605,18 +605,18 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                   rows={3}
                   value={editingDev.overview}
                   onChange={(e) => setEditingDev({ ...editingDev, overview: e.target.value })}
-                  className="w-full px-3.5 py-2 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-white text-xs"
+                  className="w-full px-3.5 py-2 rounded-lg bg-[#000538] border border-[#14288F] text-white text-xs"
                 />
               </div>
 
               {/* Plot Sizes Editor */}
-              <div className="space-y-3 pt-4 border-t border-[#1E3A6E]">
+              <div className="space-y-3 pt-4 border-t border-[#14288F]">
                 <h4 className="text-sm font-bold text-white">Plot Sizes & Pricing Configuration</h4>
                 <div className="space-y-3">
                   {editingDev.plotSizes.map((plot, pIdx) => (
                     <div
                       key={plot.id}
-                      className="grid grid-cols-1 sm:grid-cols-4 gap-3 bg-[#060E1A] p-3 rounded-xl border border-[#1E3A6E]"
+                      className="grid grid-cols-1 sm:grid-cols-4 gap-3 bg-[#000538] p-3 rounded-xl border border-[#14288F]"
                     >
                       <div>
                         <label className="block text-[10px] text-slate-400">Size</label>
@@ -628,7 +628,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                             updated[pIdx].size = e.target.value;
                             setEditingDev({ ...editingDev, plotSizes: updated });
                           }}
-                          className="w-full p-1.5 bg-[#102342] border border-[#1E3A6E] rounded text-white text-xs"
+                          className="w-full p-1.5 bg-[#00097C] border border-[#14288F] rounded text-white text-xs"
                         />
                       </div>
                       <div>
@@ -641,7 +641,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                             updated[pIdx].title = e.target.value;
                             setEditingDev({ ...editingDev, plotSizes: updated });
                           }}
-                          className="w-full p-1.5 bg-[#102342] border border-[#1E3A6E] rounded text-white text-xs"
+                          className="w-full p-1.5 bg-[#00097C] border border-[#14288F] rounded text-white text-xs"
                         />
                       </div>
                       <div>
@@ -654,7 +654,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                             updated[pIdx].price = parseInt(e.target.value) || 0;
                             setEditingDev({ ...editingDev, plotSizes: updated });
                           }}
-                          className="w-full p-1.5 bg-[#102342] border border-[#1E3A6E] rounded text-white text-xs font-mono"
+                          className="w-full p-1.5 bg-[#00097C] border border-[#14288F] rounded text-white text-xs font-mono"
                         />
                       </div>
                       <div>
@@ -667,7 +667,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                             updated[pIdx].promoPrice = e.target.value ? parseInt(e.target.value) : undefined;
                             setEditingDev({ ...editingDev, plotSizes: updated });
                           }}
-                          className="w-full p-1.5 bg-[#102342] border border-[#1E3A6E] rounded text-white text-xs font-mono"
+                          className="w-full p-1.5 bg-[#00097C] border border-[#14288F] rounded text-white text-xs font-mono"
                         />
                       </div>
                     </div>
@@ -676,13 +676,13 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
               </div>
 
               {/* Cadastral Map Plot Status Toggles */}
-              <div className="space-y-3 pt-4 border-t border-[#1E3A6E]">
+              <div className="space-y-3 pt-4 border-t border-[#14288F]">
                 <h4 className="text-sm font-bold text-white">Interactive Plot Cadastral Map Statuses</h4>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                   {editingDev.plots.map((plot, pIdx) => (
                     <div
                       key={plot.id}
-                      className="p-3 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-xs space-y-1.5"
+                      className="p-3 rounded-lg bg-[#000538] border border-[#14288F] text-xs space-y-1.5"
                     >
                       <div className="flex justify-between items-center">
                         <span className="font-bold text-white">{plot.plotNumber}</span>
@@ -695,7 +695,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                           updated[pIdx].status = e.target.value as any;
                           setEditingDev({ ...editingDev, plots: updated });
                         }}
-                        className="w-full p-1 bg-[#102342] border border-[#1E3A6E] rounded text-white text-[11px]"
+                        className="w-full p-1 bg-[#00097C] border border-[#14288F] rounded text-white text-[11px]"
                       >
                         <option value="available">Available</option>
                         <option value="reserved">Reserved</option>
@@ -711,7 +711,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
               {developments.map((dev) => (
                 <div
                   key={dev.id}
-                  className="bg-[#102342] border border-[#1E3A6E] rounded-xl p-6 space-y-4 shadow-md"
+                  className="bg-[#00097C] border border-[#14288F] rounded-xl p-6 space-y-4 shadow-md"
                 >
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-semibold text-[#C8A45D] uppercase">{dev.category}</span>
@@ -725,10 +725,10 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                     Starting: <strong className="text-white">{formatCurrencyNaira(dev.startingPrice)}</strong>
                   </div>
 
-                  <div className="pt-3 border-t border-[#1E3A6E] flex items-center justify-between">
+                  <div className="pt-3 border-t border-[#14288F] flex items-center justify-between">
                     <button
                       onClick={() => setEditingDev({ ...dev })}
-                      className="px-4 py-2 text-xs font-semibold rounded-lg bg-[#C8A45D] text-[#0B1930] hover:bg-[#DFC07C] transition-colors flex items-center gap-1.5"
+                      className="px-4 py-2 text-xs font-semibold rounded-lg bg-[#C8A45D] text-[#00097C] hover:bg-[#DFC07C] transition-colors flex items-center gap-1.5"
                     >
                       <Edit2 className="w-3.5 h-3.5" />
                       <span>Edit Information</span>
@@ -750,15 +750,15 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
 
       {/* TAB 3: BASIC WEBSITE SETTINGS & PLACEHOLDERS */}
       {activeTab === 'settings' && (
-        <form onSubmit={handleSaveSettings} className="bg-[#102342] border border-[#1E3A6E] rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl">
-          <div className="pb-4 border-b border-[#1E3A6E] flex items-center justify-between">
+        <form onSubmit={handleSaveSettings} className="bg-[#00097C] border border-[#14288F] rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl">
+          <div className="pb-4 border-b border-[#14288F] flex items-center justify-between">
             <div>
               <h3 className="text-xl font-bold text-white tracking-tight">Corporate Website Settings</h3>
               <p className="text-xs text-slate-400">Update company phone, WhatsApp number, stats placeholders and copy</p>
             </div>
             <button
               type="submit"
-              className="px-5 py-2.5 text-xs font-bold uppercase tracking-wider rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#0B1930] transition-colors flex items-center gap-1.5 shadow-sm"
+              className="px-5 py-2.5 text-xs font-bold uppercase tracking-wider rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#00097C] transition-colors flex items-center gap-1.5 shadow-sm"
             >
               <Save className="w-4 h-4" />
               <span>Save Settings</span>
@@ -772,7 +772,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                 type="text"
                 value={editingSettings.companyName}
                 onChange={(e) => setEditingSettings({ ...editingSettings, companyName: e.target.value })}
-                className="w-full px-3.5 py-2 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-white text-xs"
+                className="w-full px-3.5 py-2 rounded-lg bg-[#000538] border border-[#14288F] text-white text-xs"
               />
             </div>
 
@@ -782,7 +782,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                 type="text"
                 value={editingSettings.tagline}
                 onChange={(e) => setEditingSettings({ ...editingSettings, tagline: e.target.value })}
-                className="w-full px-3.5 py-2 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-white text-xs"
+                className="w-full px-3.5 py-2 rounded-lg bg-[#000538] border border-[#14288F] text-white text-xs"
               />
             </div>
 
@@ -793,7 +793,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                 value={editingSettings.whatsappNumber}
                 onChange={(e) => setEditingSettings({ ...editingSettings, whatsappNumber: e.target.value })}
                 placeholder="+2348171731525"
-                className="w-full px-3.5 py-2 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-white text-xs font-mono"
+                className="w-full px-3.5 py-2 rounded-lg bg-[#000538] border border-[#14288F] text-white text-xs font-mono"
               />
             </div>
 
@@ -803,7 +803,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                 type="text"
                 value={editingSettings.phone}
                 onChange={(e) => setEditingSettings({ ...editingSettings, phone: e.target.value })}
-                className="w-full px-3.5 py-2 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-white text-xs"
+                className="w-full px-3.5 py-2 rounded-lg bg-[#000538] border border-[#14288F] text-white text-xs"
               />
             </div>
 
@@ -813,7 +813,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                 type="email"
                 value={editingSettings.email}
                 onChange={(e) => setEditingSettings({ ...editingSettings, email: e.target.value })}
-                className="w-full px-3.5 py-2 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-white text-xs"
+                className="w-full px-3.5 py-2 rounded-lg bg-[#000538] border border-[#14288F] text-white text-xs"
               />
             </div>
 
@@ -823,7 +823,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                 type="text"
                 value={editingSettings.workingHours}
                 onChange={(e) => setEditingSettings({ ...editingSettings, workingHours: e.target.value })}
-                className="w-full px-3.5 py-2 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-white text-xs"
+                className="w-full px-3.5 py-2 rounded-lg bg-[#000538] border border-[#14288F] text-white text-xs"
               />
             </div>
           </div>
@@ -834,7 +834,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
               type="text"
               value={editingSettings.officeAddress}
               onChange={(e) => setEditingSettings({ ...editingSettings, officeAddress: e.target.value })}
-              className="w-full px-3.5 py-2 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-white text-xs"
+              className="w-full px-3.5 py-2 rounded-lg bg-[#000538] border border-[#14288F] text-white text-xs"
             />
           </div>
 
@@ -846,7 +846,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                 rows={3}
                 value={editingSettings.companyVision}
                 onChange={(e) => setEditingSettings({ ...editingSettings, companyVision: e.target.value })}
-                className="w-full px-3.5 py-2 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-white text-xs leading-relaxed resize-none"
+                className="w-full px-3.5 py-2 rounded-lg bg-[#000538] border border-[#14288F] text-white text-xs leading-relaxed resize-none"
               />
             </div>
             <div>
@@ -855,13 +855,13 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                 rows={3}
                 value={editingSettings.companyMission}
                 onChange={(e) => setEditingSettings({ ...editingSettings, companyMission: e.target.value })}
-                className="w-full px-3.5 py-2 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-white text-xs leading-relaxed resize-none"
+                className="w-full px-3.5 py-2 rounded-lg bg-[#000538] border border-[#14288F] text-white text-xs leading-relaxed resize-none"
               />
             </div>
           </div>
 
           {/* Company Statistics Placeholders */}
-          <div className="space-y-3 pt-4 border-t border-[#1E3A6E]">
+          <div className="space-y-3 pt-4 border-t border-[#14288F]">
             <h4 className="text-sm font-bold text-white">Company Statistics (Placeholders until Verified)</h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
@@ -875,7 +875,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                       stats: { ...editingSettings.stats, developmentsCount: e.target.value }
                     })
                   }
-                  className="w-full px-3.5 py-2 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-white text-xs"
+                  className="w-full px-3.5 py-2 rounded-lg bg-[#000538] border border-[#14288F] text-white text-xs"
                 />
               </div>
 
@@ -890,7 +890,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                       stats: { ...editingSettings.stats, locationsCovered: e.target.value }
                     })
                   }
-                  className="w-full px-3.5 py-2 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-white text-xs"
+                  className="w-full px-3.5 py-2 rounded-lg bg-[#000538] border border-[#14288F] text-white text-xs"
                 />
               </div>
 
@@ -905,7 +905,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                       stats: { ...editingSettings.stats, opportunitiesCount: e.target.value }
                     })
                   }
-                  className="w-full px-3.5 py-2 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-white text-xs"
+                  className="w-full px-3.5 py-2 rounded-lg bg-[#000538] border border-[#14288F] text-white text-xs"
                 />
               </div>
 
@@ -920,7 +920,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                       stats: { ...editingSettings.stats, experienceYears: e.target.value }
                     })
                   }
-                  className="w-full px-3.5 py-2 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-white text-xs"
+                  className="w-full px-3.5 py-2 rounded-lg bg-[#000538] border border-[#14288F] text-white text-xs"
                 />
               </div>
             </div>
@@ -931,7 +931,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
       {/* TAB 4: TESTIMONIALS MANAGER */}
       {activeTab === 'testimonials' && (
         <div className="space-y-6">
-          <form onSubmit={handleAddTestimonial} className="bg-[#102342] border border-[#1E3A6E] rounded-2xl p-6 sm:p-8 space-y-4 shadow-xl">
+          <form onSubmit={handleAddTestimonial} className="bg-[#00097C] border border-[#14288F] rounded-2xl p-6 sm:p-8 space-y-4 shadow-xl">
             <h3 className="text-lg font-bold text-white tracking-tight">Add Verified Testimonial</h3>
             <p className="text-xs text-slate-400">
               Publish authentic client feedback. Fictional testimonials must never be added.
@@ -945,7 +945,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                   value={newTestimonial.authorName}
                   onChange={(e) => setNewTestimonial({ ...newTestimonial, authorName: e.target.value })}
                   placeholder="e.g. Arc. Babatunde Sanusi"
-                  className="w-full px-3.5 py-2 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-white text-xs"
+                  className="w-full px-3.5 py-2 rounded-lg bg-[#000538] border border-[#14288F] text-white text-xs"
                 />
               </div>
               <div>
@@ -955,7 +955,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                   value={newTestimonial.authorRole}
                   onChange={(e) => setNewTestimonial({ ...newTestimonial, authorRole: e.target.value })}
                   placeholder="e.g. Managing Partner · Lagos, Nigeria"
-                  className="w-full px-3.5 py-2 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-white text-xs"
+                  className="w-full px-3.5 py-2 rounded-lg bg-[#000538] border border-[#14288F] text-white text-xs"
                 />
               </div>
             </div>
@@ -967,7 +967,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                 value={newTestimonial.propertyInvested}
                 onChange={(e) => setNewTestimonial({ ...newTestimonial, propertyInvested: e.target.value })}
                 placeholder="e.g. Christos Gardens (500 SQM Plot)"
-                className="w-full px-3.5 py-2 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-white text-xs"
+                className="w-full px-3.5 py-2 rounded-lg bg-[#000538] border border-[#14288F] text-white text-xs"
               />
             </div>
 
@@ -978,13 +978,13 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                 value={newTestimonial.quote}
                 onChange={(e) => setNewTestimonial({ ...newTestimonial, quote: e.target.value })}
                 placeholder="Client feedback statement regarding transparency, inspection, or documentation..."
-                className="w-full px-3.5 py-2 rounded-lg bg-[#060E1A] border border-[#1E3A6E] text-white text-xs"
+                className="w-full px-3.5 py-2 rounded-lg bg-[#000538] border border-[#14288F] text-white text-xs"
               />
             </div>
 
             <button
               type="submit"
-              className="px-5 py-2.5 text-xs font-bold uppercase tracking-wider rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#0B1930] transition-colors flex items-center gap-1.5 shadow-sm"
+              className="px-5 py-2.5 text-xs font-bold uppercase tracking-wider rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#00097C] transition-colors flex items-center gap-1.5 shadow-sm"
             >
               <Plus className="w-4 h-4" />
               <span>Publish Verified Testimonial</span>
@@ -996,7 +996,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
             {testimonials.map((t) => (
               <div
                 key={t.id}
-                className="bg-[#102342] border border-[#1E3A6E] rounded-xl p-5 space-y-3 flex flex-col justify-between"
+                className="bg-[#00097C] border border-[#14288F] rounded-xl p-5 space-y-3 flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between">
@@ -1010,7 +1010,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                   <p className="text-xs text-slate-300 italic mt-2">"{t.quote}"</p>
                 </div>
 
-                <div className="pt-3 border-t border-[#1E3A6E] flex justify-between items-center text-xs text-slate-400">
+                <div className="pt-3 border-t border-[#14288F] flex justify-between items-center text-xs text-slate-400">
                   <span>{t.date}</span>
                   <button
                     onClick={async () => {
@@ -1033,7 +1033,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
       {/* TAB 5: SEO, AEO & GEO AUDIT */}
       {activeTab === 'seo' && (
         <div className="space-y-8 animate-fadeIn">
-          <div className="bg-[#102342] border border-[#1E3A6E] rounded-2xl p-6 sm:p-8 space-y-6">
+          <div className="bg-[#00097C] border border-[#14288F] rounded-2xl p-6 sm:p-8 space-y-6">
             <div>
               <h2 className="text-lg font-bold text-white tracking-tight">Search Engine Optimization (SEO, AEO & GEO) Health Audit</h2>
               <p className="text-xs text-slate-400 mt-0.5">
@@ -1042,32 +1042,32 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div className="p-4 rounded-xl bg-[#060E1A] border border-emerald-500/30 space-y-1">
+              <div className="p-4 rounded-xl bg-[#000538] border border-emerald-500/30 space-y-1">
                 <div className="text-[10px] uppercase font-bold text-emerald-400">XML Sitemap</div>
                 <div className="text-sm font-bold text-white">Active & Dynamic</div>
                 <div className="text-[11px] text-slate-400">Endpoint: /sitemap.xml</div>
               </div>
 
-              <div className="p-4 rounded-xl bg-[#060E1A] border border-emerald-500/30 space-y-1">
+              <div className="p-4 rounded-xl bg-[#000538] border border-emerald-500/30 space-y-1">
                 <div className="text-[10px] uppercase font-bold text-emerald-400">Robots.txt</div>
                 <div className="text-sm font-bold text-white">Configured</div>
                 <div className="text-[11px] text-slate-400">Allow all public routes</div>
               </div>
 
-              <div className="p-4 rounded-xl bg-[#060E1A] border border-emerald-500/30 space-y-1">
+              <div className="p-4 rounded-xl bg-[#000538] border border-emerald-500/30 space-y-1">
                 <div className="text-[10px] uppercase font-bold text-emerald-400">JSON-LD Schemas</div>
                 <div className="text-sm font-bold text-white">Organization & RealEstate</div>
                 <div className="text-[11px] text-slate-400">Valid entity linking</div>
               </div>
 
-              <div className="p-4 rounded-xl bg-[#060E1A] border border-emerald-500/30 space-y-1">
+              <div className="p-4 rounded-xl bg-[#000538] border border-emerald-500/30 space-y-1">
                 <div className="text-[10px] uppercase font-bold text-emerald-400">AEO / GEO Architecture</div>
                 <div className="text-sm font-bold text-white">Optimized</div>
                 <div className="text-[11px] text-slate-400">AI Overviews & Perplexity ready</div>
               </div>
             </div>
 
-            <div className="pt-4 border-t border-[#1E3A6E] space-y-4">
+            <div className="pt-4 border-t border-[#14288F] space-y-4">
               <h3 className="text-sm font-bold text-white">Indexed Public Pages & Metadata Status</h3>
               <div className="space-y-2">
                 {[
@@ -1081,7 +1081,7 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({
                   { path: '/advisory', title: 'Speak to an Investment Advisor | Oasis Ray', status: 'Optimized' },
                   { path: '/contact', title: 'Contact Corporate Headquarters | Oasis Ray Developments', status: 'Optimized' }
                 ].map((pg, idx) => (
-                  <div key={idx} className="p-3 rounded-xl bg-[#060E1A] border border-[#1E3A6E] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                  <div key={idx} className="p-3 rounded-xl bg-[#000538] border border-[#14288F] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
                     <div>
                       <span className="font-mono text-[#C8A45D] font-bold">{pg.path}</span>
                       <div className="text-slate-300 font-medium mt-0.5">{pg.title}</div>

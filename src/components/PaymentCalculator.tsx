@@ -28,9 +28,9 @@ export const PaymentCalculator: React.FC<PaymentCalculatorProps> = ({
   );
 
   return (
-    <div className="bg-[#102342] border border-[#1E3A6E] rounded-2xl p-6 sm:p-8 shadow-xl">
+    <div className="bg-[#00097C] border border-[#14288F] rounded-2xl p-6 sm:p-8 shadow-xl">
       <div className="flex items-center gap-3 mb-6">
-        <div className="w-10 h-10 rounded-lg bg-[#0B1930] border border-[#C8A45D]/50 flex items-center justify-center text-[#C8A45D]">
+        <div className="w-10 h-10 rounded-lg bg-[#000538] border border-[#C8A45D]/50 flex items-center justify-center text-[#C8A45D]">
           <Calculator className="w-5 h-5" />
         </div>
         <div>
@@ -58,8 +58,8 @@ export const PaymentCalculator: React.FC<PaymentCalculatorProps> = ({
                   onClick={() => setSelectedPlotIndex(idx)}
                   className={`p-3.5 rounded-xl border text-left transition-all ${
                     selectedPlotIndex === idx
-                      ? 'bg-[#0B1930] border-[#C8A45D] ring-1 ring-[#C8A45D]'
-                      : 'bg-[#060E1A]/80 border-[#1E3A6E] hover:border-slate-500'
+                      ? 'bg-[#000538] border-[#C8A45D] ring-1 ring-[#C8A45D]'
+                      : 'bg-[#000538]/80 border-[#14288F] hover:border-slate-500'
                   }`}
                 >
                   <div className="text-sm font-bold text-white">{plot.size}</div>
@@ -89,8 +89,8 @@ export const PaymentCalculator: React.FC<PaymentCalculatorProps> = ({
                   onClick={() => setDuration(item.months)}
                   className={`py-2.5 px-3 rounded-lg border text-xs font-medium transition-all ${
                     duration === item.months
-                      ? 'bg-[#C8A45D] text-[#0B1930] font-bold border-[#C8A45D]'
-                      : 'bg-[#060E1A] text-slate-300 border-[#1E3A6E] hover:border-slate-500 hover:text-white'
+                      ? 'bg-[#C8A45D] text-[#00097C] font-bold border-[#C8A45D]'
+                      : 'bg-[#000538] text-slate-300 border-[#14288F] hover:border-slate-500 hover:text-white'
                   }`}
                 >
                   {item.label}
@@ -113,7 +113,7 @@ export const PaymentCalculator: React.FC<PaymentCalculatorProps> = ({
                     className={`flex-1 py-2 rounded-lg border text-xs font-medium transition-all ${
                       depositPercent === pct
                         ? 'bg-[#142B52] border-[#C8A45D] text-[#C8A45D] font-semibold'
-                        : 'bg-[#060E1A] border-[#1E3A6E] text-slate-400 hover:text-white'
+                        : 'bg-[#000538] border-[#14288F] text-slate-400 hover:text-white'
                     }`}
                   >
                     {pct}% Deposit
@@ -125,12 +125,12 @@ export const PaymentCalculator: React.FC<PaymentCalculatorProps> = ({
         </div>
 
         {/* Results Card */}
-        <div className="lg:col-span-5 bg-[#060E1A] border border-[#1E3A6E] rounded-xl p-6 space-y-4">
+        <div className="lg:col-span-5 bg-[#000538] border border-[#14288F] rounded-xl p-6 space-y-4">
           <div className="text-xs text-slate-400 uppercase tracking-wider font-semibold">
             Payment Breakdown Summary
           </div>
 
-          <div className="space-y-3 divide-y divide-[#1E3A6E]/50 text-xs">
+          <div className="space-y-3 divide-y divide-[#14288F]/50 text-xs">
             <div className="flex justify-between items-center pt-2">
               <span className="text-slate-400">Selected Plot:</span>
               <span className="font-semibold text-white">{activePlot?.size} ({activePlot?.title})</span>
@@ -155,7 +155,7 @@ export const PaymentCalculator: React.FC<PaymentCalculatorProps> = ({
                     {formatCurrencyNaira(plan.remainingBalance)}
                   </span>
                 </div>
-                <div className="flex justify-between items-center pt-2 bg-[#102342]/50 p-2.5 rounded-lg -mx-1">
+                <div className="flex justify-between items-center pt-2 bg-[#00097C]/50 p-2.5 rounded-lg -mx-1">
                   <span className="text-amber-200 font-medium">Estimated Monthly Payment ({duration} mos):</span>
                   <span className="font-mono font-bold text-base text-[#C8A45D]">
                     {formatCurrencyNaira(plan.monthlyPayment)} /mo
@@ -173,7 +173,7 @@ export const PaymentCalculator: React.FC<PaymentCalculatorProps> = ({
                 )})`;
                 onEnquireWithPlan(summary);
               }}
-              className="w-full py-3 px-4 text-xs font-semibold uppercase tracking-wider rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#0B1930] transition-colors flex items-center justify-center gap-2 shadow-sm"
+              className="w-full py-3 px-4 text-xs font-semibold uppercase tracking-wider rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#00097C] transition-colors flex items-center justify-center gap-2 shadow-sm"
             >
               <span>Lock in This Payment Plan</span>
               <ArrowRight className="w-3.5 h-3.5" />

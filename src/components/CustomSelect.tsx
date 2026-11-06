@@ -66,8 +66,8 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
           error
             ? 'border border-rose-500'
             : isDark
-            ? 'bg-[#060E1A] text-white'
-            : 'bg-slate-100 text-[#0B1930]'
+            ? 'bg-[#000538] text-white'
+            : 'bg-slate-100 text-[#00097C]'
         }`}
       >
         <span className="truncate">
@@ -88,8 +88,8 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
           role="listbox"
           className={`absolute left-0 right-0 top-full mt-1.5 z-50 rounded-xl border shadow-2xl max-h-56 overflow-y-auto p-1.5 space-y-1 backdrop-blur-md transition-all animate-in fade-in zoom-in-95 ${
             isDark
-              ? 'bg-[#0B1930] border-[#1E3A6E] text-white'
-              : 'bg-white border-slate-200 text-[#0B1930]'
+              ? 'bg-[#000538] border-[#14288F] text-white'
+              : 'bg-white border-slate-200 text-[#00097C]'
           }`}
         >
           {options.map((opt) => {
@@ -107,11 +107,11 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
                 className={`w-full text-left px-3 py-2 rounded-lg text-xs flex items-center justify-between transition-colors ${
                   isSelected
                     ? isDark
-                      ? 'bg-[#102342] text-[#C8A45D] font-bold'
-                      : 'bg-slate-100 text-[#0B1930] font-bold'
+                      ? 'bg-[#00097C] text-[#C8A45D] font-bold'
+                      : 'bg-slate-100 text-[#00097C] font-bold'
                     : isDark
-                    ? 'hover:bg-[#102342]/60 text-slate-300 hover:text-white'
-                    : 'hover:bg-slate-50 text-slate-700 hover:text-[#0B1930]'
+                    ? 'hover:bg-[#00097C]/60 text-slate-300 hover:text-white'
+                    : 'hover:bg-slate-50 text-slate-700 hover:text-[#00097C]'
                 }`}
               >
                 <div className="flex flex-col truncate">

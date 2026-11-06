@@ -14,7 +14,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, settings }) => {
   };
 
   return (
-    <footer className="relative z-20 bg-[#0B1930] text-slate-200 border-t border-[#1E3A6E] shadow-2xl">
+    <footer className="relative z-20 bg-[#000538] text-slate-200 border-t border-[#14288F] shadow-2xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 mb-10">
           {/* Column 1: Corporate Identity & Tagline Quote */}
@@ -107,7 +107,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, settings }) => {
         </div>
 
         {/* Bottom Rights Bar */}
-        <div className="pt-8 border-t border-[#1E3A6E] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-medium text-slate-300">
+        <div className="pt-8 border-t border-[#14288F] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-medium text-slate-300">
           <div>
             © {new Date().getFullYear()} OASIS RAY DEVELOPMENTS LTD. All rights reserved.
           </div>
@@ -118,7 +118,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, settings }) => {
             >
               Privacy Policy
             </button>
-            <span className="text-[#1E3A6E]">|</span>
+            <span className="text-[#14288F]">|</span>
             <button
               onClick={() => handleNav('/admin')}
               className="inline-flex items-center gap-1.5 text-slate-300 hover:text-[#C8A45D] transition-colors"

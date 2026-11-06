@@ -74,7 +74,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         canonicalPath="/"
       />
       {/* 1. HERO SECTION */}
-      <section className="relative min-h-[86vh] flex items-center justify-center overflow-hidden bg-[#0B1930] pt-6 pb-20">
+      <section className="relative min-h-[86vh] flex items-center justify-center overflow-hidden bg-[#000538] pt-6 pb-20">
         {/* Background Image with Drop Landing Physics and Measured Scrim */}
         <DropLanding className="absolute inset-0 z-0">
           <img
@@ -83,8 +83,8 @@ export const HomePage: React.FC<HomePageProps> = ({
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover object-center scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0B1930] via-[#0B1930]/85 to-[#0B1930]/65" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0B1930] via-transparent to-[#0B1930]/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#000538] via-[#00097C]/80 to-[#000538]/70" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#000538] via-transparent to-[#00097C]/60" />
         </DropLanding>
 
         {/* Hero Content with Slide-In Left */}
@@ -127,15 +127,15 @@ export const HomePage: React.FC<HomePageProps> = ({
               <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
                 <button
                   onClick={() => onNavigate('/developments')}
-                  className="px-7 py-3.5 text-xs font-bold uppercase tracking-wider text-[#0B1930] bg-[#C8A45D] hover:bg-[#DFC07C] transition-all rounded-lg shadow-lg flex items-center justify-center gap-2 group active:scale-[0.98]"
+                  className="px-7 py-3.5 text-xs font-bold uppercase tracking-wider text-[#00097C] bg-[#C8A45D] hover:bg-[#DFC07C] transition-all rounded-lg shadow-lg flex items-center justify-center gap-2 group active:scale-[0.98]"
                 >
                   <span>Explore Our Developments</span>
-                  <ArrowRight className="w-4 h-4 text-[#0B1930] group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 h-4 text-[#00097C] group-hover:translate-x-1 transition-transform" />
                 </button>
 
                 <button
                   onClick={() => onOpenLeadModal()}
-                  className="px-7 py-3.5 text-xs font-bold uppercase tracking-wider text-white bg-[#102342] hover:bg-[#1A3868] border border-[#C8A45D]/50 transition-all rounded-lg flex items-center justify-center gap-2 shadow-sm"
+                  className="px-7 py-3.5 text-xs font-bold uppercase tracking-wider text-white bg-[#00097C] hover:bg-[#00109E] border border-[#C8A45D]/50 transition-all rounded-lg flex items-center justify-center gap-2 shadow-sm"
                 >
                   <PhoneCall className="w-4 h-4 text-[#C8A45D]" />
                   <span>Speak to an Advisor</span>
@@ -174,7 +174,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               Corporate Profile
             </div>
             <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight leading-tight ${
-              isDark ? 'text-white' : 'text-[#0B1930]'
+              isDark ? 'text-white' : 'text-[#00097C]'
             }`}>
               Real Estate With Purpose.{' '}
               <span className={isDark ? 'text-[#C8A45D]' : 'text-[#B38E46]'}>Investments With Perspective.</span>
@@ -193,7 +193,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               <button
                 onClick={() => onNavigate('/about')}
                 className={`inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider transition-colors ${
-                  isDark ? 'text-[#C8A45D] hover:text-white' : 'text-[#0B1930] hover:text-[#B38E46]'
+                  isDark ? 'text-[#C8A45D] hover:text-white' : 'text-[#00097C] hover:text-[#B38E46]'
                 }`}
               >
                 <span>Read Full Corporate Profile & Vision</span>
@@ -203,7 +203,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           </SlideInLeft>
 
           <SlideInRight className={`lg:col-span-5 rounded-2xl p-8 space-y-6 shadow-2xl relative overflow-hidden ${
-            isDark ? 'bg-[#102342] text-white border border-[#1E3A6E]' : 'bg-[#0B1930] text-white border border-[#C8A45D]/40'
+            isDark ? 'bg-[#000538] text-white border border-[#14288F]' : 'bg-[#00097C] text-white border border-[#C8A45D]/60'
           }`}>
             <div className="space-y-3">
               <div className="text-xs font-semibold uppercase tracking-wider text-[#C8A45D]">
@@ -214,7 +214,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               </p>
             </div>
 
-            <div className="pt-4 border-t border-[#1E3A6E]/80 space-y-2">
+            <div className="pt-4 border-t border-[#14288F]/80 space-y-2">
               <div className="text-xs font-semibold uppercase tracking-wider text-slate-300">
                 Company Mission
               </div>
@@ -223,7 +223,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               </p>
             </div>
 
-            <div className="pt-3 border-t border-[#1E3A6E] flex items-center justify-between text-xs text-slate-300">
+            <div className="pt-3 border-t border-[#14288F] flex items-center justify-between text-xs text-slate-300">
               <span className="text-[#C8A45D] font-bold">OASIS RAY DEVELOPMENTS LTD.</span>
               <span>RC Registered Entity</span>
             </div>
@@ -233,7 +233,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
       {/* 3. REDESIGNED STRATEGIC BENCHMARKS & METRICS */}
       <section className={`border-y py-16 transition-colors ${
-        isDark ? 'bg-[#060E1A]/80 border-slate-800' : 'bg-slate-100/90 border-slate-200/80'
+        isDark ? 'bg-[#000538]/80 border-slate-800' : 'bg-slate-100/90 border-slate-200/80'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           <FadeIn>
@@ -245,7 +245,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                   Portfolio & Institutional Benchmarks
                 </div>
                 <h2 className={`text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight ${
-                  isDark ? 'text-white' : 'text-[#0B1930]'
+                  isDark ? 'text-white' : 'text-[#00097C]'
                 }`}>
                   Measured Value. Structured Growth.
                 </h2>
@@ -261,20 +261,20 @@ export const HomePage: React.FC<HomePageProps> = ({
             <FlungCard index={0} className="group h-full">
               <div className={`rounded-2xl p-6 sm:p-7 space-y-4 border transition-all flex flex-col justify-between h-full relative overflow-hidden ${
                 isDark
-                  ? 'bg-[#102342] border-[#1E3A6E] text-white hover:border-[#C8A45D]'
-                  : 'bg-white border-slate-200/90 text-[#0B1930] hover:border-[#C8A45D] hover:shadow-lg'
+                  ? 'bg-[#00097C] border-[#14288F] text-white hover:border-[#C8A45D]'
+                  : 'bg-white border-slate-200/90 text-[#00097C] hover:border-[#C8A45D] hover:shadow-lg'
               }`}>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <div className={`w-10 h-10 rounded-xl border flex items-center justify-center group-hover:scale-110 transition-transform ${
-                      isDark ? 'bg-[#060E1A] border-slate-700 text-[#C8A45D]' : 'bg-slate-50 border-slate-200 text-[#B38E46]'
+                      isDark ? 'bg-[#000538] border-slate-700 text-[#C8A45D]' : 'bg-slate-50 border-slate-200 text-[#B38E46]'
                     }`}>
                       <Building2 className="w-5 h-5" />
                     </div>
                   </div>
                   <div>
                     <div className={`text-3xl sm:text-4xl font-black font-mono tracking-tight transition-colors ${
-                      isDark ? 'text-white group-hover:text-[#C8A45D]' : 'text-[#0B1930] group-hover:text-[#B38E46]'
+                      isDark ? 'text-white group-hover:text-[#C8A45D]' : 'text-[#00097C] group-hover:text-[#B38E46]'
                     }`}>
                       2 Major Estates
                     </div>
@@ -283,7 +283,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                     </div>
                   </div>
                 </div>
-                <div className={`pt-3 border-t space-y-1 ${isDark ? 'border-[#1E3A6E]' : 'border-slate-100'}`}>
+                <div className={`pt-3 border-t space-y-1 ${isDark ? 'border-[#14288F]' : 'border-slate-100'}`}>
                   <div className="text-xs font-bold text-[#C8A45D]">
                     Flagship Estates
                   </div>
@@ -298,20 +298,20 @@ export const HomePage: React.FC<HomePageProps> = ({
             <FlungCard index={1} className="group h-full">
               <div className={`rounded-2xl p-6 sm:p-7 space-y-4 border transition-all flex flex-col justify-between h-full relative overflow-hidden ${
                 isDark
-                  ? 'bg-[#102342] border-[#1E3A6E] text-white hover:border-[#C8A45D]'
-                  : 'bg-white border-slate-200/90 text-[#0B1930] hover:border-[#C8A45D] hover:shadow-lg'
+                  ? 'bg-[#00097C] border-[#14288F] text-white hover:border-[#C8A45D]'
+                  : 'bg-white border-slate-200/90 text-[#00097C] hover:border-[#C8A45D] hover:shadow-lg'
               }`}>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <div className={`w-10 h-10 rounded-xl border flex items-center justify-center group-hover:scale-110 transition-transform ${
-                      isDark ? 'bg-[#060E1A] border-slate-700 text-[#C8A45D]' : 'bg-slate-50 border-slate-200 text-[#B38E46]'
+                      isDark ? 'bg-[#000538] border-slate-700 text-[#C8A45D]' : 'bg-slate-50 border-slate-200 text-[#B38E46]'
                     }`}>
                       <Compass className="w-5 h-5" />
                     </div>
                   </div>
                   <div>
                     <div className={`text-xl sm:text-2xl font-black tracking-tight transition-colors leading-tight ${
-                      isDark ? 'text-white group-hover:text-[#C8A45D]' : 'text-[#0B1930] group-hover:text-[#B38E46]'
+                      isDark ? 'text-white group-hover:text-[#C8A45D]' : 'text-[#00097C] group-hover:text-[#B38E46]'
                     }`}>
                       Ogun Growth Corridor
                     </div>
@@ -320,7 +320,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                     </div>
                   </div>
                 </div>
-                <div className={`pt-3 border-t space-y-1 ${isDark ? 'border-[#1E3A6E]' : 'border-slate-100'}`}>
+                <div className={`pt-3 border-t space-y-1 ${isDark ? 'border-[#14288F]' : 'border-slate-100'}`}>
                   <div className="text-xs font-bold text-[#C8A45D]">
                     Development Axes
                   </div>
@@ -335,20 +335,20 @@ export const HomePage: React.FC<HomePageProps> = ({
             <FlungCard index={2} className="group h-full">
               <div className={`rounded-2xl p-6 sm:p-7 space-y-4 border transition-all flex flex-col justify-between h-full relative overflow-hidden ${
                 isDark
-                  ? 'bg-[#102342] border-[#1E3A6E] text-white hover:border-[#C8A45D]'
-                  : 'bg-white border-slate-200/90 text-[#0B1930] hover:border-[#C8A45D] hover:shadow-lg'
+                  ? 'bg-[#00097C] border-[#14288F] text-white hover:border-[#C8A45D]'
+                  : 'bg-white border-slate-200/90 text-[#00097C] hover:border-[#C8A45D] hover:shadow-lg'
               }`}>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <div className={`w-10 h-10 rounded-xl border flex items-center justify-center group-hover:scale-110 transition-transform ${
-                      isDark ? 'bg-[#060E1A] border-slate-700 text-[#C8A45D]' : 'bg-slate-50 border-slate-200 text-[#B38E46]'
+                      isDark ? 'bg-[#000538] border-slate-700 text-[#C8A45D]' : 'bg-slate-50 border-slate-200 text-[#B38E46]'
                     }`}>
                       <ShieldCheck className="w-5 h-5" />
                     </div>
                   </div>
                   <div>
                     <div className={`text-xl sm:text-2xl font-black tracking-tight transition-colors leading-tight ${
-                      isDark ? 'text-white group-hover:text-[#C8A45D]' : 'text-[#0B1930] group-hover:text-[#B38E46]'
+                      isDark ? 'text-white group-hover:text-[#C8A45D]' : 'text-[#00097C] group-hover:text-[#B38E46]'
                     }`}>
                       Freehold Land Parcels
                     </div>
@@ -357,7 +357,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                     </div>
                   </div>
                 </div>
-                <div className={`pt-3 border-t space-y-1 ${isDark ? 'border-[#1E3A6E]' : 'border-slate-100'}`}>
+                <div className={`pt-3 border-t space-y-1 ${isDark ? 'border-[#14288F]' : 'border-slate-100'}`}>
                   <div className="text-xs font-bold text-[#C8A45D]">
                     Investment Allocation
                   </div>
@@ -372,20 +372,20 @@ export const HomePage: React.FC<HomePageProps> = ({
             <FlungCard index={3} className="group h-full">
               <div className={`rounded-2xl p-6 sm:p-7 space-y-4 border transition-all flex flex-col justify-between h-full relative overflow-hidden ${
                 isDark
-                  ? 'bg-[#102342] border-[#1E3A6E] text-white hover:border-[#C8A45D]'
-                  : 'bg-white border-slate-200/90 text-[#0B1930] hover:border-[#C8A45D] hover:shadow-lg'
+                  ? 'bg-[#00097C] border-[#14288F] text-white hover:border-[#C8A45D]'
+                  : 'bg-white border-slate-200/90 text-[#00097C] hover:border-[#C8A45D] hover:shadow-lg'
               }`}>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <div className={`w-10 h-10 rounded-xl border flex items-center justify-center group-hover:scale-110 transition-transform ${
-                      isDark ? 'bg-[#060E1A] border-slate-700 text-[#C8A45D]' : 'bg-slate-50 border-slate-200 text-[#B38E46]'
+                      isDark ? 'bg-[#000538] border-slate-700 text-[#C8A45D]' : 'bg-slate-50 border-slate-200 text-[#B38E46]'
                     }`}>
                       <Award className="w-5 h-5" />
                     </div>
                   </div>
                   <div>
                     <div className={`text-2xl sm:text-3xl font-extrabold tracking-tight transition-colors ${
-                      isDark ? 'text-white group-hover:text-[#C8A45D]' : 'text-[#0B1930] group-hover:text-[#B38E46]'
+                      isDark ? 'text-white group-hover:text-[#C8A45D]' : 'text-[#00097C] group-hover:text-[#B38E46]'
                     }`}>
                       10+ Years
                     </div>
@@ -394,7 +394,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                     </div>
                   </div>
                 </div>
-                <div className={`pt-3 border-t space-y-1 ${isDark ? 'border-[#1E3A6E]' : 'border-slate-100'}`}>
+                <div className={`pt-3 border-t space-y-1 ${isDark ? 'border-[#14288F]' : 'border-slate-100'}`}>
                   <div className="text-xs font-bold text-[#C8A45D]">
                     Leadership Benchmark
                   </div>
@@ -419,7 +419,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 Current Portfolio
               </div>
               <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight ${
-                isDark ? 'text-white' : 'text-[#0B1930]'
+                isDark ? 'text-white' : 'text-[#00097C]'
               }`}>
                 Featured Real Estate Developments
               </h2>
@@ -430,7 +430,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             <button
               onClick={() => onNavigate('/developments')}
               className={`inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider transition-colors whitespace-nowrap self-start md:self-auto ${
-                isDark ? 'text-[#C8A45D] hover:text-white' : 'text-[#0B1930] hover:text-[#B38E46]'
+                isDark ? 'text-[#C8A45D] hover:text-white' : 'text-[#00097C] hover:text-[#B38E46]'
               }`}
             >
               <span>View All Developments ({developments.length})</span>
@@ -458,7 +458,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
       {/* 4.5 VERIFIED ESTATE LAND PARCELS & PLOT ALLOCATION TIERS */}
       <section className={`border-y py-16 transition-colors ${
-        isDark ? 'bg-[#060E1A]/80 border-slate-800' : 'bg-slate-100/90 border-slate-200/80'
+        isDark ? 'bg-[#000538]/80 border-slate-800' : 'bg-slate-100/90 border-slate-200/80'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           <FadeIn>
@@ -470,7 +470,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                   Verified Land Parcels & Estate Plots
                 </div>
                 <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight ${
-                  isDark ? 'text-white' : 'text-[#0B1930]'
+                  isDark ? 'text-white' : 'text-[#00097C]'
                 }`}>
                   Master-Planned Land Parcellation & Plot Allocation
                 </h2>
@@ -480,10 +480,10 @@ export const HomePage: React.FC<HomePageProps> = ({
               </div>
               <button
                 onClick={() => onOpenLeadModal(undefined, 'Land Allocation Schedule')}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#C8A45D] hover:bg-[#DFC07C] text-xs font-bold text-[#0B1930] transition-all whitespace-nowrap self-start md:self-auto shadow-md"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#C8A45D] hover:bg-[#DFC07C] text-xs font-bold text-[#00097C] transition-all whitespace-nowrap self-start md:self-auto shadow-md"
               >
                 <span>Request Plot Allocation Schedule</span>
-                <ArrowRight className="w-3.5 h-3.5 text-[#0B1930]" />
+                <ArrowRight className="w-3.5 h-3.5 text-[#00097C]" />
               </button>
             </div>
           </FadeIn>
@@ -523,8 +523,8 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <FlungCard key={plotTier.id} index={idx} className={colSpans[idx]}>
                   <div className={`rounded-2xl overflow-hidden border transition-all group flex flex-col justify-between h-full ${
                     isDark
-                      ? 'bg-[#102342] border-[#1E3A6E] text-white hover:border-[#C8A45D] shadow-xl'
-                      : 'bg-white border-slate-200/90 text-[#0B1930] hover:border-[#B38E46] shadow-sm hover:shadow-lg'
+                      ? 'bg-[#00097C] border-[#14288F] text-white hover:border-[#C8A45D] shadow-xl'
+                      : 'bg-white border-slate-200/90 text-[#00097C] hover:border-[#B38E46] shadow-sm hover:shadow-lg'
                   }`}>
                     <div>
                       <div className="relative aspect-[16/10] overflow-hidden bg-slate-900">
@@ -544,7 +544,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                             {plotTier.category}
                           </div>
                           <h3 className={`text-xl font-bold tracking-tight transition-colors mt-1 ${
-                            isDark ? 'text-white group-hover:text-[#C8A45D]' : 'text-[#0B1930] group-hover:text-[#B38E46]'
+                            isDark ? 'text-white group-hover:text-[#C8A45D]' : 'text-[#00097C] group-hover:text-[#B38E46]'
                           }`}>
                             {plotTier.title}
                           </h3>
@@ -553,7 +553,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                           </div>
                         </div>
 
-                        <div className={`pt-3 border-t space-y-2 ${isDark ? 'border-[#1E3A6E]' : 'border-slate-100'}`}>
+                        <div className={`pt-3 border-t space-y-2 ${isDark ? 'border-[#14288F]' : 'border-slate-100'}`}>
                           {plotTier.features.map((feat, fIdx) => (
                             <div key={fIdx} className={`flex items-center gap-2 text-xs font-medium ${
                               isDark ? 'text-slate-200' : 'text-slate-700'
@@ -571,7 +571,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                         onClick={() => onOpenLeadModal(undefined, `Land Plot Inquiry: ${plotTier.title}`)}
                         className={`w-full py-2.5 px-4 text-xs font-bold uppercase tracking-wider transition-colors rounded-xl flex items-center justify-center gap-2 ${
                           isDark
-                            ? 'bg-[#00097C] hover:bg-[#C8A45D] text-white hover:text-[#0B1930] border border-[#C8A45D]/40'
+                            ? 'bg-[#00097C] hover:bg-[#C8A45D] text-white hover:text-[#00097C] border border-[#C8A45D]/40'
                             : 'bg-[#00097C] hover:bg-[#1A3868] text-white shadow-md'
                         }`}
                       >
@@ -597,7 +597,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               Capabilities & Solutions
             </div>
             <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight ${
-              isDark ? 'text-white' : 'text-[#0B1930]'
+              isDark ? 'text-white' : 'text-[#00097C]'
             }`}>
               Our Core Real Estate Services
             </h2>
@@ -616,19 +616,19 @@ export const HomePage: React.FC<HomePageProps> = ({
             >
               <div className={`rounded-xl p-5 sm:p-6 space-y-4 border transition-all flex flex-col justify-between h-full group ${
                 isDark
-                  ? 'bg-[#102342] border-[#1E3A6E] text-white hover:border-[#C8A45D]'
-                  : 'bg-white border-slate-200/90 text-[#0B1930] hover:border-[#B38E46] shadow-sm hover:shadow-lg'
+                  ? 'bg-[#00097C] border-[#14288F] text-white hover:border-[#C8A45D]'
+                  : 'bg-white border-slate-200/90 text-[#00097C] hover:border-[#B38E46] shadow-sm hover:shadow-lg'
               }`}>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <div className={`w-10 h-10 rounded-lg border flex items-center justify-center group-hover:scale-105 transition-transform ${
-                      isDark ? 'bg-[#060E1A] border-slate-700 text-[#C8A45D]' : 'bg-slate-50 border-slate-200 text-[#B38E46]'
+                      isDark ? 'bg-[#000538] border-slate-700 text-[#C8A45D]' : 'bg-slate-50 border-slate-200 text-[#B38E46]'
                     }`}>
                       {serviceIcons[service.iconName] || <Building2 className="w-5 h-5 text-[#C8A45D]" />}
                     </div>
                   </div>
                   <h3 className={`text-base font-bold tracking-tight ${
-                    isDark ? 'text-white' : 'text-[#0B1930]'
+                    isDark ? 'text-white' : 'text-[#00097C]'
                   }`}>
                     {service.title}
                   </h3>
@@ -639,7 +639,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                   </p>
                 </div>
 
-                <div className={`pt-2 border-t ${isDark ? 'border-[#1E3A6E]' : 'border-slate-100'}`}>
+                <div className={`pt-2 border-t ${isDark ? 'border-[#14288F]' : 'border-slate-100'}`}>
                   <button
                     onClick={() => onNavigate('/services')}
                     className="text-xs font-bold text-[#C8A45D] hover:underline inline-flex items-center gap-1 transition-colors"
@@ -656,7 +656,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           <button
             onClick={() => onNavigate('/services')}
             className={`inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider transition-colors ${
-              isDark ? 'text-[#C8A45D] hover:text-white' : 'text-[#0B1930] hover:text-[#B38E46]'
+              isDark ? 'text-[#C8A45D] hover:text-white' : 'text-[#00097C] hover:text-[#B38E46]'
             }`}
           >
             <span>View All Specialized Advisory Disciplines</span>
@@ -667,7 +667,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
       {/* 6. WHY CHOOSE OASIS RAY */}
       <section className={`relative border-y py-20 overflow-hidden transition-colors ${
-        isDark ? 'bg-[#060E1A]/90 border-slate-800' : 'bg-slate-100/80 border-slate-200'
+        isDark ? 'bg-[#000538]/90 border-slate-800' : 'bg-slate-100/80 border-slate-200'
       }`}>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           <FadeIn>
@@ -678,7 +678,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 Institutional Pillars
               </div>
               <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight ${
-                isDark ? 'text-white' : 'text-[#0B1930]'
+                isDark ? 'text-white' : 'text-[#00097C]'
               }`}>
                 Why Discerning Investors Choose Oasis Ray
               </h2>
@@ -728,8 +728,8 @@ export const HomePage: React.FC<HomePageProps> = ({
               >
                 <div className={`border rounded-xl p-5 space-y-3 transition-all h-full flex flex-col justify-between ${
                   isDark
-                    ? 'bg-[#102342] border-[#1E3A6E] text-white hover:border-[#C8A45D]'
-                    : 'bg-white border-slate-200/90 text-[#0B1930] hover:border-[#B38E46] shadow-xs'
+                    ? 'bg-[#00097C] border-[#14288F] text-white hover:border-[#C8A45D]'
+                    : 'bg-white border-slate-200/90 text-[#00097C] hover:border-[#B38E46] shadow-xs'
                 }`}>
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-xs text-[#C8A45D] font-mono font-bold">
@@ -738,7 +738,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                       }`}>{pillar.point}</span>
                     </div>
                     <h3 className={`text-base font-bold tracking-tight ${
-                      isDark ? 'text-white' : 'text-[#0B1930]'
+                      isDark ? 'text-white' : 'text-[#00097C]'
                     }`}>{pillar.title}</h3>
                     <p className={`text-xs leading-relaxed ${
                       isDark ? 'text-slate-300' : 'text-slate-600'
@@ -754,7 +754,7 @@ export const HomePage: React.FC<HomePageProps> = ({
       {/* 7. DEDICATED INVESTMENT PROMOTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <WakeUpCard delay={0.1}>
-          <div className="relative rounded-2xl overflow-hidden bg-[#0B1930] text-white border border-[#C8A45D]/40 p-8 sm:p-12 lg:p-16 shadow-2xl">
+          <div className="relative rounded-2xl overflow-hidden bg-[#000538] text-white border border-[#C8A45D]/40 p-8 sm:p-12 lg:p-16 shadow-2xl">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-8 space-y-4">
                 <div className="text-xs font-semibold uppercase tracking-widest text-[#C8A45D]">
@@ -769,13 +769,13 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <div className="pt-2 flex flex-wrap gap-4">
                   <button
                     onClick={() => onNavigate('/investment')}
-                    className="px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#0B1930] bg-[#C8A45D] hover:bg-[#DFC07C] transition-colors rounded-lg shadow-sm"
+                    className="px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#00097C] bg-[#C8A45D] hover:bg-[#DFC07C] transition-colors rounded-lg shadow-sm"
                   >
                     Explore Investment Opportunities
                   </button>
                   <button
                     onClick={() => onOpenLeadModal()}
-                    className="px-6 py-3 text-xs font-bold uppercase tracking-wider text-white bg-[#102342] hover:bg-[#1A3868] border border-[#1E3A6E] transition-colors rounded-lg"
+                    className="px-6 py-3 text-xs font-bold uppercase tracking-wider text-white bg-[#00097C] hover:bg-[#1A3868] border border-[#14288F] transition-colors rounded-lg"
                   >
                     Schedule Advisory Call
                   </button>
@@ -790,8 +790,8 @@ export const HomePage: React.FC<HomePageProps> = ({
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B1930] via-transparent to-transparent pointer-events-none" />
-                  <div className="absolute bottom-3 left-3 right-3 text-center text-xs font-bold text-white bg-[#0B1930]/90 py-1.5 px-2 rounded backdrop-blur-sm border border-[#C8A45D]/40">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#00097C] via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute bottom-3 left-3 right-3 text-center text-xs font-bold text-white bg-[#000538]/90 py-1.5 px-2 rounded backdrop-blur-sm border border-[#C8A45D]/40">
                     Strategic Cadastral Growth Corridors
                   </div>
                 </div>
@@ -812,7 +812,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 Client Perspectives
               </div>
               <h2 className={`text-2xl sm:text-3xl font-bold tracking-tight ${
-                isDark ? 'text-white' : 'text-[#0B1930]'
+                isDark ? 'text-white' : 'text-[#00097C]'
               }`}>
                 Investor Perspectives & Experiences
               </h2>
@@ -876,14 +876,14 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <div
                   className={`border rounded-2xl p-6 sm:p-7 space-y-4 shadow-xl group relative flex flex-col justify-between h-full backdrop-blur-sm ${
                     isDark
-                      ? 'bg-[#102342]/95 border-[#1E3A6E] text-white hover:border-[#C8A45D]'
-                      : 'bg-white/95 border-slate-200/90 text-[#0B1930] hover:border-[#B38E46] hover:shadow-2xl'
+                      ? 'bg-[#00097C]/95 border-[#14288F] text-white hover:border-[#C8A45D]'
+                      : 'bg-white/95 border-slate-200/90 text-[#00097C] hover:border-[#B38E46] hover:shadow-2xl'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-3">
                     <div className="flex items-center gap-2.5">
                       <div className={`w-8 h-8 rounded-lg border flex items-center justify-center shrink-0 ${
-                        isDark ? 'bg-[#060E1A] border-slate-700 text-[#C8A45D]' : 'bg-slate-50 border-slate-200 text-[#B38E46]'
+                        isDark ? 'bg-[#000538] border-slate-700 text-[#C8A45D]' : 'bg-slate-50 border-slate-200 text-[#B38E46]'
                       }`}>
                         <Quote className="w-4 h-4" />
                       </div>
@@ -901,15 +901,15 @@ export const HomePage: React.FC<HomePageProps> = ({
                   </p>
 
                   <div className={`pt-3 border-t flex items-center justify-between ${
-                    isDark ? 'border-[#1E3A6E]' : 'border-slate-100'
+                    isDark ? 'border-[#14288F]' : 'border-slate-100'
                   }`}>
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-[#0B1930] border border-[#C8A45D]/60 flex items-center justify-center text-[#C8A45D] text-xs font-bold">
+                      <div className="w-8 h-8 rounded-full bg-[#000538] border border-[#C8A45D]/60 flex items-center justify-center text-[#C8A45D] text-xs font-bold">
                         {item.authorName.charAt(0)}
                       </div>
                       <div>
                         <div className={`text-xs sm:text-sm font-bold transition-colors ${
-                          isDark ? 'text-white group-hover:text-[#C8A45D]' : 'text-[#0B1930] group-hover:text-[#B38E46]'
+                          isDark ? 'text-white group-hover:text-[#C8A45D]' : 'text-[#00097C] group-hover:text-[#B38E46]'
                         }`}>
                           {item.authorName}
                         </div>
@@ -933,7 +933,7 @@ export const HomePage: React.FC<HomePageProps> = ({
       {/* 10. FINAL CTA */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <FadeIn>
-          <div className="rounded-2xl bg-[#0B1930] text-white border border-[#C8A45D]/40 p-8 sm:p-12 text-center space-y-6 shadow-2xl">
+          <div className="rounded-2xl bg-[#000538] text-white border border-[#C8A45D]/40 p-8 sm:p-12 text-center space-y-6 shadow-2xl">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
               Let's Build Your Next Chapter in Real Estate.
             </h2>
@@ -943,13 +943,13 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2">
               <button
                 onClick={() => onNavigate('/developments')}
-                className="w-full sm:w-auto px-8 py-3.5 text-xs font-bold uppercase tracking-wider text-[#0B1930] bg-[#C8A45D] hover:bg-[#DFC07C] transition-all rounded-lg shadow-md"
+                className="w-full sm:w-auto px-8 py-3.5 text-xs font-bold uppercase tracking-wider text-[#00097C] bg-[#C8A45D] hover:bg-[#DFC07C] transition-all rounded-lg shadow-md"
               >
                 Explore Properties
               </button>
               <button
                 onClick={() => onNavigate('/contact')}
-                className="w-full sm:w-auto px-8 py-3.5 text-xs font-bold uppercase tracking-wider text-white bg-[#102342] hover:bg-[#1A3868] border border-[#1E3A6E] transition-all rounded-lg"
+                className="w-full sm:w-auto px-8 py-3.5 text-xs font-bold uppercase tracking-wider text-white bg-[#00097C] hover:bg-[#1A3868] border border-[#14288F] transition-all rounded-lg"
               >
                 Contact Our Team
               </button>

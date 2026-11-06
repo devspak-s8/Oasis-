@@ -56,13 +56,13 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ services, onOpenLead
             <Wrapper key={service.id} delay={0.05}>
               <div
                 id={service.id}
-                className="bg-[#102342] border border-[#1E3A6E] rounded-2xl p-6 sm:p-10 shadow-lg hover:border-[#C8A45D]/50 transition-colors"
+                className="bg-[#00097C] border border-[#14288F] rounded-2xl p-6 sm:p-10 shadow-lg hover:border-[#C8A45D]/50 transition-colors"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                   {/* Left Column: Number & Icon & Title */}
                   <div className="lg:col-span-4 space-y-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-xl bg-[#060E1A] border border-[#C8A45D]/40 flex items-center justify-center">
+                      <div className="w-12 h-12 rounded-xl bg-[#000538] border border-[#C8A45D]/40 flex items-center justify-center">
                         {serviceIcons[service.iconName] || <Building2 className="w-6 h-6 text-[#C8A45D]" />}
                       </div>
                     </div>
@@ -78,7 +78,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ services, onOpenLead
                     <div>
                       <button
                         onClick={() => onOpenLeadModal(undefined, undefined, service.title)}
-                        className="inline-flex items-center gap-2 px-4 py-2.5 text-xs font-semibold rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#0B1930] transition-colors shadow-sm"
+                        className="inline-flex items-center gap-2 px-4 py-2.5 text-xs font-semibold rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#00097C] transition-colors shadow-sm"
                       >
                         <span>Request Consultation</span>
                         <ArrowRight className="w-3.5 h-3.5" />
@@ -87,7 +87,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ services, onOpenLead
                   </div>
 
                   {/* Right Column: Descriptions & Benefits */}
-                  <div className="lg:col-span-8 space-y-6 lg:border-l lg:border-[#1E3A6E] lg:pl-8">
+                  <div className="lg:col-span-8 space-y-6 lg:border-l lg:border-[#14288F] lg:pl-8">
                     <div className="space-y-3">
                       <h4 className="text-sm font-semibold uppercase tracking-wider text-slate-300">
                         Scope of Service
@@ -105,7 +105,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ services, onOpenLead
                         {service.benefits.map((benefit, bIdx) => (
                           <div
                             key={bIdx}
-                            className="bg-[#060E1A]/80 border border-[#1E3A6E]/60 rounded-lg p-3 flex items-start gap-2.5"
+                            className="bg-[#000538]/80 border border-[#14288F]/60 rounded-lg p-3 flex items-start gap-2.5"
                           >
                             <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                             <span className="text-xs text-slate-200 font-medium">{benefit}</span>
@@ -123,7 +123,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ services, onOpenLead
 
       {/* Advisory Callout */}
       <FadeIn>
-        <div className="rounded-2xl bg-[#060E1A] border border-[#1E3A6E] p-8 sm:p-10 text-center space-y-4">
+        <div className="rounded-2xl bg-[#000538] border border-[#14288F] p-8 sm:p-10 text-center space-y-4">
           <h3 className="text-xl font-bold text-white">Need Customized Advisory for an Institutional Portfolio?</h3>
           <p className="text-xs text-slate-400 max-w-xl mx-auto">
             We structure bespoke land banking syndicates for corporate groups, cooperative societies, and diaspora families looking for coordinated acquisition in Ogun State.
@@ -131,7 +131,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ services, onOpenLead
           <div className="pt-2">
             <button
               onClick={() => onOpenLeadModal(undefined, undefined, 'Institutional Advisory')}
-              className="px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#0B1930] bg-[#C8A45D] hover:bg-[#DFC07C] transition-colors rounded-lg shadow-sm"
+              className="px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#00097C] bg-[#C8A45D] hover:bg-[#DFC07C] transition-colors rounded-lg shadow-sm"
             >
               Speak to Lead Consultant
             </button>

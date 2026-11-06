@@ -163,18 +163,18 @@ export const LeadModal: React.FC<LeadModalProps> = ({
       aria-modal="true"
     >
       <div className={`relative w-full max-w-xl border rounded-2xl shadow-2xl overflow-hidden max-h-[92vh] flex flex-col transition-colors ${
-        isDark ? 'bg-[#0B1930] border-[#1E3A6E] text-white' : 'bg-white border-slate-200 text-[#0B1930]'
+        isDark ? 'bg-[#000538] border-[#14288F] text-white' : 'bg-white border-slate-200 text-[#00097C]'
       }`}>
         {/* Header Bar */}
         <div className={`px-6 py-4 border-b flex items-center justify-between ${
-          isDark ? 'bg-[#060E1A] border-[#1E3A6E]' : 'bg-slate-50 border-slate-200'
+          isDark ? 'bg-[#000538] border-[#14288F]' : 'bg-slate-50 border-slate-200'
         }`}>
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-[#102342] border border-[#C8A45D]/40 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-[#00097C] border border-[#C8A45D]/40 flex items-center justify-center">
               <Building className="w-4 h-4 text-[#C8A45D]" />
             </div>
             <div>
-              <h3 className={`text-base font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>
+              <h3 className={`text-base font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#00097C]'}`}>
                 {currentStep === 3 ? 'Enquiry Confirmed' : 'Speak with an Investment Advisor'}
               </h3>
               <p className="text-xs text-[#C8A45D]">Oasis Ray Developments Advisory Desk</p>
@@ -194,11 +194,11 @@ export const LeadModal: React.FC<LeadModalProps> = ({
         {/* Step Progress Bar */}
         {currentStep !== 3 && (
           <div className={`px-6 py-2.5 border-b flex items-center justify-between text-xs font-semibold ${
-            isDark ? 'bg-[#102342]/50 border-[#1E3A6E]/50 text-slate-300' : 'bg-slate-100/70 border-slate-200 text-slate-600'
+            isDark ? 'bg-[#00097C]/50 border-[#14288F]/50 text-slate-300' : 'bg-slate-100/70 border-slate-200 text-slate-600'
           }`}>
             <div className="flex items-center gap-2">
               <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
-                currentStep === 1 ? 'bg-[#C8A45D] text-[#0B1930]' : 'bg-emerald-500 text-white'
+                currentStep === 1 ? 'bg-[#C8A45D] text-[#00097C]' : 'bg-emerald-500 text-white'
               }`}>
                 {currentStep > 1 ? '✓' : '1'}
               </span>
@@ -207,7 +207,7 @@ export const LeadModal: React.FC<LeadModalProps> = ({
             <div className="w-8 h-0.5 bg-slate-400/30" />
             <div className="flex items-center gap-2">
               <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
-                currentStep === 2 ? 'bg-[#C8A45D] text-[#0B1930]' : 'bg-slate-700 text-slate-300'
+                currentStep === 2 ? 'bg-[#C8A45D] text-[#00097C]' : 'bg-slate-700 text-slate-300'
               }`}>
                 2
               </span>
@@ -262,7 +262,7 @@ export const LeadModal: React.FC<LeadModalProps> = ({
                   <button
                     type="button"
                     onClick={handleNextStep}
-                    className="px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-[#0B1930] bg-[#C8A45D] hover:bg-[#DFC07C] transition-colors rounded-xl shadow-md flex items-center gap-2"
+                    className="px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-[#00097C] bg-[#C8A45D] hover:bg-[#DFC07C] transition-colors rounded-xl shadow-md flex items-center gap-2"
                   >
                     <span>Next: Personal Details</span>
                     <ArrowRight className="w-4 h-4" />
@@ -295,8 +295,8 @@ export const LeadModal: React.FC<LeadModalProps> = ({
                           errors.fullName
                             ? 'border-rose-500'
                             : isDark
-                            ? 'bg-[#060E1A] border-[#1E3A6E] text-white placeholder:text-slate-500'
-                            : 'bg-slate-50 border-slate-300 text-[#0B1930] placeholder:text-slate-400'
+                            ? 'bg-[#000538] border-[#14288F] text-white placeholder:text-slate-500'
+                            : 'bg-slate-50 border-slate-300 text-[#00097C] placeholder:text-slate-400'
                         }`}
                       />
                       {errors.fullName && <p className="text-[11px] text-rose-400 mt-1">{errors.fullName}</p>}
@@ -316,8 +316,8 @@ export const LeadModal: React.FC<LeadModalProps> = ({
                           errors.phone
                             ? 'border-rose-500'
                             : isDark
-                            ? 'bg-[#060E1A] border-[#1E3A6E] text-white placeholder:text-slate-500'
-                            : 'bg-slate-50 border-slate-300 text-[#0B1930] placeholder:text-slate-400'
+                            ? 'bg-[#000538] border-[#14288F] text-white placeholder:text-slate-500'
+                            : 'bg-slate-50 border-slate-300 text-[#00097C] placeholder:text-slate-400'
                         }`}
                       />
                       {errors.phone && <p className="text-[11px] text-rose-400 mt-1">{errors.phone}</p>}
@@ -338,8 +338,8 @@ export const LeadModal: React.FC<LeadModalProps> = ({
                         errors.email
                           ? 'border-rose-500'
                           : isDark
-                          ? 'bg-[#060E1A] border-[#1E3A6E] text-white placeholder:text-slate-500'
-                          : 'bg-slate-50 border-slate-300 text-[#0B1930] placeholder:text-slate-400'
+                          ? 'bg-[#000538] border-[#14288F] text-white placeholder:text-slate-500'
+                          : 'bg-slate-50 border-slate-300 text-[#00097C] placeholder:text-slate-400'
                       }`}
                     />
                     {errors.email && <p className="text-[11px] text-rose-400 mt-1">{errors.email}</p>}
@@ -357,8 +357,8 @@ export const LeadModal: React.FC<LeadModalProps> = ({
                       placeholder="Preferred inspection date, number of plots, or payment timeline..."
                       className={`w-full px-3.5 py-2.5 rounded-xl border text-xs focus:outline-none focus:ring-1 focus:ring-[#C8A45D] ${
                         isDark
-                          ? 'bg-[#060E1A] border-[#1E3A6E] text-white placeholder:text-slate-500'
-                          : 'bg-slate-50 border-slate-300 text-[#0B1930] placeholder:text-slate-400'
+                          ? 'bg-[#000538] border-[#14288F] text-white placeholder:text-slate-500'
+                          : 'bg-slate-50 border-slate-300 text-[#00097C] placeholder:text-slate-400'
                       }`}
                     />
                   </div>
@@ -368,7 +368,7 @@ export const LeadModal: React.FC<LeadModalProps> = ({
                       type="button"
                       onClick={() => setCurrentStep(1)}
                       className={`px-4 py-2.5 text-xs font-semibold rounded-xl border transition-colors flex items-center gap-1.5 ${
-                        isDark ? 'bg-[#102342] border-[#1E3A6E] text-slate-300 hover:text-white' : 'bg-slate-100 border-slate-300 text-slate-700'
+                        isDark ? 'bg-[#00097C] border-[#14288F] text-slate-300 hover:text-white' : 'bg-slate-100 border-slate-300 text-slate-700'
                       }`}
                     >
                       <ArrowLeft className="w-3.5 h-3.5" />
@@ -378,7 +378,7 @@ export const LeadModal: React.FC<LeadModalProps> = ({
                     <button
                       type="submit"
                       disabled={submitting}
-                      className="px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-[#0B1930] bg-[#C8A45D] hover:bg-[#DFC07C] disabled:opacity-50 transition-colors rounded-xl flex items-center justify-center gap-1.5 shadow-md"
+                      className="px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-[#00097C] bg-[#C8A45D] hover:bg-[#DFC07C] disabled:opacity-50 transition-colors rounded-xl flex items-center justify-center gap-1.5 shadow-md"
                     >
                       <span>{submitting ? 'Submitting...' : 'Complete Registration'}</span>
                       <ArrowRight className="w-3.5 h-3.5" />
@@ -400,7 +400,7 @@ export const LeadModal: React.FC<LeadModalProps> = ({
                 </div>
 
                 <div className="space-y-2">
-                  <h4 className={`text-xl font-bold ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>
+                  <h4 className={`text-xl font-bold ${isDark ? 'text-white' : 'text-[#00097C]'}`}>
                     Thank You, {submittedLead.fullName}
                   </h4>
                   <p className={`text-xs max-w-md mx-auto ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
@@ -409,7 +409,7 @@ export const LeadModal: React.FC<LeadModalProps> = ({
                 </div>
 
                 <div className={`p-4 rounded-xl border max-w-sm mx-auto text-left ${
-                  isDark ? 'bg-[#102342] border-[#1E3A6E]' : 'bg-slate-50 border-slate-200'
+                  isDark ? 'bg-[#00097C] border-[#14288F]' : 'bg-slate-50 border-slate-200'
                 }`}>
                   <div className={`text-[11px] uppercase tracking-wider font-semibold ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
                     Official Reference ID
@@ -437,7 +437,7 @@ export const LeadModal: React.FC<LeadModalProps> = ({
                   <button
                     onClick={onClose}
                     className={`px-5 py-3 text-xs font-semibold rounded-xl border transition-colors ${
-                      isDark ? 'bg-[#102342] border-[#1E3A6E] text-slate-200 hover:text-white' : 'bg-slate-100 border-slate-300 text-slate-700'
+                      isDark ? 'bg-[#00097C] border-[#14288F] text-slate-200 hover:text-white' : 'bg-slate-100 border-slate-300 text-slate-700'
                     }`}
                   >
                     Close

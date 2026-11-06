@@ -25,7 +25,7 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ settings, 
         </div>
       </SlideInLeft>
 
-      <FadeIn className="bg-[#102342] border border-[#1E3A6E] rounded-2xl p-6 sm:p-10 space-y-8 text-sm text-slate-300 leading-relaxed shadow-xl">
+      <FadeIn className="bg-[#00097C] border border-[#14288F] rounded-2xl p-6 sm:p-10 space-y-8 text-sm text-slate-300 leading-relaxed shadow-xl">
         <section className="space-y-3">
           <h2 className="text-lg font-bold text-white flex items-center gap-2">
             <ShieldCheck className="w-5 h-5 text-[#C8A45D]" />
@@ -67,7 +67,7 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ settings, 
               'Providing milestone invoice schedules and allocation notices',
               'Responding to customer inquiries submitted through the platform'
             ].map((purpose, idx) => (
-              <div key={idx} className="flex items-start gap-2 text-xs bg-[#060E1A]/60 p-2.5 rounded-lg border border-[#1E3A6E]/50">
+              <div key={idx} className="flex items-start gap-2 text-xs bg-[#000538]/60 p-2.5 rounded-lg border border-[#14288F]/50">
                 <CheckCircle2 className="w-3.5 h-3.5 text-[#C8A45D] shrink-0 mt-0.5" />
                 <span>{purpose}</span>
               </div>
@@ -94,7 +94,7 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ settings, 
           <p>
             If you have questions, corrections, or requests regarding your personal records held with Oasis Ray Developments, please reach out to our compliance desk:
           </p>
-          <div className="p-4 rounded-xl bg-[#060E1A] border border-[#1E3A6E] text-xs space-y-1">
+          <div className="p-4 rounded-xl bg-[#000538] border border-[#14288F] text-xs space-y-1">
             <div><strong>Email:</strong> {settings.email}</div>
             <div><strong>Address:</strong> {settings.officeAddress}</div>
             <div><strong>Attn:</strong> Legal & Regulatory Compliance Officer</div>

@@ -21,8 +21,8 @@ export const DevelopmentCard: React.FC<DevelopmentCardProps> = ({
   return (
     <div className={`group rounded-2xl overflow-hidden transition-all duration-300 flex flex-col ${
       isDark
-        ? 'bg-[#102342] text-white shadow-xl'
-        : 'bg-white text-[#0B1930] shadow-sm hover:shadow-lg'
+        ? 'bg-[#00097C] text-white shadow-xl'
+        : 'bg-white text-[#00097C] shadow-sm hover:shadow-lg'
     }`}>
       {/* Property Image with Measured Scrim */}
       <div className="relative aspect-[16/10] overflow-hidden bg-slate-900">
@@ -64,7 +64,7 @@ export const DevelopmentCard: React.FC<DevelopmentCardProps> = ({
           </div>
 
           <h3 className={`text-xl font-bold tracking-tight transition-colors ${
-            isDark ? 'text-white group-hover:text-[#C8A45D]' : 'text-[#0B1930] group-hover:text-[#B38E46]'
+            isDark ? 'text-white group-hover:text-[#C8A45D]' : 'text-[#00097C] group-hover:text-[#B38E46]'
           }`}>
             {development.name}
           </h3>
@@ -78,7 +78,7 @@ export const DevelopmentCard: React.FC<DevelopmentCardProps> = ({
 
         {/* Minimal Pricing & Action Row */}
         <div className={`pt-4 border-t flex items-center justify-between gap-4 ${
-          isDark ? 'border-[#1E3A6E]' : 'border-slate-100'
+          isDark ? 'border-[#14288F]' : 'border-slate-100'
         }`}>
           <div>
             <span className={`text-[10px] uppercase tracking-wider block font-medium ${
@@ -87,7 +87,7 @@ export const DevelopmentCard: React.FC<DevelopmentCardProps> = ({
               Starting From
             </span>
             <span className={`text-base font-bold font-mono ${
-              isDark ? 'text-white' : 'text-[#0B1930]'
+              isDark ? 'text-white' : 'text-[#00097C]'
             }`}>
               {formatCurrencyNaira(development.startingPrice)}
             </span>
@@ -97,8 +97,8 @@ export const DevelopmentCard: React.FC<DevelopmentCardProps> = ({
             onClick={() => onViewDetails(development.slug)}
             className={`px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 active:scale-95 ${
               isDark
-                ? 'bg-[#1A3868] hover:bg-[#C8A45D] text-white hover:text-[#0B1930] border border-[#C8A45D]/40'
-                : 'bg-[#0B1930] hover:bg-[#1A3868] text-white shadow-xs'
+                ? 'bg-[#1A3868] hover:bg-[#C8A45D] text-white hover:text-[#00097C] border border-[#C8A45D]/40'
+                : 'bg-[#000538] hover:bg-[#1A3868] text-white shadow-xs'
             }`}
           >
             <span>View Project</span>

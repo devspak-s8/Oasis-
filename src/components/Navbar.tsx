@@ -91,7 +91,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       <header className={`sticky top-0 z-40 w-full transition-all duration-300 ${
         scrolled
           ? isDark
-            ? 'bg-[#060E1A]/95 backdrop-blur-md border-b border-slate-800/80 shadow-lg text-white'
+            ? 'bg-[#000538]/95 backdrop-blur-md border-b border-[#14288F] shadow-lg text-white'
             : 'bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-md text-slate-900'
           : 'bg-transparent border-transparent text-white'
       }`}>
@@ -108,7 +108,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               </div>
               <div className="flex flex-col">
                 <span className={`text-base sm:text-lg font-bold tracking-tight whitespace-nowrap ${
-                  isDark ? 'text-white' : 'text-[#0B1930]'
+                  isDark ? 'text-white' : 'text-[#00097C]'
                 }`}>
                   OASIS RAY <span className="text-[#C8A45D] font-normal">DEVELOPMENTS</span>
                 </span>
@@ -133,7 +133,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                         ? 'text-[#C8A45D] font-bold'
                         : isDark
                         ? 'text-slate-300 hover:text-white'
-                        : 'text-slate-700 hover:text-[#0B1930]'
+                        : 'text-slate-700 hover:text-[#00097C]'
                     }`}
                   >
                     {link.label}
@@ -152,7 +152,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       ? 'text-[#C8A45D] font-bold'
                       : isDark
                       ? 'text-slate-300 hover:text-white'
-                      : 'text-slate-700 hover:text-[#0B1930]'
+                      : 'text-slate-700 hover:text-[#00097C]'
                   }`}
                 >
                   <span>Explore</span>
@@ -160,7 +160,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </button>
 
                 <div className={`absolute left-0 mt-1.5 w-64 rounded-xl border shadow-2xl p-2 z-50 backdrop-blur-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ${
-                  isDark ? 'bg-[#0B1930] border-[#1E3A6E] text-white' : 'bg-white border-slate-200 text-[#0B1930]'
+                  isDark ? 'bg-[#000538] border-[#14288F] text-white' : 'bg-white border-slate-200 text-[#00097C]'
                 }`}>
                   {exploreDropdownLinks.map((item) => {
                     const IconComponent = item.icon;
@@ -173,12 +173,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                           isItemActive
                             ? 'bg-[#C8A45D]/15 text-[#C8A45D] font-bold'
                             : isDark
-                            ? 'hover:bg-[#102342] text-slate-200'
+                            ? 'hover:bg-[#00097C] text-slate-200'
                             : 'hover:bg-slate-50 text-slate-800'
                         }`}
                       >
                         <div className={`w-8 h-8 rounded-lg border flex items-center justify-center shrink-0 mt-0.5 ${
-                          isDark ? 'bg-[#060E1A] border-[#1E3A6E] text-[#C8A45D]' : 'bg-slate-100 border-slate-200 text-[#B38E46]'
+                          isDark ? 'bg-[#00097C] border-[#14288F] text-[#C8A45D]' : 'bg-slate-100 border-slate-200 text-[#00097C]'
                         }`}>
                           <IconComponent className="w-4 h-4" />
                         </div>
@@ -200,7 +200,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       ? 'text-[#C8A45D] font-bold'
                       : isDark
                       ? 'text-slate-300 hover:text-white'
-                      : 'text-slate-700 hover:text-[#0B1930]'
+                      : 'text-slate-700 hover:text-[#00097C]'
                   }`}
                 >
                   <span>Company</span>
@@ -208,7 +208,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </button>
 
                 <div className={`absolute left-0 mt-1.5 w-60 rounded-xl border shadow-2xl p-2 z-50 backdrop-blur-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ${
-                  isDark ? 'bg-[#0B1930] border-[#1E3A6E] text-white' : 'bg-white border-slate-200 text-[#0B1930]'
+                  isDark ? 'bg-[#000538] border-[#14288F] text-white' : 'bg-white border-slate-200 text-[#00097C]'
                 }`}>
                   {companyDropdownLinks.map((item) => {
                     const IconComponent = item.icon;
@@ -221,12 +221,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                           isItemActive
                             ? 'bg-[#C8A45D]/15 text-[#C8A45D] font-bold'
                             : isDark
-                            ? 'hover:bg-[#102342] text-slate-200'
+                            ? 'hover:bg-[#00097C] text-slate-200'
                             : 'hover:bg-slate-50 text-slate-800'
                         }`}
                       >
                         <div className={`w-8 h-8 rounded-lg border flex items-center justify-center shrink-0 mt-0.5 ${
-                          isDark ? 'bg-[#060E1A] border-[#1E3A6E] text-[#C8A45D]' : 'bg-slate-100 border-slate-200 text-[#B38E46]'
+                          isDark ? 'bg-[#00097C] border-[#14288F] text-[#C8A45D]' : 'bg-slate-100 border-slate-200 text-[#00097C]'
                         }`}>
                           <IconComponent className="w-4 h-4" />
                         </div>
@@ -249,8 +249,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                 aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
                 className={`p-2.5 rounded-lg border transition-all flex items-center gap-2 text-xs font-semibold ${
                   isDark
-                    ? 'bg-[#102342] border-slate-700 text-[#C8A45D] hover:bg-[#1A3868]'
-                    : 'bg-slate-100 border-slate-200 text-slate-700 hover:bg-slate-200 hover:text-[#0B1930]'
+                    ? 'bg-[#00097C] border-slate-700 text-[#C8A45D] hover:bg-[#1A3868]'
+                    : 'bg-slate-100 border-slate-200 text-slate-700 hover:bg-slate-200 hover:text-[#00097C]'
                 }`}
                 title={`Switch to ${isDark ? 'light' : 'dark'} mode`}
               >
@@ -269,7 +269,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
               <button
                 onClick={() => onOpenLeadModal()}
-                className="px-5 py-2.5 text-xs font-bold tracking-wide text-white bg-[#0B1930] hover:bg-[#1A3868] border border-[#C8A45D]/40 transition-all rounded-lg shadow-xs whitespace-nowrap shrink-0 flex items-center gap-2 active:scale-[0.98]"
+                className="px-5 py-2.5 text-xs font-bold tracking-wide text-white bg-[#000538] hover:bg-[#1A3868] border border-[#C8A45D]/40 transition-all rounded-lg shadow-xs whitespace-nowrap shrink-0 flex items-center gap-2 active:scale-[0.98]"
               >
                 <PhoneCall className="w-3.5 h-3.5 text-[#C8A45D]" />
                 <span>Speak to an Advisor</span>
@@ -283,7 +283,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
                 className={`p-2 rounded-lg border transition-colors ${
                   isDark
-                    ? 'bg-[#102342] border-slate-700 text-[#C8A45D]'
+                    ? 'bg-[#00097C] border-slate-700 text-[#C8A45D]'
                     : 'bg-slate-100 border-slate-200 text-slate-700'
                 }`}
               >
@@ -294,8 +294,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onClick={() => setMobileMenuOpen(true)}
                 className={`p-2.5 rounded-lg border focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8A45D] ${
                   isDark
-                    ? 'bg-[#102342] border-slate-700 text-white hover:text-[#C8A45D]'
-                    : 'bg-slate-100 border-slate-200 text-slate-700 hover:text-[#0B1930]'
+                    ? 'bg-[#00097C] border-slate-700 text-white hover:text-[#C8A45D]'
+                    : 'bg-slate-100 border-slate-200 text-slate-700 hover:text-[#00097C]'
                 }`}
                 aria-label="Open navigation sidebar"
               >
@@ -329,20 +329,20 @@ export const Navbar: React.FC<NavbarProps> = ({
               transition={{ type: 'spring', damping: 28, stiffness: 280 }}
               className={`absolute top-0 right-0 bottom-0 w-[85%] max-w-xs shadow-2xl flex flex-col justify-between overflow-y-auto border-l transition-colors ${
                 isDark
-                  ? 'bg-[#0B1930] text-white border-slate-800'
+                  ? 'bg-[#000538] text-white border-[#14288F]'
                   : 'bg-white text-slate-900 border-slate-200'
               }`}
             >
               {/* Drawer Header */}
               <div className={`p-5 border-b flex items-center justify-between ${
-                isDark ? 'bg-[#060E1A] border-slate-800' : 'bg-slate-50 border-slate-200'
+                isDark ? 'bg-[#00097C] border-[#14288F]' : 'bg-slate-50 border-slate-200'
               }`}>
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-md bg-[#0B1930] border border-[#C8A45D]/60 flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-md bg-[#00097C] border border-[#C8A45D]/80 flex items-center justify-center">
                     <span className="font-serif-title text-[#C8A45D] font-bold text-base leading-none">O</span>
                   </div>
                   <span className={`text-sm font-bold tracking-tight leading-tight ${
-                    isDark ? 'text-white' : 'text-[#0B1930]'
+                    isDark ? 'text-white' : 'text-[#00097C]'
                   }`}>
                     OASIS RAY
                   </span>
@@ -353,7 +353,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     onClick={toggleTheme}
                     className={`p-2 rounded-lg border text-xs font-semibold flex items-center gap-1.5 ${
                       isDark
-                        ? 'bg-[#102342] border-slate-700 text-[#C8A45D]'
+                        ? 'bg-[#000538] border-[#14288F] text-[#C8A45D]'
                         : 'bg-slate-100 border-slate-200 text-slate-700'
                     }`}
                     title="Toggle light/dark theme"
@@ -387,7 +387,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     className={`w-full text-left px-4 py-2.5 rounded-xl transition-all flex items-center justify-between ${
                       currentPath === link.path
                         ? 'bg-[#C8A45D]/20 text-[#C8A45D] font-bold'
-                        : isDark ? 'text-slate-300 hover:bg-[#102342]' : 'text-slate-700 hover:bg-slate-100'
+                        : isDark ? 'text-slate-300 hover:bg-[#00097C]' : 'text-slate-700 hover:bg-slate-100'
                     }`}
                   >
                     <span className="text-sm">{link.label}</span>
@@ -405,7 +405,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     className={`w-full text-left px-4 py-2.5 rounded-xl transition-all flex items-center justify-between ${
                       currentPath === link.path
                         ? 'bg-[#C8A45D]/20 text-[#C8A45D] font-bold'
-                        : isDark ? 'text-slate-300 hover:bg-[#102342]' : 'text-slate-700 hover:bg-slate-100'
+                        : isDark ? 'text-slate-300 hover:bg-[#00097C]' : 'text-slate-700 hover:bg-slate-100'
                     }`}
                   >
                     <span className="text-sm">{link.label}</span>
@@ -423,7 +423,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     className={`w-full text-left px-4 py-2.5 rounded-xl transition-all flex items-center justify-between ${
                       currentPath === link.path
                         ? 'bg-[#C8A45D]/20 text-[#C8A45D] font-bold'
-                        : isDark ? 'text-slate-300 hover:bg-[#102342]' : 'text-slate-700 hover:bg-slate-100'
+                        : isDark ? 'text-slate-300 hover:bg-[#00097C]' : 'text-slate-700 hover:bg-slate-100'
                     }`}
                   >
                     <span className="text-sm">{link.label}</span>
@@ -434,7 +434,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
               {/* Drawer Footer */}
               <div className={`p-5 border-t space-y-3 ${
-                isDark ? 'bg-[#060E1A] border-slate-800' : 'bg-slate-50 border-slate-200'
+                isDark ? 'bg-[#00097C] border-[#14288F]' : 'bg-slate-50 border-slate-200'
               }`}>
                 <a
                   href={whatsappDeskUrl}

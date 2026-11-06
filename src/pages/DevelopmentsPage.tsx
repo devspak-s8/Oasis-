@@ -65,7 +65,7 @@ export const DevelopmentsPage: React.FC<DevelopmentsPageProps> = ({
           Property Portfolio
         </div>
         <h1 className={`text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight ${
-          isDark ? 'text-white' : 'text-[#0B1930]'
+          isDark ? 'text-white' : 'text-[#00097C]'
         }`}>
           Our Developments
         </h1>
@@ -79,7 +79,7 @@ export const DevelopmentsPage: React.FC<DevelopmentsPageProps> = ({
       {/* Filter and Search Bar */}
       <FadeIn delay={0.1}>
         <div className={`rounded-2xl p-4 sm:p-6 border shadow-md space-y-4 ${
-          isDark ? 'bg-[#102342] border-[#1E3A6E] text-white' : 'bg-white border-slate-200 text-[#0B1930]'
+          isDark ? 'bg-[#00097C] border-[#14288F] text-white' : 'bg-white border-slate-200 text-[#00097C]'
         }`}>
           <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
             {/* Search box */}
@@ -91,7 +91,7 @@ export const DevelopmentsPage: React.FC<DevelopmentsPageProps> = ({
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search by estate name, location or keywords..."
                 className={`w-full pl-10 pr-4 py-2.5 rounded-lg border text-xs focus:outline-none focus:ring-1 focus:ring-[#C8A45D] ${
-                  isDark ? 'bg-[#060E1A] border-[#1E3A6E] text-white placeholder:text-slate-400' : 'bg-slate-50 border-slate-300 text-[#0B1930] placeholder:text-slate-500'
+                  isDark ? 'bg-[#000538] border-[#14288F] text-white placeholder:text-slate-400' : 'bg-slate-50 border-slate-300 text-[#00097C] placeholder:text-slate-500'
                 }`}
               />
             </div>
@@ -176,10 +176,10 @@ export const DevelopmentsPage: React.FC<DevelopmentsPageProps> = ({
                     }}
                     className={`w-10 h-10 rounded-lg text-xs font-bold font-mono transition-all ${
                       isCurrent
-                        ? 'bg-[#C8A45D] text-[#0B1930] shadow-md'
+                        ? 'bg-[#C8A45D] text-[#00097C] shadow-md'
                         : isDark
-                        ? 'bg-[#102342] text-slate-300 hover:text-white border border-[#1E3A6E]'
-                        : 'bg-white text-slate-700 hover:text-[#0B1930] border border-slate-300 shadow-xs'
+                        ? 'bg-[#00097C] text-slate-300 hover:text-white border border-[#14288F]'
+                        : 'bg-white text-slate-700 hover:text-[#00097C] border border-slate-300 shadow-xs'
                     }`}
                   >
                     {pageNum}
@@ -191,10 +191,10 @@ export const DevelopmentsPage: React.FC<DevelopmentsPageProps> = ({
         </div>
       ) : (
         <div className={`rounded-2xl p-12 text-center space-y-4 border ${
-          isDark ? 'bg-[#102342] border-[#1E3A6E] text-white' : 'bg-white border-slate-200 text-[#0B1930]'
+          isDark ? 'bg-[#00097C] border-[#14288F] text-white' : 'bg-white border-slate-200 text-[#00097C]'
         }`}>
           <Building className="w-10 h-10 text-slate-400 mx-auto" />
-          <h3 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>No developments match your current filter</h3>
+          <h3 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-[#00097C]'}`}>No developments match your current filter</h3>
           <p className={`text-xs max-w-sm mx-auto ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
             Try resetting your search query or location filters to view all active developments.
           </p>
@@ -204,7 +204,7 @@ export const DevelopmentsPage: React.FC<DevelopmentsPageProps> = ({
               setSelectedAvailability('all');
               setSearchQuery('');
             }}
-            className="px-4 py-2 text-xs font-semibold rounded-lg bg-[#C8A45D] text-[#0B1930]"
+            className="px-4 py-2 text-xs font-semibold rounded-lg bg-[#C8A45D] text-[#00097C]"
           >
             Show All Developments
           </button>
@@ -214,7 +214,7 @@ export const DevelopmentsPage: React.FC<DevelopmentsPageProps> = ({
       {/* Advisory Banner */}
       <FadeIn>
         <div className={`rounded-2xl p-8 border flex flex-col md:flex-row items-center justify-between gap-6 ${
-          isDark ? 'bg-[#060E1A] border-[#1E3A6E] text-white' : 'bg-[#0B1930] text-white border-slate-800'
+          isDark ? 'bg-[#000538] border-[#14288F] text-white' : 'bg-[#000538] text-white border-slate-800'
         }`}>
           <div className="space-y-1 text-center md:text-left">
             <h3 className="text-lg font-bold text-white">
@@ -226,7 +226,7 @@ export const DevelopmentsPage: React.FC<DevelopmentsPageProps> = ({
           </div>
           <button
             onClick={() => onOpenLeadModal()}
-            className="px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#0B1930] bg-[#C8A45D] hover:bg-[#DFC07C] transition-colors rounded-lg whitespace-nowrap shadow-sm"
+            className="px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#00097C] bg-[#C8A45D] hover:bg-[#DFC07C] transition-colors rounded-lg whitespace-nowrap shadow-sm"
           >
             Request Corporate Consultation
           </button>

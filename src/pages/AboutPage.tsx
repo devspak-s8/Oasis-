@@ -30,8 +30,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onNavigate, onOp
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Vision */}
         <SlideInLeft>
-          <div className="bg-[#102342] border border-[#1E3A6E] rounded-2xl p-8 space-y-4 shadow-xl h-full">
-            <div className="w-10 h-10 rounded-lg bg-[#060E1A] border border-[#C8A45D]/40 flex items-center justify-center text-[#C8A45D]">
+          <div className="bg-[#00097C] border border-[#14288F] rounded-2xl p-8 space-y-4 shadow-xl h-full">
+            <div className="w-10 h-10 rounded-lg bg-[#000538] border border-[#C8A45D]/40 flex items-center justify-center text-[#C8A45D]">
               <Eye className="w-5 h-5" />
             </div>
             <div className="text-xs font-semibold uppercase tracking-wider text-slate-400">
@@ -40,7 +40,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onNavigate, onOp
             <p className="font-serif-title text-xl text-white italic leading-relaxed">
               "{settings.companyVision}"
             </p>
-            <div className="text-xs text-slate-400 pt-2 border-t border-[#1E3A6E]">
+            <div className="text-xs text-slate-400 pt-2 border-t border-[#14288F]">
               Ratified Corporate Vision
             </div>
           </div>
@@ -48,9 +48,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onNavigate, onOp
 
         {/* Mission */}
         <SlideInRight>
-          <div className="bg-[#102342] border border-[#1E3A6E] rounded-2xl p-8 space-y-4 shadow-xl h-full flex flex-col justify-between">
+          <div className="bg-[#00097C] border border-[#14288F] rounded-2xl p-8 space-y-4 shadow-xl h-full flex flex-col justify-between">
             <div className="space-y-4">
-              <div className="w-10 h-10 rounded-lg bg-[#060E1A] border border-[#C8A45D]/40 flex items-center justify-center text-[#C8A45D]">
+              <div className="w-10 h-10 rounded-lg bg-[#000538] border border-[#C8A45D]/40 flex items-center justify-center text-[#C8A45D]">
                 <Target className="w-5 h-5" />
               </div>
               <div className="text-xs font-semibold uppercase tracking-wider text-slate-400">
@@ -60,7 +60,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onNavigate, onOp
                 {settings.companyMission}
               </p>
             </div>
-            <div className="text-xs text-slate-400 pt-3 border-t border-[#1E3A6E] flex items-center justify-between">
+            <div className="text-xs text-slate-400 pt-3 border-t border-[#14288F] flex items-center justify-between">
               <span>Operational Blueprint</span>
               <span className="text-[#C8A45D] font-semibold">Capital Preservation Charter</span>
             </div>
@@ -69,16 +69,16 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onNavigate, onOp
       </div>
 
       {/* Founder Profile: Left Portrait / Right Bio */}
-      <div className="bg-[#060E1A] border border-[#1E3A6E] rounded-2xl p-8 sm:p-12 shadow-2xl">
+      <div className="bg-[#000538] border border-[#14288F] rounded-2xl p-8 sm:p-12 shadow-2xl">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <SlideInLeft className="lg:col-span-5 flex justify-center">
-            <div className="relative w-72 sm:w-80 aspect-[4/5] rounded-2xl overflow-hidden border-2 border-[#C8A45D]/60 shadow-2xl bg-[#0B1930] group">
+            <div className="relative w-72 sm:w-80 aspect-[4/5] rounded-2xl overflow-hidden border-2 border-[#C8A45D]/60 shadow-2xl bg-[#000538] group">
               <img
                 src="/assets/aistudio/IMG_0554_7a96fa6d.JPG"
                 alt={`${settings.founderName} - Manager & CEO`}
                 className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#060E1A]/80 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#000538]/80 via-transparent to-transparent pointer-events-none" />
               <div className="absolute bottom-3 left-3 right-3 p-2.5 rounded-xl bg-[#00097C]/90 backdrop-blur-sm border border-[#C8A45D]/40 text-center shadow-lg">
                 <span className="text-xs font-bold text-[#C8A45D] uppercase tracking-wider block">
                   {settings.founderName}
@@ -105,7 +105,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onNavigate, onOp
               <p>
                 Oluwayemi James Damilare is the Founder and Lead Visionary of OASIS RAY DEVELOPMENTS LTD. Under his leadership, the firm has cultivated a distinct ethos centered around calm, disciplined, and verifiable property acquisitions in Nigeria's high-potential growth hubs.
               </p>
-              <div className="p-4 rounded-xl bg-[#102342] border border-[#1E3A6E] italic text-slate-200 text-xs sm:text-sm leading-relaxed my-2">
+              <div className="p-4 rounded-xl bg-[#00097C] border border-[#14288F] italic text-slate-200 text-xs sm:text-sm leading-relaxed my-2">
                 "At Oasis Ray Developments, we believe that real estate development is far more than building walls or surveying boundaries. It is the deliberate stewardship of spaces that become conduits of enduring prosperity, security, and influence for families and organizations across every market cycle."
               </div>
               <p>
@@ -113,7 +113,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onNavigate, onOp
               </p>
             </div>
 
-            <div className="pt-4 border-t border-[#1E3A6E]/50 flex flex-wrap gap-4 text-xs text-slate-400">
+            <div className="pt-4 border-t border-[#14288F]/50 flex flex-wrap gap-4 text-xs text-slate-400">
               <span className="flex items-center gap-1.5 text-[#C8A45D]">
                 <Award className="w-4 h-4" /> Stewardship & Generational Value
               </span>
@@ -165,7 +165,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onNavigate, onOp
             <FlungCard
               key={idx}
               index={idx}
-              className="bg-[#102342] border border-[#1E3A6E] rounded-xl p-6 space-y-2 h-full shadow-lg"
+              className="bg-[#00097C] border border-[#14288F] rounded-xl p-6 space-y-2 h-full shadow-lg"
             >
               <h3 className="text-base font-bold text-white">{val.title}</h3>
               <p className="text-xs text-slate-300 leading-relaxed">{val.desc}</p>
@@ -176,7 +176,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onNavigate, onOp
 
       {/* Company Approach to Real Estate */}
       <FadeIn>
-        <div className="bg-[#102342] border border-[#1E3A6E] rounded-2xl p-8 sm:p-12 space-y-6">
+        <div className="bg-[#00097C] border border-[#14288F] rounded-2xl p-8 sm:p-12 space-y-6">
           <div className="max-w-3xl space-y-3">
             <div className="text-xs font-semibold uppercase tracking-widest text-[#C8A45D]">
               Methodology
@@ -189,7 +189,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onNavigate, onOp
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-[#1E3A6E]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-[#14288F]">
             <div className="space-y-2">
               <h4 className="text-sm font-bold text-white">1. Corridor Identification</h4>
               <p className="text-xs text-slate-300 leading-relaxed">
@@ -214,7 +214,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onNavigate, onOp
 
       {/* CTA Section */}
       <FadeIn>
-        <div className="rounded-2xl bg-[#060E1A] border border-[#C8A45D]/40 p-8 sm:p-12 text-center space-y-6">
+        <div className="rounded-2xl bg-[#000538] border border-[#C8A45D]/40 p-8 sm:p-12 text-center space-y-6">
           <h3 className="text-2xl font-bold text-white">
             Explore Our Active Developments
           </h3>
@@ -224,13 +224,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({ settings, onNavigate, onOp
           <div className="flex flex-wrap gap-4 justify-center">
             <button
               onClick={() => onNavigate('/developments')}
-              className="px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#0B1930] bg-[#C8A45D] hover:bg-[#DFC07C] transition-colors rounded-lg shadow-sm"
+              className="px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#00097C] bg-[#C8A45D] hover:bg-[#DFC07C] transition-colors rounded-lg shadow-sm"
             >
               View Developments
             </button>
             <button
               onClick={onOpenLeadModal}
-              className="px-6 py-3 text-xs font-bold uppercase tracking-wider text-white bg-[#102342] hover:bg-[#142B52] border border-[#1E3A6E] transition-colors rounded-lg"
+              className="px-6 py-3 text-xs font-bold uppercase tracking-wider text-white bg-[#00097C] hover:bg-[#142B52] border border-[#14288F] transition-colors rounded-lg"
             >
               Speak to an Advisor
             </button>

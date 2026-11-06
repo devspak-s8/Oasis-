@@ -175,7 +175,7 @@ export const AdvisoryPage: React.FC<AdvisoryPageProps> = ({
           <span>Oasis Ray Advisory Desk</span>
         </div>
         <h1 className={`text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight ${
-          isDark ? 'text-white' : 'text-[#0B1930]'
+          isDark ? 'text-white' : 'text-[#00097C]'
         }`}>
           Speak with an Investment Advisor
         </h1>
@@ -190,7 +190,7 @@ export const AdvisoryPage: React.FC<AdvisoryPageProps> = ({
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: Multi-Step Paged Form (8 cols) */}
         <div className={`lg:col-span-8 rounded-2xl border shadow-xl p-6 sm:p-8 transition-colors ${
-          isDark ? 'bg-[#0B1930] border-[#1E3A6E] text-white' : 'bg-white border-slate-200 text-[#0B1930]'
+          isDark ? 'bg-[#000538] border-[#14288F] text-white' : 'bg-white border-slate-200 text-[#00097C]'
         }`}>
           {/* Step Progress Indicators */}
           <div className="mb-8 border-b pb-6 border-slate-700/40">
@@ -202,7 +202,7 @@ export const AdvisoryPage: React.FC<AdvisoryPageProps> = ({
                   onClick={() => currentStep > 1 && setCurrentStep(1)}
                   className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-xs transition-all ${
                     currentStep === 1
-                      ? 'bg-[#C8A45D] text-[#0B1930] ring-4 ring-[#C8A45D]/20 shadow-md'
+                      ? 'bg-[#C8A45D] text-[#00097C] ring-4 ring-[#C8A45D]/20 shadow-md'
                       : currentStep > 1
                       ? 'bg-emerald-600 text-white'
                       : 'bg-slate-800 text-slate-400'
@@ -226,7 +226,7 @@ export const AdvisoryPage: React.FC<AdvisoryPageProps> = ({
                   onClick={() => currentStep === 3 && setCurrentStep(2)}
                   className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-xs transition-all ${
                     currentStep === 2
-                      ? 'bg-[#C8A45D] text-[#0B1930] ring-4 ring-[#C8A45D]/20 shadow-md'
+                      ? 'bg-[#C8A45D] text-[#00097C] ring-4 ring-[#C8A45D]/20 shadow-md'
                       : currentStep > 2
                       ? 'bg-emerald-600 text-white'
                       : 'bg-slate-800 text-slate-400'
@@ -275,7 +275,7 @@ export const AdvisoryPage: React.FC<AdvisoryPageProps> = ({
                 className="space-y-6"
               >
                 <div>
-                  <h3 className={`text-lg font-extrabold ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>
+                  <h3 className={`text-lg font-extrabold ${isDark ? 'text-white' : 'text-[#00097C]'}`}>
                     Step 1: Select Property & Land Preferences
                   </h3>
                   <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
@@ -313,7 +313,7 @@ export const AdvisoryPage: React.FC<AdvisoryPageProps> = ({
 
                   {currentDev && (
                     <div className={`p-4 rounded-xl border flex items-center gap-4 ${
-                      isDark ? 'bg-[#060E1A] border-[#1E3A6E]' : 'bg-slate-50 border-slate-200'
+                      isDark ? 'bg-[#000538] border-[#14288F]' : 'bg-slate-50 border-slate-200'
                     }`}>
                       <div className="w-16 h-16 rounded-lg overflow-hidden shrink-0 border border-[#C8A45D]/40">
                         <img src={currentDev.heroImage} alt={currentDev.name} className="w-full h-full object-cover" />
@@ -335,7 +335,7 @@ export const AdvisoryPage: React.FC<AdvisoryPageProps> = ({
                     <button
                       type="button"
                       onClick={handleNextStep}
-                      className="px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#0B1930] bg-[#C8A45D] hover:bg-[#DFC07C] transition-all rounded-xl shadow-lg flex items-center gap-2 active:scale-95"
+                      className="px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#00097C] bg-[#C8A45D] hover:bg-[#DFC07C] transition-all rounded-xl shadow-lg flex items-center gap-2 active:scale-95"
                     >
                       <span>Proceed to Contact & Tour Details</span>
                       <ArrowRight className="w-4 h-4" />
@@ -356,7 +356,7 @@ export const AdvisoryPage: React.FC<AdvisoryPageProps> = ({
                 className="space-y-6"
               >
                 <div>
-                  <h3 className={`text-lg font-extrabold ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>
+                  <h3 className={`text-lg font-extrabold ${isDark ? 'text-white' : 'text-[#00097C]'}`}>
                     Step 2: Investor Contact & On-Site Inspection Schedule
                   </h3>
                   <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
@@ -380,8 +380,8 @@ export const AdvisoryPage: React.FC<AdvisoryPageProps> = ({
                           errors.fullName
                             ? 'border-rose-500'
                             : isDark
-                            ? 'bg-[#060E1A] border-[#1E3A6E] text-white placeholder:text-slate-500'
-                            : 'bg-slate-50 border-slate-300 text-[#0B1930] placeholder:text-slate-400'
+                            ? 'bg-[#000538] border-[#14288F] text-white placeholder:text-slate-500'
+                            : 'bg-slate-50 border-slate-300 text-[#00097C] placeholder:text-slate-400'
                         }`}
                       />
                       {errors.fullName && <p className="text-[11px] text-rose-400 mt-1">{errors.fullName}</p>}
@@ -401,8 +401,8 @@ export const AdvisoryPage: React.FC<AdvisoryPageProps> = ({
                           errors.phone
                             ? 'border-rose-500'
                             : isDark
-                            ? 'bg-[#060E1A] border-[#1E3A6E] text-white placeholder:text-slate-500'
-                            : 'bg-slate-50 border-slate-300 text-[#0B1930] placeholder:text-slate-400'
+                            ? 'bg-[#000538] border-[#14288F] text-white placeholder:text-slate-500'
+                            : 'bg-slate-50 border-slate-300 text-[#00097C] placeholder:text-slate-400'
                         }`}
                       />
                       {errors.phone && <p className="text-[11px] text-rose-400 mt-1">{errors.phone}</p>}
@@ -423,8 +423,8 @@ export const AdvisoryPage: React.FC<AdvisoryPageProps> = ({
                         errors.email
                           ? 'border-rose-500'
                           : isDark
-                          ? 'bg-[#060E1A] border-[#1E3A6E] text-white placeholder:text-slate-500'
-                          : 'bg-slate-50 border-slate-300 text-[#0B1930] placeholder:text-slate-400'
+                          ? 'bg-[#000538] border-[#14288F] text-white placeholder:text-slate-500'
+                          : 'bg-slate-50 border-slate-300 text-[#00097C] placeholder:text-slate-400'
                       }`}
                     />
                     {errors.email && <p className="text-[11px] text-rose-400 mt-1">{errors.email}</p>}
@@ -450,8 +450,8 @@ export const AdvisoryPage: React.FC<AdvisoryPageProps> = ({
                       placeholder="e.g. Asking about Ogun State C of O status, 12-month payment spreads, or commercial plot availability..."
                       className={`w-full px-4 py-3 rounded-xl border text-xs focus:outline-none focus:ring-2 focus:ring-[#C8A45D]/50 ${
                         isDark
-                          ? 'bg-[#060E1A] border-[#1E3A6E] text-white placeholder:text-slate-500'
-                          : 'bg-slate-50 border-slate-300 text-[#0B1930] placeholder:text-slate-400'
+                          ? 'bg-[#000538] border-[#14288F] text-white placeholder:text-slate-500'
+                          : 'bg-slate-50 border-slate-300 text-[#00097C] placeholder:text-slate-400'
                       }`}
                     />
                   </div>
@@ -461,7 +461,7 @@ export const AdvisoryPage: React.FC<AdvisoryPageProps> = ({
                       type="button"
                       onClick={() => setCurrentStep(1)}
                       className={`px-5 py-3 text-xs font-bold rounded-xl border transition-colors flex items-center gap-1.5 ${
-                        isDark ? 'bg-[#102342] border-[#1E3A6E] text-slate-300 hover:text-white' : 'bg-slate-100 border-slate-300 text-slate-700'
+                        isDark ? 'bg-[#00097C] border-[#14288F] text-slate-300 hover:text-white' : 'bg-slate-100 border-slate-300 text-slate-700'
                       }`}
                     >
                       <ArrowLeft className="w-4 h-4" />
@@ -471,7 +471,7 @@ export const AdvisoryPage: React.FC<AdvisoryPageProps> = ({
                     <button
                       type="submit"
                       disabled={submitting}
-                      className="px-7 py-3 text-xs font-bold uppercase tracking-wider text-[#0B1930] bg-[#C8A45D] hover:bg-[#DFC07C] disabled:opacity-50 transition-all rounded-xl shadow-lg flex items-center gap-2 active:scale-95"
+                      className="px-7 py-3 text-xs font-bold uppercase tracking-wider text-[#00097C] bg-[#C8A45D] hover:bg-[#DFC07C] disabled:opacity-50 transition-all rounded-xl shadow-lg flex items-center gap-2 active:scale-95"
                     >
                       <span>{submitting ? 'Creating Reference...' : 'Submit Advisory Booking'}</span>
                       <ArrowRight className="w-4 h-4" />
@@ -495,7 +495,7 @@ export const AdvisoryPage: React.FC<AdvisoryPageProps> = ({
                 </div>
 
                 <div className="space-y-2 max-w-lg mx-auto">
-                  <h3 className={`text-2xl font-extrabold ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>
+                  <h3 className={`text-2xl font-extrabold ${isDark ? 'text-white' : 'text-[#00097C]'}`}>
                     Advisory Booking Confirmed
                   </h3>
                   <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
@@ -505,7 +505,7 @@ export const AdvisoryPage: React.FC<AdvisoryPageProps> = ({
 
                 {/* Reference ID Card */}
                 <div className={`p-6 rounded-2xl border max-w-md mx-auto text-left shadow-lg space-y-3 ${
-                  isDark ? 'bg-[#060E1A] border-[#1E3A6E]' : 'bg-slate-50 border-slate-200'
+                  isDark ? 'bg-[#000538] border-[#14288F]' : 'bg-slate-50 border-slate-200'
                 }`}>
                   <div className="flex items-center justify-between border-b pb-3 border-slate-700/40">
                     <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Official Reference ID</span>
@@ -541,7 +541,7 @@ export const AdvisoryPage: React.FC<AdvisoryPageProps> = ({
                     type="button"
                     onClick={() => onNavigate('/developments')}
                     className={`w-full sm:w-auto px-6 py-3.5 text-xs font-semibold rounded-xl border transition-colors ${
-                      isDark ? 'bg-[#102342] border-[#1E3A6E] text-slate-200 hover:text-white' : 'bg-slate-100 border-slate-300 text-slate-700'
+                      isDark ? 'bg-[#00097C] border-[#14288F] text-slate-200 hover:text-white' : 'bg-slate-100 border-slate-300 text-slate-700'
                     }`}
                   >
                     Explore More Estates
@@ -556,14 +556,14 @@ export const AdvisoryPage: React.FC<AdvisoryPageProps> = ({
         <div className="lg:col-span-4 space-y-6">
           <FadeIn delay={0.2}>
             <div className={`rounded-2xl border p-6 space-y-5 transition-colors ${
-              isDark ? 'bg-[#0B1930] border-[#1E3A6E] text-white' : 'bg-white border-slate-200 text-[#0B1930]'
+              isDark ? 'bg-[#000538] border-[#14288F] text-white' : 'bg-white border-slate-200 text-[#00097C]'
             }`}>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-[#102342] border border-[#C8A45D]/40 flex items-center justify-center text-[#C8A45D]">
+                <div className="w-10 h-10 rounded-xl bg-[#00097C] border border-[#C8A45D]/40 flex items-center justify-center text-[#C8A45D]">
                   <ShieldCheck className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className={`text-sm font-bold ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>
+                  <h4 className={`text-sm font-bold ${isDark ? 'text-white' : 'text-[#00097C]'}`}>
                     Why Speak with Us?
                   </h4>
                   <p className="text-[11px] text-[#C8A45D]">Institutional Guarantee</p>
@@ -601,7 +601,7 @@ export const AdvisoryPage: React.FC<AdvisoryPageProps> = ({
               </div>
 
               <div className={`p-3.5 rounded-xl border space-y-1.5 ${
-                isDark ? 'bg-[#060E1A] border-[#1E3A6E]' : 'bg-slate-50 border-slate-200'
+                isDark ? 'bg-[#000538] border-[#14288F]' : 'bg-slate-50 border-slate-200'
               }`}>
                 <div className="flex items-center gap-2 text-xs font-bold text-[#C8A45D]">
                   <Clock className="w-3.5 h-3.5" />

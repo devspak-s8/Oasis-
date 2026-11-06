@@ -114,14 +114,14 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
   if (pageLoading) {
     return (
       <div className={`min-h-[70vh] flex flex-col items-center justify-center space-y-4 p-8 ${
-        isDark ? 'bg-[#060E1A] text-slate-100' : 'bg-slate-50 text-slate-900'
+        isDark ? 'bg-[#000538] text-slate-100' : 'bg-slate-50 text-slate-900'
       }`}>
         <div className="relative w-12 h-12 flex items-center justify-center">
-          <div className="w-12 h-12 rounded-full border-4 border-[#1E3A6E]/30 border-t-[#C8A45D] animate-spin" />
+          <div className="w-12 h-12 rounded-full border-4 border-[#14288F]/30 border-t-[#C8A45D] animate-spin" />
         </div>
         <div className="text-center space-y-1">
           <div className={`text-sm font-bold tracking-wider uppercase ${
-            isDark ? 'text-white' : 'text-[#0B1930]'
+            isDark ? 'text-white' : 'text-[#00097C]'
           }`}>
             Loading Property Details
           </div>
@@ -152,7 +152,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-2">
           <SlideInLeft className="space-y-2">
             <h1 className={`text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight ${
-              isDark ? 'text-white' : 'text-[#0B1930]'
+              isDark ? 'text-white' : 'text-[#00097C]'
             }`}>
               {development.name}
             </h1>
@@ -170,10 +170,10 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                 download
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2.5 text-xs font-bold uppercase tracking-wider rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#0B1930] transition-colors flex items-center gap-2 shadow-md cursor-pointer"
+                className="px-4 py-2.5 text-xs font-bold uppercase tracking-wider rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#00097C] transition-colors flex items-center gap-2 shadow-md cursor-pointer"
                 title="Download Official Subscription Form & FAQ Document (PDF)"
               >
-                <Download className="w-4 h-4 text-[#0B1930]" />
+                <Download className="w-4 h-4 text-[#00097C]" />
                 <span>Download Form & FAQ (PDF)</span>
               </a>
             )}
@@ -182,7 +182,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               onClick={handleShare}
               className={`px-4 py-2.5 text-xs font-semibold rounded-lg border transition-colors flex items-center gap-2 ${
                 isDark
-                  ? 'bg-[#102342] border-[#1E3A6E] text-slate-300 hover:text-white'
+                  ? 'bg-[#00097C] border-[#14288F] text-slate-300 hover:text-white'
                   : 'bg-white border-slate-300 text-slate-700 hover:bg-slate-100 shadow-xs'
               }`}
               aria-label="Share project"
@@ -207,7 +207,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               className={`px-4 py-2.5 text-xs font-bold uppercase tracking-wider rounded-lg border transition-colors shadow-sm flex items-center gap-1.5 ${
                 isDark
                   ? 'bg-[#1A3868] hover:bg-[#234B8C] border-[#C8A45D]/40 text-white'
-                  : 'bg-[#0B1930] hover:bg-[#1A3868] text-white'
+                  : 'bg-[#000538] hover:bg-[#1A3868] text-white'
               }`}
             >
               <Send className="w-3.5 h-3.5 text-[#C8A45D]" />
@@ -220,7 +220,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
         <FadeIn>
           <div
             onClick={() => setSelectedLightboxImage(development.galleryImages[activeImageIndex] || development.heroImage)}
-            className="relative aspect-[16/9] md:aspect-[21/9] rounded-2xl overflow-hidden border border-[#1E3A6E] bg-slate-950 shadow-2xl cursor-pointer group"
+            className="relative aspect-[16/9] md:aspect-[21/9] rounded-2xl overflow-hidden border border-[#14288F] bg-slate-950 shadow-2xl cursor-pointer group"
           >
             <img
               src={development.galleryImages[activeImageIndex] || development.heroImage}
@@ -232,7 +232,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
 
             {/* Click to enlarge pill button */}
             <div className="absolute top-4 right-4 z-10">
-              <span className="px-3 py-1.5 rounded-lg bg-[#060E1A]/85 hover:bg-[#C8A45D] text-white hover:text-[#0B1930] border border-[#1E3A6E] transition-all flex items-center gap-1.5 text-xs font-semibold backdrop-blur-sm shadow-md">
+              <span className="px-3 py-1.5 rounded-lg bg-[#000538]/85 hover:bg-[#C8A45D] text-white hover:text-[#00097C] border border-[#14288F] transition-all flex items-center gap-1.5 text-xs font-semibold backdrop-blur-sm shadow-md">
                 <Maximize2 className="w-3.5 h-3.5" />
                 <span>View Full Size</span>
               </span>
@@ -243,7 +243,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               <span className="font-serif-title italic text-base sm:text-lg text-white drop-shadow-md">
                 "{development.tagline}"
               </span>
-              <div className="hidden sm:flex items-center gap-2 bg-[#060E1A]/90 px-3 py-1.5 rounded-lg border border-[#1E3A6E] font-mono text-xs text-white">
+              <div className="hidden sm:flex items-center gap-2 bg-[#000538]/90 px-3 py-1.5 rounded-lg border border-[#14288F] font-mono text-xs text-white">
                 <span>Coordinates:</span>
                 <span className="text-[#C8A45D]">{development.mapCoordinates.lat}°N, {development.mapCoordinates.lng}°E</span>
               </div>
@@ -278,13 +278,13 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
         <SlideInLeft className="lg:col-span-8 space-y-8">
           {/* Overview */}
           <div className={`rounded-2xl p-6 sm:p-8 space-y-4 border shadow-sm ${
-            isDark ? 'bg-[#102342] border-[#1E3A6E] text-slate-100' : 'bg-white border-slate-200 text-slate-800'
+            isDark ? 'bg-[#00097C] border-[#14288F] text-slate-100' : 'bg-white border-slate-200 text-slate-800'
           }`}>
-            <h2 className={`text-xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>Project Overview</h2>
+            <h2 className={`text-xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#00097C]'}`}>Project Overview</h2>
             <p className={`text-sm leading-relaxed font-normal ${isDark ? 'text-slate-200' : 'text-slate-700'}`}>
               {development.overview}
             </p>
-            <div className={`pt-4 border-t ${isDark ? 'border-[#1E3A6E]/50' : 'border-slate-100'}`}>
+            <div className={`pt-4 border-t ${isDark ? 'border-[#14288F]/50' : 'border-slate-100'}`}>
               <h4 className={`text-xs font-semibold uppercase tracking-wider mb-2 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
                 Strategic Location & Regional Connectivity
               </h4>
@@ -295,7 +295,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
 
             {/* Landmarks List from Official Documents */}
             {development.landmarksList && development.landmarksList.length > 0 && (
-              <div className={`pt-4 border-t ${isDark ? 'border-[#1E3A6E]/50' : 'border-slate-100'}`}>
+              <div className={`pt-4 border-t ${isDark ? 'border-[#14288F]/50' : 'border-slate-100'}`}>
                 <h4 className={`text-xs font-semibold uppercase tracking-wider mb-3 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
                   Nearby Key Landmarks & Institutions (Within Proximity)
                 </h4>
@@ -305,7 +305,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                       key={lIdx}
                       className={`text-xs font-medium px-3 py-1.5 rounded-lg border flex items-center gap-1.5 ${
                         isDark
-                          ? 'bg-[#060E1A] border-[#1E3A6E] text-slate-200'
+                          ? 'bg-[#000538] border-[#14288F] text-slate-200'
                           : 'bg-slate-50 border-slate-200 text-slate-700'
                       }`}
                     >
@@ -325,7 +325,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                 <div className="text-xs font-semibold uppercase tracking-wider text-[#C8A45D]">
                   Cadastral Plot Offerings
                 </div>
-                <h3 className={`text-2xl font-extrabold tracking-tight mt-0.5 ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>
+                <h3 className={`text-2xl font-extrabold tracking-tight mt-0.5 ${isDark ? 'text-white' : 'text-[#00097C]'}`}>
                   Available Plot Sizes & Pricing Tiers
                 </h3>
                 <p className={`text-xs mt-1 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
@@ -340,7 +340,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                 </span>
                 {development.cornerPieceFee && (
                   <span className={`px-3 py-1.5 rounded-lg text-xs font-mono border ${
-                    isDark ? 'bg-[#060E1A] border-[#1E3A6E] text-[#C8A45D]' : 'bg-slate-50 border-slate-200 text-[#0B1930]'
+                    isDark ? 'bg-[#000538] border-[#14288F] text-[#C8A45D]' : 'bg-slate-50 border-slate-200 text-[#00097C]'
                   }`}>
                     Corner Piece: +{formatCurrencyNaira(development.cornerPieceFee)}
                   </span>
@@ -356,7 +356,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                     key={plot.id}
                     className={`rounded-2xl border p-6 sm:p-7 space-y-6 flex flex-col justify-between transition-all duration-300 hover:shadow-2xl relative overflow-hidden group ${
                       isDark
-                        ? 'bg-[#0B1930] border-[#1E3A6E] hover:border-[#C8A45D]/80'
+                        ? 'bg-[#000538] border-[#14288F] hover:border-[#C8A45D]/80'
                         : 'bg-white border-slate-200 hover:border-[#C8A45D] shadow-sm'
                     }`}
                   >
@@ -368,8 +368,8 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                       <div className="flex items-center justify-between gap-3">
                         <span className={`px-3.5 py-1.5 rounded-lg font-mono font-black text-sm tracking-wide border shadow-xs ${
                           isDark
-                            ? 'bg-[#102342] border-[#C8A45D]/50 text-[#C8A45D]'
-                            : 'bg-amber-50 border-[#C8A45D] text-[#0B1930]'
+                            ? 'bg-[#00097C] border-[#C8A45D]/50 text-[#C8A45D]'
+                            : 'bg-amber-50 border-[#C8A45D] text-[#00097C]'
                         }`}>
                           {plot.size}
                         </span>
@@ -377,7 +377,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
 
                       {/* Title & Plot Purpose */}
                       <div className="space-y-1.5">
-                        <h4 className={`text-lg font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>
+                        <h4 className={`text-lg font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#00097C]'}`}>
                           {plot.title}
                         </h4>
                         <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
@@ -387,7 +387,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
 
                       {/* Main Outright Price Hero */}
                       <div className={`p-4 rounded-xl border space-y-1.5 ${
-                        isDark ? 'bg-[#060E1A]/80 border-[#1E3A6E]/80' : 'bg-slate-50 border-slate-200'
+                        isDark ? 'bg-[#000538]/80 border-[#14288F]/80' : 'bg-slate-50 border-slate-200'
                       }`}>
                         <div className="flex items-center justify-between text-[11px] uppercase tracking-wider font-semibold">
                           <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>Outright Benchmark Price</span>
@@ -425,12 +425,12 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                     </div>
 
                     {/* Card Actions */}
-                    <div className={`pt-4 border-t space-y-2.5 ${isDark ? 'border-[#1E3A6E]/60' : 'border-slate-100'}`}>
+                    <div className={`pt-4 border-t space-y-2.5 ${isDark ? 'border-[#14288F]/60' : 'border-slate-100'}`}>
                       <button
                         onClick={() => onOpenLeadModal(development.id, plot.size, 'Plot Reservation Enquiry')}
-                        className="w-full py-3 px-4 text-xs font-bold uppercase tracking-wider rounded-xl bg-[#C8A45D] hover:bg-[#DFC07C] text-[#0B1930] transition-all flex items-center justify-center gap-2 shadow-sm cursor-pointer active:scale-[0.99]"
+                        className="w-full py-3 px-4 text-xs font-bold uppercase tracking-wider rounded-xl bg-[#C8A45D] hover:bg-[#DFC07C] text-[#00097C] transition-all flex items-center justify-center gap-2 shadow-sm cursor-pointer active:scale-[0.99]"
                       >
-                        <Calendar className="w-4 h-4 text-[#0B1930]" />
+                        <Calendar className="w-4 h-4 text-[#00097C]" />
                         <span>Reserve Plot & Schedule Inspection</span>
                       </button>
 
@@ -440,7 +440,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                         rel="noopener noreferrer"
                         className={`w-full py-2.5 px-4 text-xs font-semibold rounded-xl border transition-colors flex items-center justify-center gap-2 ${
                           isDark
-                            ? 'bg-[#060E1A] hover:bg-emerald-600 hover:text-white border-[#1E3A6E] text-slate-300 hover:border-emerald-600'
+                            ? 'bg-[#000538] hover:bg-emerald-600 hover:text-white border-[#14288F] text-slate-300 hover:border-emerald-600'
                             : 'bg-white hover:bg-emerald-600 hover:text-white border-slate-300 text-slate-700 hover:border-emerald-600 shadow-2xs'
                         }`}
                       >
@@ -457,14 +457,14 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
           {/* 3.5 OFFICIAL PRE-LAUNCH FLYERS & VERIFIED BROCHURES */}
           {development.officialFlyers && development.officialFlyers.length > 0 && (
             <div className={`rounded-2xl p-6 sm:p-8 space-y-6 border shadow-sm ${
-              isDark ? 'bg-[#102342] border-[#1E3A6E] text-white' : 'bg-white border-slate-200 text-[#0B1930]'
+              isDark ? 'bg-[#00097C] border-[#14288F] text-white' : 'bg-white border-slate-200 text-[#00097C]'
             }`}>
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <div>
                   <div className="text-xs font-semibold uppercase tracking-wider text-[#C8A45D]">
                     Official Documentation
                   </div>
-                  <h3 className={`text-xl font-bold tracking-tight mt-0.5 ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>
+                  <h3 className={`text-xl font-bold tracking-tight mt-0.5 ${isDark ? 'text-white' : 'text-[#00097C]'}`}>
                     Pre-Launch Flyers & Verified Brochures
                   </h3>
                   <p className={`text-xs mt-0.5 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
@@ -479,7 +479,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                     key={fIdx}
                     onClick={() => setSelectedLightboxImage(flyerUrl)}
                     className={`group relative rounded-xl overflow-hidden border cursor-pointer transition-all aspect-[3/4] bg-slate-950 ${
-                      isDark ? 'border-[#1E3A6E] hover:border-[#C8A45D]' : 'border-slate-300 hover:border-[#C8A45D] shadow-xs'
+                      isDark ? 'border-[#14288F] hover:border-[#C8A45D]' : 'border-slate-300 hover:border-[#C8A45D] shadow-xs'
                     }`}
                   >
                     <img
@@ -502,7 +502,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
           {/* 3.8 LIVE VIDEO SITE INSPECTION & DRONE WALKTHROUGH */}
           {development.videos && development.videos.length > 0 && (
             <div className={`rounded-2xl p-6 sm:p-8 space-y-6 border shadow-sm ${
-              isDark ? 'bg-[#060E1A] border-[#1E3A6E] text-white' : 'bg-slate-50 border-slate-200 text-[#0B1930]'
+              isDark ? 'bg-[#000538] border-[#14288F] text-white' : 'bg-slate-50 border-slate-200 text-[#00097C]'
             }`}>
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div className="space-y-1">
@@ -510,7 +510,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                     <Video className="w-4 h-4" />
                     <span>Ground Reality & Verification</span>
                   </div>
-                  <h3 className={`text-xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>
+                  <h3 className={`text-xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#00097C]'}`}>
                     Drone Survey & On-Site Video Tours
                   </h3>
                   <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
@@ -520,7 +520,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               </div>
 
               {/* Video Player Box */}
-              <div className="relative rounded-xl overflow-hidden bg-black border border-[#1E3A6E] shadow-2xl aspect-video max-w-4xl mx-auto">
+              <div className="relative rounded-xl overflow-hidden bg-black border border-[#14288F] shadow-2xl aspect-video max-w-4xl mx-auto">
                 <video
                   key={development.videos[activeVideoIndex]?.url}
                   controls
@@ -541,9 +541,9 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                     onClick={() => setActiveVideoIndex(vIdx)}
                     className={`p-3.5 rounded-xl border text-left transition-all flex flex-col justify-between ${
                       activeVideoIndex === vIdx
-                        ? 'border-[#C8A45D] bg-[#102342] text-white shadow-md ring-1 ring-[#C8A45D]/40'
+                        ? 'border-[#C8A45D] bg-[#00097C] text-white shadow-md ring-1 ring-[#C8A45D]/40'
                         : isDark
-                        ? 'border-[#1E3A6E]/70 bg-[#060E1A] text-slate-300 hover:border-[#C8A45D]/60'
+                        ? 'border-[#14288F]/70 bg-[#000538] text-slate-300 hover:border-[#C8A45D]/60'
                         : 'border-slate-200 bg-white text-slate-700 hover:border-[#C8A45D]'
                     }`}
                   >
@@ -568,10 +568,10 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
 
           {/* 4. INFRASTRUCTURE & AMENITIES */}
           <div className={`rounded-2xl p-6 sm:p-8 space-y-6 border shadow-sm ${
-            isDark ? 'bg-[#102342] border-[#1E3A6E] text-white' : 'bg-white border-slate-200 text-[#0B1930]'
+            isDark ? 'bg-[#00097C] border-[#14288F] text-white' : 'bg-white border-slate-200 text-[#00097C]'
           }`}>
             <div>
-              <h3 className={`text-xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>
+              <h3 className={`text-xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#00097C]'}`}>
                 Infrastructure & Estate Amenities
               </h3>
               <p className={`text-xs mt-0.5 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
@@ -582,7 +582,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
               {development.infrastructure.map((item, idx) => (
                 <div key={idx} className={`flex items-start gap-3 p-3 rounded-lg border ${
-                  isDark ? 'bg-[#060E1A]/60 border-[#1E3A6E]/50 text-slate-200' : 'bg-slate-50 border-slate-200 text-slate-700'
+                  isDark ? 'bg-[#000538]/60 border-[#14288F]/50 text-slate-200' : 'bg-slate-50 border-slate-200 text-slate-700'
                 }`}>
                   <CheckCircle2 className="w-4 h-4 text-[#C8A45D] shrink-0 mt-0.5" />
                   <span className="text-xs font-medium leading-relaxed">{item}</span>
@@ -593,16 +593,16 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
 
           {/* 5. TITLE & DOCUMENTATION INFORMATION */}
           <div className={`rounded-2xl p-6 sm:p-8 space-y-6 border ${
-            isDark ? 'bg-[#060E1A] border-[#1E3A6E] text-white' : 'bg-slate-100 border-slate-200 text-[#0B1930]'
+            isDark ? 'bg-[#000538] border-[#14288F] text-white' : 'bg-slate-100 border-slate-200 text-[#00097C]'
           }`}>
             <div className="flex items-center gap-3">
               <div className={`w-10 h-10 rounded-lg border flex items-center justify-center ${
-                isDark ? 'bg-[#102342] border-[#C8A45D]/40 text-[#C8A45D]' : 'bg-white border-slate-300 text-[#B38E46]'
+                isDark ? 'bg-[#00097C] border-[#C8A45D]/40 text-[#C8A45D]' : 'bg-white border-slate-300 text-[#B38E46]'
               }`}>
                 <FileCheck className="w-5 h-5" />
               </div>
               <div>
-                <h3 className={`text-xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>
+                <h3 className={`text-xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#00097C]'}`}>
                   Land Title & Statutory Documentation
                 </h3>
                 <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
@@ -614,12 +614,12 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {development.titleDocuments.map((doc, idx) => (
                 <div key={idx} className={`rounded-xl p-4 space-y-2 border ${
-                  isDark ? 'bg-[#102342] border-[#1E3A6E] text-white' : 'bg-white border-slate-200 text-[#0B1930]'
+                  isDark ? 'bg-[#00097C] border-[#14288F] text-white' : 'bg-white border-slate-200 text-[#00097C]'
                 }`}>
                   <div className="text-xs text-[#C8A45D] font-mono uppercase tracking-wider font-semibold">
                     {doc.status}
                   </div>
-                  <h4 className={`text-sm font-bold ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>{doc.title}</h4>
+                  <h4 className={`text-sm font-bold ${isDark ? 'text-white' : 'text-[#00097C]'}`}>{doc.title}</h4>
                   <p className={`text-xs leading-relaxed ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>{doc.description}</p>
                 </div>
               ))}
@@ -629,14 +629,14 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
           {/* 5.1 STATUTORY FEES & ANCILLARY SCHEDULE */}
           {development.statutoryFees && development.statutoryFees.length > 0 && (
             <div className={`rounded-2xl p-6 sm:p-8 space-y-6 border shadow-sm ${
-              isDark ? 'bg-[#102342] border-[#1E3A6E] text-white' : 'bg-white border-slate-200 text-[#0B1930]'
+              isDark ? 'bg-[#00097C] border-[#14288F] text-white' : 'bg-white border-slate-200 text-[#00097C]'
             }`}>
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div>
                   <div className="text-xs font-semibold uppercase tracking-wider text-[#C8A45D]">
                     Official Fee Schedule
                   </div>
-                  <h3 className={`text-xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>
+                  <h3 className={`text-xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#00097C]'}`}>
                     Statutory Fees & Ancillary Charges
                   </h3>
                 </div>
@@ -654,7 +654,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                   <div
                     key={fIdx}
                     className={`p-4 rounded-xl border flex flex-col justify-between space-y-2 ${
-                      isDark ? 'bg-[#060E1A]/80 border-[#1E3A6E]' : 'bg-slate-50 border-slate-200'
+                      isDark ? 'bg-[#000538]/80 border-[#14288F]' : 'bg-slate-50 border-slate-200'
                     }`}
                   >
                     <div className="flex items-center justify-between">
@@ -672,7 +672,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
 
               {development.cornerPieceFee && (
                 <div className={`p-4 rounded-xl border flex items-center justify-between gap-4 text-xs ${
-                  isDark ? 'bg-[#0B1930] border-[#C8A45D]/30 text-slate-200' : 'bg-amber-50/60 border-amber-200 text-slate-800'
+                  isDark ? 'bg-[#000538] border-[#C8A45D]/30 text-slate-200' : 'bg-amber-50/60 border-amber-200 text-slate-800'
                 }`}>
                   <div className="flex items-center gap-2.5">
                     <AlertTriangle className="w-4 h-4 text-[#C8A45D] shrink-0" />
@@ -686,14 +686,14 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
           {/* 5.2 BUILDING RESTRICTIONS & ARCHITECTURAL GUIDELINES */}
           {development.buildingGuidelines && development.buildingGuidelines.length > 0 && (
             <div className={`rounded-2xl p-6 sm:p-8 space-y-5 border shadow-sm ${
-              isDark ? 'bg-[#060E1A] border-[#1E3A6E] text-white' : 'bg-slate-50 border-slate-200 text-[#0B1930]'
+              isDark ? 'bg-[#000538] border-[#14288F] text-white' : 'bg-slate-50 border-slate-200 text-[#00097C]'
             }`}>
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-lg bg-[#102342] border border-[#C8A45D]/40 flex items-center justify-center text-[#C8A45D] shrink-0">
+                <div className="w-9 h-9 rounded-lg bg-[#00097C] border border-[#C8A45D]/40 flex items-center justify-center text-[#C8A45D] shrink-0">
                   <Building className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className={`text-xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>
+                  <h3 className={`text-xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#00097C]'}`}>
                     Building Restrictions & Guidelines
                   </h3>
                   <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
@@ -707,7 +707,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                   <div
                     key={gIdx}
                     className={`flex items-start gap-3 p-3.5 rounded-xl border ${
-                      isDark ? 'bg-[#102342]/60 border-[#1E3A6E]/60 text-slate-200' : 'bg-white border-slate-200 text-slate-700'
+                      isDark ? 'bg-[#00097C]/60 border-[#14288F]/60 text-slate-200' : 'bg-white border-slate-200 text-slate-700'
                     }`}
                   >
                     <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
@@ -721,14 +721,14 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
           {/* 5.3 OFFICIAL FAQ ACCORDION */}
           {development.faqList && development.faqList.length > 0 && (
             <div className={`rounded-2xl p-6 sm:p-8 space-y-6 border shadow-sm ${
-              isDark ? 'bg-[#102342] border-[#1E3A6E] text-white' : 'bg-white border-slate-200 text-[#0B1930]'
+              isDark ? 'bg-[#00097C] border-[#14288F] text-white' : 'bg-white border-slate-200 text-[#00097C]'
             }`}>
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div>
                   <div className="text-xs font-semibold uppercase tracking-wider text-[#C8A45D]">
                     Investor Frequently Asked Questions
                   </div>
-                  <h3 className={`text-xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>
+                  <h3 className={`text-xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#00097C]'}`}>
                     Official FAQs & Terms of Subscription
                   </h3>
                 </div>
@@ -745,9 +745,9 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                       key={fIdx}
                       className={`rounded-xl border transition-all ${
                         isOpen
-                          ? 'border-[#C8A45D] bg-[#060E1A]/80 shadow-md'
+                          ? 'border-[#C8A45D] bg-[#000538]/80 shadow-md'
                           : isDark
-                          ? 'border-[#1E3A6E]/60 bg-[#060E1A]/40 hover:border-[#1E3A6E]'
+                          ? 'border-[#14288F]/60 bg-[#000538]/40 hover:border-[#14288F]'
                           : 'border-slate-200 bg-slate-50/80 hover:border-slate-300'
                       }`}
                     >
@@ -755,11 +755,11 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                         onClick={() => setOpenFaqIndex(isOpen ? null : fIdx)}
                         className="w-full p-4 flex items-center justify-between text-left gap-4 cursor-pointer"
                       >
-                        <span className={`text-xs sm:text-sm font-bold ${isOpen ? 'text-[#C8A45D]' : isDark ? 'text-white' : 'text-[#0B1930]'}`}>
+                        <span className={`text-xs sm:text-sm font-bold ${isOpen ? 'text-[#C8A45D]' : isDark ? 'text-white' : 'text-[#00097C]'}`}>
                           {faq.question}
                         </span>
                         <div className={`w-6 h-6 rounded-lg flex items-center justify-center shrink-0 border ${
-                          isOpen ? 'bg-[#C8A45D] text-[#0B1930] border-[#C8A45D]' : isDark ? 'bg-[#102342] text-slate-400 border-[#1E3A6E]' : 'bg-white text-slate-500 border-slate-200'
+                          isOpen ? 'bg-[#C8A45D] text-[#00097C] border-[#C8A45D]' : isDark ? 'bg-[#00097C] text-slate-400 border-[#14288F]' : 'bg-white text-slate-500 border-slate-200'
                         }`}>
                           {isOpen ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
                         </div>
@@ -775,7 +775,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                             className="overflow-hidden"
                           >
                             <div className={`px-4 pb-4 pt-1 text-xs sm:text-sm leading-relaxed border-t ${
-                              isDark ? 'border-[#1E3A6E]/50 text-slate-300' : 'border-slate-200 text-slate-600'
+                              isDark ? 'border-[#14288F]/50 text-slate-300' : 'border-slate-200 text-slate-600'
                             }`}>
                               {faq.answer}
                             </div>
@@ -792,10 +792,10 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
           {/* 5.4 OFFICIAL SUBSCRIPTION FORM & FAQ PDF DOWNLOAD BANNER */}
           {development.subscriptionFormPdfUrl && (
             <div className={`rounded-2xl p-6 sm:p-8 border shadow-lg flex flex-col md:flex-row items-center justify-between gap-6 ${
-              isDark ? 'bg-gradient-to-r from-[#102342] to-[#060E1A] border-[#C8A45D]/40 text-white' : 'bg-gradient-to-r from-slate-50 to-amber-50/40 border-[#C8A45D]/50 text-[#0B1930]'
+              isDark ? 'bg-gradient-to-r from-[#00097C] to-[#000538] border-[#C8A45D]/40 text-white' : 'bg-gradient-to-r from-slate-50 to-amber-50/40 border-[#C8A45D]/50 text-[#00097C]'
             }`}>
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-[#C8A45D] text-[#0B1930] flex items-center justify-center shrink-0 shadow-md">
+                <div className="w-12 h-12 rounded-xl bg-[#C8A45D] text-[#00097C] flex items-center justify-center shrink-0 shadow-md">
                   <FileText className="w-6 h-6" />
                 </div>
                 <div className="space-y-1">
@@ -817,7 +817,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                   href={development.subscriptionFormPdfUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full md:w-auto py-3 px-5 rounded-xl bg-[#C8A45D] hover:bg-[#DFC07C] text-[#0B1930] text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md cursor-pointer"
+                  className="w-full md:w-auto py-3 px-5 rounded-xl bg-[#C8A45D] hover:bg-[#DFC07C] text-[#00097C] text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md cursor-pointer"
                 >
                   <Download className="w-4 h-4" />
                   <span>Download Form PDF</span>
@@ -831,7 +831,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
         <SlideInRight className="lg:col-span-4 space-y-6 sticky top-28">
           {/* VERIFIED BANK ACCOUNT DETAILS CARD */}
           <div className={`rounded-2xl p-6 space-y-4 border shadow-xl ${
-            isDark ? 'bg-[#060E1A] border-[#C8A45D]/40 text-white' : 'bg-white border-[#C8A45D]/50 text-[#0B1930] shadow-md'
+            isDark ? 'bg-[#000538] border-[#C8A45D]/40 text-white' : 'bg-white border-[#C8A45D]/50 text-[#00097C] shadow-md'
           }`}>
             <div className="flex items-center justify-between">
               <div>
@@ -854,7 +854,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                   <div
                     key={bIdx}
                     className={`p-4 rounded-xl border space-y-2.5 ${
-                      isDark ? 'bg-[#102342] border-[#1E3A6E]' : 'bg-slate-50 border-slate-200'
+                      isDark ? 'bg-[#00097C] border-[#14288F]' : 'bg-slate-50 border-slate-200'
                     }`}
                   >
                     <div className="flex items-center justify-between">
@@ -866,7 +866,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                       <span className={`text-[10px] uppercase tracking-wider block ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
                         Account Name
                       </span>
-                      <span className={`text-xs font-bold ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>
+                      <span className={`text-xs font-bold ${isDark ? 'text-white' : 'text-[#00097C]'}`}>
                         {bank.accountName}
                       </span>
                     </div>
@@ -881,7 +881,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                         </span>
                         <button
                           onClick={() => handleCopyBank(bank.accountNumber, bank.bankName, bIdx)}
-                          className="p-1.5 px-2.5 rounded-lg bg-[#060E1A] hover:bg-[#C8A45D] text-white hover:text-[#0B1930] border border-[#1E3A6E] transition-colors flex items-center gap-1.5 text-xs font-semibold cursor-pointer active:scale-95"
+                          className="p-1.5 px-2.5 rounded-lg bg-[#000538] hover:bg-[#C8A45D] text-white hover:text-[#00097C] border border-[#14288F] transition-colors flex items-center gap-1.5 text-xs font-semibold cursor-pointer active:scale-95"
                           title="Copy Account Number"
                         >
                           {isCopied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
@@ -894,14 +894,14 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               })}
             </div>
 
-            <div className="pt-2 border-t border-[#1E3A6E]/50 text-[10px] text-slate-400 flex items-center justify-between">
+            <div className="pt-2 border-t border-[#14288F]/50 text-[10px] text-slate-400 flex items-center justify-between">
               <span className="text-slate-300">Zero personal accounts</span>
               <span className="text-[#C8A45D]">Never pay cash</span>
             </div>
           </div>
 
           <div className={`rounded-2xl p-6 space-y-5 border shadow-xl ${
-            isDark ? 'bg-[#102342] border-[#1E3A6E] text-white' : 'bg-white border-slate-200 text-[#0B1930]'
+            isDark ? 'bg-[#00097C] border-[#14288F] text-white' : 'bg-white border-slate-200 text-[#00097C]'
           }`}>
             <div className="text-xs font-semibold uppercase tracking-wider text-[#C8A45D]">
               Direct Investor Reservation
@@ -909,15 +909,15 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
 
             <div className="space-y-1">
               <div className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Starting Price Benchmark</div>
-              <div className={`text-2xl font-bold font-mono ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>
+              <div className={`text-2xl font-bold font-mono ${isDark ? 'text-white' : 'text-[#00097C]'}`}>
                 {formatCurrencyNaira(development.startingPrice)}
               </div>
             </div>
 
-            <div className={`space-y-2 pt-2 border-t text-xs ${isDark ? 'border-[#1E3A6E]/60 text-slate-300' : 'border-slate-100 text-slate-600'}`}>
+            <div className={`space-y-2 pt-2 border-t text-xs ${isDark ? 'border-[#14288F]/60 text-slate-300' : 'border-slate-100 text-slate-600'}`}>
               <div className="flex justify-between">
                 <span>Location:</span>
-                <span className={`font-medium ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>{development.location}</span>
+                <span className={`font-medium ${isDark ? 'text-white' : 'text-[#00097C]'}`}>{development.location}</span>
               </div>
               <div className="flex justify-between">
                 <span>Status:</span>
@@ -929,16 +929,16 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               </div>
               <div className="flex justify-between">
                 <span>Inspection Days:</span>
-                <span className={`font-medium ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>Tuesdays & Saturdays</span>
+                <span className={`font-medium ${isDark ? 'text-white' : 'text-[#00097C]'}`}>Tuesdays & Saturdays</span>
               </div>
             </div>
 
             <div className="pt-2 space-y-2.5">
               <button
                 onClick={() => onOpenLeadModal(development.id)}
-                className="w-full py-3 px-4 text-xs font-bold uppercase tracking-wider rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#0B1930] transition-colors flex items-center justify-center gap-2 shadow-sm"
+                className="w-full py-3 px-4 text-xs font-bold uppercase tracking-wider rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#00097C] transition-colors flex items-center justify-center gap-2 shadow-sm"
               >
-                <Calendar className="w-4 h-4 text-[#0B1930]" />
+                <Calendar className="w-4 h-4 text-[#00097C]" />
                 <span>Book Site Inspection Tour</span>
               </button>
 
@@ -959,8 +959,8 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                   rel="noopener noreferrer"
                   className={`w-full py-2.5 px-4 text-xs font-semibold rounded-lg border transition-colors flex items-center justify-center gap-2 ${
                     isDark
-                      ? 'border-[#C8A45D]/40 bg-[#060E1A] text-[#C8A45D] hover:bg-[#C8A45D] hover:text-[#0B1930]'
-                      : 'border-[#C8A45D] bg-amber-50/50 text-[#0B1930] hover:bg-[#C8A45D] hover:text-[#0B1930]'
+                      ? 'border-[#C8A45D]/40 bg-[#000538] text-[#C8A45D] hover:bg-[#C8A45D] hover:text-[#00097C]'
+                      : 'border-[#C8A45D] bg-amber-50/50 text-[#00097C] hover:bg-[#C8A45D] hover:text-[#00097C]'
                   }`}
                 >
                   <Download className="w-3.5 h-3.5" />
@@ -976,7 +976,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
 
           {/* Location Coordinates & Map Preview */}
           <div className={`rounded-2xl p-6 space-y-3 border ${
-            isDark ? 'bg-[#060E1A] border-[#1E3A6E] text-white' : 'bg-slate-100 border-slate-200 text-[#0B1930]'
+            isDark ? 'bg-[#000538] border-[#14288F] text-white' : 'bg-slate-100 border-slate-200 text-[#00097C]'
           }`}>
             <h4 className={`text-xs font-semibold uppercase tracking-wider ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
               Location Coordinates
@@ -985,14 +985,14 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               {development.mapCoordinates.label}
             </div>
             <div className={`p-3 rounded-lg border font-mono text-xs flex items-center justify-between ${
-              isDark ? 'bg-[#102342] border-[#1E3A6E] text-[#C8A45D]' : 'bg-white border-slate-300 text-[#0B1930]'
+              isDark ? 'bg-[#00097C] border-[#14288F] text-[#C8A45D]' : 'bg-white border-slate-300 text-[#00097C]'
             }`}>
               <span>{development.mapCoordinates.lat}, {development.mapCoordinates.lng}</span>
               <a
                 href={`https://www.google.com/maps/search/?api=1&query=${development.mapCoordinates.lat},${development.mapCoordinates.lng}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`text-xs hover:underline flex items-center gap-1 ${isDark ? 'text-slate-300 hover:text-white' : 'text-slate-600 hover:text-[#0B1930]'}`}
+                className={`text-xs hover:underline flex items-center gap-1 ${isDark ? 'text-slate-300 hover:text-white' : 'text-slate-600 hover:text-[#00097C]'}`}
               >
                 Google Maps <ExternalLink className="w-3 h-3" />
               </a>
@@ -1017,12 +1017,12 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
       {/* 8. RELATED DEVELOPMENTS */}
       {relatedDevelopments.length > 0 && (
         <FadeIn>
-          <div className={`space-y-6 pt-8 border-t ${isDark ? 'border-[#1E3A6E]' : 'border-slate-200'}`}>
+          <div className={`space-y-6 pt-8 border-t ${isDark ? 'border-[#14288F]' : 'border-slate-200'}`}>
             <div className="space-y-1">
               <div className="text-xs font-semibold uppercase tracking-widest text-[#C8A45D]">
                 Explore Other Opportunities
               </div>
-              <h3 className={`text-xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>
+              <h3 className={`text-xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-[#00097C]'}`}>
                 Other Strategic Developments in Ogun State
               </h3>
             </div>
@@ -1036,7 +1036,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                 >
                   <div
                     className={`rounded-xl p-5 border flex flex-col sm:flex-row gap-5 items-center justify-between shadow-lg ${
-                      isDark ? 'bg-[#102342] border-[#1E3A6E] text-white' : 'bg-white border-slate-200 text-[#0B1930] shadow-xs'
+                      isDark ? 'bg-[#00097C] border-[#14288F] text-white' : 'bg-white border-slate-200 text-[#00097C] shadow-xs'
                     }`}
                   >
                     <div className="flex items-center gap-4">
@@ -1044,7 +1044,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                         <img src={d.heroImage} alt={d.name} referrerPolicy="no-referrer" className="w-full h-full object-cover" />
                       </div>
                       <div>
-                        <h4 className={`text-base font-bold ${isDark ? 'text-white' : 'text-[#0B1930]'}`}>{d.name}</h4>
+                        <h4 className={`text-base font-bold ${isDark ? 'text-white' : 'text-[#00097C]'}`}>{d.name}</h4>
                         <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{d.location}</p>
                         <p className="text-xs font-mono font-bold text-[#C8A45D] mt-1">
                           From {formatCurrencyNaira(d.startingPrice)}
@@ -1057,7 +1057,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                         onNavigate(`/developments/${d.slug}`);
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                       }}
-                      className="px-4 py-2 text-xs font-semibold rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#0B1930] transition-colors whitespace-nowrap"
+                      className="px-4 py-2 text-xs font-semibold rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#00097C] transition-colors whitespace-nowrap"
                     >
                       View Project
                     </button>
@@ -1093,7 +1093,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               <img
                 src={selectedLightboxImage}
                 alt="Enlarged property asset"
-                className="max-h-[85vh] max-w-full rounded-xl object-contain shadow-2xl border border-[#1E3A6E]"
+                className="max-h-[85vh] max-w-full rounded-xl object-contain shadow-2xl border border-[#14288F]"
               />
             </div>
           </motion.div>

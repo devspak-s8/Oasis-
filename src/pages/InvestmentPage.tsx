@@ -63,7 +63,7 @@ export const InvestmentPage: React.FC<InvestmentPageProps> = ({
 
       {/* Mandatory Regulatory & Risk Disclaimer */}
       <FadeIn>
-        <div className="bg-[#060E1A] border-l-4 border-[#C8A45D] rounded-r-2xl p-6 sm:p-8 space-y-2 shadow-lg">
+        <div className="bg-[#000538] border-l-4 border-[#C8A45D] rounded-r-2xl p-6 sm:p-8 space-y-2 shadow-lg">
           <div className="flex items-center gap-2 text-[#C8A45D] font-bold text-sm tracking-wide uppercase">
             <ShieldAlert className="w-4 h-4 shrink-0" />
             <span>Statutory Investment Advisory Notice</span>
@@ -75,10 +75,10 @@ export const InvestmentPage: React.FC<InvestmentPageProps> = ({
       </FadeIn>
 
       {/* Land Banking Pillar Section: Left Text / Right Image */}
-      <div className="bg-[#102342] border border-[#1E3A6E] rounded-2xl p-8 sm:p-12 space-y-8 shadow-xl">
+      <div className="bg-[#00097C] border border-[#14288F] rounded-2xl p-8 sm:p-12 space-y-8 shadow-xl">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <SlideInLeft className="lg:col-span-7 space-y-4">
-            <div className="w-10 h-10 rounded-lg bg-[#060E1A] border border-[#C8A45D]/40 flex items-center justify-center text-[#C8A45D]">
+            <div className="w-10 h-10 rounded-lg bg-[#000538] border border-[#C8A45D]/40 flex items-center justify-center text-[#C8A45D]">
               <Vault className="w-5 h-5" />
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
@@ -96,7 +96,7 @@ export const InvestmentPage: React.FC<InvestmentPageProps> = ({
             <div className="pt-2 flex flex-wrap gap-4">
               <button
                 onClick={() => onOpenLeadModal(undefined, undefined, 'Land Banking')}
-                className="px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#0B1930] bg-[#C8A45D] hover:bg-[#DFC07C] transition-colors rounded-lg shadow-sm"
+                className="px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#00097C] bg-[#C8A45D] hover:bg-[#DFC07C] transition-colors rounded-lg shadow-sm"
               >
                 Request Land Banking Prospectus
               </button>
@@ -104,14 +104,14 @@ export const InvestmentPage: React.FC<InvestmentPageProps> = ({
           </SlideInLeft>
 
           <SlideInRight className="lg:col-span-5 flex justify-center">
-            <div className="w-full max-w-sm rounded-xl overflow-hidden border border-[#1E3A6E] shadow-2xl">
+            <div className="w-full max-w-sm rounded-xl overflow-hidden border border-[#14288F] shadow-2xl">
               <img
                 src="/assets/aistudio/IMG-20261104-WA0026_8615404d.jpg"
                 alt="Havilah City and Mowe land banking corridor acreage"
                 referrerPolicy="no-referrer"
                 className="w-full h-auto object-cover"
               />
-              <div className="p-4 bg-[#060E1A] border-t border-[#1E3A6E] text-xs text-slate-300 flex items-center justify-between">
+              <div className="p-4 bg-[#000538] border-t border-[#14288F] text-xs text-slate-300 flex items-center justify-between">
                 <span>Surveyed Acreage Demarcation</span>
                 <span className="text-[#C8A45D] font-mono">Ogun State</span>
               </div>
@@ -136,7 +136,7 @@ export const InvestmentPage: React.FC<InvestmentPageProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
           {developments[0] && (
             <FlungCard index={0} className="md:col-span-7">
-              <div className="bg-[#102342] border border-[#1E3A6E] rounded-2xl p-6 sm:p-8 space-y-6 flex flex-col justify-between h-full shadow-xl">
+              <div className="bg-[#00097C] border border-[#14288F] rounded-2xl p-6 sm:p-8 space-y-6 flex flex-col justify-between h-full shadow-xl">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-mono font-semibold text-[#C8A45D] uppercase">
@@ -148,7 +148,7 @@ export const InvestmentPage: React.FC<InvestmentPageProps> = ({
                   <h3 className="text-2xl font-bold text-white">{developments[0].name}</h3>
                   <p className="text-xs text-slate-300 leading-relaxed">{developments[0].overview}</p>
 
-                  <div className="space-y-2 pt-2 border-t border-[#1E3A6E]/60 text-xs">
+                  <div className="space-y-2 pt-2 border-t border-[#14288F]/60 text-xs">
                     <div className="flex justify-between text-slate-300">
                       <span>Location:</span>
                       <span className="font-medium text-white">{developments[0].location}</span>
@@ -166,16 +166,16 @@ export const InvestmentPage: React.FC<InvestmentPageProps> = ({
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-[#1E3A6E] flex items-center gap-3">
+                <div className="pt-4 border-t border-[#14288F] flex items-center gap-3">
                   <button
                     onClick={() => onNavigate(`/developments/${developments[0].slug}`)}
-                    className="flex-1 py-2.5 text-xs font-semibold rounded-lg bg-[#060E1A] hover:bg-[#142B52] border border-[#1E3A6E] text-slate-200 transition-colors text-center"
+                    className="flex-1 py-2.5 text-xs font-semibold rounded-lg bg-[#000538] hover:bg-[#142B52] border border-[#14288F] text-slate-200 transition-colors text-center"
                   >
                     View Plot Layout & Details
                   </button>
                   <button
                     onClick={() => onOpenLeadModal(developments[0].id, undefined, 'Investment Opportunity')}
-                    className="flex-1 py-2.5 text-xs font-bold rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#0B1930] transition-colors text-center shadow-sm"
+                    className="flex-1 py-2.5 text-xs font-bold rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#00097C] transition-colors text-center shadow-sm"
                   >
                     Enquire on Allocation
                   </button>
@@ -186,7 +186,7 @@ export const InvestmentPage: React.FC<InvestmentPageProps> = ({
 
           {developments[1] && (
             <FlungCard index={1} className="md:col-span-5 md:mt-12">
-              <div className="bg-[#102342] border border-[#1E3A6E] rounded-2xl p-6 sm:p-8 space-y-6 flex flex-col justify-between h-full shadow-xl">
+              <div className="bg-[#00097C] border border-[#14288F] rounded-2xl p-6 sm:p-8 space-y-6 flex flex-col justify-between h-full shadow-xl">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-mono font-semibold text-[#C8A45D] uppercase">
@@ -198,7 +198,7 @@ export const InvestmentPage: React.FC<InvestmentPageProps> = ({
                   <h3 className="text-2xl font-bold text-white">{developments[1].name}</h3>
                   <p className="text-xs text-slate-300 leading-relaxed">{developments[1].overview}</p>
 
-                  <div className="space-y-2 pt-2 border-t border-[#1E3A6E]/60 text-xs">
+                  <div className="space-y-2 pt-2 border-t border-[#14288F]/60 text-xs">
                     <div className="flex justify-between text-slate-300">
                       <span>Location:</span>
                       <span className="font-medium text-white">{developments[1].location}</span>
@@ -216,16 +216,16 @@ export const InvestmentPage: React.FC<InvestmentPageProps> = ({
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-[#1E3A6E] flex items-center gap-3">
+                <div className="pt-4 border-t border-[#14288F] flex items-center gap-3">
                   <button
                     onClick={() => onNavigate(`/developments/${developments[1].slug}`)}
-                    className="flex-1 py-2.5 text-xs font-semibold rounded-lg bg-[#060E1A] hover:bg-[#142B52] border border-[#1E3A6E] text-slate-200 transition-colors text-center"
+                    className="flex-1 py-2.5 text-xs font-semibold rounded-lg bg-[#000538] hover:bg-[#142B52] border border-[#14288F] text-slate-200 transition-colors text-center"
                   >
                     View Plot Layout & Details
                   </button>
                   <button
                     onClick={() => onOpenLeadModal(developments[1].id, undefined, 'Investment Opportunity')}
-                    className="flex-1 py-2.5 text-xs font-bold rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#0B1930] transition-colors text-center shadow-sm"
+                    className="flex-1 py-2.5 text-xs font-bold rounded-lg bg-[#C8A45D] hover:bg-[#DFC07C] text-[#00097C] transition-colors text-center shadow-sm"
                   >
                     Enquire on Allocation
                   </button>
@@ -255,7 +255,7 @@ export const InvestmentPage: React.FC<InvestmentPageProps> = ({
         <div className="space-y-3">
           {faqs.map((faq, idx) => (
             <FadeIn key={idx} delay={idx * 0.05}>
-              <div className="bg-[#102342] border border-[#1E3A6E] rounded-xl overflow-hidden transition-colors">
+              <div className="bg-[#00097C] border border-[#14288F] rounded-xl overflow-hidden transition-colors">
                 <button
                   onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
                   className="w-full p-5 text-left flex items-center justify-between gap-4 font-semibold text-sm text-white hover:text-[#C8A45D] transition-colors"
@@ -269,7 +269,7 @@ export const InvestmentPage: React.FC<InvestmentPageProps> = ({
                 </button>
 
                 {openFaq === idx && (
-                  <div className="px-5 pb-5 pt-1 text-xs text-slate-300 leading-relaxed border-t border-[#1E3A6E]/50 animate-in fade-in">
+                  <div className="px-5 pb-5 pt-1 text-xs text-slate-300 leading-relaxed border-t border-[#14288F]/50 animate-in fade-in">
                     {faq.a}
                   </div>
                 )}
@@ -281,7 +281,7 @@ export const InvestmentPage: React.FC<InvestmentPageProps> = ({
 
       {/* Advisory CTA */}
       <FadeIn>
-        <div className="bg-[#060E1A] border border-[#1E3A6E] rounded-2xl p-8 sm:p-12 text-center space-y-4">
+        <div className="bg-[#000538] border border-[#14288F] rounded-2xl p-8 sm:p-12 text-center space-y-4">
           <h3 className="text-2xl font-bold text-white">
             Ready to Discuss Your Real Estate Portfolio?
           </h3>
@@ -291,7 +291,7 @@ export const InvestmentPage: React.FC<InvestmentPageProps> = ({
           <div className="pt-2">
             <button
               onClick={() => onOpenLeadModal(undefined, undefined, 'Investment Consultation')}
-              className="px-8 py-3.5 text-xs font-bold uppercase tracking-wider text-[#0B1930] bg-[#C8A45D] hover:bg-[#DFC07C] transition-colors rounded-lg shadow-sm"
+              className="px-8 py-3.5 text-xs font-bold uppercase tracking-wider text-[#00097C] bg-[#C8A45D] hover:bg-[#DFC07C] transition-colors rounded-lg shadow-sm"
             >
               Book Free Advisory Session
             </button>
